@@ -20,7 +20,7 @@ class Base
     }else{
       $this->controlador = "ErrorRequest";
       $this->metodo = "eror_404";
-    } 
+    }
     require_once "../app/Controllers/" . $this->controlador . ".php";
 
     if (isset($url[1])) {
