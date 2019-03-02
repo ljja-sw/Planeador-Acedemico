@@ -9,7 +9,8 @@
     <!-- <meta name="theme-color" content="#212121"> -->
     <title>Inicio</title>
     <!-- Fontawesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -24,11 +25,12 @@
     <!-- Header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-            <a class="navbar-brand mx-auto" href="#">
+            <a class="navbar-brand mx-auto" href="/">
                 <img src="imgs/logo_blanco.png" alt="Planeador Académico">
             </a>
 
-            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarPrincipal"
+                aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -61,7 +63,7 @@
         </nav>
     </header>
     <!-- Fin Header -->
-    
+
     <?php require( CONTENIDO ) ?>
 
     <!-- Footer -->
@@ -128,4 +130,4 @@
     <script type="text/javascript" src="vendor/mdb/js/mdb.min.js"></script>
 </body>
 
-</html> 
+</html>

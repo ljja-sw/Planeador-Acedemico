@@ -15,6 +15,11 @@ class Base
     if (file_exists("../app/Controllers/" . ucwords($url[0]) . ".php")) {
       $this->controlador = ucwords($url[0]);
       unset($url[0]);
+    }elseif (ucwords($url[0]) == "") {
+      # code...
+    }else{
+      $this->controlador = "ErrorRequest";
+      $this->metodo = "eror_404";
     } 
     require_once "../app/Controllers/" . $this->controlador . ".php";
 
