@@ -4,48 +4,83 @@
    **/
 class Base
 {
-  protected $controlador = "Paginas";
-  protected $metodo = "index";
+  protected $controlador;
+  protected $metodo;
   protected $parametros = [];
+
+  protected static $rutas = [];
 
   function __construct()
   {
-    $url =  $this->cargarUrl();
-
-    if (file_exists("../app/Controllers/" . ucwords($url[0]) . ".php")) {
-      $this->controlador = ucwords($url[0]);
-      unset($url[0]);
-    }elseif (ucwords($url[0]) == "") {
-      # code...
-    }else{
-      $this->controlador = "ErrorRequest";
-      $this->metodo = "eror_404";
-    }
-    require_once "../app/Controllers/" . $this->controlador . ".php";
-
-    if (isset($url[1])) {
-      $metodo = str_replace("-", "_", $url[1]);
-      if (method_exists($this->controlador, $metodo)) {
-        $this->metodo = $metodo;
-        unset($url[1]);
-      }
-    }
-
+    $uri = $this->getURI();
+    $url = $this->transformarUrl($uri);
     $this->parametros = $url ? array_values($url) : [];
 
-    call_user_func_array([
-      $this->controlador,
-      $this->metodo
-    ], $this->parametros);
+    if ($this->esRuta($uri)) {
+      $accion = $this->separarAccion($this->getRoutes()[$uri]);
+
+      $this->controlador = $accion[0];
+      $this->metodo = $accion[1];
+
+      if(file_exists("../app/Controllers/" . $this->controlador . ".php")){
+        require_once "../app/Controllers/" . $this->controlador . ".php";
+      }
+
+      if (method_exists($this->controlador,$this->metodo)) {
+        call_user_func_array([
+          $this->controlador,
+          $this->metodo
+        ], $this->parametros);
+      }else{
+        require_once "../app/Controllers/ErrorRequest.php";
+        call_user_func_array([
+          "ErrorRequest",
+          "error_404"
+        ], $this->parametros);
+      }
+    }else{
+      require_once "../app/Controllers/ErrorRequest.php";
+      call_user_func_array([
+        "ErrorRequest",
+        "error_404"
+      ], $this->parametros);
+    }
   }
 
-  function cargarUrl()
+  public static function add($ruta,$action){
+      self::$rutas[$ruta] = $action;
+  }
+
+  function esRuta($url)
   {
-    if (isset($_GET["url"])) {
-      $url = rtrim($_GET["url"], "/");
+    foreach ($this->getRoutes() as $ruta => $action) {
+      if ($this->getURI() == $ruta) {
+        return true;
+      }
+    }
+  }
+
+  function transformarUrl($url)
+  {
+      $url = rtrim($url, "/");
       $url = filter_var($url, FILTER_SANITIZE_URL);
       $url = explode("/", $url);
       return $url;
-    }
+  }
+
+  function separarAccion($accion)
+  {
+    $a = explode("@",$accion);
+    return $a;
+  }
+
+  function getRoutes()
+  {
+    return self::$rutas;
+  }
+
+  function getURI()
+  {
+    return $_SERVER['REQUEST_URI'];
   }
 }

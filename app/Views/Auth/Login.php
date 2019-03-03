@@ -1,4 +1,4 @@
-<form class="form-signin" action="/login/logear" method="POST">
+<form class="form-signin" action="/iniciar-sesion/iniciar" method="POST">
 
     <div class="text-center mb-4">
         <img class="mb-1 logo-login" src="imgs/logo_color.png" alt="">

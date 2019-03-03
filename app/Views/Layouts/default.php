@@ -64,7 +64,7 @@
                             <a class="dropdown-item" href="#">
                             <i class="fa fa-user"></i><br>                                
                             Mi Perfil</a>
-                            <a class="dropdown-item" href="login/cerrar_sesion">
+                            <a class="dropdown-item" href="/cerrar-sesion">
                             <i class="fa fa-sign-out-alt"></i><br>
                                 Cerrar Sesión</a>
                         </div>
@@ -72,7 +72,7 @@
                     <?php else:?>
 
                     <li class="nav-item">
-                        <a href="login" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar Sesion</a>
+                        <a href="iniciar-sesion" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar Sesion</a>
                     </li>
                     <?php endif;?>
 

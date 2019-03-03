@@ -1,16 +1,16 @@
 <?php
 require_once WEBROOT."/Models/Usuario.php";
 
-class Login extends Controller
+class LoginController extends Controller
 { 
-  public function Index()
+  public function formulario()
   {
     self::$layout = "Auth";
     self::vista("Auth/Login");
 
   }
 
-  public function logear()
+  public function iniciar()
   {     
     $u = new Usuario();
 
@@ -32,7 +32,7 @@ class Login extends Controller
       
     }else{
       $_SESSION['msg'] = "Nombre de usuario o contraseña incorrectos";
-      header("Location: /login");
+      header("Location: /iniciar-sesion");
       $_SESSION['codigo'] = $codigo;
     }
   }

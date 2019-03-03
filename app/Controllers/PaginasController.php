@@ -2,9 +2,9 @@
 /**
  * Controlador de inicio
  */
-class Paginas extends Controller
+class PaginasController extends Controller
 {
-  public function index()
+  public function inicio()
   {
     self::vista("Inicio");
   }
