@@ -25,12 +25,15 @@ class Login extends Controller
       $_SESSION['id'] = $usuario['id'];
       $_SESSION['nombre'] = $usuario['nombre'];
       $_SESSION['apellido'] = $usuario['apellido'];
+      $_SESSION['codigo'] = $usuario['codigo'];
+      $_SESSION['rol'] = $usuario['rol'];
       
       header("Location: /");
       
     }else{
-      $_SESSION['msg'] = "Contraseña Incorrecta";
+      $_SESSION['msg'] = "Nombre de usuario o contraseña incorrectos";
       header("Location: /login");
+      $_SESSION['codigo'] = $codigo;
     }
   }
 

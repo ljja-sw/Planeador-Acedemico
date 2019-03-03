@@ -54,15 +54,12 @@
                             
                         </a>
                     </li>
-                    <!--Dropdown primary-->
                     <div class="nav-item avatar dropdown">
-                        <!--Trigger-->
-                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu1"
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu1"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']}" ?></span>
+                            <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']} - {$_SESSION['rol']}" ?></span>
                             <img src="imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
                                 height="35"></button>
-                        <!--Menu-->
                         <div class="dropdown-menu dropdown-primary dropdown-menu-center">
                             <a class="dropdown-item" href="#">
                             <i class="fa fa-user"></i><br>                                

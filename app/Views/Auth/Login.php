@@ -8,7 +8,8 @@
     </div>
 
     <div class="form-label-group">
-        <input class="form-control" name="codigo" type="text" id="input_codigo" placeholder="Nombre de Usuario" required autofocus>
+        <input class="form-control" name="codigo" type="text" id="input_codigo" placeholder="Nombre de Usuario"
+        <?= $_SESSION['codigo']  ?> required autofocus>
         <label for="input_codigo">Código</label>
     </div>
 
