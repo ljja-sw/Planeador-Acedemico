@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Cargamos Config
 require_once "Config/Config.php";
 

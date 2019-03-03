@@ -48,22 +48,42 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <!-- li class="nav-item avatar">
+                    <?php if(isset($_SESSION['md5'])): ?>
+                    <li class="nav-item avatar">
                         <a class="nav-link p-0" href="#">
-                            <span>Lorem Ipsum Dolor Sit</span>
-                            <img src="imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
-                                height="35">
+                            
                         </a>
-                    </li -->
+                    </li>
+                    <!--Dropdown primary-->
+                    <div class="nav-item avatar dropdown">
+                        <!--Trigger-->
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']}" ?></span>
+                            <img src="imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
+                                height="35"></button>
+                        <!--Menu-->
+                        <div class="dropdown-menu dropdown-primary dropdown-menu-center">
+                            <a class="dropdown-item" href="#">
+                            <i class="fa fa-user"></i><br>                                
+                            Mi Perfil</a>
+                            <a class="dropdown-item" href="login/cerrar_sesion">
+                            <i class="fa fa-sign-out-alt"></i><br>
+                                Cerrar Sesión</a>
+                        </div>
+                    </div>
+                    <?php else:?>
+
                     <li class="nav-item">
                         <a href="login" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar Sesion</a>
                     </li>
+                    <?php endif;?>
+
                 </ul>
             </div>
         </nav>
     </header>
     <!-- Fin Header -->
-
     <?php require( CONTENIDO ) ?>
 
     <!-- Footer -->

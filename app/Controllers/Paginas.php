@@ -8,4 +8,9 @@ class Paginas extends Controller
   {
     self::vista("Inicio");
   }
+
+  public function perfil()
+  {
+    echo "perfil usuario";
+  }
 }

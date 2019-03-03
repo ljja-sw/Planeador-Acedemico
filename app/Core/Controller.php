@@ -8,7 +8,7 @@ class Controller
   protected static $layout = "default";
 
   public function modelo($modelo){
-    require_once "../app/models/" . $modelo . ".php";
+    require_once "../app/mModels/" . $modelo . ".php";
     return new $modelo;
   }
 

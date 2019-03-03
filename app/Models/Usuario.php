@@ -5,7 +5,12 @@ class Usuario extends Model
   {
     $this->query("SELECT * FROM usuarios");
     return $this->resultSet();
+  }
 
+  public function getUsuario($codigo)
+  {
+    $this->query("SELECT * FROM usuarios WHERE codigo = '$codigo'");
+    return $this->single();
   }
 }
 

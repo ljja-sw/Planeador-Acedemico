@@ -34,6 +34,10 @@ body{
 .dropdownUserLink{
     width: 200px;
 }
+.dropdown-menu-center {
+    right: 0;
+    left: 0;
+}
 .navbar .dropdown-menu a{
     text-align: center;
     font-size: 15px;
@@ -41,7 +45,7 @@ body{
 .navbar .dropdown-menu i{
     padding-right: 6px;
 }
-.dropdown-menu
+.navbar .dropdown-menu
 {
     color: #525f7f;
     border: 0 solid rgba(0, 0, 0, .15);
@@ -67,7 +71,6 @@ body{
         height: 500px;
         /* Imagen de fondo para escritorios o tables */
         background-image: url(/imgs/hero_1600.jpg);
-
 
     }
     .funciones .col-md-4 .card{
