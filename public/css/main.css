@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
 body{
     background-color: rgb(237, 237, 237);
+    font-family: "Open Sans", sans-serif;
 }
 .page-footer{
     margin-top: 4.3%;
@@ -8,13 +11,16 @@ body{
     max-height: 70px;
     height: 10vh;
 }
+.img-perfil{
+      height: 200px;
+}
 #navbarPrincipal{
     font-weight: 700;
 }
 .navbar-brand img{
     height:50px;
 }
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
     .navbar-brand img{
         height:40px;
     }
@@ -23,7 +29,7 @@ body{
     color: rgb(255, 255, 255);
 }
 .navbar-dark .navbar-nav .nav-link i{
-    padding-right: 6px;    
+    padding-right: 6px;
 }
 .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
     color: rgba(255, 255, 255, 0.815);
@@ -65,8 +71,7 @@ body{
     height: 300px;
     margin-top: 10px;
 }
-
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
     .hero{
         height: 500px;
         /* Imagen de fondo para escritorios o tables */
