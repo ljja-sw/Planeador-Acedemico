@@ -5,4 +5,4 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 
 require_once "../app/init.php";
 
-$base = new Base();
+new Router();

@@ -2,7 +2,7 @@
 /**
    *
    **/
-class Base
+class Router
 {
   protected $controlador;
   protected $metodo;

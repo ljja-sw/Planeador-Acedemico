@@ -1,10 +1,10 @@
 <?php
 
-Base::add("/","PaginasController@inicio");
+Router::add("/","PaginasController@inicio");
 
-Base::add("/perfil","PaginasController@perfil");
+Router::add("/perfil","PaginasController@perfil");
 
-Base::add("/iniciar-sesion","LoginController@formulario");
-Base::add("/iniciar-sesion/iniciar","LoginController@iniciar");
+Router::add("/iniciar-sesion","LoginController@formulario");
+Router::add("/iniciar-sesion/iniciar","LoginController@iniciar");
 
-Base::add("/cerrar-sesion","LoginController@cerrar_sesion");
+Router::add("/cerrar-sesion","LoginController@cerrar_sesion");
