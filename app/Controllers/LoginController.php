@@ -9,7 +9,7 @@ class LoginController extends Controller
 
   public function iniciar()
   {
-    $u = $this->modelo("Usuario");
+    $u = self::modelo("Usuario");
 
     $codigo = Request::post("codigo");
     $pass =  Request::post("password");
