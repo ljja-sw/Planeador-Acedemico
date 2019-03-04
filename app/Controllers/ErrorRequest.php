@@ -2,6 +2,6 @@
 class ErrorRequest extends Controller{
 
     public static function error_404(){
-        View::load("404");
+        self::vista("404");
     }
 }

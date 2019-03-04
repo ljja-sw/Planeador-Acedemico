@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#A81B2B">
     <!-- <meta name="theme-color" content="#212121"> -->
-    <title>Inicio</title>
     <!-- Fontawesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -51,7 +50,7 @@
                     <?php if(isset($_SESSION['md5'])): ?>
                     <li class="nav-item avatar">
                         <a class="nav-link p-0" href="#">
-                            
+
                         </a>
                     </li>
                     <div class="nav-item avatar dropdown">
@@ -61,8 +60,8 @@
                             <img src="imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
                                 height="35"></button>
                         <div class="dropdown-menu dropdown-primary dropdown-menu-center">
-                            <a class="dropdown-item" href="#">
-                            <i class="fa fa-user"></i><br>                                
+                            <a class="dropdown-item" href="/perfil">
+                            <i class="fa fa-user"></i><br>
                             Mi Perfil</a>
                             <a class="dropdown-item" href="/cerrar-sesion">
                             <i class="fa fa-sign-out-alt"></i><br>

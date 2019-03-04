@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Controlador de inicio
  */
@@ -11,6 +12,6 @@ class PaginasController extends Controller
 
   public function perfil()
   {
-    echo "perfil usuario";
+    self::vista("Perfil");
   }
 }

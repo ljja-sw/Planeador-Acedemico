@@ -1,3 +1,5 @@
+<title>Inicio</title>
+
 <div class="container-fluid p-0">
     <section class="hero" />
 </div>
@@ -31,4 +33,4 @@
         </div>
     </section>
 </div>
-<!-- Fin Contenido --> 
+<!-- Fin Contenido -->

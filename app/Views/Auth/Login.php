@@ -8,8 +8,7 @@
     </div>
 
     <div class="form-label-group">
-        <input class="form-control" name="codigo" type="text" id="input_codigo" placeholder="Nombre de Usuario"
-        <?= $_SESSION['codigo']  ?> required autofocus>
+        <input class="form-control" name="codigo" type="text" id="input_codigo" placeholder="Nombre de Usuario" value="<?= isset($_SESSION['codigo']) ? $_SESSION['codigo']: ''  ?>" required autofocus>
         <label for="input_codigo">Código</label>
     </div>
 
@@ -29,6 +28,6 @@
         <a href="#">Olvidé mis Credenciales</a>
         <!-- <p class="mt-5 mb-3 text-muted">ver 0.1</p> -->
     </div>
-    
-</form> 
+
+</form>
 <?php unset($_SESSION['msg']); ?>

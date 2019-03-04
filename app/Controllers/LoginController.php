@@ -1,22 +1,19 @@
 <?php
-require_once WEBROOT."/Models/Usuario.php";
-
 class LoginController extends Controller
-{ 
+{
   public function formulario()
   {
-    self::$layout = "Auth";
+    self::setLayout("Auth");
     self::vista("Auth/Login");
-
   }
 
   public function iniciar()
-  {     
-    $u = new Usuario();
+  {
+    $u = $this->modelo("Usuario");
 
     $codigo = Request::post("codigo");
     $pass =  Request::post("password");
-    
+
     $usuario = $u->getUsuario($codigo);
 
     if (count($usuario) >= 1 && password_verify($pass,$usuario['password'])) {
@@ -27,9 +24,9 @@ class LoginController extends Controller
       $_SESSION['apellido'] = $usuario['apellido'];
       $_SESSION['codigo'] = $usuario['codigo'];
       $_SESSION['rol'] = $usuario['rol'];
-      
+
       header("Location: /");
-      
+
     }else{
       $_SESSION['msg'] = "Nombre de usuario o contraseña incorrectos";
       header("Location: /iniciar-sesion");
@@ -45,4 +42,3 @@ class LoginController extends Controller
 
   }
 }
- 
