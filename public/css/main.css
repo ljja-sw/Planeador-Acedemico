@@ -12,7 +12,8 @@ body{
     height: 10vh;
 }
 .img-perfil{
-      height: 200px;
+    height: 200px;
+    width: 236px;
 }
 #navbarPrincipal{
     font-weight: 700;
