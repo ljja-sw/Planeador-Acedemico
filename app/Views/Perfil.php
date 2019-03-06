@@ -1,26 +1,27 @@
 <title>Perfil</title>
-<div class="container mt-4 ">
+<div class="container mt-3 ">
 
 </div>
 <div class="container">
-    <div class="row row-perfil pb-4" style="background-image: url(/imgs/login_bg.png)">
-    </div>
     <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-10 mx-auto">
             <!-- Datos del Docente -->
-            <div class="my-auto py-2">
-                <div class="card card-body flex-center text-center ">
+            <div class="my-auto">
+                <div class="card card-body flex-center text-center py-2">
                     <div class="row">
                         <div class="col-md-6">
-                            <img class="img-perfil img-fluid border-radius my-2" src="imgs/default_user.png"
+                            <img class="img-perfil border-radius m-3" src="imgs/default_user.png"
                                 alt="Foto de <?= "{$_SESSION["nombre"]} {$_SESSION["apellido"]}" ?>">
                         </div>
-                        <div class="col-md-6 my-auto">
+                        <div class="col-md-6 my-auto ">
                             <small class="text-muted"><?= $_SESSION["rol"] ?></small>
                             <h3 class="h3-responsive font-weight-bold">
                                 <?= "{$_SESSION["nombre"]} {$_SESSION["apellido"]}" ?>
                             </h3>
                             <p><?= $_SESSION["correo"] ?></p>
+                        <div class="py-2">
+                        <a href="#" >Cambiar Contraseña</a>
+</div>
                         </div>
                     </div>
                 </div>
@@ -43,19 +44,15 @@
                 <div class="card card-body">
                 <small class="text-muted pb-2">Tus asignaturas</small>
                     <div class="pl-2">
+                      <ul class="list-group list-group-flush">
+                      <?php for($i=1;$i<=5;$i++): ?>
+                        <li class="list-group-item"><a href="#">4-12314M-50 INTRODUCCIÓN A LOS PÁJAROS-<?= $i  ?></a></li>
+                      <?php endfor; ?>
+                    </ul>
                     </div>
                 </div>
             </div>
             <!-- Fin Asignaturas del Docente -->
-            <!-- Planeadores del Docente -->
-            <div class="my-auto py-2">
-                <div class="card card-body">
-                <small class="text-muted pb-2">Planeadores Generados</small>
-                    <div class="pl-2">
-                    </div>
-                </div>
-            </div>
-            <!-- Fin Planeadores del Docente -->
         </div>
     </div>
 </div>

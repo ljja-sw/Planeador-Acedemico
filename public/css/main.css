@@ -12,7 +12,7 @@ body{
     height: 10vh;
 }
 .img-perfil{
-    height: 200px;
+    height: 230px;
     width: 236px;
 }
 #navbarPrincipal{
@@ -20,6 +20,9 @@ body{
 }
 .navbar-brand img{
     height:50px;
+}
+.card.card-body{
+    margin: 10px 0;
 }
 @media (max-width: 768px) {
     .navbar-brand img{
