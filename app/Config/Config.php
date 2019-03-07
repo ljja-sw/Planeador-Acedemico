@@ -6,7 +6,7 @@
 
   define("WEBROOT", dirname(dirname(__FILE__)));
 
-  define("URLROOT", "http://planeador.test");
+  define("URLROOT", "planeador.test");
 
   define("NOMBRE_SITIO", "Planeador Academico");
 ?>
