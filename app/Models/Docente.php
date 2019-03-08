@@ -4,7 +4,9 @@
  */
 class Docente extends Model
 {
-  protected  $campos = [
+  function __construct()
+  {
+    self::setCampos($campos =[
         'nombre',
         'apellido',
         'correo',
@@ -12,10 +14,8 @@ class Docente extends Model
         'documento_identidad',
         'codigo',
         'rol',
-        'programa_dependencia'];
-
-  function __construct()
-  {
-
+        'programa_dependencia']);
+      
+    self::setTabla("usuarios");
   }
 }

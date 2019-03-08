@@ -6,7 +6,6 @@ class Controller
   {
 
   protected static $layout = "default";
-  protected static $modelo;
 
   public function modelo($modelo){
     require_once "../app/Models/" . $modelo . ".php";

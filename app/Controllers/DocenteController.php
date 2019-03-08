@@ -3,15 +3,35 @@
  *
  */
 class DocenteController extends Controller
-{
+{ 
 
-  function __construct()
+  public function formulario_registrar_docente()
   {
+    $roles = self::modelo("Rol")->obtenerTodos();
+    $programas = self::modelo("Programa")->obtenerTodos();
+    self::vista("Docentes/registrar-docente",
+                ['roles'=> $roles,'programas'=>$programas]);
   }
-
+  
   public function registrar_docente()
   {
-    self::$modelo = self::modelo("Docente");
-    self::$modelo->buscar(1);
-}
+    $docente = self::modelo("Docente");
+    $data = Request::toArray($_POST);
+
+    $split_nombre = str_split($data['nombre']);
+    $split_apellido = str_split($data['apellido']);
+
+    $password = ucwords($split_nombre[0]).$data['codigo'].ucwords($split_apellido[0]);
+    
+    $docente->crear([
+      'nombre' => $data['nombre'],
+      'apellido' => $data['apellido'],
+      'correo' => $data['correo'],
+      'password' => password_hash($password,PASSWORD_BCRYPT),
+      'documento_identidad' => $data['documento_identidad'],
+      'codigo' => $data['codigo'],
+      'rol' => $data['rol'],
+      'programa_dependencia' => $data['programa_dependencia']
+    ]);
+  }
 }

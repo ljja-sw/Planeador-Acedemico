@@ -26,18 +26,23 @@ class Router
         require_once "../app/Controllers/" . $this->controlador . ".php";
       }
 
-      if (method_exists($this->controlador,$this->metodo)) {
-        call_user_func_array([
-          $this->controlador,
-          $this->metodo
-        ], $this->parametros);
-      }else{
-        require_once "../app/Controllers/ErrorRequest.php";
-        call_user_func_array([
-          "ErrorRequest",
-          "error_404"
-        ], $this->parametros);
+      if ($this->getRoutes()[$uri]['rol'] == @$_SESSION['rol'] || $this->getRoutes()[$uri]['rol'] == "") {
+        if (method_exists($this->controlador,$this->metodo)) {
+          call_user_func_array([
+            $this->controlador,
+            $this->metodo
+          ], $this->parametros);
+        }else{
+          require_once "../app/Controllers/ErrorRequest.php";
+          call_user_func_array([
+            "ErrorRequest",
+            "error_404"
+          ], $this->parametros);
+        }
+      } else {
+        die("No tienes los permisos para acceder a este recurso");
       }
+
     }else{
       require_once "../app/Controllers/ErrorRequest.php";
       call_user_func_array([
@@ -47,8 +52,8 @@ class Router
     }
   }
 
-  public static function add($ruta,$action){
-      self::$rutas[$ruta] = $action;
+  public static function add($ruta,$action,$rol = ""){
+      self::$rutas[$ruta] = ['ruta' => $action,'rol' => $rol];
   }
 
   function esRuta($url)
@@ -70,7 +75,7 @@ class Router
 
   function separarAccion($accion)
   {
-    $a = explode("@",$accion);
+    $a = explode("@",$accion['ruta']);
     return $a;
   }
 
