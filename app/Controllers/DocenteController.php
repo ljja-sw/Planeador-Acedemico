@@ -3,16 +3,17 @@
  *
  */
 class DocenteController extends Controller
-{ 
+{
 
   public function index()
   {
     $roles = self::modelo("Rol")->buscar(1);
     $programas = self::modelo("Programa")->obtenerTodos();
+    $docentes = self::modelo("Docente")->obtener("rol","=",1);
     self::vista("Docentes/index",
-                ['roles'=> $roles,'programas'=>$programas]);
+                ['roles'=> $roles,'programas'=>$programas,'docentes'=>$docentes]);
   }
-  
+
   public function registrar_docente()
   {
     $docente = self::modelo("Docente");
@@ -22,7 +23,7 @@ class DocenteController extends Controller
     $split_apellido = str_split($data['apellido']);
 
     $password = ucwords($split_nombre[0]).$data['codigo'].ucwords($split_apellido[0]);
-    
+
     $docente->crear([
       'nombre' => $data['nombre'],
       'apellido' => $data['apellido'],
@@ -33,5 +34,7 @@ class DocenteController extends Controller
       'rol' => $data['rol'],
       'programa_dependencia' => $data['programa_dependencia']
     ]);
+    Helpers::redirect("/docentes");
+    Helpers::alert("success","Docente registrado");
   }
 }

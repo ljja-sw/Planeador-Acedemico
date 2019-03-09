@@ -46,7 +46,7 @@
                         <small class="py-3 mx-auto">
                             Tipo de Usuario
                         </small>
-                        <select name="rol" class="custom-select" required disabled>
+                        <select name="rol" class="custom-select" required>
                             <option value="<?= $datos['roles']['id']; ?>">
                                 <?= $datos['roles']['nombre']; ?>
                             </option>
@@ -58,9 +58,9 @@
                             Dependencia
                         </small>
                         <select name="programa_dependencia" class="custom-select" required>
-                            <?php foreach($datos['programas'] as $rol): ?>
-                            <option value="<?= $rol['id']; ?>">
-                                <?= "{$rol['nombre']}-{$rol['codigo']}"; ?>
+                            <?php foreach($datos['programas'] as $programa): ?>
+                            <option value="<?= $programa['id']; ?>">
+                                <?= "{$programa['nombre']}-{$programa['codigo']}"; ?>
                             </option>
                             <?php endforeach;?>
                         </select>

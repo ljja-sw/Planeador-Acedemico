@@ -18,6 +18,16 @@
     <!-- Icon -->
     <link rel="icon" sizes="192x192" href="favicon.png">
     <link rel="icon" href="/favicon.png ">
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="vendor/mdb/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="vendor/mdb/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="vendor/mdb/js/mdb.min.js"></script>
 </head>
 
 <body>
@@ -80,6 +90,16 @@
         </nav>
     </header>
     <!-- Fin Header -->
+
+    <div class="container pt-2">
+      <?php if (isset($_SESSION['msg'])): ?>
+        <div class="alert alert-<?= $_SESSION['msg']['tipo'] ?>" >
+          <?= $_SESSION['msg']['mensaje'] ?>
+        </div>
+        <?php Helpers::unset("msg") ?>
+      <?php endif; ?>
+    </div>
+
     <?php require( CONTENIDO ) ?>
 
     <!-- Footer -->
@@ -112,13 +132,9 @@
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h6 class="text-uppercase mb-4 font-weight-bold">Contactatnos</h6>
                     <p>
-                        <i class="fas fa-user mr-3"></i><b>Jean Carlos Gallego</b></p>
+                        <i class="fas fa-user mr-3"></i><b>The Programers</b></p>
                     <p>
-                        <i class="fas fa-envelope mr-1"></i> jean.gallego@gmail.com</p>
-                    <p>
-                        <i class="fas fa-user mr-3"></i><b>Juiner Solis</b></p>
-                    <p>
-                        <i class="fas fa-envelope mr-1"></i> juiner.info@gmail.com</p>
+                        <i class="fas fa-envelope mr-1"></i> contacto.programers@gmail.com</p>
                 </div>
             </div>
             <hr>
@@ -134,16 +150,6 @@
         </div>
     </footer>
     <!-- Fin Footer  -->
-
-    <!-- SCRIPTS -->
-    <!-- JQuery -->
-    <script type="text/javascript" src="vendor/mdb/js/jquery-3.3.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="vendor/mdb/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="vendor/mdb/js/mdb.min.js"></script>
 </body>
 
 </html>

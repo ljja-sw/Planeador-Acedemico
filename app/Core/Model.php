@@ -38,6 +38,17 @@ abstract class Model
     return DB::resultSet($query);
   }
 
+  public static function obtener($field = "",$compartor = "",$value = "")
+  {
+    $query = DB::query("SELECT ".implode(',',self::getCampos())." FROM ".self::getTabla());
+
+    if (!$field == "") {
+      $query = DB::query("SELECT ".implode(',',self::getCampos())." FROM ".self::getTabla()." WHERE {$field} {$compartor} {$value}");
+
+    }
+    return DB::resultSet($query);
+  }
+
   public static function setCampos($campos)
   {
     self::$campos = $campos;
