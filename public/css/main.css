@@ -4,6 +4,13 @@ body{
     background-color: rgb(237, 237, 237);
     font-family: "Open Sans", sans-serif;
 }
+.md-form.md-outline input[type="text"]:focus:not([readonly]), .md-form.md-outline input[type="password"]:focus:not([readonly]), .md-form.md-outline input[type="email"]:focus:not([readonly]), .md-form.md-outline input[type="url"]:focus:not([readonly]), .md-form.md-outline input[type="time"]:focus:not([readonly]), .md-form.md-outline input[type="date"]:focus:not([readonly]), .md-form.md-outline input[type="datetime-local"]:focus:not([readonly]), .md-form.md-outline input[type="tel"]:focus:not([readonly]), .md-form.md-outline input[type="number"]:focus:not([readonly]), .md-form.md-outline input[type="search-md"]:focus:not([readonly]), .md-form.md-outline input[type="search"]:focus:not([readonly]), .md-form.md-outline textarea:focus:not([readonly]) {
+    border-color: #cd1f32;
+    -webkit-box-shadow: inset 0px 0px 0px 1px #c63042;
+    box-shadow: inset 0px 0px 0px 1px #c92d40;}
+    .md-form.md-outline input[type="text"]:focus:not([readonly]) + label, .md-form.md-outline input[type="password"]:focus:not([readonly]) + label, .md-form.md-outline input[type="email"]:focus:not([readonly]) + label, .md-form.md-outline input[type="url"]:focus:not([readonly]) + label, .md-form.md-outline input[type="time"]:focus:not([readonly]) + label, .md-form.md-outline input[type="date"]:focus:not([readonly]) + label, .md-form.md-outline input[type="datetime-local"]:focus:not([readonly]) + label, .md-form.md-outline input[type="tel"]:focus:not([readonly]) + label, .md-form.md-outline input[type="number"]:focus:not([readonly]) + label, .md-form.md-outline input[type="search-md"]:focus:not([readonly]) + label, .md-form.md-outline input[type="search"]:focus:not([readonly]) + label, .md-form.md-outline textarea:focus:not([readonly]) + label {
+        color: #cd1f32;
+    }
 .page-footer{
     margin-top: 4.3%;
 }

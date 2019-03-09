@@ -26,7 +26,7 @@ class Router
         require_once "../app/Controllers/" . $this->controlador . ".php";
       }
 
-      if ($this->getRoutes()[$uri]['rol'] == @$_SESSION['rol'] || $this->getRoutes()[$uri]['rol'] == "") {
+      if (@in_array($_SESSION['rol'],$this->getRoutes()[$uri]['rol']) || $this->getRoutes()[$uri]['rol'] == "") {
         if (method_exists($this->controlador,$this->metodo)) {
           call_user_func_array([
             $this->controlador,

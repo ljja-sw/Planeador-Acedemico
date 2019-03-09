@@ -28,7 +28,7 @@ abstract class Model
 
   public static function buscar($id)
   {
-    $query = DB::query("SELECT ".implode(',',self::getCampos())." FROM".self::getTabla()."  WHERE id = $id");
+    $query = DB::query("SELECT ".implode(',',self::getCampos())." FROM ".self::getTabla()."  WHERE id = $id;");
     return DB::single($query);
   }
 

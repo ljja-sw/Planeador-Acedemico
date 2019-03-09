@@ -5,11 +5,11 @@
 class DocenteController extends Controller
 { 
 
-  public function formulario_registrar_docente()
+  public function index()
   {
-    $roles = self::modelo("Rol")->obtenerTodos();
+    $roles = self::modelo("Rol")->buscar(1);
     $programas = self::modelo("Programa")->obtenerTodos();
-    self::vista("Docentes/registrar-docente",
+    self::vista("Docentes/index",
                 ['roles'=> $roles,'programas'=>$programas]);
   }
   
