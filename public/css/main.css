@@ -11,6 +11,12 @@ body{
     .md-form.md-outline input[type="text"]:focus:not([readonly]) + label, .md-form.md-outline input[type="password"]:focus:not([readonly]) + label, .md-form.md-outline input[type="email"]:focus:not([readonly]) + label, .md-form.md-outline input[type="url"]:focus:not([readonly]) + label, .md-form.md-outline input[type="time"]:focus:not([readonly]) + label, .md-form.md-outline input[type="date"]:focus:not([readonly]) + label, .md-form.md-outline input[type="datetime-local"]:focus:not([readonly]) + label, .md-form.md-outline input[type="tel"]:focus:not([readonly]) + label, .md-form.md-outline input[type="number"]:focus:not([readonly]) + label, .md-form.md-outline input[type="search-md"]:focus:not([readonly]) + label, .md-form.md-outline input[type="search"]:focus:not([readonly]) + label, .md-form.md-outline textarea:focus:not([readonly]) + label {
         color: #cd1f32;
     }
+    .md-form.md-outline input[type=text], .md-form.md-outline input[type=password], .md-form.md-outline input[type=email], .md-form.md-outline input[type=url], .md-form.md-outline input[type=time], .md-form.md-outline input[type=date], .md-form.md-outline input[type=datetime-local], .md-form.md-outline input[type=tel], .md-form.md-outline input[type=number], .md-form.md-outline input[type=search-md], .md-form.md-outline input[type=search], .md-form.md-outline textarea {
+      height: 50px;
+  }
+  .md-form.md-outline label {
+    top: .85rem;
+  }
 .page-footer{
     margin-top: 4.3%;
 }

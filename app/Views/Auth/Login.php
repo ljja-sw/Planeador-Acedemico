@@ -7,13 +7,13 @@
         <small class="text-muted">Estudiantes y Docentes</small>
     </div>
 
-    <div class="form-label-group">
-        <input class="form-control" name="codigo" type="text" id="input_codigo" placeholder="Nombre de Usuario" value="<?= isset($_SESSION['codigo']) ? $_SESSION['codigo']: ''  ?>" required autofocus>
+    <div class=" md-outline md-form">
+        <input class="form-control" name="codigo" type="text" id="input_codigo" value="<?= isset($_SESSION['codigo']) ? $_SESSION['codigo']: ''  ?>" required autofocus>
         <label for="input_codigo">Código</label>
     </div>
 
-    <div class="form-label-group">
-        <input class="form-control" name="password" type="password" id="input_password" placeholder="Password" required>
+    <div class="md-outline md-form">
+        <input class="form-control" name="password" type="password" id="input_password" required>
         <label for="input_password"> Contraseña</label>
     </div>
     <button class="btn btn-lg bg-primary text-white btn-block" type="submit">Iniciar Sesión</button>

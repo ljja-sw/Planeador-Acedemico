@@ -18,6 +18,10 @@ class Helpers
      'tipo'=> $tipo];
   }
 
+  public static function loggedin()
+  {
+    return isset($_SESSION['md5']);
+  }
 
   public static function unset($var)
   {
