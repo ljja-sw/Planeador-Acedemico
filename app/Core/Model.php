@@ -23,7 +23,7 @@ abstract class Model
     $fields = implode(",",$fields);
 
     $query = "INSERT INTO usuarios ($fields) VALUES($values)";
-    $insert = DB::query($query,$request);
+    return DB::query($query,$request);
   }
 
   public static function buscar($id)

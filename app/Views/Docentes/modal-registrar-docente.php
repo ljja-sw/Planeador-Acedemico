@@ -71,7 +71,7 @@
             <!--Footer-->
             <div class="modal-footer justify-content-center">
                 <input type="submit" value="Enviar" class="btn btn-elegant" form="form-registrar-docentes">
-                <a type="button" class="btn btn-outline-elegant waves-effect" data-dismiss="modal">Cancelar</a>
+                <button type="button" class="btn btn-outline-elegant waves-effect" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
         <!--/.Content-->

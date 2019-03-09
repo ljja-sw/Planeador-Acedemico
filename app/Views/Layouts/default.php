@@ -12,9 +12,9 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/mdb/css/mdb.lite.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/mdb/css/mdb.lite.min.css">
+    <link rel="stylesheet" href="/css/main.css">
     <!-- Icon -->
     <link rel="icon" sizes="192x192" href="favicon.png">
     <link rel="icon" href="/favicon.png ">
@@ -24,18 +24,35 @@
     <script type="text/javascript" src="vendor/mdb/js/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="vendor/mdb/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="vendor/mdb/js/mdb.min.js"></script>
 </head>
 
 <body>
     <!-- Header -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="min-height:50px;">
+        <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarAdmin"
+            aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navbarAdmin">
+          <ul class="navbar-nav ml-auto">
+  <li class="nav-item">
+      <a class="nav-link" href="/docentes">
+          <i class="fa fa-chalkboard-teacher"></i>
+          Docentes</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/asignaturas">
+          <i class="fa fa-list-ol"></i>
+          Asignaturas</a>
+  </li>
+</ul>
+</div>
+      </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand mx-auto" href="/">
-                <img src="imgs/logo_blanco.png" alt="Planeador Académico">
+                <img src="/imgs/logo_blanco.png" alt="Planeador Académico">
             </a>
 
             <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarPrincipal"
@@ -67,7 +84,7 @@
                         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu1"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']} - {$_SESSION['rol']}" ?></span>
-                            <img src="imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
+                            <img src="/imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
                                 height="35"></button>
                         <div class="dropdown-menu dropdown-primary dropdown-menu-center">
                             <a class="dropdown-item" href="/perfil">
@@ -150,6 +167,10 @@
         </div>
     </footer>
     <!-- Fin Footer  -->
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/vendor/mdb/js/mdb.min.js"></script>
 </body>
 
 </html>

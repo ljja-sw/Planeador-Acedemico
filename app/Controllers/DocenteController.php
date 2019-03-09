@@ -5,36 +5,40 @@
 class DocenteController extends Controller
 {
 
-  public function index()
-  {
-    $roles = self::modelo("Rol")->buscar(1);
-    $programas = self::modelo("Programa")->obtenerTodos();
-    $docentes = self::modelo("Docente")->obtener("rol","=",1);
-    self::vista("Docentes/index",
-                ['roles'=> $roles,'programas'=>$programas,'docentes'=>$docentes]);
-  }
+    public function index()
+    {
+        $roles = self::modelo("Rol")->buscar(1);
+        $programas = self::modelo("Programa")->obtenerTodos();
+        $docentes = self::modelo("Docente")->obtener("rol", "=", 1);
+        self::vista("Docentes/index",
+            ['roles' => $roles, 'programas' => $programas, 'docentes' => $docentes]);
+    }
 
-  public function registrar_docente()
-  {
-    $docente = self::modelo("Docente");
-    $data = Request::toArray($_POST);
+    public function registrar_docente()
+    {
+        $docente = self::modelo("Docente");
+        $data = Request::toArray($_POST);
 
-    $split_nombre = str_split($data['nombre']);
-    $split_apellido = str_split($data['apellido']);
+        $split_nombre = str_split($data['nombre']);
+        $split_apellido = str_split($data['apellido']);
 
-    $password = ucwords($split_nombre[0]).$data['codigo'].ucwords($split_apellido[0]);
+        $password = ucwords($split_nombre[0]) . $data['codigo'] . ucwords($split_apellido[0]);
 
-    $docente->crear([
-      'nombre' => $data['nombre'],
-      'apellido' => $data['apellido'],
-      'correo' => $data['correo'],
-      'password' => password_hash($password,PASSWORD_BCRYPT),
-      'documento_identidad' => $data['documento_identidad'],
-      'codigo' => $data['codigo'],
-      'rol' => $data['rol'],
-      'programa_dependencia' => $data['programa_dependencia']
-    ]);
-    Helpers::redirect("/docentes");
-    Helpers::alert("success","Docente registrado");
-  }
+        if ($docente->crear([
+            'nombre' => $data['nombre'],
+            'apellido' => $data['apellido'],
+            'correo' => $data['correo'],
+            'password' => password_hash($password, PASSWORD_BCRYPT),
+            'documento_identidad' => $data['documento_identidad'],
+            'codigo' => $data['codigo'],
+            'rol' => $data['rol'],
+            'programa_dependencia' => $data['programa_dependencia'],
+        ])) {
+            Helpers::redirect("/docentes");
+            Helpers::alert("success", "Docente registrado");
+        } else {
+            Helpers::redirect("/docentes");
+            Helpers::alert("danger", "Hubo un error al registrar al docente");
+        }
+    }
 }
