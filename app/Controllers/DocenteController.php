@@ -14,6 +14,15 @@ class DocenteController extends Controller
             ['roles' => $roles, 'programas' => $programas, 'docentes' => $docentes]);
     }
 
+    public function detalles_docente()
+    {
+      $docente = self::modelo("Docente");
+      $docente = $docente->buscar(Request::get("c"));
+    
+      self::vista("Docentes/detalles",
+        ['docente'=> $docente]);
+    }
+
     public function registrar_docente()
     {
         $docente = self::modelo("Docente");

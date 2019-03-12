@@ -35,12 +35,16 @@
                         <th>Correo</th>
                         <th>Documento de Indentidad</th>
                         <th>Dependencia</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php foreach ($datos['docentes'] as $docente): ?>
                         <tr>
-                          <td><?= "{$docente['nombre']} {$docente['apellido']}" ?></td>
+                          <td>
+                            <a href="/docentes/detalles?c=<?= $docente['codigo'] ?>">
+                              <?= "{$docente['nombre']} {$docente['apellido']}" ?></td>
+                            </a>
                           <td><?= $docente['correo'] ?></td>
                           <td><?= $docente['documento_identidad'] ?></td>
                           <td><?= $datos['programas'][$docente['programa_dependencia']-2]['nombre'] ?></td>

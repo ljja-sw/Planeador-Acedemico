@@ -13,20 +13,23 @@ class Router
   function __construct()
   {
     $uri = $this->getURI();
-    $url = $this->transformarUrl($uri);
-    $this->parametros = $url ? array_values($url) : [];
+    
+    $url = explode("?",$this->getURI());
+    
 
-    if ($this->esRuta($uri)) {
-      $accion = $this->separarAccion($this->getRoutes()[$uri]);
-
+    if ($this->esRuta($url)) {
+      $ruta = $this->getRoutes()[$url[0]];
+      $accion = $this->separarAccion($ruta);
+      
       $this->controlador = $accion[0];
       $this->metodo = $accion[1];
+      $this->parametros = $_GET;
 
       if(file_exists("../app/Controllers/" . $this->controlador . ".php")){
         require_once "../app/Controllers/" . $this->controlador . ".php";
       }
 
-      if (@in_array($_SESSION['rol'],$this->getRoutes()[$uri]['rol']) || $this->getRoutes()[$uri]['rol'] == "") {
+      if (@in_array($_SESSION['rol'],$ruta['rol']) || $ruta['rol'] == "") {
         if (method_exists($this->controlador,$this->metodo)) {
           call_user_func_array([
             $this->controlador,
@@ -59,7 +62,8 @@ class Router
   function esRuta($url)
   {
     foreach ($this->getRoutes() as $ruta => $action) {
-      if ($this->getURI() == $ruta) {
+
+      if ($url[0] == $ruta) {
         return true;
       }
     }

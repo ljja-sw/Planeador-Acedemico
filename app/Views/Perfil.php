@@ -19,9 +19,9 @@
                                 <?= "{$_SESSION["nombre"]} {$_SESSION["apellido"]}" ?>
                             </h3>
                             <p><?= $_SESSION["correo"] ?></p>
-                        <div class="py-2">
-                        <a href="#" >Cambiar Contraseña</a>
-</div>
+                            <div class="py-2">
+                                <a href="#">Cambiar Contraseña</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,13 +42,14 @@
             <!-- Asignaturas del Docente -->
             <div class="my-auto py-2">
                 <div class="card card-body">
-                <small class="text-muted pb-2">Tus asignaturas</small>
+                    <small class="text-muted pb-2">Tus asignaturas</small>
                     <div class="pl-2">
-                      <ul class="list-group list-group-flush">
-                      <?php for($i=1;$i<=5;$i++): ?>
-                        <li class="list-group-item"><a href="#">4-12314M-50 INTRODUCCIÓN A LOS PÁJAROS-<?= $i  ?></a></li>
-                      <?php endfor; ?>
-                    </ul>
+                        <ul class="list-group list-group-flush">
+                            <?php for($i=1;$i<=5;$i++): ?>
+                            <li class="list-group-item"><a href="#">4-12314M-50 INTRODUCCIÓN A LOS
+                                    PÁJAROS-<?= $i  ?></a></li>
+                            <?php endfor; ?>
+                        </ul>
                     </div>
                 </div>
             </div>

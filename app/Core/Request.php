@@ -12,6 +12,11 @@ public static function post($data) {
   }
 }
 
+public static function get($var)
+{
+  return $_GET[$var];
+}
+
 public static function toArray($request)
 {
   $array = $request;

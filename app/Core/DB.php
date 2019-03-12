@@ -11,8 +11,17 @@ class DB {
 
   public static function query($query, $params = array()) {
     $stmt = self::con()->prepare($query);
-    $stmt->execute($params);
-    return $stmt;
+    
+    try {      
+      $stmt->execute($params);
+      return $stmt;
+
+    } catch (PDOException $e) {
+      echo "DataBase Error: The user could not be added.<br>".$e->getMessage();
+    } catch (Exception $e) {
+      echo "General Error: The user could not be added.<br>".$e->getMessage();
+    }
+
   }
 
   public static function single($stmt){

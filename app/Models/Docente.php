@@ -15,7 +15,11 @@ class Docente extends Model
         'codigo',
         'rol',
         'programa_dependencia']);
-      
+
     self::setTabla("usuarios");
+
+    self::setKey("codigo");
+
+    return $this;
   }
 }
