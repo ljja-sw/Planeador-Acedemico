@@ -29,7 +29,7 @@
 <body>
     <!-- Header -->
     <header>
-        <?php if (isset($_SESSION["md5"]) && $_SESSION['rol'] == "Administrador"): ?>
+        <?php if (isset($_SESSION["md5"]) && $_SESSION['rol'] == "Super Administrador"): ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand mx-auto" href="/">
                 <img src="/imgs/logo_blanco.png" alt="Planeador Académico">
@@ -43,14 +43,9 @@
             <div class="collapse navbar-collapse text-center" id="navbarAdmin">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/docentes">
-                            <i class="fa fa-chalkboard-teacher"></i>
-                            Docentes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/asignaturas">
-                            <i class="fa fa-list-ol"></i>
-                            Asignaturas</a>
+                        <a class="nav-link" href="admin/usuarios">
+                            <i class="fa fa-user"></i>
+                            Usuarios</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -70,7 +65,48 @@
 
             </div>
         </nav>
-        <?php else: ?>
+      <?php elseif (isset($_SESSION["md5"]) && $_SESSION['rol'] == "Secretario(a) Académico"):  ?>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+              <a class="navbar-brand mx-auto" href="/">
+                  <img src="/imgs/logo_blanco.png" alt="Planeador Académico">
+              </a>
+
+              <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarAdmin"
+                  aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse text-center" id="navbarAdmin">
+                  <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="/docentes">
+                              <i class="fa fa-chalkboard-teacher"></i>
+                              Docentes</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/asignaturas">
+                              <i class="fa fa-list-ol"></i>
+                              Asignaturas</a>
+                      </li>
+                  </ul>
+                  <ul class="navbar-nav ml-auto">
+                  <div class="nav-item avatar dropdown">
+                          <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                              <img src="/imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
+                                  height="35">
+                              <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']} - {$_SESSION['rol']}" ?></span>
+                          </a>
+                          <div class="dropdown-menu dropdown-primary dropdown-menu-center">
+                              <a class="dropdown-item" href="/cerrar-sesion">
+                                  <i class="fa fa-sign-out-alt"></i>
+                                  Cerrar Sesión</a>
+                          </div>
+                      </div>
+
+              </div>
+          </nav>
+          <?php else: ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand mx-auto" href="/">
                 <img src="/imgs/logo_blanco.png" alt="Planeador Académico">
@@ -82,20 +118,21 @@
             </button>
 
             <div class="collapse navbar-collapse text-center" id="navbarPrincipal">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-chalkboard-teacher"></i>
-                            Mis Asignaturas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-list-ol"></i>
-                            Mis Planeadores</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <?php if(isset($_SESSION['md5'])): ?>
+                  <?php if(isset($_SESSION['md5'])): ?>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-chalkboard-teacher"></i>
+                                Mis Asignaturas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-list-ol"></i>
+                                Mis Planeadores</a>
+                        </li>
+                    </ul>
+
+                  <ul class="navbar-nav ml-auto">
                     <div class="nav-item avatar dropdown">
                         <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -114,10 +151,12 @@
                     </div>
                     <?php else:?>
 
-                    <li class="nav-item">
-                        <a href="iniciar-sesion" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar
-                            Sesion</a>
-                    </li>
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a href="iniciar-sesion" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar
+                              Sesion</a>
+                      </li>
+                    </ul>
                     <?php endif;?>
 
                 </ul>

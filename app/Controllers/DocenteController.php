@@ -10,6 +10,7 @@ class DocenteController extends Controller
         $roles = self::modelo("Rol")->buscar(1);
         $programas = self::modelo("Programa")->obtenerTodos();
         $docentes = self::modelo("Docente")->obtener("rol", "=", 1);
+        
         self::vista("Docentes/index",
             ['roles' => $roles, 'programas' => $programas, 'docentes' => $docentes]);
     }
@@ -18,7 +19,7 @@ class DocenteController extends Controller
     {
       $docente = self::modelo("Docente");
       $docente = $docente->buscar(Request::get("c"));
-    
+
       self::vista("Docentes/detalles",
         ['docente'=> $docente]);
     }

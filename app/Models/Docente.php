@@ -16,7 +16,7 @@ class Docente extends Model
         'rol',
         'programa_dependencia']);
 
-    self::setTabla("usuarios");
+    self::setTabla("docentes");
 
     self::setKey("codigo");
 

@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="/css/login.css">
     <!-- SCRIPTS -->
     <!-- JQuery -->
-    <script type="text/javascript" src="vendor/mdb/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/vendor/mdb/js/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="vendor/mdb/js/popper.min.js"></script>
+    <script type="text/javascript" src="/vendor/mdb/js/popper.min.js"></script>
 
     <link rel="icon" href="favicon.png ">
     <title>Inicio de Sesión</title>
