@@ -1,5 +1,4 @@
 <form class="form-signin" action="/iniciar-sesion/iniciar" method="POST">
-
     <div class="text-center mb-4">
         <img class="mb-1 logo-login" src="/imgs/logo_color.png" alt="">
         <h1 class="h3 mb-0  text-primary font-weight-normal">Inicio de Sesión</h1>
@@ -8,7 +7,7 @@
 
     <div class=" md-outline md-form">
         <input class="form-control" name="username" type="text" id="input_username"  required autofocus>
-        <label for="input_codigo">Codigo o Correo Institucional</label>
+        <label for="input_codigo">Codigo o Correo Electrónico</label>
     </div>
 
     <div class="md-outline md-form">

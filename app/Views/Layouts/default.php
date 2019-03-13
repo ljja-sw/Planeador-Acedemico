@@ -65,7 +65,7 @@
 
             </div>
         </nav>
-      <?php elseif (isset($_SESSION["md5"]) && $_SESSION['rol'] == "Secretario(a) Académico"):  ?>
+      <?php elseif (isset($_SESSION["md5"]) && $_SESSION['rol'] == "Secretario Académico"):  ?>
           <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
               <a class="navbar-brand mx-auto" href="/">
                   <img src="/imgs/logo_blanco.png" alt="Planeador Académico">

@@ -5,7 +5,7 @@ Router::add("/perfil","PaginasController@perfil");
 
 Router::add("/docentes",
             "DocenteController@index",
-            ['Secretaría','Super Administrador']);
+            ['Secretario Académico']);
 
 Router::add("/docentes/guardar","DocenteController@registrar_docente");
 Router::add("/docentes/detalles","DocenteController@detalles_docente");

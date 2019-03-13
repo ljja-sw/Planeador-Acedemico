@@ -19,7 +19,7 @@
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="/vendor/mdb/js/popper.min.js"></script>
 
-    <link rel="icon" href="favicon.png ">
+    <link rel="icon" href="/favicon.png ">
     <title>Inicio de Sesión</title>
 </head>
 
@@ -30,4 +30,4 @@
     <script type="text/javascript" src="/vendor/mdb/js/mdb.min.js"></script>
 </body>
 
-</html> 
+</html>
