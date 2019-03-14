@@ -9,4 +9,5 @@ spl_autoload_register(function($className) {
 });
 
 require_once('Routes/web.php');
+require_once('Routes/api.php');
 ?>

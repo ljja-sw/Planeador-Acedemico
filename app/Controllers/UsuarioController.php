@@ -48,4 +48,12 @@ class UsuarioController extends Controller
             Helpers::alert("danger", "Hubo un error al registrar al Usuario");
         }
     }
+
+    public function asignaturas_docentes()
+    {
+        $docentes = self::modelo("Docente")->obtenerTodos();
+        
+        self::vista("Admin/asignar-materias-docente",
+        ['docentes' => $docentes,'asignaturas' => [] ]);
+    }
 }
