@@ -86,7 +86,12 @@
                       <li class="nav-item">
                           <a class="nav-link" href="/asignaturas">
                               <i class="fa fa-list-ol"></i>
-                              Asignaturas</a>
+                              Materias</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/asignaturas-docentes">
+                              <i class="fa fa-list-ol"></i>
+                              Asignar Materias <small>(a Docentes)</small></a>
                       </li>
                   </ul>
                   <ul class="navbar-nav ml-auto">

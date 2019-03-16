@@ -5,8 +5,13 @@
 abstract class Model
 {
     protected static $campos;
+    protected static $hidden;
     protected static $tabla;
     protected static $key = "id";
+
+    function __construct()
+    {
+    }
 
     public static function crear($data)
     {
@@ -52,6 +57,16 @@ abstract class Model
     public static function getCampos()
     {
         return implode(',', self::$campos);
+    }
+
+    public static function setHidden($hidden)
+    {
+        self::$hidden = $hidden;
+    }
+
+    public static function getHidden()
+    {
+        return implode(',', self::$hidden);
     }
 
     public static function setTabla($tabla)

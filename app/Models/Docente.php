@@ -16,6 +16,8 @@ class Docente extends Model
         'rol',
         'programa_dependencia']);
 
+    self::setHidden($hidden = "password");
+
     self::setTabla("docentes");
 
     self::setKey("codigo");

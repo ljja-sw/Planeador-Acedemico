@@ -50,18 +50,8 @@ class LoginController extends Controller
       $_SESSION['di'] = $usuario['documento_identidad'];
       $_SESSION['rol'] = $usuario['rol'];
 
-      switch ($_SESSION['rol']) {
-        case 'Super Administrador':
-          Helpers::redirect("/super-administrador");
-          break;
-        case 'Secretario Académico':
-          Helpers::redirect("/secretario-academico");
-          break;
-        default:
-            Helpers::redirect("/");
-          break;
-      }
-
+      Helpers::redirect("/");
+ 
     }else{
       $_SESSION['msg'] = "Nombre de usuario o contraseña incorrectos";
       header("Location: /iniciar-sesion");
@@ -94,7 +84,7 @@ class LoginController extends Controller
       $_SESSION['di'] = $usuario['documento_identidad'];
       $_SESSION['rol'] = $usuario['rol'];
 
-      header("Location: /");
+      Helpers::redirect("/");
 
     }else{
       $_SESSION['msg'] = "Nombre de usuario o contraseña incorrectos";
@@ -107,7 +97,7 @@ class LoginController extends Controller
   {
     unset($_SESSION['md5']);
     session_destroy();
-    header("Location: /");
+    Helpers::redirect("/");
 
   }
 }
