@@ -7,6 +7,7 @@ abstract class Model
     protected static $campos;
     protected static $hidden;
     protected static $tabla;
+    protected $query;
     protected static $key = "id";
 
     function __construct()
@@ -49,42 +50,59 @@ abstract class Model
         return DB::resultSet($query);
     }
 
-    public static function setCampos($campos)
+    public function join($table,$on)
     {
-        self::$campos = $campos;
+
     }
 
-    public static function getCampos()
+    public function where($condition)
+    {
+      $this->query = DB::query("SELECT " . self::getCampos() . " FROM " . self::getTabla() . " WHERE {$condition}");
+      return $this;
+    }
+
+    public function get()
+    {
+      return DB::resultSet($this->query);
+    }
+
+    public function setCampos($campos)
+    {
+        self::$campos = $campos;
+        return $this;
+    }
+
+    public function getCampos()
     {
         return implode(',', self::$campos);
     }
 
-    public static function setHidden($hidden)
+    public function setHidden($hidden)
     {
         self::$hidden = $hidden;
     }
 
-    public static function getHidden()
+    public function getHidden()
     {
         return implode(',', self::$hidden);
     }
 
-    public static function setTabla($tabla)
+    public function setTabla($tabla)
     {
         self::$tabla = $tabla;
     }
 
-    public static function getTabla()
+    public function getTabla()
     {
         return self::$tabla;
     }
 
-    public static function setKey($key)
+    public function setKey($key)
     {
         self::$key = $key;
     }
 
-    public static function getKey()
+    public function getKey()
     {
         return self::$key;
     }

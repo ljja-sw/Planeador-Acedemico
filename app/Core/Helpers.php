@@ -18,6 +18,12 @@ class Helpers
      'tipo'=> $tipo];
   }
 
+  public static function toJson($array)
+  {
+    header("Content-type: application/json");
+    return json_encode(['data' => $array]);
+  }
+
   public static function loggedin()
   {
     return isset($_SESSION['md5']);

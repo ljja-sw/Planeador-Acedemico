@@ -11,16 +11,16 @@ class UsuarioController extends Controller
         $usuarios = self::modelo("Usuario")->obtener("rol", "=", 2);
 
         self::vista("Admin/Usuarios/index",
-            ['roles' => $roles,'usuarios' => $usuarios]);
+            ['roles' => $roles, 'usuarios' => $usuarios]);
     }
 
     public function detalles_usuario()
     {
-      $docente = self::modelo("Docente");
-      $docente = $docente->buscar(Request::get("c"));
+        $docente = self::modelo("Docente");
+        $docente = $docente->buscar(Request::get("c"));
 
-      self::vista("Admin/Usuarios/detalles",
-        ['docente'=> $docente]);
+        self::vista("Admin/Usuarios/detalles",
+            ['docente' => $docente]);
     }
 
     public function registrar_usuario()
@@ -51,9 +51,34 @@ class UsuarioController extends Controller
 
     public function asignaturas_docentes()
     {
-        $docentes = self::modelo("Docente")->obtenerTodos();
-        
+      if (isset($_POST['docente'])) {
+        $docente = self::modelo("Docente")
+            ->setCampos(
+                ['id', 'nombre', 'apellido', 'correo', 'codigo', 'documento_identidad'])
+            ->where("id = {$_POST['docente']}")
+            ->get();
+
+        $salas = self::modelo("Salon")
+            ->obtenerTodos();
+
         self::vista("Admin/asignar-materias-docente",
-        ['docentes' => $docentes,'asignaturas' => [] ]);
+        [ 'docente' => $docente,
+          'asignatura' => [],
+          'salones' => $salas ]);
+
+      }else{
+        $docentes = self::modelo("Docente")
+            ->setCampos(
+                ['id', 'nombre', 'apellido', 'documento_identidad'])
+            ->obtenerTodos();
+
+        self::vista("Admin/asignar-materias-docente",["docentes" => $docentes]);
+
+      }
+    }
+
+    public function asignaturas_docentes_guardar()
+    {
+      echo Helpers::toJson($_POST);
     }
 }

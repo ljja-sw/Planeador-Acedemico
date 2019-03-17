@@ -1,3 +1,3 @@
 <?php
 
-Router::add("/api/docentes","api/DocenteController@listado");
+Router::add("/api/horarios","ApiController@horarios");

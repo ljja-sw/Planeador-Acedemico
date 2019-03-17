@@ -25,3 +25,5 @@ Router::add("/iniciar-sesion/administracion","LoginController@formulario_adminis
 Router::add("/iniciar-sesion/iniciar","LoginController@iniciar");
 Router::add("/iniciar-sesion/iniciar_administracion","LoginController@iniciar_administracion");
 Router::add("/cerrar-sesion","LoginController@cerrar_sesion");
+
+Router::add("/asignaruas-docentes/guardar","UsuarioController@asignaturas_docentes_guardar");
