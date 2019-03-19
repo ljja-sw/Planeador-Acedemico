@@ -20,6 +20,9 @@ body{
 .page-footer{
     margin-top: 4.3%;
 }
+.navbar .dropdown-menu {
+    width: 300px;
+}
 .img-footer{
     max-height: 70px;
     height: 10vh;
@@ -65,6 +68,11 @@ body{
     text-align: center;
     font-size: 15px;
 }
+
+.navbar .navbar-top{
+    height: 30px;
+}
+
 .navbar .dropdown-menu i{
     padding-right: 6px;
 }

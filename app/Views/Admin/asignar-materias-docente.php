@@ -22,21 +22,24 @@
                     Materia
                 </h5>
             </div>
-            <input type="text" name="asignatura" value="" hidden>
+            <?php foreach ($datos['asignatura'] as $asignatura): ?>
+            <input type="text" name="asignatura" value="<?= $asignatura['id'] ?>" hidden>
+            
             <div class="asignatura--datos">
-                <h5 class="h5-responsive font-weight-bold">
-                    Nombre de Materia
-                </h5>
-                <hr>
-                <small class="text-muted">
-                    Código
-                </small>
-                <p class="m-0 ml-1">123123M</p>
-                <small class="text-muted">
-                    Grupo
-                </small>
-                <p class="m-0 ml-1">50</p>
+                  <h5 class="h5-responsive font-weight-bold">
+                      <?= $asignatura['nombre'] ?>
+                  </h5>
+                  <hr>
+                  <small class="text-muted">
+                      <?= $asignatura['nombre'] ?>
+                  </small>
+                  <p class="m-0 ml-1">123123M</p>
+                  <small class="text-muted">
+                      Grupo
+                  </small>
+                  <p class="m-0 ml-1"><?= $asignatura['grupo'] ?></p>
             </div>
+          <?php endforeach; ?>
           </div>
 
           <div class="docentes card card-body">
@@ -119,6 +122,9 @@
                     <label for="asignaturas_select font-weight-bold">Selecciona la Asignatura</label>
                       <div class="input-group">
                         <select class="form-control custom-select" name="docente" id="asignaturas_select" required>
+                          <?php foreach ($datos['asignaturas'] as $asignatura): ?>
+                              <option value="<?= $asignatura['id'] ?>"><?= "{$asignatura['nombre']} {$asignatura['nombre']} - {$asignatura['codigo']}" ?></option>
+                          <?php endforeach; ?>
                         </select>
                     </div>
                   </div>

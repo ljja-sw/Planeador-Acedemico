@@ -1,7 +1,6 @@
 <?php include "modal-registrar-docente.php"; ?>
-<link rel="stylesheet" href="vendor/datatables/datatables.min.css">
-<script src="vendor/datatables/datatables.min.js" charset="utf-8"></script>
-
+<link rel="stylesheet" href="/vendor/datatables/datatables.min.css">
+<script src="/vendor/datatables/datatables.min.js" charset="utf-8"></script>
 <title>Docentes</title>
 
 <div class="container">
@@ -35,7 +34,6 @@
                         <th>Correo</th>
                         <th>Documento de Indentidad</th>
                         <th>Dependencia</th>
-                        <th></th>
                       </tr>
                     </thead>
                     <tbody>

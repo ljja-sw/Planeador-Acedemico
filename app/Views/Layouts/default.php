@@ -30,7 +30,7 @@
     <!-- Header -->
     <header>
         <?php if (isset($_SESSION["md5"]) && $_SESSION['rol'] == "Super Administrador"): ?>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand mx-auto" href="/">
                 <img src="/imgs/logo_blanco.png" alt="Planeador Académico">
             </a>
@@ -54,9 +54,9 @@
                             aria-haspopup="true" aria-expanded="false">
                             <img src="/imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
                                 height="35">
-                            <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']} - {$_SESSION['rol']}" ?></span>
+                            <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']}" ?></span>
                         </a>
-                        <div class="dropdown-menu dropdown-primary dropdown-menu-center">
+                        <div class="dropdown-menu dropdown-primary dropdown-menu-center  mx-auto">
                             <a class="dropdown-item" href="/cerrar-sesion">
                                 <i class="fa fa-sign-out-alt"></i>
                                 Cerrar Sesión</a>
@@ -100,9 +100,9 @@
                               aria-haspopup="true" aria-expanded="false">
                               <img src="/imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
                                   height="35">
-                              <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']} - {$_SESSION['rol']}" ?></span>
+                              <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']}" ?></span>
                           </a>
-                          <div class="dropdown-menu dropdown-primary dropdown-menu-center">
+                          <div class="dropdown-menu dropdown-primary dropdown-menu-center  mx-auto">
                               <a class="dropdown-item" href="/cerrar-sesion">
                                   <i class="fa fa-sign-out-alt"></i>
                                   Cerrar Sesión</a>
@@ -143,9 +143,9 @@
                             aria-haspopup="true" aria-expanded="false">
                             <img src="/imgs/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
                                 height="35">
-                            <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']} - {$_SESSION['rol']}" ?></span>
+                            <span><?= "{$_SESSION['nombre']} {$_SESSION['apellido']}" ?></span>
                         </a>
-                        <div class="dropdown-menu dropdown-primary dropdown-menu-center">
+                        <div class="dropdown-menu dropdown-primary dropdown-menu-center  mx-auto">
                             <a class="dropdown-item" href="/perfil">
                                 <i class="fa fa-user"></i>
                                 Mi Perfil</a>

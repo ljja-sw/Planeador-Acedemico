@@ -72,13 +72,20 @@ class UsuarioController extends Controller
                 ['id', 'nombre', 'apellido', 'documento_identidad'])
             ->obtenerTodos();
 
-        self::vista("Admin/asignar-materias-docente",["docentes" => $docentes]);
+        $asignaturas = [];
+
+        self::vista("Admin/asignar-materias-docente",[
+          "docentes" => $docentes,
+          'asignaturas' => $asignaturas]);
 
       }
     }
 
     public function asignaturas_docentes_guardar()
     {
-      echo Helpers::toJson($_POST);
+      $data = Request::toArray($_POST);
+      $query = "INSERT INTO asignaturas_docentes (asignatura,docentes,salon,horario) VALUES(:asignatura,:docentes,:docente,:horario)";
+
+      DB::query($query,$data);
     }
 }

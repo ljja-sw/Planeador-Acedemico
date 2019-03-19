@@ -50,9 +50,16 @@ abstract class Model
         return DB::resultSet($query);
     }
 
-    public function join($table,$on)
+    public function select($campos)
     {
+      $this->setCampos($campos);
+      return $this;
+    }
 
+    public function innerJoin($table,$on)
+    {
+      $this->query = DB::query("SELECT " . self::getCampos() . " FROM " . self::getTabla()." INNER JOIN {$table} on {$on}");
+      return $this;
     }
 
     public function where($condition)
