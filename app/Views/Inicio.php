@@ -8,7 +8,7 @@
 <div class="container my-3" id="contenidoPrincipal">
     <section class="row funciones text-center">
         <div class="col-md-4">
-            <a class="card card-body flex-center hoverable">
+            <a href="/generar-planeador" class="card card-body flex-center hoverable">
                 <i class="fa fa-list-ol fa-4x"></i>
                 <hr>
                 <h4>Generar Planeadores</h4>

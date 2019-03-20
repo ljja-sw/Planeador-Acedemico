@@ -51,4 +51,7 @@ class DocenteController extends Controller
             Helpers::alert("danger", "Hubo un error al registrar al docente");
         }
     }
+    public function generarPlaneador(){
+        self::vista("Planeador/generar-planeador");
+    }
 }

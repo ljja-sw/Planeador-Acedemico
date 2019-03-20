@@ -9,6 +9,7 @@ Router::add("/docentes",
 
 Router::add("/docentes/guardar","DocenteController@registrar_docente");
 Router::add("/docentes/detalles","DocenteController@detalles_docente");
+Router::add("/generar-planeador","DocenteController@generarPlaneador");
 
 Router::add("/asignaturas-docentes","UsuarioController@asignaturas_docentes");
 
