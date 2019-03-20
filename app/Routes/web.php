@@ -5,17 +5,18 @@ Router::add("/perfil","PaginasController@perfil");
 
 Router::add("/docentes",
             "DocenteController@index",
-            ['Secretario Académico']);
+            'Secretario Académico');
 
 Router::add("/docentes/guardar","DocenteController@registrar_docente");
 Router::add("/docentes/detalles","DocenteController@detalles_docente");
-Router::add("/generar-planeador","DocenteController@generarPlaneador");
+
+Router::add("/generar-planeador","DocenteController@generarPlaneador","Docente");
 
 Router::add("/asignaturas-docentes","UsuarioController@asignaturas_docentes");
 
 Router::add("/admin/usuarios",
             "UsuarioController@index",
-            ['Super Administrador']);
+            'Super Administrador');
 
 Router::add("/usuarios/guardar","UsuarioController@registrar_usuario");
 Router::add("/usuarios/detalles","UsuarioController@detalles_usuario");

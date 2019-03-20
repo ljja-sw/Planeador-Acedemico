@@ -26,7 +26,10 @@ class Helpers
 
   public static function loggedin()
   {
-    return isset($_SESSION['md5']);
+    if(isset($_SESSION['md5'])){
+      return true;
+    }
+    self::redirect("/iniciar-sesion");
   }
 
   public static function unset($var)

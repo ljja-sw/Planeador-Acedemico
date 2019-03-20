@@ -39,9 +39,7 @@ class LoginController extends Controller
     $usuario = DB::single($query);
 
     if (count($usuario) >= 1 && password_verify($pass,$usuario['password'])) {
-      $md5 = md5(time().$codigo);
-
-      $_SESSION['md5'] = $md5;
+      $_SESSION['md5'] =  md5(time().$usuario['codigo']);
       $_SESSION['id'] = $usuario['id'];
       $_SESSION['nombre'] = $usuario['nombre'];
       $_SESSION['apellido'] = $usuario['apellido'];
@@ -49,13 +47,13 @@ class LoginController extends Controller
       $_SESSION['correo'] = $usuario['correo'];
       $_SESSION['di'] = $usuario['documento_identidad'];
       $_SESSION['rol'] = $usuario['rol'];
-
+      
       Helpers::redirect("/");
  
     }else{
       $_SESSION['msg'] = "Nombre de usuario o contraseña incorrectos";
       header("Location: /iniciar-sesion");
-      $_SESSION['codigo'] = $codigo;
+      $_SESSION['old'] = $username;
     }
   }
 
@@ -74,9 +72,7 @@ class LoginController extends Controller
     $usuario = DB::single($query);
 
     if (count($usuario) >= 1 && password_verify($pass,$usuario['password'])) {
-      $md5 = md5(time().$codigo);
-
-      $_SESSION['md5'] = $md5;
+      $_SESSION['md5'] = md5(time().$usuario['documento_identidad']);;
       $_SESSION['id'] = $usuario['id'];
       $_SESSION['nombre'] = $usuario['nombre'];
       $_SESSION['apellido'] = $usuario['apellido'];
