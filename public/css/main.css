@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+body{
+    background-color: rgb(237, 237, 237);
+    font-family: "Open Sans", sans-serif;
+}
+.md-form.md-outline input[type="text"]:focus:not([readonly]), .md-form.md-outline input[type="password"]:focus:not([readonly]), .md-form.md-outline input[type="email"]:focus:not([readonly]), .md-form.md-outline input[type="url"]:focus:not([readonly]), .md-form.md-outline input[type="time"]:focus:not([readonly]), .md-form.md-outline input[type="date"]:focus:not([readonly]), .md-form.md-outline input[type="datetime-local"]:focus:not([readonly]), .md-form.md-outline input[type="tel"]:focus:not([readonly]), .md-form.md-outline input[type="number"]:focus:not([readonly]), .md-form.md-outline input[type="search-md"]:focus:not([readonly]), .md-form.md-outline input[type="search"]:focus:not([readonly]), .md-form.md-outline textarea:focus:not([readonly]) {
+    border-color: #cd1f32;
+    -webkit-box-shadow: inset 0px 0px 0px 1px #c63042;
+    box-shadow: inset 0px 0px 0px 1px #c92d40;}
+    .md-form.md-outline input[type="text"]:focus:not([readonly]) + label, .md-form.md-outline input[type="password"]:focus:not([readonly]) + label, .md-form.md-outline input[type="email"]:focus:not([readonly]) + label, .md-form.md-outline input[type="url"]:focus:not([readonly]) + label, .md-form.md-outline input[type="time"]:focus:not([readonly]) + label, .md-form.md-outline input[type="date"]:focus:not([readonly]) + label, .md-form.md-outline input[type="datetime-local"]:focus:not([readonly]) + label, .md-form.md-outline input[type="tel"]:focus:not([readonly]) + label, .md-form.md-outline input[type="number"]:focus:not([readonly]) + label, .md-form.md-outline input[type="search-md"]:focus:not([readonly]) + label, .md-form.md-outline input[type="search"]:focus:not([readonly]) + label, .md-form.md-outline textarea:focus:not([readonly]) + label {
+        color: #cd1f32;
+    }
+    .md-form.md-outline input[type=text], .md-form.md-outline input[type=password], .md-form.md-outline input[type=email], .md-form.md-outline input[type=url], .md-form.md-outline input[type=time], .md-form.md-outline input[type=date], .md-form.md-outline input[type=datetime-local], .md-form.md-outline input[type=tel], .md-form.md-outline input[type=number], .md-form.md-outline input[type=search-md], .md-form.md-outline input[type=search], .md-form.md-outline textarea {
+      height: 50px;
+  }
+  .md-form.md-outline label {
+    top: .85rem;
+  }
+.page-footer{
+    margin-top: 4.3%;
+}
+.navbar .dropdown-menu {
+    width: 300px;
+}
+.img-footer{
+    max-height: 70px;
+    height: 10vh;
+}
+.img-perfil{
+    height: 230px;
+    width: 236px;
+}
+#navbarPrincipal{
+    font-weight: 700;
+}
+.navbar-brand img{
+    height:50px;
+}
+.card.card-body{
+    margin: 10px 0;
+}
+@media (max-width: 768px) {
+    .navbar-brand img{
+        height:40px;
+    }
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
+}
+.navbar-dark .navbar-nav .nav-link i{
+    padding-right: 6px;
+}
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+    color: rgba(255, 255, 255, 0.815);
+}
+.nav-avatar{
+    height: 45px;
+}
+.dropdownUserLink{
+    width: 200px;
+}
+.dropdown-menu-center {
+    right: 0;
+    left: 0;
+}
+.navbar .dropdown-menu a{
+    text-align: center;
+    font-size: 15px;
+}
+
+.navbar .navbar-top{
+    height: 30px;
+}
+
+.navbar .dropdown-menu i{
+    padding-right: 6px;
+}
+.navbar .dropdown-menu
+{
+    color: #525f7f;
+    border: 0 solid rgba(0, 0, 0, .15);
+    border-radius: .3rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, .1);
+}
+.hero{
+    height: 300px;
+    /* Imagen de fondo para mobiles */
+    background: url(/imgs/hero_500.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.funciones .col-md-4 .card{
+    height: 300px;
+    margin-top: 10px;
+}
+@media (min-width: 768px) {
+    .hero{
+        height: 500px;
+        /* Imagen de fondo para escritorios o tables */
+        background-image: url(/imgs/hero_1600.jpg);
+
+    }
+    .funciones .col-md-4 .card{
+        height: 300px;
+    }
+}
