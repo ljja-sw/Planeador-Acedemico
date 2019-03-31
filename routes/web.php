@@ -13,7 +13,7 @@
 Auth::routes();
 
 Route::group(['middleware'=> 'auth:web,admin'],function(){
-    Route::get('/', 'HomeController@index')->name('home');
+	Route::get('/', 'HomeController@index')->name('home');
 });
 
 Route::group(['middleware'=> 'auth:admin'],function(){
@@ -22,8 +22,10 @@ Route::group(['middleware'=> 'auth:admin'],function(){
     Route::post('/admin/secretarios/registrar', 'SecretarioController@store');
 });
 
+Route::get('/login-secretario','Auth\SecretarioLoginController@showLoginForm')->name('login.secretario');
+Route::post('/login/secretario','Auth\SecretarioLoginController@login');
 
-Route::get('/login/admin','Auth\AdminLoginController@showLoginForm');
+Route::get('/login-admin','Auth\AdminLoginController@showLoginForm')->name('login.admin');
 Route::post('/login/admin','Auth\AdminLoginController@login');
 
 

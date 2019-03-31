@@ -10,7 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
+    {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -21,7 +21,7 @@
 
     <!-- Icon -->
     <link rel="icon" sizes="192x192" href="favicon.png">
-    <link rel="icon" href="/favicon.png ">
+    <link rel="icon" href={{ asset('favicon.png') }}>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -134,4 +134,5 @@
 
     </div>
 </body>
-</html>
+    <!-- Scripts -->
+   </html>

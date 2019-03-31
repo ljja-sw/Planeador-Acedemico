@@ -34809,10 +34809,10 @@ try {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\adacemico\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\laragon\www\adacemico\resources\sass\styles.scss */"./resources/sass/styles.scss");
-__webpack_require__(/*! D:\laragon\www\adacemico\resources\sass\login.scss */"./resources/sass/login.scss");
-module.exports = __webpack_require__(/*! D:\laragon\www\adacemico\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\laragon\www\planeador\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\laragon\www\planeador\resources\sass\styles.scss */"./resources/sass/styles.scss");
+__webpack_require__(/*! D:\laragon\www\planeador\resources\sass\login.scss */"./resources/sass/login.scss");
+module.exports = __webpack_require__(/*! D:\laragon\www\planeador\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

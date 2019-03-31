@@ -1,63 +1,46 @@
 @extends('layouts.auth')
 
+@section('theme','dark')
+@section('title','Iniciar Sesión | Administrador')
+
 @section('content')
 <div class="container">
-  <form method="POST" action="/login/admin">
-      @csrf
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <form class="form-signin" action="/login/admin" method="POST">
+                    @csrf
 
-      <div class="form-group row">
-          <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                    <div class="text-center mb-4">
+                            <img class="mb-1 logo-login" src="{{ asset('images/logo_color.png') }}" alt="">
+                            <h1 class="h3 mb-0  text-primary font-weight-normal">Inicio de Sesión</h1>
+                            <h5 class="font-weight-bold">Administrador</h5>
+                    </div>
 
-          <div class="col-md-6">
-              <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                    <div class=" md-outline md-form">
+                        <input class="form-control" name="email" type="email" id="input_email" value="{{ old('email') }}" required autofocus>
+                        <label for="input_email">Correo Electrónico</label>
+                    </div>
 
-              @if ($errors->has('email'))
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $errors->first('email') }}</strong>
-                  </span>
-              @endif
-          </div>
-      </div>
+                    @if ($errors->has('email'))
+                    <p class="alert alert-danger">
+                        {{ $errors->first('email') }}
+                    </p>
+                    @endif
+                    @if ($errors->has('password'))
+                    <p class="alert alert-danger">
+                        {{ $errors->first('password') }}
+                    </p>
+                    @endif
 
-      <div class="form-group row">
-          <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-          <div class="col-md-6">
-              <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-              @if ($errors->has('password'))
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $errors->first('password') }}</strong>
-                  </span>
-              @endif
-          </div>
-      </div>
-
-      <div class="form-group row">
-          <div class="col-md-6 offset-md-4">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                  <label class="form-check-label" for="remember">
-                      {{ __('Remember Me') }}
-                  </label>
-              </div>
-          </div>
-      </div>
-
-      <div class="form-group row mb-0">
-          <div class="col-md-8 offset-md-4">
-              <button type="submit" class="btn btn-primary">
-                  {{ __('Login') }}
-              </button>
-
-              @if (Route::has('password.request'))
-                  <a class="btn btn-link" href="{{ route('password.request') }}">
-                      {{ __('Forgot Your Password?') }}
-                  </a>
-              @endif
-          </div>
-      </div>
-  </form>
+                    <div class="md-outline md-form">
+                        <input class="form-control" name="password" type="password" id="input_password" required>
+                        <label for="input_password"> Contraseña</label>
+                    </div>
+                    <button class="btn btn-lg bg-primary text-white btn-block" type="submit">Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

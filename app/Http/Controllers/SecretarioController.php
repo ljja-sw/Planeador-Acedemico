@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Hash;
 use App\User;
+use Hash;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -49,12 +49,12 @@ class SecretarioController extends Controller
             'apellido' => $data['apellido'],
             'documento_identidad' => $data['documento_identidad'],
             'email' => $data['correo'],
-            'password' => Hash::make($password)
+            'password' => Hash::make($password),
         ]);
 
         $secretario_academico->assignRole($rol);
 
-        return $data;
+        return redirect('home');
     }
 
     /**

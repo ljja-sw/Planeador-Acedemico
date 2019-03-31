@@ -20,8 +20,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     
     <!-- Icon -->
-    <link rel="icon" sizes="192x192" href="favicon.png">
-    <link rel="icon" href="/favicon.png ">
+    <link rel="icon" sizes="192x192" href="{{ asset('favicon.png') }}">
+    <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,6 +29,29 @@
 </head>
 
 <body>
-    @yield('content')
+<nav class="navbar navbar-expand-lg navbar-dark bg-@yield('theme','primary') z-depth-0" >
+            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarAdmin"
+            aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+                <div class="collapse navbar-collapse text-center" id="navbarAdmin">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item {{ Request::is('login') ? 'active' : '' }}">
+                <a href="{{route('login')}}" class="nav-link"> <i class="fa fa-sign-in-alt"></i> Inicio de sesion para Docentes</a>
+            </li>
+            <li class="nav-item {{ Request::is('login-secretario') ? 'active' : '' }}">
+                <a href="{{route('login.secretario')}}" class="nav-link"> <i class="fa fa-sign-in-alt"></i> Inicio de sesion para Secretarios</a>
+            </li>
+               </ul>
+        </div>
+    </div>
+</ul>
+</div>   
+</nav>
+
+    <main id="content">
+        @yield('content')
+    </main>
 </body>
 </html>
