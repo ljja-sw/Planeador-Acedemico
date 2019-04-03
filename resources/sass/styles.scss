@@ -2,6 +2,9 @@ body{
     background-color: rgb(237, 237, 237);
     font-family: 'Lato';
 }
+#app{
+    margin-top: 90px;
+}
 .md-form.md-outline input[type="text"]:focus:not([readonly]), .md-form.md-outline input[type="password"]:focus:not([readonly]), .md-form.md-outline input[type="email"]:focus:not([readonly]), .md-form.md-outline input[type="url"]:focus:not([readonly]), .md-form.md-outline input[type="time"]:focus:not([readonly]), .md-form.md-outline input[type="date"]:focus:not([readonly]), .md-form.md-outline input[type="datetime-local"]:focus:not([readonly]), .md-form.md-outline input[type="tel"]:focus:not([readonly]), .md-form.md-outline input[type="number"]:focus:not([readonly]), .md-form.md-outline input[type="search-md"]:focus:not([readonly]), .md-form.md-outline input[type="search"]:focus:not([readonly]), .md-form.md-outline textarea:focus:not([readonly]) {
     border-color: #cd1f32;
     -webkit-box-shadow: inset 0px 0px 0px 1px #c63042;
@@ -72,6 +75,11 @@ table.table a {
     background-clip: padding-box;
     box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, .1);
 }
+
+.img-perfil{
+    height: 228px ;
+}
+
 .hero{
     height: 300px;
     /* Imagen de fondo para mobiles */

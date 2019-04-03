@@ -26,7 +26,7 @@ class SecretarioController extends Controller
      */
     public function create()
     {
-        return view('admin.secretario.crear');
+        return view('admin.secretario.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class SecretarioController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return $user;
     }
 
     /**

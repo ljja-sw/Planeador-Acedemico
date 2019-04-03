@@ -16,9 +16,16 @@ Route::group(['middleware'=> 'auth:web,admin'],function(){
 	Route::get('/', 'HomeController@index')->name('home');
 });
 
+Route::group(['middleware' => 'auth:admin,web'],function(){
+	    Route::get('/perfil', 'ProfileController@index')->name('perfil');
+	    Route::post('/cambiar-contraseña','ProfileController@cambiar_contraseña');
+});
+
 Route::group(['middleware'=> 'auth:admin'],function(){
+
     Route::get('/admin/secretarios', 'SecretarioController@index')->name('secretarios.index');
     Route::get('/admin/secretarios/registrar', 'SecretarioController@create')->name('secretarios.create');
+    Route::get('/admin/secretarios/{user}', 'SecretarioController@show')->name('secretarios.show');
     Route::post('/admin/secretarios/registrar', 'SecretarioController@store');
 });
 

@@ -3,6 +3,10 @@ body {
   font-family: "Lato";
 }
 
+#app {
+  margin-top: 90px;
+}
+
 .md-form.md-outline input[type=text]:focus:not([readonly]),
 .md-form.md-outline input[type=password]:focus:not([readonly]),
 .md-form.md-outline input[type=email]:focus:not([readonly]),
@@ -123,6 +127,10 @@ table.table a {
   background-color: #fff;
   background-clip: padding-box;
   box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1), 0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.img-perfil {
+  height: 228px;
 }
 
 .hero {

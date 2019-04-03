@@ -22487,8 +22487,3 @@ ul.stepper li.completed a .label {
           animation: spinner-grow 0.4s linear infinite;
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-

@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
       return "{$this->nombre} {$this->apellido}";
     }
+
+    public function perfil_modificado()
+    {
+        
+    }
 }
