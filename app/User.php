@@ -10,8 +10,9 @@ class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
-    
-      protected $table = "usuarios";
+    protected $guard_name = "admin";
+    protected $table = "usuarios";
+
 
     /**
      * The attributes that are mass assignable.
@@ -45,8 +46,8 @@ class User extends Authenticatable
       return "{$this->nombre} {$this->apellido}";
     }
 
-    public function perfil_modificado()
+    public function getRouteKeyName()
     {
-        
+      return "documento_identidad";
     }
 }

@@ -14,8 +14,8 @@ class RolesSeeder extends Seeder
     public function run()
     {
     	$admin = Role::create(['name' => 'Admin','guard_name' => 'admin']);
-    	$role = Role::create(['name' => 'Secretario','guard_name' => 'admin']);
-    	$role = Role::create(['name' => 'Docente']);
+    	$role_secretario = Role::create(['name' => 'Secretario','guard_name' => 'admin']);
+    	$docente = Role::create(['name' => 'Docente']);
 
       $user =  User::create([
           'nombre' => "The Programers",
@@ -24,6 +24,12 @@ class RolesSeeder extends Seeder
           'email' => "the.programmers@gmail.com",
           'password' => Hash::make("programador"),
         ]);
+
+    for ($d=1; $d <= 20; $d++) { 
+            $secretario = factory('App\User')->make();
+            $secretario->save();
+            $secretario->assignRole($role_secretario);
+        }
 
       $user->assignRole($admin);
     }

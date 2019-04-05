@@ -16,7 +16,8 @@ class SecretarioController extends Controller
      */
     public function index()
     {
-        return view('admin.secretario.index');
+        $secretarios = User::role('secretario')->get();
+        return view('admin.secretario.index', compact('secretarios'));
     }
 
     /**
@@ -54,7 +55,7 @@ class SecretarioController extends Controller
 
         $secretario_academico->assignRole($rol);
 
-        return redirect('home');
+        return redirect()->route('secretarios.index');
     }
 
     /**
@@ -65,7 +66,7 @@ class SecretarioController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        return view('admin.secretario.show',compact('user'));
     }
 
     /**

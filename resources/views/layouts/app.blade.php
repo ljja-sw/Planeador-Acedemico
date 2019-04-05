@@ -10,9 +10,6 @@
 
     <title>@yield('title','Planeador Académico')</title>
 
-    {{-- Scripts --}}
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -20,12 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 
     <!-- Icon -->
-    <link rel="icon" sizes="192x192" href="favicon.png">
-    <link rel="icon" href={{ asset('favicon.png') }}>
+    <link rel="icon" sizes="192x192" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" href={{ asset('favicon.ico') }}>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    @stack('styles')
+
 </head>
 <body>
     @include('sweetalert::alert')
@@ -80,7 +79,6 @@
     <main class="pt-1">
         @yield('content')
     </main>
-
     <!-- Footer -->
     <footer class="page-footer font-small bg-dark pt-4">
         <div class="container text-center text-md-left">
@@ -130,6 +128,8 @@
             </footer>
             <!-- Footer -->
         </div>
+    {{-- Scripts --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts');
     </body>
-    <!-- Scripts -->
     </html>
