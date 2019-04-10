@@ -77,7 +77,7 @@ class SecretarioController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.secretario.edit',compact('user'));
     }
 
     /**
