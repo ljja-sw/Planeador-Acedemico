@@ -26,8 +26,8 @@ Route::group(['middleware'=> 'auth:admin'],function(){
     Route::get('/admin/secretarios', 'SecretarioController@index')->name('secretarios.index');
     Route::get('/admin/secretarios/registrar', 'SecretarioController@create')->name('secretarios.create');
     Route::get('/admin/secretarios/{user}', 'SecretarioController@show')->name('secretarios.show');
-    Route::get('/admin/secretarios/{user}/editar', 'SecretarioController@edit')->name('secretarios.edit');
     Route::post('/admin/secretarios/registrar', 'SecretarioController@store');
+    Route::post('/admin/secretarios/{user}/update', 'SecretarioController@update')->name('secretarios.update');
 });
 
 Route::get('/login-secretario','Auth\SecretarioLoginController@showLoginForm')->name('login.secretario');

@@ -26,11 +26,8 @@
 							{{auth()->user()->apellido}}
 						</h5>
 						<hr>
-						<p>Último inicio de sesión {{ now() }}</p>
+						<p>Último inicio de sesión {{ auth()->user()->last_login }}</p>
 						<ul class="nav mx-auto font-weight-bold">
-							<li class="nav-item">
-								<a href="#" class="nav-link btn btn-info"> <i class="fa fa-pen"></i> Editar</a>
-							</li>
 							<li class="nav-item">
 								<a href="#" data-toggle="modal" data-target="#modal_cambiar_contraseña" class="nav-link btn btn-info"> <i class="fa fa-key"></i> Cambiar Contraseña</a>
 							</li>

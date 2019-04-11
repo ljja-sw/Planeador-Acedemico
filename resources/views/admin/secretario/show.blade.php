@@ -3,7 +3,7 @@
 @section('title',$user->nombre_completo())
 
 @section('content')
-
+@include('admin.secretario.modals.editar_secretario')
 <div class="container">
 	<div class="row align-items-center">
 		<div class="col-md-12 col-lg-10 mx-auto">
@@ -28,7 +28,7 @@
 						<p>Último inicio de sesión {{ now() }}</p>
 						<ul class="nav mx-auto font-weight-bold text-center">
 							<li class="nav-item">
-						<a href="{{ route('secretarios.edit',$user) }}" class="nav-link btn btn-info"> <i class="fa fa-pen"></i> Editar</a>
+								<a href="#" data-toggle="modal" data-target="#modal_editar_secretario"  class="nav-link btn btn-info"> <i class="fa fa-pen"></i> Editar</a>
 							</li>
 							<li class="nav-item">
 								<a href="#" class="nav-link btn btn-danger"> <i class="fa fa-trash"></i> Desactivar Usuario</a>

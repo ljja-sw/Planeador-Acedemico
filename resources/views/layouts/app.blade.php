@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#A81B2B">
+<meta name="theme-color" content="#db5945">
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,7 +29,6 @@
 
 </head>
 <body>
-    @include('sweetalert::alert')
 
     <header>
         <!-- Navbar -->
@@ -130,6 +131,7 @@
         </div>
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
+    @include('sweetalert::alert')
     @stack('scripts');
     </body>
     </html>
