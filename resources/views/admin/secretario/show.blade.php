@@ -25,7 +25,7 @@
 							{{$user->apellido}}
 						</h5>
 						<hr>
-						<p>Último inicio de sesión {{ now() }}</p>
+						<p>Último inicio de sesión: <span class="font-weight-bold">{{ ($user->last_login) ? $user->last_login->diffForHumans() : 'Nunca' }}</span></p>
 						<ul class="nav mx-auto font-weight-bold text-center">
 							<li class="nav-item">
 								<a href="#" data-toggle="modal" data-target="#modal_editar_secretario"  class="nav-link btn btn-info"> <i class="fa fa-pen"></i> Editar</a>

@@ -5,6 +5,10 @@ body{
 #app{
     margin-top: 90px;
 }
+    .img-avatar-full{
+        max-height: 256px;
+        margin: 20px;
+    }
 .md-form.md-outline input[type="text"]:focus:not([readonly]), .md-form.md-outline input[type="password"]:focus:not([readonly]), .md-form.md-outline input[type="email"]:focus:not([readonly]), .md-form.md-outline input[type="url"]:focus:not([readonly]), .md-form.md-outline input[type="time"]:focus:not([readonly]), .md-form.md-outline input[type="date"]:focus:not([readonly]), .md-form.md-outline input[type="datetime-local"]:focus:not([readonly]), .md-form.md-outline input[type="tel"]:focus:not([readonly]), .md-form.md-outline input[type="number"]:focus:not([readonly]), .md-form.md-outline input[type="search-md"]:focus:not([readonly]), .md-form.md-outline input[type="search"]:focus:not([readonly]), .md-form.md-outline textarea:focus:not([readonly]) {
     border-color: #cd1f32;
     -webkit-box-shadow: inset 0px 0px 0px 1px #c63042;

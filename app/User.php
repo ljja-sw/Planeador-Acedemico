@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombre','apellido','documento_identidad', 'email', 'password',
+        'nombre','apellido','documento_identidad', 'email', 'password','last_login'
     ];
 
     /**
@@ -39,6 +39,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login' => 'datetime',
     ];
 
     public function nombre_completo()
@@ -49,5 +50,11 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
       return "documento_identidad";
+    }
+
+    public function getAvatar()
+    {
+        // return ($this->avatar) ? $this->avatar : '/images/default_user.png';
+        return '/images/default_user.png'; 
     }
 }

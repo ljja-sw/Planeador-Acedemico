@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#A81B2B">
-<meta name="theme-color" content="#db5945">
-
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,8 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 
     <!-- Icon -->
-    <link rel="icon" sizes="192x192" href="{{ asset('favicon.ico') }}">
-    <link rel="icon" href={{ asset('favicon.ico') }}>
+    <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -55,7 +52,7 @@
             @else
             <li class="nav-item pt-1">
                 <a href="{{ route('perfil') }}" class="nav-link">
-                    <img src="/images/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
+                    <img src="{{ Auth::user()->getAvatar() }}" class="rounded-circle z-depth-0 m-1" alt="avatar image"
                     height="35">
                     <span>{{ Auth::user()->nombre_completo() }}</span>
                 </a>
@@ -88,23 +85,6 @@
                     <img class="img-footer" src="/images/logo_blanco.png" alt="">
                     <p class="ml-3">Creado por los estudiantes de 6to semestre en la Universidad del Valle sede
                     Pacífico.</p>
-                </div>
-                <hr class="w-100 clearfix d-md-none">
-                <hr class="w-100 clearfix d-md-none">
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Enlaces Útiles</h6>
-                    <p>
-                        <a href="#!">Tu Cuenta</a>
-                    </p>
-                    <p>
-                        <a href="#!">Mis Planeadores</a>
-                    </p>
-                    <p>
-                        <a href="#!">Asignaturas</a>
-                    </p>
-                    <p>
-                        <a href="#!">Ayuda</a>
-                    </p>
                 </div>
                 <hr class="w-100 clearfix d-md-none">
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">

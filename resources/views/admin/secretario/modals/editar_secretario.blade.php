@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">Editar Secretario</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -32,7 +32,11 @@
                
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-primary">
+        <button class="btn btn-outline-primary" type="button" data-dismiss="modal" aria-label="Cancelar">
+          <i class="fa fa-times"></i>
+          Cancelar
+        </button>
+        <button class="btn btn-elegant">
           <i class="fa fa-save"></i>
           Guardar
         </button>
