@@ -40,7 +40,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="text-center">
-					<img class="img-fluid img-avatar-full" src="{{ Auth::user()->getAvatar() }}" alt="Foto de {{ auth()->user()->nombre }}">
+					<img class="img-fluid rounded-circle z-depth-2 img-avatar-full" src="{{ Auth::user()->getAvatar() }}" alt="Foto de {{ auth()->user()->nombre }}">
 					<h6 class="text-muted">Bienvenido de vuelta</h6>
 					<h4 class="font-weight-bold">{{ auth()->user()->nombre }}</h4>
 				</div>

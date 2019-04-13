@@ -19,7 +19,10 @@ Route::group(['middleware'=> 'auth:web,admin'],function(){
 Route::group(['middleware' => 'auth:admin,web'],function(){
 	    Route::get('/perfil', 'ProfileController@index')->name('perfil');
 	    Route::post('/cambiar-contraseña','ProfileController@cambiar_contraseña');
+	    Route::post('/cambiar-avatar','ProfileController@cambiarAvatar');
 });
+
+
 
 Route::group(['middleware'=> 'auth:admin'],function(){
 
