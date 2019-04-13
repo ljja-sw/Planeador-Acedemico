@@ -11,7 +11,7 @@
 				<div class="col-md-4 d-flex align-items-stretch">
 					<div class="card card-body">
 						<div class="text-center">
-							<img src="{{ asset('/images/default_user.png')}}" alt="Foto de {{$user->nombre_completo()}}" class="img-perfil">
+							<img src="	{{$user->getAvatar()}}" alt="Foto de {{$user->nombre_completo()}}" class="img-perfil rounded-circle z-depth-1">
 						</div>
 					</div>
 				</div>
