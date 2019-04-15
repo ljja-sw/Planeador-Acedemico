@@ -34,19 +34,19 @@
                 <img src="/images/logo_blanco.png" alt="Planeador Académico">
             </a>
 
-            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarAdmin"
+            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#mainNavbar"
             aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span><i class="fas fa-ellipsis-v"></i></span>
         </button>
 
-        <div class="collapse navbar-collapse text-center" id="navbarAdmin">
+        <div class="collapse navbar-collapse text-center" id="mainNavbar">
             <ul class="navbar-nav mr-auto">
                 <!-- Aqui van los enlaces para cada rol -->
                 @include('layouts.nav')
             </ul>
             <ul class="navbar-nav ml-auto d-flex align-items-center">
-               @guest
-               <li class="nav-item">
+             @guest
+             <li class="nav-item">
                 <a href="{{route('login')}}" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar Sesion</a>
             </li>
             @else
@@ -109,9 +109,9 @@
             </footer>
             <!-- Footer -->
         </div>
-    {{-- Scripts --}}
-    <script src="{{ asset('js/app.js') }}"></script>
-    @include('sweetalert::alert')
-    @stack('scripts');
+        {{-- Scripts --}}
+        <script src="{{ asset('js/app.js') }}"></script>
+        @include('sweetalert::alert')
+        @stack('scripts');
     </body>
     </html>

@@ -24,49 +24,49 @@ class ProfileController extends Controller
 		$this->validate($request, [
 			'avatar' => 'required',
 			'avatar.*' => 'image|mimes:jpeg,png,jpg|max:2048'
-			]);
+		]);
+		if ($request->hasFile('avatar')) {
 			if($usuario->avatar != ""){
 				$viejo_avatar = "public/avatars/{$usuario->avatar}";
 				Storage::delete($viejo_avatar);
 			}
-			if ($request->hasFile('avatar')) {
-				$img = Image::make($request
-					->file('avatar'))
-					->fit(530, 530)
-					->encode('png');	
-				 $hash = md5($img->__toString());
-				 $directorio = "public/avatars/{$hash}.png";
-				 Storage::put($directorio, $img->__toString());
 
-				$usuario->avatar = "{$hash}.png";
-				$usuario->save();
+			$img = Image::make($request
+				->file('avatar'))
+			->fit(530, 530)
+			->encode('png');	
+			$hash = md5($img->__toString());
+			$directorio = "public/avatars/{$hash}.png";
+			Storage::put($directorio, $img->__toString());
 
-				return redirect()->route("perfil");
-			}else{
-				return "No hay Imagen";
-			}
+			$usuario->avatar = "{$hash}.png";
+			$usuario->save();
 
+			return redirect()->route("perfil");
+		}else{
+			return "No hay Imagen";
 		}
-		
-		
-		public function cambiar_contraseña(Request $request)
-		{
-			$data = $request->toArray();
-			if (Hash::check($data['contraseña'],auth()->user()->password )) {
-				if ($data['nueva'] == $data['confirmacion_nueva']) {
-					$usuario = auth()->user();
-					$usuario->password = Hash::make($data['nueva']);
-					$usuario->save();
-					Alert::success('Contraseña Cambiada', '')->showCloseButton();
-					
-				}else{
-					Alert::error('Las contraseñas no coinciden', '')->showCloseButton();
-					
-				}
-			}else{
-				Alert::error('La contraseña actual no cincide', '')->showCloseButton();
-			}
-			return redirect()->route('perfil');
-		}
+
 	}
 	
+	
+	public function cambiar_contraseña(Request $request)
+	{
+		$data = $request->toArray();
+		if (Hash::check($data['contraseña'],auth()->user()->password )) {
+			if ($data['nueva'] == $data['confirmacion_nueva']) {
+				$usuario = auth()->user();
+				$usuario->password = Hash::make($data['nueva']);
+				$usuario->save();
+				Alert::success('Contraseña Cambiada', '')->showCloseButton();
+				
+			}else{
+				Alert::error('Las contraseñas no coinciden', '')->showCloseButton();
+				
+			}
+		}else{
+			Alert::error('La contraseña actual no cincide', '')->showCloseButton();
+		}
+		return redirect()->route('perfil');
+	}
+}
