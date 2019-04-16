@@ -28,6 +28,10 @@
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>
 
+
+
+
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-@yield('theme','primary') z-depth-0" >
             <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarAdmin"
@@ -37,10 +41,10 @@
 
                 <div class="collapse navbar-collapse text-center" id="navbarAdmin">
             <ul class="navbar-nav ml-auto">
-               <li class="nav-item {{ Request::is('login') ? 'active' : '' }}">
+               <li class="nav-item {{ Request::is('login') ? 'active' : '' }}" id=docente"">
                 <a href="{{route('login')}}" class="nav-link"> <i class="fa fa-sign-in-alt"></i> Inicio de sesion para Docentes</a>
             </li>
-            <li class="nav-item {{ Request::is('login-secretario') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('login-secretario') ? 'active' : '' }}" {{ Request::is('login') ? 'hidden' : '' }}>
                 <a href="{{route('login.secretario')}}" class="nav-link"> <i class="fa fa-sign-in-alt"></i> Inicio de sesion para Secretarios</a>
             </li>
                </ul>

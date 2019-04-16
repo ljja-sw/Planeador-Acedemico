@@ -13,7 +13,7 @@
 @case("Secretario")
 <li class="nav-item">
 	{{-- Enlaces Secretarios --}}
-	<a class="nav-link" href="#">
+	<a class="nav-link" href="/registro-asignaturas">
 	<i class="fa fa-chalkboard-teacher "></i>		
 	Asignaturas</a>
 </li>
