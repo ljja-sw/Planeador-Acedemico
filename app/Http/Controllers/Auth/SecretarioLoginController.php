@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +48,13 @@ class SecretarioLoginController extends Controller
     public function username()
     {
         return 'email';
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $user->update([
+            'last_login' => Carbon::now()->toDateTimeString(),
+        ]);
     }
 
     protected function guard()

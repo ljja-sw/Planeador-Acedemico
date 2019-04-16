@@ -20,7 +20,6 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     
     <!-- Icon -->
-    <link rel="icon" sizes="192x192" href="{{ asset('favicon.png') }}">
     <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Styles -->

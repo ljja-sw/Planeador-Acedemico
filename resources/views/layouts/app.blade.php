@@ -17,8 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 
     <!-- Icon -->
-    <link rel="icon" sizes="192x192" href="{{ asset('favicon.ico') }}">
-    <link rel="icon" href={{ asset('favicon.ico') }}>
+    <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -27,7 +26,6 @@
 
 </head>
 <body>
-    @include('sweetalert::alert')
 
     <header>
         <!-- Navbar -->
@@ -36,25 +34,25 @@
                 <img src="/images/logo_blanco.png" alt="Planeador Académico">
             </a>
 
-            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarAdmin"
+            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#mainNavbar"
             aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span><i class="fas fa-ellipsis-v"></i></span>
         </button>
 
-        <div class="collapse navbar-collapse text-center" id="navbarAdmin">
+        <div class="collapse navbar-collapse text-center" id="mainNavbar">
             <ul class="navbar-nav mr-auto">
                 <!-- Aqui van los enlaces para cada rol -->
                 @include('layouts.nav')
             </ul>
             <ul class="navbar-nav ml-auto d-flex align-items-center">
-               @guest
-               <li class="nav-item">
+             @guest
+             <li class="nav-item">
                 <a href="{{route('login')}}" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar Sesion</a>
             </li>
             @else
             <li class="nav-item pt-1">
                 <a href="{{ route('perfil') }}" class="nav-link">
-                    <img src="/images/default_user.png" class="rounded-circle z-depth-0 m-1" alt="avatar image"
+                    <img src="{{ Auth::user()->getAvatar() }}" class="rounded-circle z-depth-0 m-1" alt="avatar image"
                     height="35">
                     <span>{{ Auth::user()->nombre_completo() }}</span>
                 </a>
@@ -89,23 +87,6 @@
                     Pacífico.</p>
                 </div>
                 <hr class="w-100 clearfix d-md-none">
-                <hr class="w-100 clearfix d-md-none">
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Enlaces Útiles</h6>
-                    <p>
-                        <a href="#!">Tu Cuenta</a>
-                    </p>
-                    <p>
-                        <a href="#!">Mis Planeadores</a>
-                    </p>
-                    <p>
-                        <a href="#!">Asignaturas</a>
-                    </p>
-                    <p>
-                        <a href="#!">Ayuda</a>
-                    </p>
-                </div>
-                <hr class="w-100 clearfix d-md-none">
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h6 class="text-uppercase mb-4 font-weight-bold">Contactatnos</h6>
                     <p>
@@ -128,8 +109,9 @@
             </footer>
             <!-- Footer -->
         </div>
-    {{-- Scripts --}}
-    <script src="{{ asset('js/app.js') }}"></script>
-    @stack('scripts');
+        {{-- Scripts --}}
+        <script src="{{ asset('js/app.js') }}"></script>
+        @include('sweetalert::alert')
+        @stack('scripts');
     </body>
     </html>
