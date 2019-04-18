@@ -26,6 +26,11 @@ Route::group(['middleware' => 'auth:admin,web'],function(){
 
 Route::group(['middleware'=> 'auth:admin'],function(){
 
+    Route::get('/admin/docentes', 'DocenteController@index')->name('docentes.index');
+    Route::get('/admin/docentes/registrar', 'DocenteController@create')->name('docentes.create');
+    Route::post('/admin/docentes/registrar', 'DocenteController@store');
+
+
     Route::get('/admin/secretarios', 'SecretarioController@index')->name('secretarios.index');
     Route::get('/admin/secretarios/registrar', 'SecretarioController@create')->name('secretarios.create');
     Route::get('/admin/secretarios/{user}', 'SecretarioController@show')->name('secretarios.show');

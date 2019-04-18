@@ -74,6 +74,24 @@
 </header>
 
 <div id="app">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                    @if(session()->has('msj'))
+                    <div class="alert alert-success" role="alert" data-dimiss="alert">{{session('msj')}}</div>
+                    @elseif(count($errors) > 0)
+                    <div class="alert alert-danger" role="alert" data-dimiss="alert">
+                      <h6 class="font-weight-bold">Por favor corrija los siguientes errores:</h6>
+                      <ul>
+                        @foreach($errors->all() as $error)
+                          <li>{{$error}}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                    @endif
+            </div>
+        </div>
+    </div>
     <main class="pt-1">
         @yield('content')
     </main>
@@ -112,6 +130,6 @@
         {{-- Scripts --}}
         <script src="{{ asset('js/app.js') }}"></script>
         @include('sweetalert::alert')
-        @stack('scripts');
+        @stack('scripts')
     </body>
     </html>

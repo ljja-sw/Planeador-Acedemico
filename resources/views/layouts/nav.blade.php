@@ -19,7 +19,7 @@
 </li>
 <li class="nav-item">
 	{{-- Enlaces Docentes --}}
-	<a class="nav-link" href="#">
+	<a class="nav-link" href="{{ route('docentes.index') }}">
 		<i class="fa fa-users"></i>
 	Docentes</a>
 </li>
