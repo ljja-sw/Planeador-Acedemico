@@ -51,7 +51,7 @@
 		<div class="row">
 			<div class="col-md-12 col-lg-10 mx-auto">
 				<!-- Clases para Hoy -->
-				<div class="my-auto py-2">
+				<div class="my-auto">
 					<div class="card card-body">
 						<small class="text-muted pb-2">Clases para hoy</small>
 						<div class="pl-2">
@@ -67,7 +67,7 @@
 		<div class="row">
 			<div class="col-md-12 col-lg-10 mx-auto">
 				<!-- Asignaturas del Docente -->
-				<div class="my-auto py-2">
+				<div class="my-auto">
 					<div class="card card-body">
 						<small class="text-muted pb-2">Tus asignaturas</small>
 						<div class="pl-2">

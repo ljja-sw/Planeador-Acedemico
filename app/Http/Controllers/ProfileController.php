@@ -25,6 +25,7 @@ class ProfileController extends Controller
 			'avatar' => 'required',
 			'avatar.*' => 'image|mimes:jpeg,png,jpg|max:2048'
 		]);
+
 		if ($request->hasFile('avatar')) {
 			if($usuario->avatar != ""){
 				$viejo_avatar = "public/avatars/{$usuario->avatar}";
@@ -32,9 +33,10 @@ class ProfileController extends Controller
 			}
 
 			$img = Image::make($request
-				->file('avatar'))
-			->fit(530, 530)
-			->encode('png');	
+				->file("avatar"))
+				->fit(530, 530)
+				->encode("png");
+
 			$hash = md5($img->__toString());
 			$directorio = "public/avatars/{$hash}.png";
 			Storage::put($directorio, $img->__toString());
