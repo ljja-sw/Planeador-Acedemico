@@ -52,7 +52,6 @@
 </ul>
 </div>   
 </nav>
-
     <main id="content">
         @yield('content')
     </main>

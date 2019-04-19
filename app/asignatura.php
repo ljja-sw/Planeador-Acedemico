@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Programa;
 
 class asignatura extends Model
 {
@@ -11,7 +12,7 @@ class asignatura extends Model
 
 
     public function programas(){
-    	return $this->belongsToMany(Programas::class);
+    	return $this->belongsToMany(Programa::class);
     }
 
     public function Salones_salas(){
