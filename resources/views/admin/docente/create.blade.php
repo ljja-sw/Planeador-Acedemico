@@ -2,7 +2,6 @@
 
 @section('content')
 @include('libs.select2')
-<link rel="stylesheet" href="{{ asset('vendor/select2/material.css') }}">
 
 <div class="container">
     <div class="row">
@@ -28,7 +27,7 @@
                     </div>
                     @endif
 
-                    <form action="/admin/docentes/registrar" id="form-registrar-usuario" method="post" autocomplete="off">
+                    <form action="{{url('/admin/docentes/update')}}" id="form-registrar-usuario" method="post" autocomplete="off">
                         @csrf
                         <div class="md-form md-outline">
                             <input type="text" name="nombre" id="nombre" class="form-control" required>
@@ -70,9 +69,4 @@
          </div>
     </div>
 </div>
-@push('scripts')
-<script>
-
-</script>
-@endpush
 @endsection
