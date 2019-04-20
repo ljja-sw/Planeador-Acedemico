@@ -3,6 +3,8 @@
 @section('title','Secretarios Academicos')
 
 @section('content')
+@include('libs.datatables')
+
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto card-deck">
@@ -53,7 +55,6 @@
   </div>
 </div>
 @push('scripts')
-<script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
 <script>
   $('#tabla_secretarios').DataTable();
   $('.dataTables_length').addClass('bs-select');

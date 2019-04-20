@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Storage;
+use App\Depdenencia;
 
 class Docente extends Authenticatable
 {
@@ -52,6 +53,11 @@ class Docente extends Authenticatable
     public function nombre_completo()
     {
         return "{$this->nombre} {$this->apellido}";
+    }
+
+    public function dependencia_docente()
+    {
+        return $this->belongsTo(Dependencia::class,'dependencia');
     }
     
     public function getRouteKeyName()

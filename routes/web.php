@@ -27,20 +27,22 @@ Route::group(['middleware' => 'auth:admin,web'],function(){
 Route::group(['middleware'=> 'auth:admin'],function(){
 
     Route::get('/admin/docentes', 'DocenteController@index')->name('docentes.index');
+    Route::get('/docentes/{docente}/detalles','DocenteController@show')->name('docentes.show');
     Route::get('/admin/docentes/registrar', 'DocenteController@create')->name('docentes.create');
-    Route::post('/admin/docentes/registrar', 'DocenteController@store');
-
+    Route::post('/admin/docentes/update', 'DocenteController@store');
+    Route::post('/admin/docentes/{docente}/update', 'DocenteController@update')->name('docentes.update');
 
     Route::get('/admin/secretarios', 'SecretarioController@index')->name('secretarios.index');
     Route::get('/admin/secretarios/registrar', 'SecretarioController@create')->name('secretarios.create');
     Route::get('/admin/secretarios/{user}', 'SecretarioController@show')->name('secretarios.show');
     Route::post('/admin/secretarios/registrar', 'SecretarioController@store');
+    Route::post('/admin/secretarios/{user}/update', 'SecretarioController@update')->name('secretarios.update');
+
 
     Route::get('/registro-asignaturas', 'AsignaturaController@index');
     Route::post('/asignaturas', 'AsignaturaController@ingreso');
 
 
-    Route::post('/admin/secretarios/{user}/update', 'SecretarioController@update')->name('secretarios.update');
 
 });
 

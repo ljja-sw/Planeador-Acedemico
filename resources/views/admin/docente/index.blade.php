@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
-@section('title','Secretarios Academicos')
+@section('title','Docente')
 
 @section('content')
+@include('libs.datatables')
+
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto card-deck">
@@ -18,14 +20,34 @@
           </a>
         </div>
         <table id="tabla_docentes" class="table datatable table-striped table-bordered" cellspacing="0" width="100%">
-          <h1 class="text-center">Aqui va la tabla</h1>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Documento de Identidad</th>
+                <th>Correo Electrónico</th>
+                <th>Dependencia</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach ($docentes as $docente)
+                    <tr>
+                    <td>{{ $docente->nombre }}</td>
+                    <td>{{ $docente->apellido }}</td>
+                    <td>{{ $docente->documento_identidad }}</td>
+                    <td>{{ $docente->email }}</td>
+                    <td>{{ $docente->dependencia_docente->nombre }}</td>
+                    <th><a href="{{route('docentes.show',$docente)}}"> <i class="fa fa-plus"></i> Detalles</a></th>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
 @push('scripts')
-<script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
 <script>
   $('#tabla_docentes').DataTable();
   $('.dataTables_length').addClass('bs-select');

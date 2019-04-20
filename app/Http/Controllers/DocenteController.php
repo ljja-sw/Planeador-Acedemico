@@ -18,7 +18,8 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        return view('admin.docente.index');
+        $docentes = Docente::with('dependencia_docente:nombre,id')->get();
+        return view('admin.docente.index',compact("docentes"));
     }
 
     /**
@@ -79,18 +80,7 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Docente  $docente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Docente $docente)
-    {
-        //
+        return view('admin.docente.show',compact('docente'));
     }
 
     /**
@@ -102,7 +92,23 @@ class DocenteController extends Controller
      */
     public function update(Request $request, Docente $docente)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|min:3',
+            'apellido' => 'required|min:3',
+            'correo' => 'required|email',
+            'documento_identidad' => 'required|numeric|min:10',
+        ]);
+
+        $data = $request->toArray();
+        
+        $docente->nombre = $data['nombre'];
+        $docente->apellido = $data['apellido'];
+        $docente->email = $data['correo'];
+        $docente->documento_identidad = $data['documento_identidad'];
+        
+        if ($docente->save()) {
+            return redirect()->back()->with('msj',"Docente: {$data['nombre']} Editado");
+        }
     }
 
     /**
