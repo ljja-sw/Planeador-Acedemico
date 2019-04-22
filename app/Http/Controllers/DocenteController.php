@@ -111,6 +111,11 @@ class DocenteController extends Controller
         }
     }
 
+    public function GenerarPlaneador(Docente $planeador)
+    {
+        return view('generar-planeador');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

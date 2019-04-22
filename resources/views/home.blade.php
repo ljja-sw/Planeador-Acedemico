@@ -78,9 +78,9 @@
 					@break
 					@case('Docente')
 					<li class="nav-item">
-						<a href="#" class="btn btn-elegant  text-center ">
-							<i class="fa fa-question"></i>
-							Link 1
+						<a href="{{ route('generar.planeador') }}" class="nav-link d-flex flex-column text-center">
+							<i class="fa fa-question fa-2x"></i>
+							Generar Planeador
 						</a>
 					</li>
 					<li class="nav-item">
