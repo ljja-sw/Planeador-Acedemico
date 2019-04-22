@@ -32,8 +32,7 @@ Route::get('/docentes', function (Request $request) {
 });
 
 Route::get('/asignaturas-libres', function (Request $request) {
-        // $term = $request->term ?: '';
-        $term = '';
+        $term = $request->term ?: '';
 
         $busqueda = App\Asignatura::doesntHave('asignada')
                                    ->where('nombre', 'like',  $term.'%')
