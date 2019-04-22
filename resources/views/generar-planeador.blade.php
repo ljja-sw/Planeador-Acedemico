@@ -18,7 +18,7 @@
                 <div class="text-right">
                     <a href="{{ route('secretarios.create') }}" class="btn btn-elegant">
                         <i class="fa fa-plus"></i>
-                        Registrar Secretario
+                        Añadir tema
                     </a>
                 </div>
                 <table id="tabla_secretarios" class="table datatable table-striped table-bordered" cellspacing="0" width="100%">
