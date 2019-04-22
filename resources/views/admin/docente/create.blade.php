@@ -52,9 +52,10 @@
 
                         <div class="form-group">
                             <select class="form-control" name="dependencia" id="dependencia">
-                                    @foreach ($dependencias as $pd)
-                                        <option value="{{$pd->id}}"> {{$pd->nombre}} </option>
-                                    @endforeach
+                                <option value="">Dependencia</option>
+                                @foreach ($dependencias as $pd)
+                                    <option value="{{$pd->id}}"> {{$pd->nombre}} </option>
+                                @endforeach
                             </select>
                         </div>
 
