@@ -38,22 +38,22 @@
             aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
             <span><i class="fas fa-ellipsis-v"></i></span>
         </button>
-
+        
         <div class="collapse navbar-collapse text-center" id="mainNavbar">
             <ul class="navbar-nav mr-auto">
                 <!-- Aqui van los enlaces para cada rol -->
                 @include('layouts.nav')
             </ul>
             <ul class="navbar-nav ml-auto d-flex align-items-center">
-             @guest
-             <li class="nav-item">
+               @guest
+               <li class="nav-item">
                 <a href="{{route('login')}}" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar Sesion</a>
             </li>
             @else
             <li class="nav-item pt-1">
                 <a href="{{ route('perfil') }}" class="nav-link">
                     <img src="{{ Auth::user()->getAvatar() }}" class="rounded-circle z-depth-0 m-1" alt="avatar image"
-                    height="35">
+                    height="35" width="35">
                     <span>{{ Auth::user()->nombre_completo() }}</span>
                 </a>
             </li>
@@ -77,59 +77,59 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                    @if(session()->has('msj'))
-                    <div class="alert alert-success" role="alert" data-dimiss="alert">{{session('msj')}}</div>
-                    @elseif(count($errors) > 0)
-                    <div class="alert alert-danger" role="alert" data-dimiss="alert">
-                      <h6 class="font-weight-bold">Por favor corrija los siguientes errores:</h6>
-                      <ul>
-                        @foreach($errors->all() as $error)
-                          <li>{{$error}}</li>
-                        @endforeach
-                      </ul>
-                    </div>
-                    @endif
+                @if(session()->has('msj'))
+                <div class="alert alert-success" role="alert" data-dimiss="alert">{{session('msj')}}</div>
+                @elseif(count($errors) > 0)
+                <div class="alert alert-danger" role="alert" data-dimiss="alert">
+                  <h6 class="font-weight-bold">Por favor corrija los siguientes errores:</h6>
+                  <ul>
+                    @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
             </div>
+            @endif
         </div>
     </div>
-    <main class="pt-1">
-        @yield('content')
-    </main>
-    <!-- Footer -->
-    <footer class="page-footer font-small bg-dark pt-4">
-        <div class="container text-center text-md-left">
-            <div class="row text-center text-md-left mt-3 pb-3">
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto">
-                    <img class="img-footer" src="/images/logo_blanco.png" alt="">
-                    <p class="ml-3">Creado por los estudiantes de 6to semestre en la Universidad del Valle sede
-                    Pacífico.</p>
-                </div>
-                <hr class="w-100 clearfix d-md-none">
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Contactatnos</h6>
+</div>
+<main class="pt-1">
+    @yield('content')
+</main>
+<!-- Footer -->
+<footer class="page-footer font-small bg-dark pt-4">
+    <div class="container text-center text-md-left">
+        <div class="row text-center text-md-left mt-3 pb-3">
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto">
+                <img class="img-footer" src="/images/logo_blanco.png" alt="">
+                <p class="ml-3">Creado por los estudiantes de 6to semestre en la Universidad del Valle sede
+                Pacífico.</p>
+            </div>
+            <hr class="w-100 clearfix d-md-none">
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Contactatnos</h6>
+                <p>
+                    <i class="fas fa-user mr-3"></i><b>The Programers</b></p>
                     <p>
-                        <i class="fas fa-user mr-3"></i><b>The Programers</b></p>
-                        <p>
-                            <i class="fas fa-envelope mr-1"></i> contacto.programers@gmail.com</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row d-flex align-items-center">
-                        <div class="col-12">
-                            <p class="text-center">© 2019 Copyright:
-                                <a href="https://mdbootstrap.com/education/bootstrap/">
-                                    <strong> jeangallego.io</strong>
-                                </a>
-                            </p>
-                        </div>
+                        <i class="fas fa-envelope mr-1"></i> contacto.programers@gmail.com</p>
                     </div>
                 </div>
-            </footer>
-            <!-- Footer -->
-        </div>
-        {{-- Scripts --}}
-        <script src="{{ asset('js/app.js') }}"></script>
-        @include('sweetalert::alert')
-        @stack('scripts')
-    </body>
-    </html>
+                <hr>
+                <div class="row d-flex align-items-center">
+                    <div class="col-12">
+                        <p class="text-center">© 2019 Copyright:
+                            <a href="https://mdbootstrap.com/education/bootstrap/">
+                                <strong> jeangallego.io</strong>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer -->
+    </div>
+    {{-- Scripts --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    @include('sweetalert::alert')
+    @stack('scripts')
+</body>
+</html>

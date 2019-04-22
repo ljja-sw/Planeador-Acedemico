@@ -17,12 +17,15 @@ Route::group(['middleware'=> 'auth:web,admin'],function(){
 });
 
 Route::group(['middleware' => 'auth:admin,web'],function(){
-	    Route::get('/perfil', 'ProfileController@index')->name('perfil');
-	    Route::post('/cambiar-contraseña','ProfileController@cambiar_contraseña');
-	    Route::post('/cambiar-avatar','ProfileController@cambiarAvatar');
+ Route::get('/perfil', 'ProfileController@index')->name('perfil');
+ Route::post('/cambiar-contraseña','ProfileController@cambiar_contraseña');
+ Route::post('/cambiar-avatar','ProfileController@cambiarAvatar');
 });
 
-
+Route::group(['middleware' => ['role:Secretario','auth:admin']], function () {
+    Route::get('designar-asignatura-docente','SecretarioController@formDesignarAsignatura')->name('form.designar.asignatura');
+    Route::post('designar-asignatura-docente','SecretarioController@DesignarAsignatura')->name('designar.asignatura.store');
+});
 
 Route::group(['middleware'=> 'auth:admin'],function(){
 
@@ -38,11 +41,8 @@ Route::group(['middleware'=> 'auth:admin'],function(){
     Route::post('/admin/secretarios/registrar', 'SecretarioController@store');
     Route::post('/admin/secretarios/{user}/update', 'SecretarioController@update')->name('secretarios.update');
 
-
     Route::get('/registro-asignaturas', 'AsignaturaController@index');
     Route::post('/asignaturas', 'AsignaturaController@ingreso');
-
-
 
 });
 

@@ -13,6 +13,45 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/docentes', function (Request $request) {
+        $term = $request->term ?: '';
+
+        $busqueda = App\Docente::
+        			where('nombre', 'like',  $term.'%')
+                    ->orWhere('apellido','like',  $term.'%')
+                    ->orWhere('documento_identidad','like',  $term.'%')
+                    ->get();
+
+        $docentes = [];
+        
+        foreach ($busqueda as $docente) {
+            $docentes[] = ['id' => $docente->id, 'text' => $docente->nombre_completo() ];
+        }
+
+        return \Response::json($docentes);
+});
+
+Route::get('/asignaturas-libres', function (Request $request) {
+        // $term = $request->term ?: '';
+        $term = '';
+
+        $busqueda = App\Asignatura::doesntHave('asignada')
+                                   ->where('nombre', 'like',  $term.'%')
+                                   ->Where('codigo','like',  $term.'%')
+                                   ->get();
+
+        $asignaturas = [];
+        
+        foreach ($busqueda as $asignatura) {
+            $asignaturas[] = ['id' => $asignatura->id, 'text' => $asignatura->nombre ];
+        }
+
+        return \Response::json($asignaturas);
+});
+
+Route::any('horarios-libres',function(Request $request){
+        return App\Horario::where('salon_sala_id',$request->salon)
+                          ->doesntHave('ocupado')->get();
+
+        return \Response::json($salon->horarios);
 });

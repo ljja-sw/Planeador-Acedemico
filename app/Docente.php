@@ -2,11 +2,11 @@
 
 namespace App;
 
+use App\Asignatura;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Storage;
-use App\Depdenencia;
 
 class Docente extends Authenticatable
 {
@@ -68,5 +68,10 @@ class Docente extends Authenticatable
     public function getAvatar()
     {
         return ($this->avatar) ? Storage::disk('avatar')->url("avatars/{$this->avatar}") : '/images/default_user.png';
+    }
+
+    public function asignaturas()
+    {
+        return $this->belongsTo(Asignatura::class,'asignaturas_docentes','id');
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use App\asignatura;
+use App\Asignatura;
 
 
 class AsignaturaController extends Controller
@@ -27,7 +27,7 @@ class AsignaturaController extends Controller
     		'validable' => 'required'
     	]);
 
-    	if(asignatura::create($request->all())){
+    	if(Asignatura::create($request->all())){
     		return back()->with('msj','subject was successful added!');
     	}else{
     		return back()->with();

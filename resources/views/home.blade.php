@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+@include('admin.secretario.modals.delegar_asignatura_docente')
+@include('libs.select2')
+
 @guest
 <div class="container-fluid mb-3 z-depth-1">
 	<section class="hero"></section>
@@ -56,48 +60,38 @@
 					@switch(auth()->user()->getRoleNames()[0])
 					@case('Admin')
 					<li class="nav-item">
-						<a href="#" class="nav-link d-flex flex-column text-center">
-							<i class="fa fa-users fa-2x"></i>
+						<a href="#" class="btn btn-elegant  text-center ">
+							<i class="fa fa-users"></i>
 							Registrar Secretario Academico
 						</a>
 					</li>
 					@break
 					@case('Secretario')
 					<li class="nav-item">
-						<a href="#" class="nav-link d-flex flex-column text-center">
-							<i class="fa fa-question fa-2x"></i>
-							Link 1
-						</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link d-flex flex-column text-center">
-							<i class="fa fa-question fa-2x"></i>
-							Link 2
-						</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link d-flex flex-column text-center">
-							<i class="fa fa-question fa-2x"></i>
-							Link 3
+						<a href="#" class="btn btn-elegant text-center" data-toggle="modal" data-target="#modal_delegar_asignatura_docente">
+							<i class="fa fa-chalkboard-teacher"></i>
+							<i class="fa fa-arrow-right"></i>
+							<i class="fa fa-user"></i>
+							Delegar Asignatura a Docente
 						</a>
 					</li>
 					@break
 					@case('Docente')
 					<li class="nav-item">
-						<a href="#" class="nav-link d-flex flex-column text-center">
-							<i class="fa fa-question fa-2x"></i>
+						<a href="#" class="btn btn-elegant  text-center ">
+							<i class="fa fa-question"></i>
 							Link 1
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link d-flex flex-column text-center">
-							<i class="fa fa-question fa-2x"></i>
+						<a href="#" class="btn btn-elegant  text-center ">
+							<i class="fa fa-question"></i>
 							Link 2
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link d-flex flex-column text-center">
-							<i class="fa fa-question fa-2x"></i>
+						<a href="#" class="btn btn-elegant  text-center ">
+							<i class="fa fa-question"></i>
 							Link 3
 						</a>
 					</li>
