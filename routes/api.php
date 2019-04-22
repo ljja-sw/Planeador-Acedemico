@@ -51,6 +51,4 @@ Route::get('/asignaturas-libres', function (Request $request) {
 Route::any('horarios-libres',function(Request $request){
         return App\Horario::where('salon_sala_id',$request->salon)
                           ->doesntHave('ocupado')->get();
-
-        return \Response::json($salon->horarios);
 });

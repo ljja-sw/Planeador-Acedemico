@@ -32,28 +32,29 @@
 
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-@yield('theme','primary') z-depth-0" >
-            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarAdmin"
-            aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <main id="content" style="height:100vh">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-body">                        
+                @yield('content')
 
-                <div class="collapse navbar-collapse text-center" id="navbarAdmin">
-            <ul class="navbar-nav ml-auto">
-               <li class="nav-item {{ Request::is('login') ? 'active' : '' }}" id=docente"">
-                <a href="{{route('login')}}" class="nav-link"> <i class="fa fa-sign-in-alt"></i> Inicio de sesion para Docentes</a>
-            </li>
-            <li class="nav-item {{ Request::is('login-secretario') ? 'active' : '' }}" {{ Request::is('login') ? 'hidden' : '' }}>
-                <a href="{{route('login.secretario')}}" class="nav-link"> <i class="fa fa-sign-in-alt"></i> Inicio de sesion para Secretarios</a>
-            </li>
-               </ul>
+                <hr>
+                <div class="mx-auto text-center">
+                    <h6 class="h6-responsive font-weight-bold">Iniciar Sesion como</h6>
+                    @if (Request::is('*login'))
+                        <a href="{{url('login-secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
+                    @elseif(Request::is('*login-secretario'))
+                        <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
+                    @else
+                        <a href="{{url('login-secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
+                        <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
+                    @endif
+                </div>
         </div>
     </div>
-</ul>
-</div>   
-</nav>
-    <main id="content">
-        @yield('content')
+    </div>
+    </div>
     </main>
 </body>
 </html>

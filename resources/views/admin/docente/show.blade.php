@@ -67,10 +67,10 @@
 						<small class="text-muted pb-2">Asignaturas</small>
 						<div class="pl-2">
 							<ul class="list-group list-group-flush">
-								@forelse($docente->asignaturas() as $asignatura)
+								@forelse($docente->asignaturas as $asignatura)
 									<li class="list-group-item">
 										<a href="#">
-											{{$asignatura->nombre}}
+											{{$asignatura->nombre}} - {{$asignatura->grupo}}
 										</a>	
 									</li>
 								@empty

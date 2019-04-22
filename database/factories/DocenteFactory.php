@@ -9,6 +9,18 @@ $factory->define(App\Dependencia::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(App\Asignatura::class, function (Faker $faker) {
+	return [
+    	'nombre' => "{$faker->word} {$faker->word}",
+    	'codigo' => $faker->numberBetween(1000,9999),
+    	'grupo' => $faker->randomDigit,
+    	'creditos' => $faker->randomDigit,
+    	'intensidad_horaria' => $faker->randomDigit,
+    	'habilitable' => $faker->boolean,
+    	'validable' => $faker->boolean
+    ];
+});
+
 $factory->define(App\Docente::class, function (Faker $faker) {
 	return [
 		'nombre' => $faker->firstName,

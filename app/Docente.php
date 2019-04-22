@@ -72,6 +72,6 @@ class Docente extends Authenticatable
 
     public function asignaturas()
     {
-        return $this->belongsTo(Asignatura::class,'asignaturas_docentes','id');
+        return $this->belongsToMany(Asignatura::class,'asignaturas_docentes');
     }
 }
