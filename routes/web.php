@@ -54,6 +54,8 @@ Route::post('/login/secretario','Auth\SecretarioLoginController@login');
 Route::get('/login-admin','Auth\AdminLoginController@showLoginForm')->name('login.admin');
 Route::post('/login/admin','Auth\AdminLoginController@login');
 
+Route::post('/generar-planeador/pfd','DocenteController@generarPlaneadorPDF')->name('generar.planeador.pdf');
+
 Route::get('/generar-planedor','DocenteController@GenerarPlaneador')->name('generar.planeador');
 
 
