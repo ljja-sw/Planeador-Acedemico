@@ -16,34 +16,10 @@
                 Generar planeador
                 </h3>
                 <div class="text-right">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="mr-2">
-                                <input type="text" class="form-control" name="Semana" id="Semana" placeholder="Semana">
-                            </div>
-                            <div class="mr-2">
-                                <input type="date" class="form-control" name="facha" id="fecha" value="fecha">
-                            </div>
-                            <div class="mr-2 w-25">
-                                    <input type="text" class="form-control" name="tema" id="tema" placeholder="Tema">
-                            </div>
-                            <div class="mr-2">
-                                <select class="form-control" name="metodo" id="metodo">
-                                    <option value="">Metodología</option>
-                                    <option value="CM">Clase Magistral</option>
-                                    <option value="CMTL">Clase Magistral - Taller</option>
-                                    <option value="CMEXP">Clase Magistral - Exposición</option>
-                                    <option value="CMEMP">Clase Magistral - EMP</option>
-                                </select> 
-                            </div>
-                            <div>
-                                <a href="{{ route('secretarios.create') }}" class="btn btn-elegant">
-                                    <i class="fa fa-plus"></i>
-                                    Añadir tema
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ route('secretarios.create') }}" class="btn btn-elegant">
+                        <i class="fa fa-plus"></i>
+                        Añadir tema
+                    </a>
                 </div>
                 <table id="tabla_secretarios" class="table datatable table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
