@@ -69,13 +69,18 @@
 				<!-- Asignaturas del Docente -->
 				<div class="my-auto">
 					<div class="card card-body">
-						<small class="text-muted pb-2">Tus asignaturas</small>
+						<small class="text-muted pb-2">Mis asignaturas</small>
 						<div class="pl-2">
 							<ul class="list-group list-group-flush">
-								<?php for($i=1;$i<=5;$i++): ?>
-								<li class="list-group-item"><a href="#">4-12314M-50 INTRODUCCIÓN A LOS
-									PÁJAROS-<?= $i  ?></a></li>
-									<?php endfor; ?>
+								@forelse(auth()->user()->asignaturas as $asignatura)
+									<li class="list-group-item">
+										<a href="#">
+											{{$asignatura->nombre}} - {{$asignatura->grupo}}
+										</a>	
+									</li>
+								@empty
+									Sin asignaturas delegadas
+								@endforelse
 								</ul>
 							</div>
 						</div>

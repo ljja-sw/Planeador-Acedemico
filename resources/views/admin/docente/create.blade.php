@@ -2,7 +2,6 @@
 
 @section('content')
 @include('libs.select2')
-
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">

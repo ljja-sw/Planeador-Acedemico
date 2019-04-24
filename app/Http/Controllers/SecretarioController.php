@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\AsignaturaDocente;
+use App\Asignatura;
+use App\SalonSala;
+use App\Docente;
 use App\User;
 use Hash;
 Use Alert;
@@ -103,6 +107,30 @@ class SecretarioController extends Controller
         public function destroy(User $user)
         {
             //
+        }
+
+        public function formDesignarAsignatura(Request $request){
+            $docente = Docente::find($request->docente);
+            $asignatura = Asignatura::find($request->asignatura);
+            $salones = SalonSala::all();
+
+
+            return view('delegar_asignatura',
+                compact('docente','asignatura','salones'));
+        }
+
+        public function DesignarAsignatura(Request $request){
+            $docente = Docente::find($request->docente);
+            $asignatura = Asignatura::find($request->asignatura);
+            
+            AsignaturaDocente::create([
+                'asignatura_id' => $request->asignatura,
+                'docente_id'  => $request->docente,
+                'salon_id'  => $request->salon,
+                'horario_id'  => $request->horario
+            ]);
+
+            return redirect('/')->with('msj',"Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");;
         }
     }
     
