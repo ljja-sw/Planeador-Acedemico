@@ -9,6 +9,7 @@
         footer, #btn-print{display: none} 
     }
 </style>
+
 <div class="container"> 
     <div class="row">
         <div class="col-md-12">
@@ -111,7 +112,13 @@
                 
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-bordered">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Nuevo tema
+                        </button>
+                    </div>
+                    <div class="col-md-12">
+                        <table id="tabla" class="table table-bordered">
                             <tbody class="text-center">
                                 <tr>
                                     <th colspan="4" >
@@ -124,19 +131,66 @@
                                     <th scope="col">Temas - Actividades</th>
                                     <th scope="col">Metodología*</th>
                                 </tr>
-                                @for ($i = 1; $i <= 18; $i++)
+                                {{-- @for ($i = 1; $i <= 18; $i++)
                                 <tr>
                                     <th scope="row">{{$i}}</th>
                                     <td> 21/08/2018</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
                                 </tr>
-                                @endfor
+                                @endfor --}}
                             </tbody>
                         </table>
                     </div>
                 </div>               
             </div>
+        </div>
+    </div>
+</div>
+      
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo tema</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <label for="semana">Semana:</label>
+                                <input type="number" class="form-control" name="semana" id="semana">
+                            </div>
+                            <div class="col-12 form-group">
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" class="form-control" name="fecha" id="fecha">
+                            </div>
+                            <div class="col-12 form-group">
+                                <label for="tema">Tema - Actividad</label>
+                                <input type="text" class="form-control" name="tema" id="tema" placeholder="Tema">
+                            </div>
+                            <div class="col-12 form-group">
+                                <label for="metodologia">Metodología</label>
+                                <select class="form-control" name="metodologia" id="metodologia">
+                                    <option value="">Metodología</option>
+                                    <option value="CM">Clase Magistral</option>
+                                    <option value="CM-TL">Clase magistal - Taller</option>
+                                    <option value="CMEXP">Clase Magistral - Exposición</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addtema">Añadir tema</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
