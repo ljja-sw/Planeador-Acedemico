@@ -10,4 +10,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    function descargarPDF(){
+        $pdf = \PDF::loadView("pdf");
+        return $pdf->download("planeador.pdf");
+    }
 }
