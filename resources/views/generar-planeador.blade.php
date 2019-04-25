@@ -7,7 +7,7 @@
         @page { margin: 0; }
         body { margin: 1.6cm; }
         footer, #btn-print{display: none;} 
-        #no-print-tema, #no-print-evalua{display: none;}
+        .btn{display: none;}
     }
 </style>
 

@@ -136,7 +136,7 @@
     <script>
         function nuevoeva(){
             agregarEvaluacion();
-            // limpiar();
+            limpiar();
         }
         function nuevotema(){
             agregar();
@@ -162,8 +162,8 @@
             $('input[type="number"]').val('');
             $('input[type="date"]').val('');
             $('input[type="text"]').val('');
-            let metodologia = document.getElementById("metodologia");
-            metodologia.remove(metodologia.selectedIndex);
+            // let metodologia = document.getElementById("metodologia");
+            // metodologia.remove(metodologia.selectedIndex);
         }
         function imprimircontenido(el){
             let restorepage = document.body.innerHTML;
