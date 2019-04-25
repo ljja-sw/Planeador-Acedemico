@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 @include('admin.secretario.modals.delegar_asignatura_docente')
 @include('libs.select2')
 
@@ -39,6 +38,7 @@
 	</section>
 </div>
 @else
+
 <div class="container">
 	<div class="card card-body z-depth-1">
 		<div class="row">
@@ -60,7 +60,7 @@
 					@switch(auth()->user()->getRoleNames()[0])
 					@case('Admin')
 					<li class="nav-item">
-						<a href="#" class="btn btn-elegant  text-center ">
+						<a href="{{route('secretarios.create')}}" class="btn btn-elegant  text-center ">
 							<i class="fa fa-users"></i>
 							Registrar Secretario Academico
 						</a>

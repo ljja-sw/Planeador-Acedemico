@@ -8,13 +8,19 @@
 		<i class="fa fa-users"></i>
 	Secretarios Académicos</a>
 </li>
+<li class="nav-item">
+	<a href="{{ route('salon.index') }}" class="nav-link">
+		<i class="far fa-calendar-alt"></i>
+		Salones y Horarios
+	</a>
+</li>
 @break
 
 @case("Secretario")
 <li class="nav-item">
 	{{-- Enlaces Secretarios --}}
 	<a class="nav-link" href="/registro-asignaturas">
-	<i class="fa fa-chalkboard-teacher "></i>		
+		<i class="fa fa-chalkboard-teacher "></i>		
 	Asignaturas</a>
 </li>
 <li class="nav-item">

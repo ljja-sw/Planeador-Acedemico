@@ -16,6 +16,6 @@ class SalonSala extends Model
 
     public function horarios()
     {
-    	return $this->hasMany(Horario::class);
+    	return $this->hasMany(Horario::class,'salon_sala_id');
     }
 }

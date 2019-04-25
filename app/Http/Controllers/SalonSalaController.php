@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SalonSala;
+use App\Horario;
 use Illuminate\Http\Request;
 
 class SalonSalaController extends Controller
@@ -14,7 +15,8 @@ class SalonSalaController extends Controller
      */
     public function index()
     {
-        //
+        $salones = SalonSala::with('horarios')->get();
+        return view('admin.salon.index',compact('salones'));
     }
 
     /**
@@ -24,7 +26,7 @@ class SalonSalaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.salon.create');
     }
 
     /**
@@ -35,7 +37,30 @@ class SalonSalaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|min:3|unique:salones_salas',
+            'capacidad' => 'required|numeric',
+        ]);
+
+        $salon_sala = SalonSala::create([
+            'nombre' => $request['nombre'],
+            'capacidad' => $request['capacidad']
+        ]);
+
+        for ($h=0; $h < count($request["hora_inicio"]); $h++) { 
+            $horario = Horario::make([
+                'hora_inicio' => $request['hora_inicio'][$h],
+                'hora_fin' => $request['hora_fin'][$h],
+                'dia' => $request['dia'][$h],
+                'salon_sala_id'  => $salon_sala->id,
+            ]);
+
+            $salon_sala->horarios()->save($horario);
+        }
+        $numero_horarios = count($salon_sala->horarios);
+
+        return redirect()->route("salon.index")->with('msj',"Se ha registrado {$request['nombre']} con {$numero_horarios} horarios disponibles");
+
     }
 
     /**
@@ -44,20 +69,10 @@ class SalonSalaController extends Controller
      * @param  \App\SalonSala  $salonSala
      * @return \Illuminate\Http\Response
      */
-    public function show(SalonSala $salonSala)
+    public function show(SalonSala $salon)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\SalonSala  $salonSala
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SalonSala $salonSala)
-    {
-        //
+        return $salon;
+        return view('admin.salon.show');
     }
 
     /**

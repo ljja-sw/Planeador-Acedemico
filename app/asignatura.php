@@ -21,7 +21,7 @@ class Asignatura extends Model
     	return $this->belongsToMany(Programa::class);
     }
 
-    public function SalonesSalas(){
+    public function salonesSalas(){
     	return $this->belongsTo(SalonSala::class);
     }
 
