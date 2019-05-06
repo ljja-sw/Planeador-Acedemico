@@ -5,7 +5,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-8 mx-auto">
+		<div class="col-md-6 mx-auto">
 			<div class="card card-body text-center">
 				<i class="fa fa-book fa-3x py-2"></i>
           <h4 class="font-weight-bold h4-responsive">
@@ -28,9 +28,7 @@
               </ul>
             </div>
             @endif
-          
-
-
+        
             <div class="md-form">
               <input type="text" name="nombre" class="form-control" required>
               <label for="nombre">Nombre</label>
@@ -47,26 +45,19 @@
               </div>
            
             <!--check-->
-        <div class="row">
+        <div class="row"> 
             <div class="form-group col-md-6">
-                <label for="inputValidable">Habilitable</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="habilitable" id="habilitable" value="1" checked>
-                  <label class="form-check-label" for="exampleRadios1">
-                    Si
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="habilitable" id="habilitable" value="0">
-                  <label class="form-check-label" for="exampleRadios2">
-                    No
-                  </label>
-                </div>
+              <label for="inputValidable">Habilitable</label>
+              <select class="custom-select my-1 mr-sm-2" name="validable" id="inlineFormCustomSelectPref">
+                <option value="">-- Seleccione una opción --</option>
+                <option value="1">Si</option>
+                <option value="0">No</option>
+              </select>
             </div>  
 
             <div class="form-group col-md-6">
               <label for="inputValidable">Validable</label>
-              <select class="custom-select my-1 mr-sm-2" name="validable" data-style="btn-danger" id="inlineFormCustomSelectPref">
+              <select class="custom-select my-1 mr-sm-2" name="validable" id="inlineFormCustomSelectPref">
                 <option value="">-- Seleccione una opción --</option>
                 <option value="1">Si</option>
                 <option value="0">No</option>

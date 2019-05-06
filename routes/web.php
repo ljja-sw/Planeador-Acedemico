@@ -41,8 +41,14 @@ Route::group(['middleware'=> 'auth:admin'],function(){
     Route::post('/admin/secretarios/registrar', 'SecretarioController@store');
     Route::post('/admin/secretarios/{user}/update', 'SecretarioController@update')->name('secretarios.update');
 
-    Route::get('/registro-asignaturas', 'AsignaturaController@index');
+    Route::get('/registro-asignaturas', 'AsignaturaController@index')->name('asignaturas.crear');
     Route::post('/asignaturas', 'AsignaturaController@ingreso');
+    Route::get('/vista-asignaturas', 'AsignaturaController@show')->name('asignaturas.show');
+    Route::get('/vista-asignaturas/{asigna}', 'AsignaturaController@detalle')
+    ->name('asignatura.detalles');  
+    Route::post('/vista-asignaturas/{asigna}/update','AsignaturaController@update')->name('asignaturas.update');
+    Route::get('/vista-asignaturas/{asigna}/destroy','AsignaturaController@destroy')->name('asignaturas.destroy');
+
 
 });
 
