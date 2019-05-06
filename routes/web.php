@@ -62,6 +62,8 @@ Route::group(['middleware'=> 'auth:admin'],function(){
 
     Route::get('/registro-asignaturas', 'AsignaturaController@index')->name('asignaturas.crear');
 
+    Route::get('/registro-asignaturas', 'AsignaturaController@index')->name('asignaturas.crear');
+
     Route::get('/registro-asignaturas', 'AsignaturaController@index');
 
     Route::post('/asignaturas', 'AsignaturaController@ingreso');

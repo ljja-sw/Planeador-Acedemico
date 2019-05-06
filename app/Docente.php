@@ -55,6 +55,7 @@ class Docente extends Authenticatable
         return $this->belongsToMany(Asignatura::class,'asignaturas_docentes');
     }
     
+
     public function nombre_completo()
     {
         return "{$this->nombre} {$this->apellido}";
@@ -74,5 +75,4 @@ class Docente extends Authenticatable
     {
         return ($this->avatar) ? Storage::disk('avatar')->url("avatars/{$this->avatar}") : '/images/default_user.png';
     }
-
 }

@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Asignatura extends Model
 {
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'nombre',
@@ -22,7 +27,7 @@ class Asignatura extends Model
     }
 
     public function salonesSalas(){
-        return $this->belongsTo(SalonSala::class);
+    	return $this->belongsTo(SalonSala::class);
     }
 
     public function asignada()
