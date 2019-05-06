@@ -52,3 +52,20 @@ Route::any('horarios-libres',function(Request $request){
         return App\Horario::where('salon_sala_id',$request->salon)
                           ->doesntHave('ocupado')->get();
 });
+
+Route::any('/asignaturas-docente/{docente}',function(Request $request,App\Docente $docente){
+        $term = $request->term ?: '';
+
+        $busqueda = $docente->asignaturas()->doesntHave('planeador')
+                                   ->where('nombre', 'like',  $term.'%')
+                                   ->Where('codigo','like',  $term.'%')
+                                   ->get();
+
+        $asignaturas = [];
+        
+        foreach ($busqueda as $asignatura) {
+            $asignaturas[] = ['id' => $asignatura->id, 'text' => $asignatura->nombre ];
+        }
+
+        return \Response::json($asignaturas);
+});

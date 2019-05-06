@@ -13,8 +13,10 @@ class DatabaseSeeder extends Seeder
     {
       $docente = factory('App\Dependencia',15)->create();
       $docente = factory('App\Asignatura',30)->create();
+      $docente = factory('App\Programa',20)->create();
 
       $this->call(RolesSeeder::class);
       $this->call(PermissionsSeeder::class);
+      $this->call(MetodologiasSeeder::class);
     }
 }

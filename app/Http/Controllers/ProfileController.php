@@ -16,7 +16,7 @@ class ProfileController extends Controller
 	{
 		return view('perfil');
 	}
-	
+
 	public function cambiarAvatar(Request $request)
 	{
 		$usuario = Auth::user();
@@ -50,8 +50,8 @@ class ProfileController extends Controller
 		}
 
 	}
-	
-	
+
+
 	public function cambiar_contraseña(Request $request)
 	{
 		$data = $request->toArray();
@@ -61,10 +61,10 @@ class ProfileController extends Controller
 				$usuario->password = Hash::make($data['nueva']);
 				$usuario->save();
 				Alert::success('Contraseña Cambiada', '')->showCloseButton();
-				
+
 			}else{
 				Alert::error('Las contraseñas no coinciden', '')->showCloseButton();
-				
+
 			}
 		}else{
 			Alert::error('La contraseña actual no cincide', '')->showCloseButton();

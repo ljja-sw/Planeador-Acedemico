@@ -32,10 +32,11 @@
 							<h5 class="h5-responsive font-weight-bold">
 								{{ $asignatura->nombre }}
 							</h5>
+							<p class="m-0 ml-1">{{ $asignatura->codigo }} - {{ $asignatura->grupo }}</p>
 							<small class="text-muted">
 								Programa academico
 							</small>
-							<p class="m-0 ml-1">{{ $asignatura->codigo }} - {{ $asignatura->grupo }}</p>
+							
 						</div>
 					</div>
 
@@ -69,7 +70,8 @@
 					<div class="row py-2">
 						<div class="col-12">
 							<div class="card card-body">
-								<div class="form-row">
+								{{--
+								 <div class="form-row">
 									<div class="col-md-6">
 										<label for="salon_asignatura">Salon/Sala</label>
 										<div class="input-group px-3">
@@ -90,7 +92,8 @@
 											</select>
 										</div>
 									</div>
-								</div>
+									</div>
+								 --}}
 								<div class="p-2 text-right">
 									<button type="submit" class="btn btn-elegant"> <i class="fa fa-save"></i> Guardar</button>
 								</div>
@@ -104,8 +107,6 @@
 	@endsection
 	@push('scripts')
 	<script>
-		getHorarios(1)
-
 		$("#salon_asignatura,#horarios").select2({
 			theme: 'bootstrap4',
 		});

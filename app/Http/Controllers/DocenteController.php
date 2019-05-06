@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Asignatura;
 use App\Docente;
+use App\Metodologia;
 use App\Dependencia;
 use Hash;
 Use PDF;
@@ -72,6 +74,11 @@ class DocenteController extends Controller
 
     }
 
+    public function asignaturas()
+    {
+        return view("mis_asignaturas");
+    }
+
     /**
      * Display the specified resource.
      *
@@ -109,17 +116,6 @@ class DocenteController extends Controller
         if ($docente->save()) {
             return redirect()->back()->with('msj',"Docente: {$data['nombre']} Editado");
         }
-    }
-
-    public function GenerarPlaneador(Docente $planeador)
-    {
-        return view('generar-planeador');
-    }
-
-    public function generarPlaneadorPDF(Request $request)
-    {
-        $pdf = PDF::loadView('layouts.planeador');
-        return $pdf->stream();
     }
 
     /**

@@ -24,7 +24,7 @@ class SecretarioController extends Controller
         $secretarios = User::role('secretario')->get();
         return view('admin.secretario.index', compact('secretarios'));
     }
-    
+
     /**
     * Show the form for creating a new resource.
     *
@@ -34,7 +34,7 @@ class SecretarioController extends Controller
     {
         return view('admin.secretario.create');
     }
-    
+
     /**
     * Store a newly created resource in storage.
     *
@@ -45,11 +45,11 @@ class SecretarioController extends Controller
     {
         $data = $request->toArray();
         $rol = Role::findByName("Secretario");
-        
+
         $split_nombre = str_split($data['nombre']);
         $split_apellido = str_split($data['apellido']);
         $password = ucwords($split_nombre[0]) . $data['documento_identidad'] . ucwords($split_apellido[0]);
-        
+
         $secretario_academico = User::create([
             'nombre' => $data['nombre'],
             'apellido' => $data['apellido'],
@@ -57,12 +57,12 @@ class SecretarioController extends Controller
             'email' => $data['correo'],
             'password' => Hash::make($password),
             ]);
-            
+
             $secretario_academico->assignRole($rol);
-            
+
             return redirect()->route('secretarios.index');
         }
-        
+
         /**
         * Display the specified resource.
         *
@@ -73,7 +73,7 @@ class SecretarioController extends Controller
         {
             return view('admin.secretario.show',compact('user'));
         }
-        
+
         /**
         * Update the specified resource in storage.
         *
@@ -88,7 +88,7 @@ class SecretarioController extends Controller
             $user->apellido = $data['apellido'];
             $user->documento_identidad = $data['documento_identidad'];
             $user->email = $data['correo'];
-            
+
             if ($user->save()) {
                 Alert::success('Secretario modificado', '')->showCloseButton();
                 return redirect()->route('secretarios.show',$data['documento_identidad']);
@@ -97,7 +97,7 @@ class SecretarioController extends Controller
                 return redirect()->route('secretarios.show',$data['documento_identidad']);
             }
         }
-        
+
         /**
         * Remove the specified resource from storage.
         *
@@ -122,15 +122,14 @@ class SecretarioController extends Controller
         public function DesignarAsignatura(Request $request){
             $docente = Docente::find($request->docente);
             $asignatura = Asignatura::find($request->asignatura);
-            
+
             AsignaturaDocente::create([
                 'asignatura_id' => $request->asignatura,
                 'docente_id'  => $request->docente,
-                'salon_id'  => $request->salon,
-                'horario_id'  => $request->horario
+                // 'salon_id'  => $request->salon,
+                // 'horario_id'  => $request->horario
             ]);
 
             return redirect('/')->with('msj',"Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");;
         }
     }
-    

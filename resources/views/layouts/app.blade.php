@@ -129,7 +129,9 @@
     </div>
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.4.0.min.js') }}"></script>
     @include('sweetalert::alert')
+    @stack('scripts-libs')
     @stack('scripts')
 </body>
 </html>

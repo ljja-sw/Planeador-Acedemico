@@ -30,7 +30,7 @@ class Docente extends Authenticatable
         'last_login',
 
     ];
-    
+
     /**
     * The attributes that should be hidden for arrays.
     *
@@ -39,7 +39,7 @@ class Docente extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     /**
     * The attributes that should be cast to native types.
     *
@@ -49,6 +49,11 @@ class Docente extends Authenticatable
         'email_verified_at' => 'datetime',
         'last_login' => 'datetime',
     ];
+
+    public function asignaturas()
+    {
+        return $this->belongsToMany(Asignatura::class,'asignaturas_docentes');
+    }
     
     public function nombre_completo()
     {
@@ -59,19 +64,15 @@ class Docente extends Authenticatable
     {
         return $this->belongsTo(Dependencia::class,'dependencia');
     }
-    
+
     public function getRouteKeyName()
     {
         return "documento_identidad";
     }
-    
+
     public function getAvatar()
     {
         return ($this->avatar) ? Storage::disk('avatar')->url("avatars/{$this->avatar}") : '/images/default_user.png';
     }
 
-    public function asignaturas()
-    {
-        return $this->belongsToMany(Asignatura::class,'asignaturas_docentes');
-    }
 }

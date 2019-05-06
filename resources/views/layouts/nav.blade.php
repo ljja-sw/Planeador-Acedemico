@@ -8,31 +8,39 @@
 		<i class="fa fa-users"></i>
 	Secretarios Académicos</a>
 </li>
+<li class="nav-item">
+	<a href="{{ route('salon.index') }}" class="nav-link">
+		<i class="far fa-calendar-alt"></i>
+		Salones y Horarios
+	</a>
+</li>
 @break
 
 @case("Secretario")
 <li class="nav-item">
 	{{-- Enlaces Secretarios --}}
-	<a class="nav-link" href="/registro-asignaturas">
-	<i class="fa fa-chalkboard-teacher "></i>		
-	Asignaturas</a>
-</li>
-<li class="nav-item">
-	{{-- Enlaces Docentes --}}
-	<a class="nav-link" href="{{ route('docentes.index') }}">
-		<i class="fa fa-users"></i>
-	Docentes</a>
-</li>
-@break
+		<a class="nav-link" href="/registro-asignaturas">
+			<i class="fa fa-chalkboard-teacher "></i>		
+			Asignaturas
+		</a>
+	</li>
 
-@case("Docente")
-<li class="nav-item">
-	{{-- Enlaces docentes --}}
-	<a class="nav-link" href="#">Enlaces Docente</a>
-</li>
+	<li class="nav-item">
+		{{-- Enlaces Docentes --}}
+		<a class="nav-link" href="{{ route('docentes.index') }}">
+			<i class="fa fa-users"></i>
+		Docentes</a>
+	</li>
+	@break
 
-@break
-@default
-
-@endswitch
-@endforeach
+	@case("Docente")
+	<li class="nav-item">
+		{{-- Enlaces Docentes --}}
+		<a class="nav-link" href="{{route('docente.asignaturas')}}">
+			<i class="fa fa-chalkboard-teacher"></i>
+		Mis Asignaturas</a>
+	</li>
+	@break
+	@default
+	@endswitch
+	@endforeach
