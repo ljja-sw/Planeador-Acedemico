@@ -129,7 +129,49 @@
     </div>
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.4.0.min.js') }}"></script>
     @include('sweetalert::alert')
     @stack('scripts')
+
+    <script>
+        function nuevoeva(){
+            agregarEvaluacion();
+            limpiar();
+        }
+        function nuevotema(){
+            agregar();
+            limpiar();
+        }
+        var contador = 0;
+        function agregar(){
+            let semana = document.getElementById("semana").value;
+            let fecha = document.getElementById("fecha").value;
+            let tema = document.getElementById("tema").value;
+            let metodologia = document.getElementById("metodologia").value;
+            contador++;
+            var fila = '<tr class="" id="fila'+contador+'" onclick="seleccionar(this.id);"><th>'+semana+'</th><th>'+fecha+'</th><th>'+tema+'</th><th>'+metodologia+'</th>/tr>';
+            $("#tabla").append(fila);
+        }
+        function agregarEvaluacion(){
+            let Eva = document.getElementById("evaluacion").value;
+            contador++;
+            var fila = '<li>'+Eva+'</li>';
+            $("#listaEv").append(fila);
+        }
+        function limpiar(){
+            $('input[type="number"]').val('');
+            $('input[type="date"]').val('');
+            $('input[type="text"]').val('');
+            // let metodologia = document.getElementById("metodologia");
+            // metodologia.remove(metodologia.selectedIndex);
+        }
+        function imprimircontenido(el){
+            let restorepage = document.body.innerHTML;
+            let printcontenido = document.getElementById(el).innerHTML;
+            document.body.innerHTML = printcontenido;
+            window.print();
+            document.body.innerHTML = restorepage;
+        }
+    </script>
 </body>
 </html>

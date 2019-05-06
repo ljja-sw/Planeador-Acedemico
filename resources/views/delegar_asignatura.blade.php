@@ -32,10 +32,11 @@
 							<h5 class="h5-responsive font-weight-bold">
 								{{ $asignatura->nombre }}
 							</h5>
+							<p class="m-0 ml-1">{{ $asignatura->codigo }} - {{ $asignatura->grupo }}</p>
 							<small class="text-muted">
 								Programa academico
 							</small>
-							<p class="m-0 ml-1">{{ $asignatura->codigo }} - {{ $asignatura->grupo }}</p>
+							
 						</div>
 					</div>
 
@@ -104,8 +105,6 @@
 	@endsection
 	@push('scripts')
 	<script>
-		getHorarios(1)
-
 		$("#salon_asignatura,#horarios").select2({
 			theme: 'bootstrap4',
 		});

@@ -19,6 +19,13 @@ class CreateDependenciasTable extends Migration
             $table->integer('codigo');
             $table->timestamps();
         });
+
+        Schema::create('programas', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->integer('codigo');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,5 +36,6 @@ class CreateDependenciasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('dependencias');
+        Schema::dropIfExists('codigo');
     }
 }

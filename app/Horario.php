@@ -13,9 +13,14 @@ class Horario extends Model
     	'salon_sala_id'
     ];
 
+    protected $casts = [
+        'hora_inicio' => 'time',
+        'hora_fin' => 'time',
+    ];
+
     public function salon()
     {
-    	return $this->hasOne(SalonSala::class);
+    	return $this->belongsTo(SalonSala::class,'salon_sala_id');
     }
 
     public function ocupado()

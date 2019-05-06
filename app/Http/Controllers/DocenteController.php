@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Docente;
 use App\Dependencia;
 use Hash;
-Use Alert;
+Use PDF;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -55,7 +55,7 @@ class DocenteController extends Controller
         
         $split_nombre = str_split($data['nombre']);
         $split_apellido = str_split($data['apellido']);
-        $password = $split_nombre[0] . $data['documento_identidad'] . $split_apellido[0];
+        $password = $split_nombre[0].$data['documento_identidad'].$split_apellido[0];
 
         $docente = Docente::create([
             'nombre' => $data['nombre'],
@@ -114,6 +114,12 @@ class DocenteController extends Controller
     public function GenerarPlaneador(Docente $planeador)
     {
         return view('generar-planeador');
+    }
+
+    public function generarPlaneadorPDF(Request $request)
+    {
+        $pdf = PDF::loadView('layouts.planeador');
+        return $pdf->stream();
     }
 
     /**

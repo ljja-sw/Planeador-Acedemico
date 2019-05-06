@@ -40,7 +40,6 @@
             <div class="col-md-8">
                 <div class="card card-body">                        
                 @yield('content')
-
                 <hr>
                 <div class="mx-auto text-center">
                     <h6 class="h6-responsive font-weight-bold">Iniciar Sesion como</h6>
