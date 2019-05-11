@@ -10,7 +10,7 @@
 </li>
 <li class="nav-item">
 	{{-- Enlaces Administradores --}}
-	<a class="nav-link" href="#">
+	<a class="nav-link" href="{{route('admin.configuraciones')}}">
 		<i class="fa fa-cog"></i>
 	Configuraciones</a>
 </li>
