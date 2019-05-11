@@ -36,7 +36,7 @@
 							<small class="text-muted">
 								Programa academico
 							</small>
-							
+
 						</div>
 					</div>
 
@@ -65,7 +65,8 @@
 									<p class="m-0 ml-1">{{ $docente->dependencia_docente->nombre }}</p>
 								</div>
 							</div>
-						</div>
+                        </div>
+
 					</div>
 					<div class="row py-2">
 						<div class="col-12">
@@ -93,7 +94,20 @@
 										</div>
 									</div>
 									</div>
-								 --}}
+                                 --}}
+                                 <div class="row">
+                                        <div class="form-group col">
+                                          <label for="asignaturas_select">Selecciona el Día de Clases (solo 1 si son mas de 2)</label>
+                                          <select name="dia" class="form-control" id="dias_select" required>
+                                                <option value="0">Lunes</option>
+                                                <option value="1">Martes</option>
+                                                <option value="2">Miercoles</option>
+                                                <option value="3">Jueves</option>
+                                                <option value="4">Viernes</option>
+                                                <option value="5">Sabado</option>
+                                          </select>
+                                        </div>
+                                      </div>
 								<div class="p-2 text-right">
 									<button type="submit" class="btn btn-elegant"> <i class="fa fa-save"></i> Guardar</button>
 								</div>

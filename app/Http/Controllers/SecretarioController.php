@@ -126,6 +126,7 @@ class SecretarioController extends Controller
             AsignaturaDocente::create([
                 'asignatura_id' => $request->asignatura,
                 'docente_id'  => $request->docente,
+                'dia_id'  => $request->dia,
                 // 'salon_id'  => $request->salon,
                 // 'horario_id'  => $request->horario
             ]);

@@ -9,7 +9,7 @@
                 <h4 class="card-title font-weight-bold flex-column d-flex">
                     Mis Asignaturas
                     <small class="text-muted">
-                        Tus asignaturas delegadas para el periodo académico <b>MMM-MMM</b>
+                        Tus asignaturas delegadas para el periodo académico <b>{{$configuracion->mes_inicio_periodo->mes}}-{{$configuracion->mes_fin_periodo->mes}}</b>
                     </small>
                 </h4>
                 <hr>
@@ -32,14 +32,14 @@
                                 <td>
                                     @if(count($asignatura->planeador)>=1)
                                     <a href="{{ url('/planeador/'.$asignatura->planeador->id.'/detalles')  }}">
-                                     <i class="fa fa-eye"></i> 
+                                     <i class="fa fa-eye"></i>
                                      Ver Planeador
                                  </a>
                                  @else
                                  <a href="{{ route('docente.generar.planeador',$asignatura) }}">
-                                  <i class="fa fa-plus"></i> 
+                                  <i class="fa fa-plus"></i>
                                   Crear Planeador
-                              </a>  
+                              </a>
                               @endif
                           </td>
                       </tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Planeador;
 use App\Asignatura;
 use App\TemaPlaneador;
+use App\AsignaturaDocente;
 use App\Metodologia;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,13 @@ class PlaneadorController extends Controller
      */
     public function create(Asignatura $asignatura)
     {
+        $dia = AsignaturaDocente::whereAsignaturaId($asignatura->id)
+            ->get()
+            ->first()
+            ->dia;
+            
         $metodologías = Metodologia::all();
-        return view('planeador.create',compact('metodologías','asignatura'));
+        return view('planeador.create',compact('metodologías','asignatura','dia'));
     }
 
     /**
@@ -39,7 +45,7 @@ class PlaneadorController extends Controller
             'revisado' => 1
         ]);
 
-        for ($i=0; $i < count( $request->semana) ; $i++) { 
+        for ($i=0; $i < count( $request->semana) ; $i++) {
             $temas[] = TemaPlaneador::create([
                 'semana' =>  $request->semana[$i],
                 'fecha' =>  $request->fecha[$i],
