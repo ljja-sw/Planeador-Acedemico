@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Planeador;
 use App\Asignatura;
+use App\Configuracion;
 use App\TemaPlaneador;
 use App\AsignaturaDocente;
 use App\Metodologia;
@@ -22,9 +23,11 @@ class PlaneadorController extends Controller
             ->get()
             ->first()
             ->dia;
-            
+        
+        $configuracion = Configuracion::find(1);
+
         $metodologías = Metodologia::all();
-        return view('planeador.create',compact('metodologías','asignatura','dia'));
+        return view('planeador.create',compact('metodologías','asignatura','dia','configuracion'));
     }
 
     /**

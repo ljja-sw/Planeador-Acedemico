@@ -29,7 +29,7 @@ class RolesSeeder extends Seeder
 
       $docente =  Docente::create([
         'nombre' => "Jean Antonio",
-        'apellido' => "Solis Montaño",
+        'apellido' => "Solis Riascos",
         'documento_identidad' => "1111431542",
         'email' => "antonio.solis@gmail.com",
         'dependencia' => 2,
@@ -39,7 +39,7 @@ class RolesSeeder extends Seeder
 
       $secretario =  User::create([
         'nombre' => "Jean Antonio",
-        'apellido' => "Solis Montaño",
+        'apellido' => "Solis Riascos",
         'documento_identidad' => "1111431542",
         'email' => "antonio.solis@gmail.com",
         'password' => Hash::make("secretario"),

@@ -9,12 +9,17 @@ Use Alert;
 use File;
 use Hash;
 use Auth;
+use App\TemaPlaneador;
 
 class ProfileController extends Controller
 {
 	public function index()
 	{
-		return view('perfil');
+		$planeador = Auth::user()->planeadores->first();
+		$clases = TemaPlaneador::wherePlaneadorId($planeador->id)
+							->whereFecha(now()->format("Y-m-d"))->get();
+
+		return view('perfil',compact('clases','planeador'));
 	}
 
 	public function cambiarAvatar(Request $request)

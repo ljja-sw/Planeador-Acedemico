@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@section('title','Planeador Academico: '.$planeador->asignatura_planeador->nombre)
+@section('title',$planeador->asignatura_planeador->nombre)
 @push('styles')
 <style>
     h6{font-weight: bold}

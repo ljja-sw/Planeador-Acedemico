@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Asignatura;
 use App\Docente;
 use App\Metodologia;
+use App\Configuracion;
 use App\Dependencia;
 use Hash;
 Use PDF;
@@ -76,7 +77,8 @@ class DocenteController extends Controller
 
     public function asignaturas()
     {
-        return view("mis_asignaturas");
+        $configuracion = Configuracion::find(1);
+        return view("mis_asignaturas",compact('configuracion'));
     }
 
     /**
