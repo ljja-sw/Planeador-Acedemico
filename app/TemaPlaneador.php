@@ -19,7 +19,7 @@ class TemaPlaneador extends Model
 	];
 	public function planeador()
 	{
-		return $this->belongsToMany(Planeador::class,'planeador_id');
+		return $this->belongsTo(Planeador::class,'planeador_id');
 	}
 	
 	public function metodología_tema()

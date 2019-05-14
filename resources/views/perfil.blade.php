@@ -56,7 +56,7 @@
 						<small class="text-muted pb-2">Clases para hoy</small>
 						@forelse ($clases as $clase)
 						<div class="pl-2 py-3">
-							<p class="m-0 text-muted">{{$planeador->asignatura_planeador->nombre}}</p>
+							<p class="m-0 text-muted">{{$clase->planeador->asignatura_planeador->nombre}}</p>
 							<h4 class="m-0 h4-responsive font-weight-bold">{{$clase->tema}}</h4>
 							<p class="m-0">{{$clase->metodología_tema->nombre}}</p>
 						</div>
