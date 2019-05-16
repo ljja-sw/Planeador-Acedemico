@@ -18,27 +18,22 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-    
+
     <!-- Icon -->
     <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Styles -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" >
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/subjects_styles.css') }}" rel="stylesheet">
-
 </head>
-
-
-
-
 
 <body>
     <main id="content" style="height:100vh">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card card-body">                        
+                <div class="card card-body">
                 @yield('content')
                 <hr>
                 <div class="mx-auto text-center">

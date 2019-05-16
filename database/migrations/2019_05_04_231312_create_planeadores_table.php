@@ -23,6 +23,9 @@ class CreatePlaneadoresTable extends Migration
             $table->boolean("firmado");
             $table->boolean("revisado");
             $table->timestamps();
+            $table->foreign('programa_academico')->references('id')->on('programas');
+            $table->foreign('asignatura')->references('id')->on('asignaturas');
+            $table->foreign('docente')->references('id')->on('docentes');
         });
     }
 

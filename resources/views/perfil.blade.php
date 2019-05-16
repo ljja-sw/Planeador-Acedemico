@@ -37,7 +37,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="card card-body">
 					<small class="text-muted">Correo electrónico</small>
 					<p class="font-weight-bold">{{auth()->user()->email}}</p>
@@ -46,31 +46,5 @@
 				</div>
 			</div>
 		</div>
-		<!-- Fin Datos del Usuario -->
-		@hasrole('Docente')
-		<div class="row">
-			<div class="col-md-12 col-lg-10 mx-auto">
-				<!-- Clases para Hoy -->
-				<div class="my-auto">
-					<div class="card card-body">
-						<small class="text-muted pb-2">Clases para hoy</small>
-						@forelse ($clases as $clase)
-						<div class="pl-2 py-3">
-							<p class="m-0 text-muted">{{$planeador->asignatura_planeador->nombre}}</p>
-							<h4 class="m-0 h4-responsive font-weight-bold">{{$clase->tema}}</h4>
-							<p class="m-0">{{$clase->metodología_tema->nombre}}</p>
-						</div>
-						@empty
-						<div class="pl-2 py-3">
-							<h4 class="m-0 h4-responsive font-weight-bold">No hay clases programadas para hoy.</h4>
-						</div>
-						@endforelse
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Fin Clases para hoy -->
-		@endhasrole
 	</div>
 	@endsection
-	

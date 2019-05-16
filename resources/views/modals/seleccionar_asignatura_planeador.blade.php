@@ -12,7 +12,8 @@ aria-hidden="true">
     <div class="modal-body mx-3 text-center">
       <p>Selecciona una asignatura de la lista para crear un <b>Planeador Académico</b></p>
      <select name="asignatura" id="asignatura_select" required></select>
-    </div>
+    <p class="small">Apareceran solo las asignaturas que no tengan un <b>Planeador Académico</b> previamente creado</p>
+</div>
     <div class="modal-footer d-flex justify-content-center">
       <button class="btn btn-primary">
         <i class="fa fa-arrow-right"></i>

@@ -58,7 +58,7 @@
                                 </td> 
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Periodo Académico</h6>
-                                    <h4 class="h4-responsive font-weight-bold">MMM - MMM</h4>
+                                    <h4 class="h4-responsive font-weight-bold">{{$configuracion->mes_inicio_periodo->mes}} - {{$configuracion->mes_fin_periodo->mes}}</h4>
                                 </td> 
                             </tr>
                             <tr>

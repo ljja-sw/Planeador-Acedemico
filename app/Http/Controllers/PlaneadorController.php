@@ -23,7 +23,7 @@ class PlaneadorController extends Controller
             ->get()
             ->first()
             ->dia;
-        
+
         $configuracion = Configuracion::find(1);
 
         $metodologías = Metodologia::all();
@@ -52,7 +52,7 @@ class PlaneadorController extends Controller
             $temas[] = TemaPlaneador::create([
                 'semana' =>  $request->semana[$i],
                 'fecha' =>  $request->fecha[$i],
-                'tema'  => "Tema semana",
+                'tema'  => $request->tema[$i],
                 'metodología'  =>  $request->metodologia[$i],
                 'planeador_id' => $planeador->id
             ]);}
@@ -68,7 +68,8 @@ class PlaneadorController extends Controller
      */
     public function show(Planeador $planeador)
     {
-        return view('planeador.show',compact('planeador'));
+      $configuracion = Configuracion::find(1);
+        return view('planeador.show',compact('planeador','configuracion'));
     }
 
     /**

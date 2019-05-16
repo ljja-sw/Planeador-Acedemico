@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Configuracion extends Model
 {
-	protected $fillable = ['inicio_clases','inicio_periodo_academico','fin_periodo_academico'];
+	protected $fillable = ['inicio_clases','numero_semanas','inicio_periodo_academico','fin_periodo_academico'];
     protected $dates = ['inicio_clases'];
 
     public function mes_inicio_periodo()

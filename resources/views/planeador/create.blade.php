@@ -125,11 +125,11 @@
                                             <th scope="col">Temas - Actividades</th>
                                             <th scope="col" width="270px">Metodología*</th>
                                         </tr>
-                                        @for ($i = 1; $i <= 18; $i++)
+                                        @for ($i = 1; $i <= $configuracion->numero_semanas; $i++)
                                         <tr>
                                             <th scope="row">
                                                 <div class="md-form md-outline">
-                                                    <input class="form-control text-center" type="text" name="semana[]" id="semana_tema_{{$i}}" readonly value="{{$i}}">
+                                                    <input required class="form-control text-center" type="text" name="semana[]" id="semana_tema_{{$i}}" readonly value="{{$i}}">
                                                 </div>
                                             </th>
                                             <td>
@@ -140,7 +140,7 @@
                                             <td>
                                                 <div class="md-form md-outline">
                                                     <label for="tema_tema_{{$i}}">Temas - Actividades Semana {{$i}}</label>
-                                                    <input class="form-control" type="text" name="tema[]" id="tema_tema_{{$i}}">
+                                                    <input required class="form-control" type="text" name="tema[]" id="tema_tema_{{$i}}">
                                                 </div>
                                             </td>
                                             <td>

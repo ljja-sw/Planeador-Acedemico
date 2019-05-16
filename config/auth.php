@@ -73,7 +73,7 @@ return [
     'providers' => [
         'docentes' => [
             'driver' => 'eloquent',
-            'model' => App\DOcente::class,
+            'model' => App\Docente::class,
         ],
         'admins' => [
             'driver' => 'eloquent',

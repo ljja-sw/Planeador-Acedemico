@@ -9,71 +9,66 @@ Use Alert;
 use File;
 use Hash;
 use Auth;
-use App\TemaPlaneador;
 
 class ProfileController extends Controller
 {
-	public function index()
-	{
-		$planeador = Auth::user()->planeadores->first();
-		$clases = TemaPlaneador::wherePlaneadorId($planeador->id)
-							->whereFecha(now()->format("Y-m-d"))->get();
+    public function index()
+    {
+        return view('perfil');
+    }
 
-		return view('perfil',compact('clases','planeador'));
-	}
+    public function cambiarAvatar(Request $request)
+    {
+        $usuario = Auth::user();
 
-	public function cambiarAvatar(Request $request)
-	{
-		$usuario = Auth::user();
+        $this->validate($request, [
+            'avatar' => 'required',
+            'avatar.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            ]);
 
-		$this->validate($request, [
-			'avatar' => 'required',
-			'avatar.*' => 'image|mimes:jpeg,png,jpg|max:2048'
-		]);
+            if ($request->hasFile('avatar')) {
+                if($usuario->avatar != ""){
+                    $viejo_avatar = "public/avatars/{$usuario->avatar}";
+                    Storage::delete($viejo_avatar);
+                }
 
-		if ($request->hasFile('avatar')) {
-			if($usuario->avatar != ""){
-				$viejo_avatar = "public/avatars/{$usuario->avatar}";
-				Storage::delete($viejo_avatar);
-			}
+                $img = Image::make($request
+                ->file("avatar"))
+                ->fit(530, 530)
+                ->encode("png");
 
-			$img = Image::make($request
-				->file("avatar"))
-				->fit(530, 530)
-				->encode("png");
+                $hash = md5($img->__toString());
+                $directorio = "public/avatars/{$hash}.png";
+                Storage::put($directorio, $img->__toString());
 
-			$hash = md5($img->__toString());
-			$directorio = "public/avatars/{$hash}.png";
-			Storage::put($directorio, $img->__toString());
+                $usuario->avatar = "{$hash}.png";
+                $usuario->save();
 
-			$usuario->avatar = "{$hash}.png";
-			$usuario->save();
+                return redirect()->route("perfil");
+            }else{
+                return "No hay Imagen";
+            }
 
-			return redirect()->route("perfil");
-		}else{
-			return "No hay Imagen";
-		}
-
-	}
+        }
 
 
-	public function cambiar_contraseña(Request $request)
-	{
-		$data = $request->toArray();
-		if (Hash::check($data['contraseña'],auth()->user()->password )) {
-			if ($data['nueva'] == $data['confirmacion_nueva']) {
-				$usuario = auth()->user();
-				$usuario->password = Hash::make($data['nueva']);
-				$usuario->save();
-				Alert::success('Contraseña Cambiada', '')->showCloseButton();
+        public function cambiar_contraseña(Request $request)
+        {
+            $data = $request->toArray();
+            if (Hash::check($data['contraseña'],auth()->user()->password )) {
+                if ($data['nueva'] == $data['confirmacion_nueva']) {
+                    $usuario = auth()->user();
+                    $usuario->password = Hash::make($data['nueva']);
+                    $usuario->save();
+                    Alert::success('Contraseña Cambiada', '')->showCloseButton();
 
-			}else{
-				Alert::error('Las contraseñas no coinciden', '')->showCloseButton();
+                }else{
+                    Alert::error('Las contraseñas no coinciden', '')->showCloseButton();
 
-			}
-		}else{
-			Alert::error('La contraseña actual no cincide', '')->showCloseButton();
-		}
-		return redirect()->route('perfil');
-	}
-}
+                }
+            }else{
+                Alert::error('La contraseña actual no cincide', '')->showCloseButton();
+            }
+            return redirect()->route('perfil');
+        }
+    }

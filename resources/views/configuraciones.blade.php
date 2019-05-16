@@ -20,7 +20,7 @@
                                 <h6 class="text-center">Inicio de Clases</h6>
                                 <div class="md-form md-outline">
                                     <label for="inicio_clases">Fecha</label>
-                                    <input type="text" id="inicio_clases" name="inicio_clases" class="form-control" value="{{$configuraciones->inicio_clases}}">
+                                    <input type="text" id="inicio_clases" name="inicio_clases" class="form-control" value="{{$configuraciones->inicio_clases->format('Y-m-d')}}">
                                 </div>
                                 <h6 class="text-center">Peridodo Académico Actual</h6>
                                 <div class="form-row">
@@ -39,31 +39,37 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-row">
+                                  <div class="md-form md-outline col-12">
+                                      <label for="inicio_clases">Numero de Semanas</label>
+                                      <input type="text" id="numero_semanas" name="numero_semanas" class="form-control" value="{{$configuraciones->numero_semanas}}">
+                                  </div>
+                              </div>
+                          </div>
 
+                      </div>
+
+                      <div class="row float-right">
+                        <div class="col-12">
+                            <button class="btn btn-primary">
+                                <i class="fa fa-save"></i>
+                            Guardar</button>
                         </div>
-
-                        <div class="row float-right">
-                            <div class="col-12">
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-save"></i>
-                                    Guardar</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+</div>
 
-    @push('scripts')
-    <script>
-        $('#inicio_clases').daterangepicker({
-            singleDatePicker: true,
-            format: 'YYYY-MM-DD'
-        })
-    </script>
-    @endpush
+@push('scripts')
+<script>
+    $('#inicio_clases').daterangepicker({
+        singleDatePicker: true,
+        format: 'YYYY-MM-DD'
+    })
+</script>
+@endpush
 
-    @endsection
+@endsection

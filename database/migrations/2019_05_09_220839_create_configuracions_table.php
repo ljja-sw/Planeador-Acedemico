@@ -16,6 +16,7 @@ class CreateConfiguracionsTable extends Migration
         Schema::create('configuracions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date("inicio_clases");
+            $table->integer('numero_semanas')->default(15);
             $table->bigInteger('inicio_periodo_academico')->nullable();
             $table->bigInteger('fin_periodo_academico')->nullable();
             $table->timestamps();

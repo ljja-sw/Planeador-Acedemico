@@ -24,26 +24,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(auth()->user()->asignaturas as $asignatura)
-                            <tr>
-                                <td>{{$asignatura->nombre}}</td>
-                                <td>{{$asignatura->codigo}}</td>
-                                <td>{{$asignatura->grupo}}</td>
-                                <td>
-                                    @if(count($asignatura->planeador)>=1)
-                                    <a href="{{ url('/planeador/'.$asignatura->planeador->id.'/detalles')  }}">
-                                     <i class="fa fa-eye"></i>
-                                     Ver Planeador
-                                 </a>
-                                 @else
-                                 <a href="{{ route('docente.generar.planeador',$asignatura) }}">
-                                  <i class="fa fa-plus"></i>
-                                  Crear Planeador
-                              </a>
-                              @endif
-                          </td>
-                      </tr>
-                      @endforeach
+                            @forelse (auth()->user()->asignaturas as $asignatura)
+                              <tr>
+                                  <td>{{$asignatura->nombre}}</td>
+                                  <td>{{$asignatura->codigo}}</td>
+                                  <td>{{$asignatura->grupo}}</td>
+                                  <td>
+                                      @if(count($asignatura->planeador)>=1)
+                                      <a href="{{ url('/planeador/'.$asignatura->planeador->id.'/detalles')  }}">
+                                       <i class="fa fa-eye"></i>
+                                       Ver Planeador
+                                   </a>
+                                   @else
+                                   <a href="{{ route('docente.generar.planeador',$asignatura) }}">
+                                    <i class="fa fa-plus"></i>
+                                    Crear Planeador
+                                </a>
+                                @endif
+                            </td>
+                        </tr>
+                            @empty
+                              <tr>
+                                <td colspan="4"> <h4>No tienes asignaturas delegadas en este momento.</h4> </td>
+                              </tr>
+                            @endforelse
                   </tbody>
               </table>
           </div>
