@@ -6,6 +6,7 @@ use App\Asignatura;
 use App\Docente;
 use App\AsignaturaDocente;
 use App\Metodologia;
+use App\Configuracion;
 use App\Dependencia;
 use App\Reporte;
 use Hash;
@@ -87,7 +88,8 @@ class DocenteController extends Controller
 
     public function asignaturas()
     {
-        return view("mis_asignaturas");
+        $configuracion = Configuracion::find(1);
+        return view("mis_asignaturas",compact('configuracion'));
     }
 
     /**

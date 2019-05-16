@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AsignaturaDocente extends Model
 {
-	protected $fillable = ['asignatura_id','docente_id','salon_id','horario_id'];
+	protected $fillable = ['asignatura_id','docente_id','salon_id','horario_id','dia_id'];
 	protected $table = 'asignaturas_docentes';
 
     public function asignatura(){
@@ -21,7 +21,12 @@ class AsignaturaDocente extends Model
     	return $this->belongsTo(SalonSala::class);
     }
 
-    public function horario(){
-    	return $this->belongsTo(Horario::class);
+    // public function horario(){
+    // 	return $this->belongsTo(Horario::class);
+    // }
+
+    public function dia()
+    {
+        return $this->belongsTo(Dia::class);
     }
 }

@@ -8,23 +8,23 @@
 
 @push('styles')
 @endpush
-<div class="container"> 
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card card-body responsive" id="planeador-div">
                 <div id="contenido">
-                    <table class="my-4">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <h1 class="h1-responsive font-weight-bold ml-1 ml-lg-5 mt-2">Planeador</h1>
-                                </td>
-                                <td style="width:400px" class="text-right">
-                                    <img class="img-fluid" src="{{ asset('images/logo_color.png') }}" alt="Planeador Academico">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                  <table class=" mb-5">
+                      <tbody>
+                          <tr>
+                              <td>
+                                  <h1 class="h1-responsive font-weight-bold ml-1 ml-lg-5 mt-2">Planeador</h1>
+                              </td>
+                              <td style="padding-left:500px;text-align: center">
+                                  <img class="img-fluid" src="{{ asset('images/logo_color.png') }}" alt="Planeador Academico">
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
                     <table class="table table-bordered ">
                         <tbody>
                             <tr>
@@ -41,44 +41,44 @@
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Nombre de la Asignatura</h6>
                                     <h4 class="h4-responsive font-weight-bold">{{$asignatura->nombre}}</h4>
-                                </td> 
+                                </td>
                                 <td style="text-align:center" colspan="2">
                                     <h6 class="h6-responsive text-muted">Código de la Asignatura</h6>
                                     <h4 class="h4-responsive font-weight-bold">{{$asignatura->codigo}}</h4>
-                                </td> 
+                                </td>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Periodo Académico</h6>
-                                    <h4 class="h4-responsive font-weight-bold">MMM - MMM</h4>
-                                </td> 
+                                    <h4 class="h4-responsive font-weight-bold">{{$configuracion->mes_inicio_periodo->mes}} - {{$configuracion->mes_fin_periodo->mes}}</h4>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Créditos</h6>
                                     <h4 class="h4-responsive font-weight-bold">{{$asignatura->creditos}}</h4>
-                                </td> 
+                                </td>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Intesidad Horaria</h6>
                                     <h4 class="h4-responsive font-weight-bold">{{$asignatura->intensidad_horaria}}</h4>
-                                </td> 
+                                </td>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Validable</h6>
                                     <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($asignatura->validable) ? "check" : "times"}}"></i></h4>
-                                </td> 
+                                </td>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Habilitable</h6>
                                     <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($asignatura->habilitable) ? "check" : "times"}}"></i></i></h4>
-                                </td> 
+                                </td>
                             </tr>
                             <tr>
                                 <td style="text-align:center" colspan="2">
                                     <h6 class="h6-responsive text-muted">Nombre del Docente</h6>
                                     <h4 class="h4-responsive font-weight-bold">{{auth()->user()->nombre_completo()}}</h4>
-                                </td> 
-                                
+                                </td>
+
                                 <td style="text-align:center" colspan="2">
                                     <h6 class="h6-responsive text-muted">Correo del Docente</h6>
                                     <h4 class="h4-responsive font-weight-bold"><a href="mailto:{{auth()->user()->email}}">{{auth()->user()->email}}</a></h4>
-                                </td> 
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -134,7 +134,7 @@
                                             </th>
                                             <td>
                                                 <div class="md-form md-outline">
-                                                    <input class="form-control fechas" type="text" name="fecha[]" id="fecha_tema_{{$i}}">
+                                                <input class="form-control text-center fechas" type="text" name="fecha[]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dia->dia_semana)->format("Y-m-d")}}">
                                                 </div>
                                             </td>
                                             <td>
@@ -144,11 +144,10 @@
                                                 </div>
                                             </td>
                                             <td>
-                                              <select class="form-control mt-4" name="metodologia[]" id="metodologia" style="height:50px">
+                                              <select class="form-control text-center mt-4" name="metodologia[]" id="metodologia" style="height:50px">
                                                 @foreach($metodologías as $metodologia)
                                                 <option value="{{$metodologia->id}}">{{$metodologia->nombre}}</option>
                                                 @endforeach
-                                                <option value="4">Ninguno</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -158,12 +157,12 @@
                         </form>
                         <div class="text-right">
                           <button type="submit" class="btn btn-elegant">
-                              <i class="fa fa-save"></i> 
+                              <i class="fa fa-save"></i>
                           Guardar Planeador</button>
                       </div>
                   </div>
               </div>
-          </div>               
+          </div>
       </div>
   </div>
 </div>

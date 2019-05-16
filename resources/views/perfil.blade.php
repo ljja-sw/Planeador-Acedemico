@@ -54,41 +54,23 @@
 				<div class="my-auto">
 					<div class="card card-body">
 						<small class="text-muted pb-2">Clases para hoy</small>
-						<div class="pl-2">
-							<p class="m-0 text-muted">Dia</p>
-							<h4 class="m-0 h4-responsive font-weight-bold">Nombre Asignatura</h4>
-							<p class="m-0">Hora</p>
+						@forelse ($clases as $clase)
+						<div class="pl-2 py-3">
+							<p class="m-0 text-muted">{{$clase->planeador->asignatura_planeador->nombre}}</p>
+							<h4 class="m-0 h4-responsive font-weight-bold">{{$clase->tema}}</h4>
+							<p class="m-0">{{$clase->metodología_tema->nombre}}</p>
 						</div>
+						@empty
+						<div class="pl-2 py-3">
+							<h4 class="m-0 h4-responsive font-weight-bold">No hay clases programadas para hoy.</h4>
+						</div>
+						@endforelse
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- Fin Clases para hoy -->
-		<div class="row">
-			<div class="col-md-12 col-lg-10 mx-auto">
-				<!-- Asignaturas del Docente -->
-				<div class="my-auto">
-					<div class="card card-body">
-						<small class="text-muted pb-2">Mis asignaturas</small>
-						<div class="pl-2">
-							<ul class="list-group list-group-flush">
-								@forelse(auth()->user()->asignaturas as $asignatura)
-									<li class="list-group-item">
-										<a href="#">
-											{{$asignatura->nombre}} - {{$asignatura->grupo}}
-										</a>	
-									</li>
-								@empty
-									Sin asignaturas delegadas
-								@endforelse
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- Fin Asignaturas del Docente -->
-				</div>
-			</div>
-			@endhasrole
-		</div>
-		@endsection
-		
+		@endhasrole
+	</div>
+	@endsection
+	

@@ -80,7 +80,7 @@
 					@case('Docente')
 					<li class="nav-item">
 						<a href="#!" data-target="#modal_planeador_asignatura" data-toggle="modal" class="btn btn-elegant  text-center ">
-							<i class="fa fa-question"></i>
+							<i class="fa fa-list"></i>
 							Crear Planeador Académico
 						</a>
 					</li>

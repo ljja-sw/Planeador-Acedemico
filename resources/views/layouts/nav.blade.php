@@ -9,11 +9,17 @@
 	Secretarios Académicos</a>
 </li>
 <li class="nav-item">
+	{{-- Enlaces Administradores --}}
+	<a class="nav-link" href="{{route('admin.configuraciones')}}">
+		<i class="fa fa-cog"></i>
+	Configuraciones</a>
+</li>
+{{-- <li class="nav-item">
 	<a href="{{ route('salon.index') }}" class="nav-link">
 		<i class="far fa-calendar-alt"></i>
 		Salones y Horarios
 	</a>
-</li>
+</li> --}}
 @break
 
 @case("Secretario")
@@ -21,6 +27,8 @@
 	{{-- Enlaces Secretarios --}}
 		<a class="nav-link" href="{{route('asignaturas.show')}}">
 			<i class="fa fa-chalkboard-teacher "></i>		
+		<a class="nav-link" href="/registro-asignaturas">
+			<i class="fa fa-chalkboard-teacher "></i>
 			Asignaturas
 		</a>
 	</li>

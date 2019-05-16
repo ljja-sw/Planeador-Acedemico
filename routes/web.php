@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:admin,web'],function(){
 Route::group(['middleware' => ['role:Admin','auth:admin']], function () {
 
     Route::get('/admin/secretarios', 'SecretarioController@index')->name('secretarios.index');
+    Route::get('/admin/configuraciones', 'AdminController@configuraciones')->name('admin.configuraciones');
     Route::get('/admin/secretarios/registrar', 'SecretarioController@create')->name('secretarios.create');
     Route::get('/admin/secretarios/{user}', 'SecretarioController@show')->name('secretarios.show');
     Route::post('/admin/secretarios/registrar', 'SecretarioController@store')->name('secretarios.store');
@@ -34,6 +35,7 @@ Route::group(['middleware' => ['role:Admin','auth:admin']], function () {
     Route::get('/admin/salones-salas/registrar', 'SalonSalaController@create')->name('salon.create');
     Route::get('/admin/salones-salas/{salon}', 'SalonSalaController@show')->name('salon.show');
     Route::post('/admin/salones-salas/registrar', 'SalonSalaController@store')->name('salon.store');
+    Route::post('/admin/configuraciones/guardar', 'AdminController@guardarConfiguraciones')->name('admin.configuraciones.guardar');
     Route::post('/admin/salones-salas/{salon}/update', 'SalonSalaController@update')->name('salon.update');
 });
 
@@ -70,7 +72,7 @@ Route::group(['middleware'=> 'auth:admin'],function(){
     Route::post('/asignaturas', 'AsignaturaController@ingreso');
     Route::get('/vista-asignaturas', 'AsignaturaController@show')->name('asignaturas.show');
     Route::get('/vista-asignaturas/{asigna}', 'AsignaturaController@detalle')
-    ->name('asignatura.detalles');  
+    ->name('asignatura.detalles');
     Route::post('/vista-asignaturas/{asigna}/update','AsignaturaController@update')->name('asignaturas.update');
     Route::get('/vista-asignaturas/{asigna}/destroy','AsignaturaController@destroy')->name('asignaturas.destroy');
 
@@ -85,5 +87,3 @@ Route::post('/login/secretario','Auth\SecretarioLoginController@login');
 
 Route::get('/login-admin','Auth\AdminLoginController@showLoginForm')->name('login.admin');
 Route::post('/login/admin','Auth\AdminLoginController@login');
-
-

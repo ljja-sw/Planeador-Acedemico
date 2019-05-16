@@ -55,7 +55,6 @@ class Docente extends Authenticatable
         return $this->belongsToMany(Asignatura::class,'asignaturas_docentes');
     }
     
-
     public function nombre_completo()
     {
         return "{$this->nombre} {$this->apellido}";
@@ -64,6 +63,15 @@ class Docente extends Authenticatable
     public function dependencia_docente()
     {
         return $this->belongsTo(Dependencia::class,'dependencia');
+    }
+
+    public function planeadores(){
+        return $this->hasMany(Planeador::class,'docente');
+    }
+
+    public function clases_hoy()
+    {
+
     }
 
     public function getRouteKeyName()

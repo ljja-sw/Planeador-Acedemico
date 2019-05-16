@@ -114,7 +114,6 @@ class SecretarioController extends Controller
             $asignatura = Asignatura::find($request->asignatura);
             $salones = SalonSala::all();
 
-
             return view('delegar_asignatura',
                 compact('docente','asignatura','salones'));
         }
@@ -126,6 +125,7 @@ class SecretarioController extends Controller
             AsignaturaDocente::create([
                 'asignatura_id' => $request->asignatura,
                 'docente_id'  => $request->docente,
+                'dia_id'  => $request->dia,
                 // 'salon_id'  => $request->salon,
                 // 'horario_id'  => $request->horario
             ]);
