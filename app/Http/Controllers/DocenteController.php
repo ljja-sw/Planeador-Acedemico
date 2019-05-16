@@ -41,7 +41,7 @@ class DocenteController extends Controller
     public function reportes(){
 
         //$DocenteReportes = AsignaturaDocente::find($id);
-
+        
         return view("reportes");
 
         

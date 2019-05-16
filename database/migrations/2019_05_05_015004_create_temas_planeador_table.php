@@ -21,6 +21,7 @@ class CreateTemasPlaneadorTable extends Migration
             $table->unsignedInteger('metodología');
             $table->unsignedInteger('planeador_id');
             $table->timestamps();
+            $table->string('slug');
         });
     }
 

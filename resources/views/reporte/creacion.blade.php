@@ -2,13 +2,14 @@
 
 
 @section('content')
+@include('libs.ckeditor')
 
-<div class="container-fluid">
+<div class="container">
 	<div class="col-md-8 mx-auto">
 		<div class="card card-body text-center">
 		    <i class="fa fa-newspaper fa-3x py-2"></i>
 		    <h4 class="font-weight-bold h4-responsive">
-		        realizar reporte 
+		        Realizar Reporte
 		    </h4>
 		</div>		
 	</div>	
@@ -63,26 +64,16 @@
 		</div>	
 	</form>	
 </div>
-@push("scripts-rep")
-<script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
+@push("scripts")
 <script>
   $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
     ClassicEditor
       .create(document.querySelector('#editor'))
       .then(function (editor) {
-        // The editor instance
       })
       .catch(function (error) {
         console.error(error)
-      })
-
-    // bootstrap WYSIHTML5 - text editor
-
-    $('.textarea').wysihtml5({
-      toolbar: { fa: true }
-    })
+			})
   })
 </script>
 @endpush 

@@ -53,8 +53,8 @@ Route::group(['middleware' => ['role:Docente','auth:web']], function () {
     Route::post('/guardar-planeador','PlaneadorController@store');
     Route::post('/generar-planeador','PlaneadorController@generarPlaneadorForm');
 
-    Route::get('/reportes-docentes','DocenteController@reportes')->name('reportes');
-    Route::get('/reporte','ReporteController@crear')->name('reporte.creacion');
+    Route::get('/reportes','DocenteController@reportes')->name('reportes');
+    Route::get('/crear-reporte','ReporteController@crear')->name('reporte.creacion');
 });
 
 

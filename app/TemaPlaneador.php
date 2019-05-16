@@ -10,13 +10,15 @@ class TemaPlaneador extends Model
 						   'fecha',
 						   'tema',
 						   'metodología',
-						   'planeador_id'];
+						   'planeador_id',
+						   'slug'];
 	
 	protected $table = "temas_planeador";
 	
 	protected $casts = [
 		'fecha' => 'datetime',
 	];
+
 	public function planeador()
 	{
 		return $this->belongsTo(Planeador::class,'planeador_id');
@@ -25,5 +27,10 @@ class TemaPlaneador extends Model
 	public function metodología_tema()
 	{
 		return $this->belongsTo(Metodologia::class,'metodología');
+	}
+
+	public function getRouteKeyName()
+	{
+		return 'slug';
 	}
 }

@@ -54,7 +54,8 @@ class PlaneadorController extends Controller
                 'fecha' =>  $request->fecha[$i],
                 'tema'  => $request->tema[$i],
                 'metodología'  =>  $request->metodologia[$i],
-                'planeador_id' => $planeador->id
+                'planeador_id' => $planeador->id,
+                'slug' => str_slug("-",$request->tema[$i])
             ]);}
 
             return redirect()->route('docente.planeador.ver',$planeador);
