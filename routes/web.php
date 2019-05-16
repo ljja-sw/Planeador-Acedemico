@@ -50,7 +50,12 @@ Route::group(['middleware' => ['role:Docente','auth:web']], function () {
 
     Route::post('/guardar-planeador','PlaneadorController@store');
     Route::post('/generar-planeador','PlaneadorController@generarPlaneadorForm');
+
+    Route::get('/reportes-docentes','DocenteController@reportes')->name('reportes');
+    Route::get('/reporte','ReporteController@crear')->name('reporte.creacion');
 });
+
+
 
 Route::group(['middleware'=> 'auth:admin'],function(){
 
@@ -60,11 +65,7 @@ Route::group(['middleware'=> 'auth:admin'],function(){
     Route::post('/admin/docentes/update', 'DocenteController@store')->name('docentes.store');;
     Route::post('/admin/docentes/{docente}/update', 'DocenteController@update')->name('docentes.update');
 
-    Route::get('/registro-asignaturas', 'AsignaturaController@index')->name('asignaturas.crear');
-
-    Route::get('/registro-asignaturas', 'AsignaturaController@index')->name('asignaturas.crear');
-
-    Route::get('/registro-asignaturas', 'AsignaturaController@index');
+    Route::get('/registro-asignaturas', 'AsignaturaController@index')->name('asignatura.crear');
 
     Route::post('/asignaturas', 'AsignaturaController@ingreso');
     Route::get('/vista-asignaturas', 'AsignaturaController@show')->name('asignaturas.show');
@@ -72,6 +73,11 @@ Route::group(['middleware'=> 'auth:admin'],function(){
     ->name('asignatura.detalles');  
     Route::post('/vista-asignaturas/{asigna}/update','AsignaturaController@update')->name('asignaturas.update');
     Route::get('/vista-asignaturas/{asigna}/destroy','AsignaturaController@destroy')->name('asignaturas.destroy');
+
+    Route::get('/vista-programas','ProgramaController@show')->name('programa.show');
+    Route::post('/programas', 'ProgramaController@create')->name('programa.crear');
+    Route::get('/detalles-programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
+    Route::post('/editar-programas/{programa}', 'ProgramaController@update')->name('programa.update');    
 });
 
 Route::get('/login-secretario','Auth\SecretarioLoginController@showLoginForm')->name('login.secretario');

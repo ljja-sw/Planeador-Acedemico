@@ -2,6 +2,7 @@
 
 @section('content')
 @include('admin.asignatura.modals.editar-asignaturas')
+@include('admin.asignatura.modals.eliminar-asignaturas')
 <div class="container">
 	<div class="row align-items-center">
 		<div class="col-md-12 col-lg-10 mx-auto">
@@ -22,7 +23,7 @@
 								"> <i class="fa fa-pen"></i> Editar </a>
 							</li>
 							<li class="nav-item">
-								<a href="{{route('asignaturas.destroy', $asigna)}}" class="nav-link btn btn-outline-primary"> <i class="fa fa-trash"></i> Eliminar</a>
+								<a href="#" data-toggle="modal" data-target="#modal-eliminar-asignaturas" class="nav-link btn btn-outline-primary"> <i class="fa fa-trash"></i> Eliminar</a>
 							</li>
 						</ul>
 						</div>

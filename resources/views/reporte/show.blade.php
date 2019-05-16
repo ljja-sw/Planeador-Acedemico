@@ -9,21 +9,15 @@
 			<div class="card card-body table-responsive">
 				<h3 class="font-weight-bold card-title m-4">
 		          <i class="fa fa-book-reader text-muted"></i>
-		          Asignaturas
+		          Reportes
 		        </h3>
-		        <div class="text-right">
-		          <a href="{{route('asignatura.crear')}}" class="btn btn-elegant">
-		            <i class="fa fa-plus"></i>
-		            Registrar asignaruras 
-		          </a>
-		        </div>
 					<table id="tabla_asignaturas" class="table datatable table-striped table-bordered" cellspacing="0" width="100%">
 						<thead>
 		                <tr>
-		                  <th>Nombre</th>
-		                  <th>Codigo</th>
-		                  <th>Grupo</th>
-		                  <th>Credito</th>
+		                  <th>Tema</th>
+		                  <th>semana</th>
+		                  <th>semana de remplazo</th>
+		                  <th>fecha de temas </th>
 		                  <th>Habilitable</th>
 		                  <th>Validable</th>
 		                  <th>Intensidad Horaria</th>

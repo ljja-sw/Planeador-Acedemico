@@ -133,6 +133,8 @@
     @include('sweetalert::alert')
     @stack('scripts-libs')
     @stack('scripts')
+    @stack('scripts-rep')
+
 
     <script>
         function nuevoeva(){

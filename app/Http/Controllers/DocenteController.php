@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Asignatura;
 use App\Docente;
+use App\AsignaturaDocente;
 use App\Metodologia;
 use App\Dependencia;
+use App\Reporte;
 use Hash;
 Use PDF;
 use Illuminate\Http\Request;
@@ -34,6 +36,15 @@ class DocenteController extends Controller
         $dependencias = Dependencia::all();
         return view('admin.docente.create',compact('dependencias'));
     }
+
+    public function reportes(){
+
+        //$DocenteReportes = AsignaturaDocente::find($id);
+
+        return view("reportes");
+
+        
+    }    
 
     /**
      * Store a newly created resource in storage.

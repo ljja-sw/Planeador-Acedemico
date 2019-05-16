@@ -85,9 +85,9 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="btn btn-elegant  text-center ">
+						<a href="{{route('reportes')}}" class="btn btn-elegant  text-center ">
 							<i class="fa fa-question"></i>
-							Link 3
+							Realizar Reporte
 						</a>
 					</li>
 					@break
