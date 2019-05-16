@@ -25,6 +25,8 @@
 @case("Secretario")
 <li class="nav-item">
 	{{-- Enlaces Secretarios --}}
+		<a class="nav-link" href="{{route('asignaturas.show')}}">
+			<i class="fa fa-chalkboard-teacher "></i>		
 		<a class="nav-link" href="/registro-asignaturas">
 			<i class="fa fa-chalkboard-teacher "></i>
 			Asignaturas
@@ -36,6 +38,13 @@
 		<a class="nav-link" href="{{ route('docentes.index') }}">
 			<i class="fa fa-users"></i>
 		Docentes</a>
+	</li>
+
+	<li class="nav-item">
+	{{-- Enlaces Docentes --}}
+		<a class="nav-link" href="{{ route('programa.show') }}">
+			<i class="fa fa-tasks"></i>
+		Programas</a>
 	</li>
 	@break
 

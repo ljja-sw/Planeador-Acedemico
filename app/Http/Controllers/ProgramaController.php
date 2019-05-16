@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Programa;
 use Illuminate\Http\Request;
+Use Alert;
+
 
 class ProgramaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      *
+     * @param  \App\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show()
     {
-        //
+        $programas = programa::all();
+
+        return view('admin.programa.show', compact('programas'));
     }
 
     /**
@@ -22,32 +27,19 @@ class ProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required',
+            'codigo' => 'required|numeric'
+        ]);
+
+        if(Programa::create($request->all())){
+
+            return redirect()->back()->with('msj',"Programa registro exitosamente");
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Programa  $programa
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Programa $programa)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -55,9 +47,9 @@ class ProgramaController extends Controller
      * @param  \App\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Programa $programa)
+    public function edit(programa $programa)
     {
-        //
+        return view('admin.programa.detalles', compact('programa'));
     }
 
     /**
@@ -69,7 +61,23 @@ class ProgramaController extends Controller
      */
     public function update(Request $request, Programa $programa)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required',
+            'codigo' => 'required'
+        ]);
+
+        $data = $request->toArray();
+
+        $programa->nombre = $data['nombre'];
+        $programa->codigo = $data['codigo'];
+
+        if ($programa->save()) {
+            Alert::success('Programa modificado', '')->showCloseButton();
+            return redirect()->route('programa.detalles',$programa);
+        }else{
+            Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();
+            return redirect()->route('programa.detalles',$programa);
+        }
     }
 
     /**
@@ -80,6 +88,12 @@ class ProgramaController extends Controller
      */
     public function destroy(Programa $programa)
     {
-        //
+        if ($asigna->delete()){
+            Alert::success('Asignatura eliminada', '')->showCloseButton();
+            return redirect()->route('asignaturas.show');
+        }else{
+            Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();
+            return redirect()->route('asignaturas.show');
+        }
     }
 }

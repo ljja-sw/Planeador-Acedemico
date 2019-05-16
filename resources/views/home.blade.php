@@ -84,6 +84,12 @@
 							Crear Planeador Académico
 						</a>
 					</li>
+					<li class="nav-item">
+						<a href="{{route('reportes')}}" class="btn btn-elegant  text-center ">
+							<i class="fa fa-question"></i>
+							Realizar Reporte
+						</a>
+					</li>
 					@break
 					@endswitch
 				</ul>

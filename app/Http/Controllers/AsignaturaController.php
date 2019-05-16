@@ -29,7 +29,7 @@ class AsignaturaController extends Controller
     	]);
 
     	if(Asignatura::create($request->all())){
-    		return back()->with('msj','subject was successful added!');
+    		return back()->with('msj','Asignatura registrada exitosamente!');
     	}else{
     		return back()->with();
     	}
