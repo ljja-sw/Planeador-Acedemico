@@ -1,4 +1,4 @@
-<?php 
+<?php
 use Faker\Generator as Faker;
 
 $factory->define(App\Dependencia::class, function (Faker $faker) {
@@ -16,13 +16,16 @@ $factory->define(App\Programa::class, function (Faker $faker) {
 });
 
 $factory->define(App\Asignatura::class, function (Faker $faker) {
+	$name = ucwords($faker->word);
 	return [
     	'nombre' => ucwords($faker->word),
-    	'codigo' => $faker->numberBetween(1000,9999),
-    	'grupo' => $faker->numberBetween(50,51),
+    	'codigo' => $faker->numberBetween(1000,9999)."M",
+    	'grupo' => $faker->numberBetween(40,42),
+		'programa_academico' => $faker->numberBetween(1,20),
     	'creditos' => $faker->randomDigit,
     	'intensidad_horaria' => $faker->randomDigit,
     	'habilitable' => $faker->boolean,
-    	'validable' => $faker->boolean
+		'validable' => $faker->boolean,
+		'slug' => str_slug($name,'-')
     ];
 });

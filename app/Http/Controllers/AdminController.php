@@ -26,6 +26,7 @@ class AdminController extends Controller
         $configuraciones->inicio_clases = $data['inicio_clases'];
         $configuraciones->inicio_periodo_academico = $data['inicio-periodo'];
         $configuraciones->fin_periodo_academico = $data['fin-periodo'];
+        $configuraciones->numero_semanas = $data['numero_semanas'];
 
         $configuraciones->save();
 

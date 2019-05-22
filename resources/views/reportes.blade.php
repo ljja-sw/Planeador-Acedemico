@@ -2,12 +2,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        @forelse(auth()->user()->asignaturas as $asignatura)	
+        @forelse(auth()->user()->asignaturas as $asignatura)
         <div class="col-md-10 mx-auto">
             <div class="card card-body">
                 <div class="text-center">
                     <small class="text-muted">Asignatura</small>
-                    <h2 class="font-weight-bold card-title">{{$asignatura->nombre}}</h2> 
+                    <h2 class="font-weight-bold card-title">{{$asignatura->nombre}}</h2>
                     <small class="text-muted">Codigo</small>
                     <h3 class="font-weight-bold card-title">{{$asignatura->codigo}}</h3>
                 </div>
@@ -23,7 +23,7 @@
                             <a href="#" class="btn btn-elegant">
                                 <i class="fa fa-folder-open"></i>
                                 Visualizar
-                            </a>	
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -34,7 +34,7 @@
         <div class="col-md-10 mx-auto">
             <div class="card card-body text-center">
                 <h4 class="h4-responsive font-weight-bold"><i class="fa fa-times fa-2x"></i><br>
-                    !Lo sentimos por el momento no hay materias asignadas¡</h4>			
+                    !Lo sentimos por el momento no hay materias asignadas¡</h4>
                 </div>
             </div>
             @endforelse
@@ -47,4 +47,3 @@
         </div>
     </div>
     @endsection
-    

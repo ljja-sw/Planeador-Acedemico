@@ -31,8 +31,9 @@
     <header>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-            <a class="navbar-brand mx-auto" href="/">
-                <img src="/images/logo_blanco.png" alt="Planeador Académico">
+            <a class="navbar-brand mr-3" href="/">
+                <img src="/images/logo_alt.png" alt="Planeador Académico">
+                Planeador <span class="font-weight-bold">Académico</span> <small class="">BETA</small>
             </a>
 
             <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#mainNavbar"
@@ -46,76 +47,75 @@
                 @include('layouts.nav')
             </ul>
             <ul class="navbar-nav ml-auto d-flex align-items-center">
-             @guest
-             <li class="nav-item">
-                <a href="{{route('login')}}" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar Sesion</a>
-            </li>
-            @else
-            <li class="nav-item pt-1">
-                <a href="{{ route('perfil') }}" class="nav-link">
-                    <img src="{{ Auth::user()->getAvatar() }}" class="rounded-circle z-depth-0 m-1" alt="avatar image"
-                    height="35" width="35">
-                    <span>{{ Auth::user()->nombre_completo() }}</span>
+                @guest
+                <li class="nav-item">
+                    <a href="{{route('login')}}" class="btn btn-light"> <i class="fa fa-sign-in-alt"></i> Iniciar Sesion</a>
+                </li>
+                @else
+                <li class="nav-item pt-1">
+                    <a href="{{ route('perfil') }}" class="nav-link">
+                        <img src="{{ Auth::user()->getAvatar() }}" class="rounded-circle z-depth-0 m-1" alt="avatar image"
+                        height="35" width="35">
+                        <span>{{ Auth::user()->nombre_completo() }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" href="#" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <i class="fa fa-sign-out-alt"></i>
+                    Cerrar Sesión
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" href="#" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                <i class="fa fa-sign-out-alt"></i>
-                Cerrar Sesión
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </a>
-        </li>
-    </ul>
-</div>
-@endguest
+        </ul>
+    </div>
+    @endguest
 </nav>
 </header>
 
 <div id="app">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                @if(session()->has('msj'))
-                <div class="alert alert-success" role="alert" data-dimiss="alert">{{session('msj')}}</div>
-                @elseif(count($errors) > 0)
-                <div class="alert alert-danger" role="alert" data-dimiss="alert">
-                  <h6 class="font-weight-bold">Por favor corrija los siguientes errores:</h6>
-                  <ul>
-                    @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-        </div>
-    </div>
-</div>
-<main class="main-content py-1">
-    @yield('content')
-</main>
-<!-- Footer -->
-<footer class="page-footer font-small bg-dark pt-4">
-    <div class="container py-4">
-        <div class="row">
-            <div class="col-md-10 mx-auto text-center">
-                <img class="img-footer" src="/images/logo_blanco.png" alt="">
+    <main class="main-content">
+        @if(session()->has('msj'))
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-success" role="alert" data-dimiss="alert">{{session('msj')}}</div>
+                    @elseif(count($errors) > 0)
+                    <div class="alert alert-danger" role="alert" data-dimiss="alert">
+                        <h6 class="font-weight-bold">Por favor corrija los siguientes errores:</h6>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        {{-- <div class="row d-flex align-items-center">
-            <div class="col-12">
-                <p class="text-center">© 2019 Copyright:
-                    <a href="#">
-                        <strong> jeangallego.io</strong>
-                    </a>
-                </p>
+        @endif
+        @yield('content')
+    </main>
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark pt-4">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-10 mx-auto text-center">
+                    <img class="img-footer img-fluid " src="/images/logo_blanco.png" alt="">
+                </div>
             </div>
-        </div> --}}
-    </div>
-</footer>
-<!-- Footer -->
+            {{-- <div class="row d-flex align-items-center">
+                <div class="col-12">
+                    <p class="text-center">© 2019 Copyright:
+                        <a href="#">
+                            <strong> jeangallego.io</strong>
+                        </a>
+                    </p>
+                </div>
+            </div> --}}
+        </div>
+    </footer>
 </div>
 {{-- Scripts --}}
 <script src="{{ asset('js/app.js') }}"></script>

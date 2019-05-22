@@ -55,10 +55,10 @@ class PlaneadorController extends Controller
                 'tema'  => $request->tema[$i],
                 'metodología'  =>  $request->metodologia[$i],
                 'planeador_id' => $planeador->id,
-                'slug' => str_slug("-",$request->tema[$i])
+                'slug' => str_slug($request->tema[$i],"-")
             ]);}
 
-            return redirect()->route('docente.planeador.ver',$planeador);
+            return redirect()->route('docente.planeador.ver',$planeador->asignatura_planeador);
         }
 
     /**
@@ -67,9 +67,10 @@ class PlaneadorController extends Controller
      * @param  \App\Planeador  $planeador
      * @return \Illuminate\Http\Response
      */
-    public function show(Planeador $planeador)
+    public function show(Asignatura $asignatura)
     {
       $configuracion = Configuracion::find(1);
+      $planeador = $asignatura->planeador;
         return view('planeador.show',compact('planeador','configuracion'));
     }
 

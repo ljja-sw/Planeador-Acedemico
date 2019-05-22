@@ -29,69 +29,65 @@
                         </tr>
                     </tbody>
                 </table>
-                    <table class="table table-bordered ">
-                        <tbody>
-                            <tr>
-                              <td style="text-align:center" colspan="4">
-                                    <h6 class="h6-responsive text-muted">Fecha</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->created_at->format("d / m / y")}}</h4>
-                                </td>  
-                            </tr>
-                            <tr>
-                                <td style="text-align:center" colspan="2">
-                                    <h6 class="h6-responsive text-muted">Programa Académico</h6>
-                                    <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
-                                </td>
-                                <td style="text-align:center" colspan="2">
-                                    <h6 class="h6-responsive text-muted">Código del Programa</h6>
-                                    <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:center">
-                                    <h6 class="h6-responsive text-muted">Nombre de la Asignatura</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->nombre}}</h4>
-                                </td> 
-                                <td style="text-align:center" colspan="2">
-                                    <h6 class="h6-responsive text-muted">Código de la Asignatura</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->codigo}}</h4>
-                                </td> 
-                                <td style="text-align:center">
-                                    <h6 class="h6-responsive text-muted">Periodo Académico</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$configuracion->mes_inicio_periodo->mes}} - {{$configuracion->mes_fin_periodo->mes}}</h4>
-                                </td> 
-                            </tr>
-                            <tr>
-                                <td style="text-align:center">
-                                    <h6 class="h6-responsive text-muted">Créditos</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->creditos}}</h4>
-                                </td> 
-                                <td style="text-align:center">
-                                    <h6 class="h6-responsive text-muted">Intesidad Horaria</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->intensidad_horaria}}</h4>
-                                </td> 
-                                <td style="text-align:center">
-                                    <h6 class="h6-responsive text-muted">Validable</h6>
-                                    <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($planeador->asignatura_planeador->validable) ? "check" : "times"}}"></i></h4>
-                                </td> 
-                                <td style="text-align:center">
-                                    <h6 class="h6-responsive text-muted">Habilitable</h6>
-                                    <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($planeador->asignatura_planeador->habilitable) ? "check" : "times"}}"></i></i></h4>
-                                </td> 
-                            </tr>
-                            <tr>
-                                <td style="text-align:center" colspan="2">
-                                    <h6 class="h6-responsive text-muted">Nombre del Docente</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{auth()->user()->nombre_completo()}}</h4>
-                                </td> 
-                                
-                                <td style="text-align:center" colspan="2">
-                                    <h6 class="h6-responsive text-muted">Correo del Docente</h6>
-                                    <h4 class="h4-responsive font-weight-bold"><a href="mailto:{{auth()->user()->email}}">{{auth()->user()->email}}</a></h4>
-                                </td> 
-                            </tr>
-                        </tbody>
-                    </table>
+                    <table class="table text-center table-stripped">
+                    <tbody>
+                        <tr>
+                            <td colspan="3">
+                                <p class="text-muted m-0">Programa Académico</p>
+                                <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
+                            </td>
+                            <td colspan="3">
+                                <p class="text-muted m-0">Código del Programa</p>
+                                <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="text-muted m-0">Nombre de la Asignatura</p>
+                                <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->nombre}}</h4>
+                            </td>
+                            <td colspan="2">
+                                <p class="text-muted m-0">Código de la Asignatura</p>
+                                <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->codigo}}</h4>
+                            </td>
+                            <td colspan="2">
+                                <p class="text-muted m-0">Periodo Académico</p>
+                                <h4 class="h4-responsive font-weight-bold">{{$configuracion->mes_inicio_periodo->mes}} - {{$configuracion->mes_fin_periodo->mes}}</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="text-muted m-0">Créditos</p>
+                                <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->creditos}}</h4>
+                            </td>
+                            <td colspan="2">
+                                <p class="text-muted m-0">Intesidad Horaria</p>
+                                <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->intensidad_horaria}}</h4>
+                            </td>
+                            <td colspan="2" class="d-flex">
+                                <div class="col-6">
+                                  <p class="text-muted m-0">Validable</p>
+                                  <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($planeador->asignatura_planeador->validable) ? "check" : ""}}"></i></h4>
+                              </div>
+                              <div class="col-6">
+                                <p class="text-muted m-0">Habilitable</p>
+                                <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($planeador->asignatura_planeador->habilitable) ? "check" : ""}}"></i></i></h4>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <p class="text-muted m-0">Nombre del Docente</p>
+                            <h4 class="h4-responsive font-weight-bold">{{auth()->user()->nombre_completo()}}</h4>
+                        </td>
+
+                        <td colspan="3">
+                            <p class="text-muted m-0">Correo del Docente</p>
+                            <h4 class="h4-responsive font-weight-bold"><a href="mailto:{{auth()->user()->email}}">{{auth()->user()->email}}</a></h4>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
                     <div class="text-center" id="btn-print" >
                         <button onclick="window.print()" class="btn btn-primary">
                             <i class="fa fa-print"></i> Generar PDF

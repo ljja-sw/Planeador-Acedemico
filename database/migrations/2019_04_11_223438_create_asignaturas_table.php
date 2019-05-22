@@ -22,8 +22,11 @@ class CreateAsignaturasTable extends Migration
             $table->unsignedInteger('intensidad_horaria');
             $table->unsignedInteger('habilitable');
             $table->unsignedInteger('validable');
+            $table->unsignedBigInteger('programa_academico');
+            $table->foreign('programa_academico')->references('id')->on('programas');
             $table->softDeletes(); //Columna para soft delete
             $table->timestamps();
+            $table->string('slug')->nullable();
         });
     }
 

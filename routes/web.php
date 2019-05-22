@@ -45,10 +45,9 @@ Route::group(['middleware' => ['role:Secretario','auth:admin']], function () {
 });
 
 Route::group(['middleware' => ['role:Docente','auth:web']], function () {
-    Route::get('mis-asignaturas','DocenteController@asignaturas')->name('docente.asignaturas');
-    Route::get('/generar-planeador/{asignatura}/docente','PlaneadorController@create')->name('docente.generar.planeador');
+    Route::get('/{asignatura}/generar-planeador','PlaneadorController@create')->name('docente.generar.planeador');
 
-    Route::get('planeador/{planeador}/detalles','PlaneadorController@show')->name('docente.planeador.ver');
+    Route::get('{asignatura}/planeador-academico','PlaneadorController@show')->name('docente.planeador.ver');
 
     Route::post('/guardar-planeador','PlaneadorController@store');
     Route::post('/generar-planeador','PlaneadorController@generarPlaneadorForm');
@@ -60,7 +59,6 @@ Route::group(['middleware' => ['role:Docente','auth:web']], function () {
 
 
 Route::group(['middleware'=> 'auth:admin'],function(){
-
     Route::get('/admin/docentes', 'DocenteController@index')->name('docentes.index');
     Route::get('/docentes/{docente}/detalles','DocenteController@show')->name('docentes.show');
     Route::get('/admin/docentes/registrar', 'DocenteController@create')->name('docentes.create');

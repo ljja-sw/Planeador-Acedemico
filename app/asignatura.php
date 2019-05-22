@@ -19,11 +19,13 @@ class Asignatura extends Model
         'creditos',
         'intensidad_horaria',
         'habilitable',
-        'validable'];
+        'programa_academico',
+        'validable',
+        'slug'];
 
 
     public function programas(){
-        return $this->belongsTo(Programa::class);
+        return $this->belongsTo(Programa::class,'programa_academico');
     }
 
     public function salonesSalas(){
@@ -41,7 +43,7 @@ class Asignatura extends Model
 
     public function getRouteKeyName()
     {
-        return "codigo";
+        return "slug";
     }
 
 

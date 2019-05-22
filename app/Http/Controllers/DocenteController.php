@@ -86,12 +86,6 @@ class DocenteController extends Controller
 
     }
 
-    public function asignaturas()
-    {
-        $configuracion = Configuracion::find(1);
-        return view("mis_asignaturas",compact('configuracion'));
-    }
-
     /**
      * Display the specified resource.
      *
