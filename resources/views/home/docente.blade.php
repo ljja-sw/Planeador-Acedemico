@@ -5,10 +5,10 @@
 @include('libs.select2')
 <div class="container">
     <div class="row">
-        <div class="col-md-4 oder-md-1">
+        <div class="col-md-4">
             <div class="card card-body">
                 <div class="text-center">
-                    <img class="img-fluid rounded-circle z-depth-2 img-avatar-full" src="{{ Auth::user()->getAvatar() }}" alt="Foto de {{ auth()->user()->nombre }}">
+                    <img class="img-fluid rounded-circle z-depth-1 img-avatar-full" src="{{ Auth::user()->getAvatar() }}" alt="Foto de {{ auth()->user()->nombre }}">
                     <h6 class="text-muted">Bienvenido de vuelta</h6>
                     <h4 class="font-weight-bold">{{ auth()->user()->nombre }}</h4>
                 </div>

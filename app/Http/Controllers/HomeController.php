@@ -25,19 +25,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        switch (Auth::user()->getRoleNames()[0]) {
-          case 'Docente':
-              $clases = TemaPlaneador::whereFecha(now()->format("Y-m-d"))->get();
-              return view('home.docente',compact('clases'));
-              break;
-
-            case 'Secretario':
-              return view('home');
-              break;
-
-            case 'Admin':
-              return view('home');
-              break;
+      switch (Auth::user()->getRoleNames()[0]) {
+        case 'Docente':
+        $planeadores = auth()->user()->planeadores;
+        if (count($planeadores)>=1) {
+          foreach ($planeadores as $planeador) {
+            $clases = $planeador->temas->where("fecha",today());
+          }
+        }else{
+          $clases = [];
         }
+        return view('home.docente',compact('clases'));
+        break;
+
+        case 'Secretario':
+        return view('home');
+        break;
+
+        case 'Admin':
+        return view('home');
+        break;
+      }
     }
-}
+  }

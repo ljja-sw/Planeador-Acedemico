@@ -90,7 +90,7 @@
             </table>
                     <div class="text-center" id="btn-print" >
                         <button onclick="window.print()" class="btn btn-primary">
-                            <i class="fa fa-print"></i> Generar PDF
+                            <i class="fa fa-print"></i> Guardar como pdf
                         </button>
                         <hr>
                     </div>

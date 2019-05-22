@@ -94,7 +94,15 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
-        return view('admin.docente.show',compact('docente'));
+        $planeadores = $docente->planeadores;
+        if (count($planeadores)>=1) {
+            foreach ($planeadores as $planeador) {
+                $clases = $planeador->temas->where("fecha",today());
+            }
+        }else{
+            $clases = [];
+        }
+        return view('admin.docente.show',compact('docente','clases'));
     }
 
     /**

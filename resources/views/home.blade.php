@@ -6,11 +6,11 @@
 @include('libs.select2')
 
 @guest
-<div class="container-fluid mb-3 z-depth-1">
+<div class="container-fluid z-depth-1">
 	<section class="hero"></section>
 </div>
 <!-- Contenido -->
-<div class="container my-3" id="contenidoPrincipal">
+<div class="container" id="contenidoPrincipal">
 	<section class="row funciones text-center">
 		<div class="col-md-4">
 			<a class="card card-body flex-center hoverable">
