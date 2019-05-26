@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_cambiar_avatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="modal_cambiar_avatar" role="dialog" aria-labelledby="myModalLabel"
 aria-hidden="true">
 <form class="modal-dialog" enctype="multipart/form-data" role="document" action="{{ url('/cambiar-avatar') }}" autocomplete="off" method="POST">
   @csrf
@@ -10,7 +10,7 @@ aria-hidden="true">
       </button>
     </div>
     <div class="modal-body mx-auto">
-        <div class="px-4 my-5 flex-center">
+        <div class="px-4 flex-center" >
             <img src="{{auth()->user()->getAvatar()}}" alt="" id="imagen_avatar" class="rounded-circle z-depth-1 img-avatar-" style="width:250px;height:250px;object-fit:cover">
         </div>
         <input type="file" name="avatar" accept="image/*" id="input_cambiar_avatar" required>

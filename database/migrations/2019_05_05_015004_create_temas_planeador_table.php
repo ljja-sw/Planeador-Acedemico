@@ -16,12 +16,11 @@ class CreateTemasPlaneadorTable extends Migration
         Schema::create('temas_planeador', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('semana');
-            $table->date('fecha');
+            $table->string('fecha');
             $table->string('tema');
-            $table->unsignedInteger('metodología');
-            $table->unsignedInteger('planeador_id');
-            $table->timestamps();
             $table->string('slug');
+            $table->unsignedInteger('metodologia');
+            $table->unsignedInteger('planeador_id');
         });
     }
 

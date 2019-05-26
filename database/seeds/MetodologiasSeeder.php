@@ -15,6 +15,6 @@ class MetodologiasSeeder extends Seeder
         Metodologia::create(['nombre' => "Clase Magistral"]);
         Metodologia::create(['nombre' => "Clase Magistral - Taller"]);
         Metodologia::create(['nombre' => "Clase Magistral - Exposicion"]);
-        Metodologia::create(['nombre' => "Ninguna"]);
+        Metodologia::create(['nombre' => "  "]);
     }
 }

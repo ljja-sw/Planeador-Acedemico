@@ -122,14 +122,27 @@ class SecretarioController extends Controller
             $docente = Docente::find($request->docente);
             $asignatura = Asignatura::find($request->asignatura);
 
-            AsignaturaDocente::create([
-                'asignatura_id' => $request->asignatura,
-                'docente_id'  => $request->docente,
-                'dia_id'  => $request->dia,
-                // 'salon_id'  => $request->salon,
-                // 'horario_id'  => $request->horario
-            ]);
-
-            return redirect('/')->with('msj',"Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");;
+            if (count($request->dias)>1) {
+              if ($request->dias[1] == $request->dias[2]) {
+                return redirect()->back()->withErrors('Una asignatura con dos o mas horarios no puede ser asignada para el mismo dia');
+              } else {
+                AsignaturaDocente::create([
+                    'asignatura_id' => $request->asignatura,
+                    'docente_id'  => $request->docente,
+                    'dias'  => $request->dias,
+                    // 'salon_id'  => $request->salon,
+                    // 'horario_id'  => $request->horario
+                ]);
+              }
+            } else {
+              AsignaturaDocente::create([
+                  'asignatura_id' => $request->asignatura,
+                  'docente_id'  => $request->docente,
+                  'dias'  => $request->dias,
+                  // 'salon_id'  => $request->salon,
+                  // 'horario_id'  => $request->horario
+              ]);
+            }
+            return redirect('/')->with('msj',"Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");
         }
     }

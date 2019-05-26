@@ -16,6 +16,8 @@ Route::group(['middleware'=> 'auth:web,admin'],function(){
     Route::get('/', 'HomeController@index')->name('home');
 });
 
+Route::get('daterange','HomeController@daterange_spanish');
+
 Route::group(['middleware' => 'auth:admin,web'],function(){
  Route::get('/perfil', 'ProfileController@index')->name('perfil');
  Route::post('/cambiar-contraseña','ProfileController@cambiar_contraseña');
@@ -45,10 +47,8 @@ Route::group(['middleware' => ['role:Secretario','auth:admin']], function () {
 });
 
 Route::group(['middleware' => ['role:Docente','auth:web']], function () {
-    Route::get('mis-asignaturas','DocenteController@asignaturas')->name('docente.asignaturas');
-    Route::get('/generar-planeador/{asignatura}/docente','PlaneadorController@create')->name('docente.generar.planeador');
-
-    Route::get('planeador/{planeador}/detalles','PlaneadorController@show')->name('docente.planeador.ver');
+    Route::get('/{asignatura}/planeador/crear','PlaneadorController@create')->name('docente.generar.planeador');
+    Route::get('{asignatura}/planeador/ver','PlaneadorController@show')->name('docente.planeador.ver');
 
     Route::post('/guardar-planeador','PlaneadorController@store');
     Route::post('/generar-planeador','PlaneadorController@generarPlaneadorForm');
@@ -60,7 +60,6 @@ Route::group(['middleware' => ['role:Docente','auth:web']], function () {
 
 
 Route::group(['middleware'=> 'auth:admin'],function(){
-
     Route::get('/admin/docentes', 'DocenteController@index')->name('docentes.index');
     Route::get('/docentes/{docente}/detalles','DocenteController@show')->name('docentes.show');
     Route::get('/admin/docentes/registrar', 'DocenteController@create')->name('docentes.create');
@@ -79,7 +78,7 @@ Route::group(['middleware'=> 'auth:admin'],function(){
     Route::get('/vista-programas','ProgramaController@show')->name('programa.show');
     Route::post('/programas', 'ProgramaController@create')->name('programa.crear');
     Route::get('/detalles-programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
-    Route::post('/editar-programas/{programa}', 'ProgramaController@update')->name('programa.update');    
+    Route::post('/editar-programas/{programa}', 'ProgramaController@update')->name('programa.update');
 });
 
 Route::get('/login-secretario','Auth\SecretarioLoginController@showLoginForm')->name('login.secretario');

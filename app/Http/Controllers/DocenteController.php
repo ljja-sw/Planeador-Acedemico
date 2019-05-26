@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Asignatura;
 use App\Docente;
-use App\AsignaturaDocente;
-use App\Metodologia;
-use App\Configuracion;
 use App\Dependencia;
-use App\Reporte;
 use Hash;
-Use PDF;
+USE App\TemaPlaneador;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -86,12 +81,6 @@ class DocenteController extends Controller
 
     }
 
-    public function asignaturas()
-    {
-        $configuracion = Configuracion::find(1);
-        return view("mis_asignaturas",compact('configuracion'));
-    }
-
     /**
      * Display the specified resource.
      *
@@ -100,7 +89,19 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
-        return view('admin.docente.show',compact('docente'));
+        $planeadores = $docente->planeadores;
+        if (count($planeadores) >= 1) {
+            foreach ($planeadores as $planeador) {
+                $clases = TemaPlaneador::where("fecha->primera_clase", today()->format("Y-m-d"))
+                    ->orWhere("fecha->segunda_clase", today()->format("Y-m-d"))
+                    ->wherePlaneadorId($planeadores->first()->id)
+                    ->get();
+            }
+        } else {
+            $clases = [];
+        }
+
+        return view('admin.docente.show',compact('docente','clases'));
     }
 
     /**

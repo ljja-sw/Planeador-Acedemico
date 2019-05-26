@@ -15,13 +15,10 @@ class CreatePlaneadoresTable extends Migration
     {
         Schema::create('planeadores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamp('fecha_registro')->nullable();
             $table->unsignedBigInteger("programa_academico");
             $table->unsignedBigInteger("asignatura");
             $table->unsignedBigInteger("docente");
             $table->text("evaluaciones");
-            $table->boolean("firmado");
-            $table->boolean("revisado");
             $table->timestamps();
             $table->foreign('programa_academico')->references('id')->on('programas');
             $table->foreign('asignatura')->references('id')->on('asignaturas');

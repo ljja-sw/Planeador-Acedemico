@@ -24,6 +24,7 @@ class CreateAsignaturasTable extends Migration
             $table->unsignedInteger('validable');
             $table->softDeletes(); //Columna para soft delete
             $table->timestamps();
+            $table->string('slug')->nullable();
         });
     }
 

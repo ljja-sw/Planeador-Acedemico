@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_cambiar_contraseña" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="modal_cambiar_contraseña" role="dialog" aria-labelledby="myModalLabel"
 aria-hidden="true">
 <form class="modal-dialog" role="document" action="{{ url('/cambiar-contraseña') }}" autocomplete="off" method="POST">
   @csrf

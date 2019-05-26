@@ -19,15 +19,14 @@ class PlaneadorController extends Controller
      */
     public function create(Asignatura $asignatura)
     {
-        $dia = AsignaturaDocente::whereAsignaturaId($asignatura->id)
-            ->get()
-            ->first()
-            ->dia;
+
+        $dias = AsignaturaDocente::whereAsignaturaId($asignatura->id)
+            ->get()->first()->dias;
 
         $configuracion = Configuracion::find(1);
 
         $metodologías = Metodologia::all();
-        return view('planeador.create',compact('metodologías','asignatura','dia','configuracion'));
+        return view('planeador.create',compact('metodologías','asignatura','dias','configuracion'));
     }
 
     /**
@@ -37,28 +36,30 @@ class PlaneadorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $planeador = Planeador::create([
-            'fecha_registro' => now(),
             'programa_academico' => 1,
             'asignatura' =>  $request->asignatura,
             'docente' =>  $request->docente,
             'evaluaciones' =>  $request->evaluaciones,
-            'firmado' => 1,
-            'revisado' => 1
         ]);
 
-        for ($i=0; $i < count( $request->semana) ; $i++) {
-            $temas[] = TemaPlaneador::create([
-                'semana' =>  $request->semana[$i],
-                'fecha' =>  $request->fecha[$i],
-                'tema'  => $request->tema[$i],
-                'metodología'  =>  $request->metodologia[$i],
-                'planeador_id' => $planeador->id,
-                'slug' => str_slug("-",$request->tema[$i])
-            ]);}
+        foreach ($request->temas as $tema) {
 
-            return redirect()->route('docente.planeador.ver',$planeador);
+            $fechas_explode = explode(' - ', $tema['fecha']);
+            $fechas_json = (count($fechas_explode)>1) ? ["primera_clase" => $fechas_explode[0], "segunda_clase" => $fechas_explode[1]] :["primera_clase" => $fechas_explode[0]];
+
+            TemaPlaneador::create([
+                'semana' =>  $tema['semana'],
+                'fecha' =>  $fechas_json,
+                'tema'  => $tema['tema'],
+                'metodologia'  =>  $tema['metodologia'],
+                'planeador_id' => $planeador->id,
+                'slug' => str_slug($tema['tema'],"-")
+            ]);
+        }
+
+            return redirect()->route('docente.planeador.ver',$planeador->asignatura_planeador);
         }
 
     /**
@@ -67,10 +68,12 @@ class PlaneadorController extends Controller
      * @param  \App\Planeador  $planeador
      * @return \Illuminate\Http\Response
      */
-    public function show(Planeador $planeador)
+    public function show(Asignatura $asignatura)
     {
       $configuracion = Configuracion::find(1);
-        return view('planeador.show',compact('planeador','configuracion'));
+      $planeador = $asignatura->planeador;
+      
+      return view('planeador.show',compact('planeador','configuracion'));
     }
 
     /**

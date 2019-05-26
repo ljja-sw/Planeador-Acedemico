@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_planeador_asignatura" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="modal_planeador_asignatura" role="dialog" aria-labelledby="myModalLabel"
 aria-hidden="true">
 <form class="modal-dialog" role="document" action="{{url('/generar-planeador')}}" autocomplete="off" method="POST">
   @csrf

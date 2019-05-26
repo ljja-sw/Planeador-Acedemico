@@ -26,10 +26,8 @@
 <li class="nav-item">
 	{{-- Enlaces Secretarios --}}
 		<a class="nav-link" href="{{route('asignaturas.show')}}">
-			<i class="fa fa-chalkboard-teacher "></i>		
-		<a class="nav-link" href="/registro-asignaturas">
 			<i class="fa fa-chalkboard-teacher "></i>
-			Asignaturas
+Asignaturas
 		</a>
 	</li>
 
@@ -49,12 +47,7 @@
 	@break
 
 	@case("Docente")
-	<li class="nav-item">
-		{{-- Enlaces Docentes --}}
-		<a class="nav-link" href="{{route('docente.asignaturas')}}">
-			<i class="fa fa-chalkboard-teacher"></i>
-		Mis Asignaturas</a>
-	</li>
+
 	@break
 	@default
 	@endswitch

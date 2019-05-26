@@ -71,7 +71,7 @@ class Docente extends Authenticatable
 
     public function clases_hoy()
     {
-
+        //
     }
 
     public function getRouteKeyName()
