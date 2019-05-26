@@ -27,7 +27,11 @@
 
 	<header>
 		<!-- Navbar -->
+<<<<<<< HEAD
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+=======
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+>>>>>>> bde4a786c2797d4f0570bb89f3371deef6f0ac2f
 			<div class="container-fluid">
 				<a class="navbar-brand mr-3" href="/">
                 <img src="/images/logo_alt.png" alt="Planeador Académico">
@@ -113,6 +117,7 @@
 						<img class="img-footer img-fluid " src="/images/logo_blanco.png" alt="">
 					</div>
 				</div>
+<<<<<<< HEAD
             <div class="row d-flex align-items-center">
                 <div class="col-12">
                     <p class="text-center">
@@ -122,6 +127,17 @@
                     </p>
                 </div>
             </div>
+=======
+            {{-- <div class="row d-flex align-items-center">
+                <div class="col-12">
+                    <p class="text-center">© 2019 Copyright:
+                        <a href="#">
+                            <strong> jeangallego.io</strong>
+                        </a>
+                    </p>
+                </div>
+            </div> --}}
+>>>>>>> bde4a786c2797d4f0570bb89f3371deef6f0ac2f
         </div>
     </footer>
 </div>
