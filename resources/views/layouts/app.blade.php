@@ -27,11 +27,7 @@
 
 	<header>
 		<!-- Navbar -->
-<<<<<<< HEAD
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-=======
-		<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
->>>>>>> bde4a786c2797d4f0570bb89f3371deef6f0ac2f
 			<div class="container-fluid">
 				<a class="navbar-brand mr-3" href="/">
                 <img src="/images/logo_alt.png" alt="Planeador Académico">
