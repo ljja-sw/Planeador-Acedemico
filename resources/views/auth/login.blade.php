@@ -22,6 +22,17 @@
         <label for="input_password"> Contraseña</label>
     </div>
 
+    @if ($errors->has('email'))
+    <p class="alert alert-danger">
+        {{ $errors->first('email') }}
+    </p>
+    @endif
+    @if ($errors->has('password'))
+    <p class="alert alert-danger">
+        {{ $errors->first('password') }}
+    </p>
+    @endif
+
     <div class=" my-2">
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input"  {{ old('remember') ? 'checked' : '' }} name="remember" id="defaultLoginFormRemember">
