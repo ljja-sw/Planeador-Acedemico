@@ -125,7 +125,7 @@
                                           <div class="row">
                                         <div class="form-group col">
                                             <label for="asignaturas_select">Selecciona el dia de Clases</label>
-                                            <select name="dias" class="form-control" id="dias_select" required>
+                                            <select name="dias[1]" class="form-control" id="dias_select" required>
                                                 <option value="1">Lunes</option>
                                                 <option value="2">Martes</option>
                                                 <option value="3">Miercoles</option>

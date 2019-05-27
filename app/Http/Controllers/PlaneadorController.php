@@ -36,7 +36,7 @@ class PlaneadorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $planeador = Planeador::create([
             'programa_academico' => 1,
             'asignatura' =>  $request->asignatura,
@@ -72,7 +72,7 @@ class PlaneadorController extends Controller
     {
       $configuracion = Configuracion::find(1);
       $planeador = $asignatura->planeador;
-      
+
       return view('planeador.show',compact('planeador','configuracion'));
     }
 

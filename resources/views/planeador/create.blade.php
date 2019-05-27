@@ -139,7 +139,7 @@
                                                 @if (count($dias)>1)
                                                 <input class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[1]-1)->format("Y-m-d")}} - {{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[2]-1)->format("Y-m-d")}}">
                                                 @else
-                                                <input class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias)->format("Y-m-d")}}">
+                                                <input class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[1]-1)->format("Y-m-d")}}">
                                                 @endif
                                         </div>
                                     </td>
