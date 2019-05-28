@@ -2,16 +2,6 @@
 
 @section('content')
 @section('title',$planeador->asignatura_planeador->nombre)
-@push('styles')
-<style>
-    h6{font-weight: bold}
-    @media print {
-        @page { margin: 20px; }
-        body { margin: 1.6cm; }
-        footer, #btn-print{display: none;}
-    }
-</style>
-@endpush
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -92,15 +82,14 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-center" id="btn-print" >
-                        <button onclick="window.print()" class="btn btn-primary">
-                            <i class="fa fa-print"></i>
-                            Imprimir (como pdf)
-                        </button>
-
+                    <div class="text-center" >
                         <a href="#!" class="btn btn-primary">
                             <i class="fa fa-pen"></i>
                             Editar Planeador
+                        </a>
+                        <a href="{{route('docente.planeador.pdf',$planeador)}}" class="btn btn-primary">
+                            <i class="fa fa-file-pdf"></i>
+                            Guardar como PDF
                         </a>
                         <hr>
                     </div>
@@ -129,49 +118,49 @@
                                             <h4 class="font-weight-bold">Contenido Temático</h4>
                                         </th>
                                     </tr>
-                                    <tr class="text-center" >
-                                        <th scope="col">
-                                            <h6>Semana</h6>
-                                        </th>
-                                        <th scope="col">
-                                            <h6>Fecha(s)</h6>
-                                        </th>
-                                        <th scope="col">
-                                            <h6>Temas - Actividades</h6>
-                                        </th>
-                                        <th scope="col">
-                                            <h6>Metodología*</h6>
-                                        </th>
-                                    </tr>
+                                    <tr class="text-center">
+                                    <th scope="col" style="width:50px">
+                                        <h6 class="font-weight-bold">Semana</h6>
+                                    </th>
+                                    <th scope="col" style="width:240px">
+                                        <h6 class="font-weight-bold">Fecha(s)</h6>
+                                    </th>
+                                    <th scope="col">
+                                        <h6 class="font-weight-bold">Temas - Actividades</h6>
+                                    </th>
+                                    <th scope="col" style="width:190px">
+                                        <h6 class="font-weight-bold">Metodología*</h6>
+                                    </th>
+                                </tr>
                                     @foreach ($planeador->temas as $tema)
                                     @if (count($tema->fecha)>1)
-                                         @if ($tema->getFechas("primera_clase") == today()->format("Y-m-d") || $tema->getFechas("segunda_clase") == today()->format("Y-m-d"))
-                                    <tr class="rgba-stylish-slight">
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td> {{ $tema->getFechas() }} </td>
-                                        <td>{{ $tema->tema }}</td>
-                                        <td>{{ $tema->metodología_tema->nombre }}</td>
+                                    @if ($tema->getFechas("primera_clase") == today()->format("Y-m-d") || $tema->getFechas("segunda_clase") == today()->format("Y-m-d"))
+                                    <tr class=" red lighten-4 border">
+                                        <th scope="row" class="border-left"><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
+                                        <td> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
+                                        <td> <p class="font-weight-bold m-0">{{ $tema->tema }}</p></td>
+                                        <td> <p class="font-weight-bold m-0">{{ $tema->metodología_tema->nombre }}</p></td>
                                     </tr>
                                     @else
                                     <tr>
                                         <th scope="row">{{ $tema->semana }}</th>
-                                        <td> {{ $tema->getFechas() }} </td>
+                                        <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
                                         <td>{{ $tema->tema }}</td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
                                     @endif
                                     @else
-                                         @if ($tema->getFechas("primera_clase") == today()->format("Y-m-d"))
-                                    <tr class="rgba-stylish-slight">
+                                    @if ($tema->getFechas("primera_clase") == today()->format("Y-m-d"))
+                                    <tr class=" red lighten-4 border">
                                         <th scope="row">{{ $tema->semana }}</th>
-                                        <td> {{ $tema->getFechas() }} </td>
+                                        <td class="text-uppercase"> {{ $tema->getFechas() }} </td>
                                         <td>{{ $tema->tema }}</td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
                                     @else
                                     <tr>
                                         <th scope="row">{{ $tema->semana }}</th>
-                                        <td> {{ $tema->getFechas() }} </td>
+                                        <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
                                         <td>{{ $tema->tema }}</td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>

@@ -16,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
     */
     public function register()
     {
-        //
+        Carbon::setLocale(config('app.locale'));
+        setlocale(LC_TIME, config('app.locale'));
     }
 
     /**
@@ -26,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
     */
     public function boot()
     {
-        Carbon::setLocale('es');
-        Schema::defaultStringLength(191);
+                Schema::defaultStringLength(191);
     }
 }

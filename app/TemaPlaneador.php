@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class TemaPlaneador extends Model
 {
@@ -27,12 +28,12 @@ class TemaPlaneador extends Model
 	{
 		if($fecha == ""){
 			if (count($this->fecha) > 1) {
-				return "{$this->fecha['primera_clase']} - {$this->fecha['segunda_clase']}";
+				return Carbon::parse($this->fecha['primera_clase']) ->formatLocalized('%d/%m/%Y')." - ".Carbon::parse($this->fecha['segunda_clase'])->formatLocalized('%d/%m/%Y');
 			} else {
-				return "{$this->fecha['primera_clase']}";
+				return Carbon::parse($this->fecha['primera_clase']) ->formatLocalized('%d/%m/%Y');
 			}
 		}else{
-			return "{$this->fecha[$fecha]}";
+			return Carbon::parse($this->fecha[$fecha]) ->formatLocalized('%d/m/%Y');
 		}
 	}
 

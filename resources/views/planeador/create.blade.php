@@ -161,6 +161,7 @@
                         </tbody>
                     </table>
                 </form>
+                <p class="py-4">En la Metodología especificar si se desarrollará mediante Clase Magistral (CM), Taller (TL), Exposiciones (EXP)  En caso de que no corresponda a ninguna de las mencionadas anteriormente, indicar en el formato la utilizada por el profesor</p>
                 <div class="text-right">
                   <button type="submit" class="btn btn-elegant">
                       <i class="fa fa-save"></i>

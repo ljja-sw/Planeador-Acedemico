@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Planeador;
 use App\Asignatura;
 use App\Configuracion;
@@ -72,6 +73,8 @@ class PlaneadorController extends Controller
     {
       $configuracion = Configuracion::find(1);
       $planeador = $asignatura->planeador;
+
+     
 
       return view('planeador.show',compact('planeador','configuracion'));
     }
