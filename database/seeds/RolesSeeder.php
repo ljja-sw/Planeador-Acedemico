@@ -32,7 +32,6 @@ class RolesSeeder extends Seeder
         'apellido' => "Solis Riascos",
         'documento_identidad' => "1111431542",
         'email' => "antonio.solis@gmail.com",
-        'dependencia' => 2,
         'password' => Hash::make("docente"),
       ]);
       $docente->assignRole($role_docente);

@@ -134,8 +134,8 @@
                                 </tr>
                                     @foreach ($planeador->temas as $tema)
                                     @if (count($tema->fecha)>1)
-                                    @if ($tema->getFechas("primera_clase") == today()->format("Y-m-d") || $tema->getFechas("segunda_clase") == today()->format("Y-m-d"))
-                                    <tr class=" red lighten-4 border">
+                                    @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y") || $tema->getFechas("segunda_clase") == today()->format("d/m/Y"))
+                                    <tr class=" red lighten-4">
                                         <th scope="row" class="border-left"><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
                                         <td> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
                                         <td> <p class="font-weight-bold m-0">{{ $tema->tema }}</p></td>
@@ -150,7 +150,7 @@
                                     </tr>
                                     @endif
                                     @else
-                                    @if ($tema->getFechas("primera_clase") == today()->format("Y-m-d"))
+                                    @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y"))
                                     <tr class=" red lighten-4 border">
                                         <th scope="row">{{ $tema->semana }}</th>
                                         <td class="text-uppercase"> {{ $tema->getFechas() }} </td>

@@ -123,7 +123,7 @@
                                 </tr>
                                 <tr class="text-center" >
                                     <th scope="col" width="30px">Semana</th>
-                                <th scope="col" width="{{(count($dias)>1) ? '300px' : "200px"}}">Fecha(s)</th>
+                                <th scope="col" width="200px">Fecha(s)</th>
                                     <th scope="col">Temas - Actividades</th>
                                     <th scope="col" width="270px">Metodología*</th>
                                 </tr>

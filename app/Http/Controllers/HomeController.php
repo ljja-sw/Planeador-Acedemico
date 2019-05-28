@@ -59,7 +59,7 @@ class HomeController extends Controller
     public function planeador_pdf(Planeador $planeador)
     {
         $configuracion = Configuracion::find(1);
-
+        
         $pdf = PDF::loadView('pdf.planeador', compact('planeador', 'configuracion')); 
         return $pdf->download($planeador->asignatura_planeador->nombre.".pdf");
 

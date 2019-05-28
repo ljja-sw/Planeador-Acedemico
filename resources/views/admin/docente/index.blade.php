@@ -26,7 +26,6 @@
                 <th>Apellido</th>
                 <th>Documento de Identidad</th>
                 <th>Correo Electrónico</th>
-                <th>Dependencia</th>
                 <th></th>
               </tr>
             </thead>
@@ -37,7 +36,6 @@
                     <td>{{ $docente->apellido }}</td>
                     <td>{{ $docente->documento_identidad }}</td>
                     <td>{{ $docente->email }}</td>
-                    <td>{{ $docente->dependencia_docente->nombre }}</td>
                     <th><a href="{{route('docentes.show',$docente)}}"> <i class="fa fa-plus"></i> Detalles</a></th>
                     </tr>
                 @endforeach

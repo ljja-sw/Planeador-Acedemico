@@ -25,7 +25,6 @@ class Docente extends Authenticatable
         'documento_identidad',
         'email',
         'password',
-        'dependencia',
         'avatar',
         'last_login',
 
@@ -58,11 +57,6 @@ class Docente extends Authenticatable
     public function nombre_completo()
     {
         return "{$this->nombre} {$this->apellido}";
-    }
-
-    public function dependencia_docente()
-    {
-        return $this->belongsTo(Dependencia::class,'dependencia');
     }
 
     public function planeadores(){

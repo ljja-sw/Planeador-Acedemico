@@ -18,7 +18,7 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        $docentes = Docente::with('dependencia_docente:nombre,id')->get();
+        $docentes = Docente::all();
         return view('admin.docente.index',compact("docentes"));
     }
 
@@ -29,8 +29,7 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        $dependencias = Dependencia::all();
-        return view('admin.docente.create',compact('dependencias'));
+        return view('admin.docente.create');
     }
 
     public function reportes(){

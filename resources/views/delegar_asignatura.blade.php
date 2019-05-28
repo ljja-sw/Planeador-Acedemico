@@ -61,8 +61,6 @@
                                     <hr>
                                     <small class="text-muted">Cedula Ciudadania</small>
                                     <p class="m-0 ml-1">{{ $docente->documento_identidad }}</p>
-                                    <small class="text-muted">Dependencia</small>
-                                    <p class="m-0 ml-1">{{ $docente->dependencia_docente->nombre }}</p>
                                 </div>
                             </div>
                         </div>

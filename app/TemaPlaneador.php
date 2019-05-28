@@ -33,7 +33,7 @@ class TemaPlaneador extends Model
 				return Carbon::parse($this->fecha['primera_clase']) ->formatLocalized('%d/%m/%Y');
 			}
 		}else{
-			return Carbon::parse($this->fecha[$fecha]) ->formatLocalized('%d/m/%Y');
+			return Carbon::parse($this->fecha[$fecha]) ->formatLocalized('%d/%m/%Y');
 		}
 	}
 

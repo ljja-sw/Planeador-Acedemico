@@ -1,13 +1,6 @@
 <?php
 use Faker\Generator as Faker;
 
-$factory->define(App\Dependencia::class, function (Faker $faker) {
-	return [
-		'nombre' => $faker->address,
-        'codigo' => $faker->numberBetween(1,20),
-    ];
-});
-
 $factory->define(App\Programa::class, function (Faker $faker) {
 	return [
 		'nombre' => $faker->catchPhrase,

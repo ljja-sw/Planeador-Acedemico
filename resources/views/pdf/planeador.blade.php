@@ -136,10 +136,10 @@
                                 @foreach ($planeador->temas as $tema)
                                 <tr>
                                     <td class="text-center">
-                                        <h6>{{ $tema->semana }}</h6>
+                                        <h6 class="font-weight-bold">{{ $tema->semana }}</h6>
                                     </td>
                                     <td class="text-center">
-                                        <h6>{{ $tema->getFechas() }}</h6>
+                                        <h6 class="font-weight-bold">{{ $tema->getFechas() }}</h6>
                                     </td>
                                     <td>
                                         <h6>{{ $tema->tema }}</h6>

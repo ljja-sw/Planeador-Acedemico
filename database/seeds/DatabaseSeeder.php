@@ -19,9 +19,8 @@ class DatabaseSeeder extends Seeder
         'numero_semanas' => 18
       ]);
 
-      $docente = factory('App\Dependencia',15)->create();
-      $docente = factory('App\Programa',20)->create();
-      $docente = factory('App\Asignatura',30)->create();
+      factory('App\Programa',20)->create();
+      factory('App\Asignatura',30)->create();
 
       $this->call(RolesSeeder::class);
       $this->call(DiasSemanasSeeder::class);
