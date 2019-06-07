@@ -26,8 +26,6 @@
                                 <td style="text-align:center" colspan="4">
                                     <h6 class="h6-responsive text-muted">Fecha</h6>
                                     <h4 class="h4-responsive font-weight-bold">{{$planeador->created_at->format("d / m / y")}}</h4>
-                                    <p class="m-0">Ultima modificacion</p>
-                                    <p class="m-0">{{$planeador->updated_at->format("d / m / y")}}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -85,27 +83,18 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-center" >
-                        <a href="{{route('docente.planeador.pdf',$planeador)}}" class="btn btn-primary">
-                            <i class="fa fa-file-pdf"></i>
-                            Guardar como PDF
-                        </a>
-                        <hr>
-                    </div>
                     <table class="table table-bordered ">
                         <tbody>
                             <tr>
                                 <th class="text-center">
                                     <h4 class="font-weight-bold">
-                                        Evaluacion <a href="#!editar evaluacion" id="editarEvaluacion">
-                                            <i class="fa fa-pen"></i>
-                                        </a>
+                                        Evaluacion
                                     </h4>
                                 </th>
                             </tr>
                             <tr>
                                 <td>
-                                    <span id="evaluaciones">{!! $planeador->evaluaciones !!}</span>
+                                    {!! $planeador->evaluaciones !!}
                                 </td>
                             </tr>
                         </tbody>
@@ -134,39 +123,12 @@
                                         </th>
                                     </tr>
                                     @foreach ($planeador->temas as $tema)
-                                    @if (count($tema->fecha)>1)
-                                    @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y") || $tema->getFechas("segunda_clase") == today()->format("d/m/Y"))
-                                    <tr class=" red lighten-4">
-                                        <th scope="row" class="border-left"><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
-                                        <td> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
-                                        <td class="td-tema"> <p class="font-weight-bold m-0">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></p></td>
-                                        <td> <p class="font-weight-bold m-0">{{ $tema->metodología_tema->nombre }}</p></td>
-                                    </tr>
-                                    @else
                                     <tr>
                                         <th scope="row">{{ $tema->semana }}</th>
                                         <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
+                                        <td class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" class="editarTema" data-toggle='modal' target="#modalEditarTema"><i class="fa fa-pen"></i></a></td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
-                                    @endif
-                                    @else
-                                    @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y"))
-                                    <tr class=" red lighten-4 border">
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
-                                        <td>{{ $tema->metodología_tema->nombre }}</td>
-                                    </tr>
-                                    @else
-                                    <tr>
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
-                                        <td>{{ $tema->metodología_tema->nombre }}</td>
-                                    </tr>
-                                    @endif
-                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -192,42 +154,10 @@
 <script>
     $(document).ready(function(){
         $('.editarTema').on('click',function(){
-           var tema = $(this).data('tema');
-           cargarTema(tema);
-           $(".modal-body #idTema").val(tema);
-           $('#modalEditarTema').modal({show:true});
-       }); 
+            var dataURL = $(this).attr('data-href');
+                        $('#modalEditarTema').modal({show:true});
 
-        $('#editarEvaluacion').on('click',function(){
-            var examen = $('#evaluaciones').html(); 
-            alert(examen)
-        });
+        }); 
     });
-
-    function cargarTema(id){
-        $('#temaPlaneador').text("Cargando...")
-        $('#temaInput').val("Cargando...")
-        $('#metodologia').val(1)
-        $('#semana').text("Cargando...")
-
-        $.ajax({
-            url : "{{url('api/temas/')}}",
-            type : 'GET',
-            data : {
-                'id' : id
-            },
-            dataType:'json',
-            success : function(data) {              
-                $('#temaPlaneador').text(data['tema'])
-                $('#temaInput').val(data['tema'])
-                $('#metodologia').val(data['metodologia'])
-                $('#semana').text(data['semana'])
-            },
-            error : function(request,error)
-            {
-
-            }
-        });
-    }
 </script>
 @endpush

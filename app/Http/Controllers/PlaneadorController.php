@@ -22,7 +22,7 @@ class PlaneadorController extends Controller
     {
 
         $dias = AsignaturaDocente::whereAsignaturaId($asignatura->id)
-            ->get()->first()->dias;
+        ->get()->first()->dias;
 
         $configuracion = Configuracion::find(1);
 
@@ -60,8 +60,8 @@ class PlaneadorController extends Controller
             ]);
         }
 
-            return redirect()->route('docente.planeador.ver',$planeador->asignatura_planeador);
-        }
+        return redirect()->route('docente.planeador.ver',$planeador->asignatura_planeador);
+    }
 
     /**
      * Display the specified resource.
@@ -71,12 +71,12 @@ class PlaneadorController extends Controller
      */
     public function show(Asignatura $asignatura)
     {
-      $configuracion = Configuracion::find(1);
-      $planeador = $asignatura->planeador;
+        $metodologías = Metodologia::all();
 
-     
+        $configuracion = Configuracion::find(1);
+        $planeador = $asignatura->planeador;
 
-      return view('planeador.show',compact('planeador','configuracion'));
+        return view('planeador.show',compact('planeador','configuracion','metodologías'));
     }
 
     /**
@@ -85,10 +85,13 @@ class PlaneadorController extends Controller
      * @param  \App\Planeador  $planeador
      * @return \Illuminate\Http\Response
      */
-    public function edit(Planeador $planeador)
+    public function edit(Asignatura $asignatura)
     {
-        //
-    }
+      $configuracion = Configuracion::find(1);
+      $planeador = $asignatura->planeador;
+
+      return view('planeador.edit',compact('planeador','configuracion'));
+  }
 
     /**
      * Update the specified resource in storage.
@@ -113,9 +116,26 @@ class PlaneadorController extends Controller
         //
     }
 
+    public function editarPlaneador(Request $request, Planeador $planeador){
+        return $request;
+    }
+
+    public function editarTema(Request $request){
+        $tema = TemaPlaneador::find($request->id);
+        $planeador = Planeador::find( $tema->planeador_id);
+
+        $planeador->updated_at = now();
+        $tema->tema = $request->tema;
+        $tema->metodologia = $request->metodologia;
+        $tema->save();
+        $planeador->save();
+        
+        return redirect()->back()->with('msj',"Tema editado satisfactoriamente");
+    }
+
     public function generarPlaneadorForm(Request $request)
     {
        $asignatura = Asignatura::find($request->asignatura);
        return redirect()->route('docente.generar.planeador',$asignatura);
-    }
+   }
 }

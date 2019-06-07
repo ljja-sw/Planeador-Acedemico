@@ -16,8 +16,6 @@ Route::group(['middleware'=> 'auth:web,admin'],function(){
     Route::get('/', 'HomeController@index')->name('home');
 });
 
-Route::get('daterange','HomeController@daterange_spanish');
-
 Route::group(['middleware' => 'auth:admin,web'],function(){
  Route::get('/perfil', 'ProfileController@index')->name('perfil');
  Route::post('/cambiar-contraseña','ProfileController@cambiar_contraseña');
@@ -72,6 +70,8 @@ Route::group(['middleware' => ['role:Docente','auth:web']], function () {
 
     Route::post('/guardar-planeador','PlaneadorController@store');
     Route::post('/generar-planeador','PlaneadorController@generarPlaneadorForm');
+    Route::post('/editar/tema','PlaneadorController@editarTema');
+    Route::post('/editar/planeador/{planeador}','PlaneadorController@editarPlaneador');
 
     Route::get('/reportes','DocenteController@reportes')->name('reportes');
     Route::get('/crear-reporte','ReporteController@crear')->name('reporte.creacion');

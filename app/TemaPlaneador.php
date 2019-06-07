@@ -47,8 +47,8 @@ class TemaPlaneador extends Model
 		return $this->belongsTo(Metodologia::class, 'metodologia');
 	}
 	
-	public function getRouteKeyName()
-	{
-		return 'slug';
-	}
+	// public function getRouteKeyName()
+	// {
+	// 	return 'slug';
+	// }
 }

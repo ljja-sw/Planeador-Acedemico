@@ -14,58 +14,64 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/docentes', function (Request $request) {
-        $term = $request->term ?: '';
+  $term = $request->term ?: '';
 
-        $busqueda = App\Docente::
-        			where('nombre', 'like',  $term.'%')
-                    ->orWhere('apellido','like',  $term.'%')
-                    ->orWhere('documento_identidad','like',  $term.'%')
-                    ->get();
+  $busqueda = App\Docente::
+  where('nombre', 'like',  $term.'%')
+  ->orWhere('apellido','like',  $term.'%')
+  ->orWhere('documento_identidad','like',  $term.'%')
+  ->get();
 
-        $docentes = [];
-        
-        foreach ($busqueda as $docente) {
-            $docentes[] = ['id' => $docente->id, 'text' => $docente->nombre_completo() ];
-        }
+  $docentes = [];
 
-        return \Response::json($docentes);
+  foreach ($busqueda as $docente) {
+    $docentes[] = ['id' => $docente->id, 'text' => $docente->nombre_completo() ];
+  }
+
+  return \Response::json($docentes);
 });
 
 Route::get('/asignaturas-libres', function (Request $request) {
-        $term = $request->term ?: '';
+  $term = $request->term ?: '';
 
-        $busqueda = App\Asignatura::doesntHave('asignada')
-                                   ->where('nombre', 'like',  $term.'%')
-                                   ->Where('codigo','like',  $term.'%')
-                                   ->get();
+  $busqueda = App\Asignatura::doesntHave('asignada')
+  ->where('nombre', 'like',  $term.'%')
+  ->Where('codigo','like',  $term.'%')
+  ->get();
 
-        $asignaturas = [];
-        
-        foreach ($busqueda as $asignatura) {
-            $asignaturas[] = ['id' => $asignatura->id, 'text' => $asignatura->nombre ];
-        }
+  $asignaturas = [];
 
-        return \Response::json($asignaturas);
+  foreach ($busqueda as $asignatura) {
+    $asignaturas[] = ['id' => $asignatura->id, 'text' => $asignatura->nombre ];
+  }
+
+  return \Response::json($asignaturas);
 });
 
 Route::any('horarios-libres',function(Request $request){
-        return App\Horario::where('salon_sala_id',$request->salon)
-                          ->doesntHave('ocupado')->get();
+  return App\Horario::where('salon_sala_id',$request->salon)
+  ->doesntHave('ocupado')->get();
 });
 
 Route::any('/asignaturas-docente/{docente}',function(Request $request,App\Docente $docente){
-        $term = $request->term ?: '';
+  $term = $request->term ?: '';
 
-        $busqueda = $docente->asignaturas()->doesntHave('planeador')
-                                   ->where('nombre', 'like',  $term.'%')
-                                   ->Where('codigo','like',  $term.'%')
-                                   ->get();
+  $busqueda = $docente->asignaturas()->doesntHave('planeador')
+  ->where('nombre', 'like',  $term.'%')
+  ->Where('codigo','like',  $term.'%')
+  ->get();
 
-        $asignaturas = [];
-        
-        foreach ($busqueda as $asignatura) {
-            $asignaturas[] = ['id' => $asignatura->id, 'text' => $asignatura->nombre ];
-        }
+  $asignaturas = [];
 
-        return \Response::json($asignaturas);
+  foreach ($busqueda as $asignatura) {
+    $asignaturas[] = ['id' => $asignatura->id, 'text' => $asignatura->nombre ];
+  }
+
+  return \Response::json($asignaturas);
+});
+
+Route::any('temas',function(Request $request){
+  $tema = App\TemaPlaneador::find($request->id);
+  return \Response::json($tema);
+
 });
