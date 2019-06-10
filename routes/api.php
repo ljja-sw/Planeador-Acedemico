@@ -58,7 +58,7 @@ Route::any('/asignaturas-docente/{docente}',function(Request $request,App\Docent
 
   $busqueda = $docente->asignaturas()->doesntHave('planeador')
   ->where('nombre', 'like',  $term.'%')
-  ->Where('codigo','like',  $term.'%')
+  ->orWhere('codigo','like',  $term.'%')
   ->get();
 
   $asignaturas = [];

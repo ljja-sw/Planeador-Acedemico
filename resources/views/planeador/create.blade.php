@@ -123,7 +123,7 @@
                                 </tr>
                                 <tr class="text-center" >
                                     <th scope="col" width="30px">Semana</th>
-                                <th scope="col" width="200px">Fecha(s)</th>
+                                <th scope="col" width="{{count($dias)>1 ? '250px' : '200px'}}">Fecha(s)</th>
                                     <th scope="col">Temas - Actividades</th>
                                     <th scope="col" width="270px">Metodología*</th>
                                 </tr>
@@ -137,9 +137,9 @@
                                     <td style>
                                         <div class="md-form md-outline">
                                                 @if (count($dias)>1)
-                                                <readonnly input class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[1]-1)->format("Y-m-d")}} - {{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[2]-1)->format("Y-m-d")}}">
+                                                <input readonly class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[1]-1)->format("Y-m-d")}} - {{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[2]-1)->format("Y-m-d")}}">
                                                 @else
-                                                <readonnly input class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[1]-1)->format("Y-m-d")}}">
+                                                <input readonly class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[1]-1)->format("Y-m-d")}}">
                                                 @endif
                                         </div>
                                     </td>

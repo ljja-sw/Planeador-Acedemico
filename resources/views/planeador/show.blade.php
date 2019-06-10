@@ -2,7 +2,9 @@
 @section('title',$planeador->asignatura_planeador->nombre)
 
 @section('content')
+@include('libs.ckeditor')
 @include('modals.editar_tema_planeador')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -95,10 +97,10 @@
                     <table class="table table-bordered ">
                         <tbody>
                             <tr>
-                                <th class="text-center">
+                                <th class="text-center td-tema">
                                     <h4 class="font-weight-bold">
                                         Evaluacion <a href="#!editar evaluacion" id="editarEvaluacion">
-                                            <i class="fa fa-pen"></i>
+                                            <i class="fa fa-pen editarEvaluacion"></i>
                                         </a>
                                     </h4>
                                 </th>
@@ -106,6 +108,22 @@
                             <tr>
                                 <td>
                                     <span id="evaluaciones">{!! $planeador->evaluaciones !!}</span>
+
+                                    <form action="/editar/planeador/{{$planeador->id}}" method="post" id="formEvaluacion" style="display:none">
+                                        @csrf
+                                        <div class="md-form md-outline m-0">
+                                            <textarea class="form-control" name="evaluaciones" id="evaluacionesInput" cols="30" rows="40" style="height: 100px" required>
+                                                {!! $planeador->evaluaciones !!}
+                                            </textarea>
+                                        </div>  
+
+                                        <div class="text-center my-3">
+                                            <button class="btn btn-primary">
+                                            <i class="fa fa-save"></i>
+                                            Guardar
+                                        </button>
+                                        </div>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
@@ -180,15 +198,20 @@
 @endsection
 @push('styles')
 <style>
-    .editarTema{
+    .editarTema, .editarEvaluacion{
         display: none;
     }
-    .td-tema:hover .editarTema{
+    .td-tema:hover .editarTema {
+        display: inline;
+    }
+
+    .td-tema:hover .editarEvaluacion{
         display: inline;
     }
 </style>
 @endpush
 @push('scripts')
+
 <script>
     $(document).ready(function(){
         $('.editarTema').on('click',function(){
@@ -198,36 +221,44 @@
            $('#modalEditarTema').modal({show:true});
        }); 
 
-        $('#editarEvaluacion').on('click',function(){
-            var examen = $('#evaluaciones').html(); 
-            alert(examen)
+           $("#editarEvaluacion").on('click',function(){
+            $("#formEvaluacion").show(1000)
+            $("#evaluaciones").hide(1000)
         });
-    });
 
-    function cargarTema(id){
-        $('#temaPlaneador').text("Cargando...")
-        $('#temaInput').val("Cargando...")
-        $('#metodologia').val(1)
-        $('#semana').text("Cargando...")
+            function cargarTema(id){
+                $('#temaPlaneador').text("Cargando...")
+                $('#temaInput').val("Cargando...")
+                $('#metodologia').val(1)
+                $('#semana').text("Cargando...")
 
-        $.ajax({
-            url : "{{url('api/temas/')}}",
-            type : 'GET',
-            data : {
-                'id' : id
-            },
-            dataType:'json',
-            success : function(data) {              
-                $('#temaPlaneador').text(data['tema'])
-                $('#temaInput').val(data['tema'])
-                $('#metodologia').val(data['metodologia'])
-                $('#semana').text(data['semana'])
-            },
-            error : function(request,error)
-            {
+                $.ajax({
+                    url : "{{url('api/temas/')}}",
+                    type : 'GET',
+                    data : {
+                        'id' : id
+                    },
+                    dataType:'json',
+                    success : function(data) {              
+                        $('#temaPlaneador').text(data['tema'])
+                        $('#temaInput').val(data['tema'])
+                        $('#metodologia').val(data['metodologia'])
+                        $('#semana').text(data['semana'])
+                    },
+                    error : function(request,error)
+                    {
 
+                    }
+                });
             }
+
+            ClassicEditor
+            .create( document.querySelector( '#evaluacionesInput' ) )
+           .catch( error => {
+            console.error( error );
         });
-    }
-</script>
-@endpush
+
+        });
+    </script>
+
+    @endpush

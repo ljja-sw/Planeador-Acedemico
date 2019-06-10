@@ -11,7 +11,7 @@
 
     </div>
     <div class="modal-body">
-        <form action="/editar/tema" method="post" id="formTema">
+        <form action="/editar/tema" method="post" id="formTema" autocomplete="off">
             @csrf
             <input type="text" id="idTema" name="id" hidden>
             <div class="md-form md-outline">
@@ -26,8 +26,14 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary" form="formTema">Guardar</button>
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+            <i class="fa fa-times"></i>
+        Cancelar</button>
+
+        <button type="submit" class="btn btn-primary" form="formTema">
+            <i class="fa fa-save"></i>
+            Guardar
+        </button>
     </div>
 </div>
 </div>

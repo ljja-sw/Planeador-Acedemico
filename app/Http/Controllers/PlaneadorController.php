@@ -22,12 +22,12 @@ class PlaneadorController extends Controller
     {
 
         $dias = AsignaturaDocente::whereAsignaturaId($asignatura->id)
-        ->get()->first()->dias;
+            ->get()->first()->dias;
 
         $configuracion = Configuracion::find(1);
 
         $metodologías = Metodologia::all();
-        return view('planeador.create',compact('metodologías','asignatura','dias','configuracion'));
+        return view('planeador.create', compact('metodologías', 'asignatura', 'dias', 'configuracion'));
     }
 
     /**
@@ -48,7 +48,7 @@ class PlaneadorController extends Controller
         foreach ($request->temas as $tema) {
 
             $fechas_explode = explode(' - ', $tema['fecha']);
-            $fechas_json = (count($fechas_explode)>1) ? ["primera_clase" => $fechas_explode[0], "segunda_clase" => $fechas_explode[1]] :["primera_clase" => $fechas_explode[0]];
+            $fechas_json = (count($fechas_explode) > 1) ? ["primera_clase" => $fechas_explode[0], "segunda_clase" => $fechas_explode[1]] : ["primera_clase" => $fechas_explode[0]];
 
             TemaPlaneador::create([
                 'semana' =>  $tema['semana'],
@@ -56,11 +56,11 @@ class PlaneadorController extends Controller
                 'tema'  => $tema['tema'],
                 'metodologia'  =>  $tema['metodologia'],
                 'planeador_id' => $planeador->id,
-                'slug' => str_slug($tema['tema'],"-")
+                'slug' => str_slug($tema['tema'], "-")
             ]);
         }
 
-        return redirect()->route('docente.planeador.ver',$planeador->asignatura_planeador);
+        return redirect()->route('docente.planeador.ver', $planeador->asignatura_planeador);
     }
 
     /**
@@ -76,7 +76,7 @@ class PlaneadorController extends Controller
         $configuracion = Configuracion::find(1);
         $planeador = $asignatura->planeador;
 
-        return view('planeador.show',compact('planeador','configuracion','metodologías'));
+        return view('planeador.show', compact('planeador', 'configuracion', 'metodologías'));
     }
 
     /**
@@ -87,11 +87,11 @@ class PlaneadorController extends Controller
      */
     public function edit(Asignatura $asignatura)
     {
-      $configuracion = Configuracion::find(1);
-      $planeador = $asignatura->planeador;
+        $configuracion = Configuracion::find(1);
+        $planeador = $asignatura->planeador;
 
-      return view('planeador.edit',compact('planeador','configuracion'));
-  }
+        return view('planeador.edit', compact('planeador', 'configuracion'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -116,26 +116,34 @@ class PlaneadorController extends Controller
         //
     }
 
-    public function editarPlaneador(Request $request, Planeador $planeador){
-        return $request;
+    public function editarPlaneador(Request $request, Planeador $planeador)
+    {
+
+        $planeador->evaluaciones = $request->evaluaciones;
+        $planeador->save();
+
+        toast('Evaluaciones editadas satisfactoriamente', 'success', 'top');
+        return redirect()->back();
     }
 
-    public function editarTema(Request $request){
+    public function editarTema(Request $request)
+    {
         $tema = TemaPlaneador::find($request->id);
-        $planeador = Planeador::find( $tema->planeador_id);
+        $planeador = Planeador::find($tema->planeador_id);
 
         $planeador->updated_at = now();
         $tema->tema = $request->tema;
         $tema->metodologia = $request->metodologia;
         $tema->save();
         $planeador->save();
-        
-        return redirect()->back()->with('msj',"Tema editado satisfactoriamente");
+
+        toast('Tema editado satisfactoriamente', 'success', 'top');
+        return redirect()->back();
     }
 
     public function generarPlaneadorForm(Request $request)
     {
-       $asignatura = Asignatura::find($request->asignatura);
-       return redirect()->route('docente.generar.planeador',$asignatura);
-   }
+        $asignatura = Asignatura::find($request->asignatura);
+        return redirect()->route('docente.generar.planeador', $asignatura);
+    }
 }
