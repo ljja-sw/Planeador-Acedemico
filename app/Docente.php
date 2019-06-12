@@ -60,7 +60,7 @@ class Docente extends Authenticatable
     }
 
     public function planeadores(){
-        return $this->hasMany(Planeador::class,'docente');
+        return $this->hasMany(Planeador::class,'docente','id');
     }
 
     public function clases_hoy()
