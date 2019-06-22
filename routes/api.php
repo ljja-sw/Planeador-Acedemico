@@ -36,7 +36,7 @@ Route::get('/asignaturas-libres', function (Request $request) {
 
   $busqueda = App\Asignatura::doesntHave('asignada')
   ->where('nombre', 'like',  $term.'%')
-  ->Where('codigo','like',  $term.'%')
+  ->orWhere('codigo','like',  $term.'%')
   ->get();
 
   $asignaturas = [];

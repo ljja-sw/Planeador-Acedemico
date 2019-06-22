@@ -134,6 +134,7 @@ class PlaneadorController extends Controller
         $planeador->updated_at = now();
         $tema->tema = $request->tema;
         $tema->metodologia = $request->metodologia;
+        $tema->slug = str_slug($request->tema);
         $tema->save();
         $planeador->save();
 

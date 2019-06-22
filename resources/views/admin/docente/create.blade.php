@@ -49,15 +49,6 @@
                             <label for="documento_identidad">Documento Identidad</label>
                         </div>
 
-                        <div class="form-group">
-                            <select class="form-control" name="dependencia" id="dependencia">
-                                <option value="">Dependencia</option>
-                                @foreach ($dependencias as $pd)
-                                    <option value="{{$pd->id}}"> {{$pd->nombre}} </option>
-                                @endforeach
-                            </select>
-                        </div>
-
                         <div class="text-center">
                             <button class="btn btn-primary">
                                 <i class="fa fa-cloud-upload-alt"></i>

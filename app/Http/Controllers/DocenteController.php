@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Docente;
 use App\Dependencia;
 use Hash;
-USE App\TemaPlaneador;
+use App\TemaPlaneador;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Imports\DocentesImport;
+use App\Exports\DocentesExport;
+use Illuminate\Support\Facades\Storage;
+use Excel;
 
 class DocenteController extends Controller
 {
@@ -19,7 +23,7 @@ class DocenteController extends Controller
     public function index()
     {
         $docentes = Docente::all();
-        return view('admin.docente.index',compact("docentes"));
+        return view('admin.docente.index', compact("docentes"));
     }
 
     /**
@@ -32,14 +36,13 @@ class DocenteController extends Controller
         return view('admin.docente.create');
     }
 
-    public function reportes(){
+    public function reportes()
+    {
 
         //$DocenteReportes = AsignaturaDocente::find($id);
-        
-        return view("reportes");
 
-        
-    }    
+        return view("reportes");
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -54,16 +57,15 @@ class DocenteController extends Controller
             'apellido' => 'required|min:3',
             'email' => 'required|email|unique:docentes',
             'documento_identidad' => 'required|numeric|min:10|unique:docentes',
-            'dependencia' => 'required|numeric'
         ]);
 
         $data = $request->toArray();
-        
-        $role_docente = Role::findByName("Docente","web");
-        
+
+        $role_docente = Role::findByName("Docente", "web");
+
         $split_nombre = str_split($data['nombre']);
         $split_apellido = str_split($data['apellido']);
-        $password = $split_nombre[0].$data['documento_identidad'].$split_apellido[0];
+        $password = $split_nombre[0] . $data['documento_identidad'] . $split_apellido[0];
 
         $docente = Docente::create([
             'nombre' => $data['nombre'],
@@ -71,13 +73,11 @@ class DocenteController extends Controller
             'documento_identidad' => $data['documento_identidad'],
             'email' => $data['email'],
             'password' => Hash::make($password),
-            'dependencia' => $data['dependencia'],
         ]);
-        
+
         $docente->assignRole($role_docente);
 
-        return redirect()->route('docentes.index')->with('msj',"Docente: {$data['nombre']} Registrado");
-
+        return redirect()->route('docentes.index')->with('msj', "Docente: {$data['nombre']} Registrado");
     }
 
     /**
@@ -100,7 +100,7 @@ class DocenteController extends Controller
             $clases = [];
         }
 
-        return view('admin.docente.show',compact('docente','clases'));
+        return view('admin.docente.show', compact('docente', 'clases'));
     }
 
     /**
@@ -120,17 +120,39 @@ class DocenteController extends Controller
         ]);
 
         $data = $request->toArray();
-        
+
         $docente->nombre = $data['nombre'];
         $docente->apellido = $data['apellido'];
         $docente->email = $data['correo'];
         $docente->documento_identidad = $data['documento_identidad'];
-        
+
         if ($docente->save()) {
-            return redirect()->back()->with('msj',"Docente: {$data['nombre']} Editado");
+            return redirect()->back()->with('msj', "Docente: {$data['nombre']} Editado");
         }
     }
 
+    public function exportar()
+    {
+        $headers = array(
+            'Content-Type' => 'application/xlsx'
+        );
+
+        $nombre_archivo = "docentes_" . now()->format("d_m_y") . ".xlsx";
+
+        $url = Storage::url("exports/" . $nombre_archivo);
+
+        (new DocentesExport)->store($nombre_archivo, 'exports');
+
+        return url($url);
+    }
+
+    public function importar(Request $request)
+    {
+        Excel::import(new DocentesImport, $request->file( 'listado'));
+
+        toast('Importacion exitosa', 'success', 'top');
+        return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -139,6 +161,6 @@ class DocenteController extends Controller
      */
     public function destroy(Docente $docente)
     {
-        //
+        $docente->delete();
     }
 }

@@ -3,8 +3,9 @@
 @section('title','Docente')
 
 @section('content')
-@include('libs.datatables')
+@include('admin.docente.modals.importar_exportar_docente')
 
+@include('libs.datatables')
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto card-deck">
@@ -14,6 +15,10 @@
           Docentes
         </h3>
         <div class="text-right">
+          <a href="#importar_exportar_docentes" class="btn btn-elegant" data-toggle="modal">
+            <i class="fa fa-plus"></i>
+            Importar/Exportar Docentes
+          </a>
           <a href="{{ route('docentes.create') }}" class="btn btn-elegant">
             <i class="fa fa-plus"></i>
             Registrar Docente
@@ -32,7 +37,9 @@
             <tbody>
                 @foreach ($docentes as $docente)
                     <tr>
-                    <td>{{ $docente->nombre }}</td>
+                    <td>
+                      <img height="32" src="{{ $docente->getAvatar() }}" alt="Foto de {{$docente->nombre}}">
+                      {{ $docente->nombre }}</td>
                     <td>{{ $docente->apellido }}</td>
                     <td>{{ $docente->documento_identidad }}</td>
                     <td>{{ $docente->email }}</td>
