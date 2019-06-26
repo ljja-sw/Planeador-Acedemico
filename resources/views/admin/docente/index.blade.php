@@ -38,7 +38,7 @@
                 @foreach ($docentes as $docente)
                     <tr>
                     <td>
-                      <img height="32" src="{{ $docente->getAvatar() }}" alt="Foto de {{$docente->nombre}}">
+                      <img class="rounded-circle z-depth-0 m-1" height="32" src="{{ $docente->getAvatar() }}" alt="Foto de {{$docente->nombre}}">
                       {{ $docente->nombre }}</td>
                     <td>{{ $docente->apellido }}</td>
                     <td>{{ $docente->documento_identidad }}</td>

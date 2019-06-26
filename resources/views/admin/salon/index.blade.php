@@ -10,7 +10,7 @@
                     <h3 class="font-weight-bold card-title m-4">
                         <i class="far fa-calendar-alt text-muted"></i>
                         Salones y Horarios
-                    </h3>}
+                    </h3>
                 </div>
                 
                 <div class="text-right">
@@ -19,7 +19,6 @@
                         Registrar Salon
                     </a>
                 </div>
-                <div class="table-responsive">
                     <table id="tabla_salones_salas" class="table datatable table-striped">
                         <thead class="text-center">
                             <tr>
@@ -33,9 +32,6 @@
                                     <b>Horarios</b>
                                 </th>
                                 <th>
-                                    <b>Horarios Reservados</b>
-                                </th>
-                                <th>
                                     <b>Acciones</b>
                                 </th>
                             </tr>
@@ -46,13 +42,11 @@
                                 <td>{{$salon->nombre}}</td>
                                 <td>{{$salon->capacidad}}</td>
                                 <td>{{ count($salon->horarios) }}</td>
-                                <td>{{ count($salon->ocupados) }}</td>
                             <td><a href="{{ route("salon.show",$salon) }}">Detalles</a></td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                </div>
             </div>
         </div>
     </div>

@@ -35,7 +35,7 @@ aria-hidden="true">
 
     </div>
     <div class="modal-footer d-flex justify-content-center">
-      <button class="btn btn-default">
+      <button class="btn btn-elegant">
         <i class="fa fa-save"></i>
         Guardar
       </button>

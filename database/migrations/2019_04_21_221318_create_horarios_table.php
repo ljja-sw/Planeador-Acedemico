@@ -14,14 +14,15 @@ class CreateHorariosTable extends Migration
     public function up()
     {
         Schema::create('horarios', function (Blueprint $table) {
-         $table->bigIncrements('id');
-         $table->time('hora_inicio');
-         $table->time('hora_fin');
-         $table->string('dia');
-         $table->unsignedBigInteger('salon_sala_id');
-         $table->timestamps();
-            $table->foreign('salon_sala_id')->references('id')->on('salones_salas');
-     });
+            $table->bigIncrements('id');
+            $table->time('hora_inicio');
+            $table->time('hora_fin');
+            $table->unsignedBigInteger('dia');
+            $table->unsignedBigInteger('salon_sala_id');
+            $table->timestamps();
+            $table->foreign('salon_sala_id')->references('id')->on('salones_salas')->onDelete('cascade');
+            $table->foreign('dia')->references('id')->on('dias');
+        });
     }
 
     /**
@@ -32,6 +33,5 @@ class CreateHorariosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('horarios');
-
     }
 }

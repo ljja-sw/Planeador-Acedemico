@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\TemaPlaneador;
-use Auth;
 use PDF;
+use Auth;
 use App\Planeador;
 use App\Configuracion;
+use Carbon\Carbon;
+use App\TemaPlaneador;
+use App\AsignaturaDocente;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -28,21 +30,22 @@ class HomeController extends Controller
     {
         switch (Auth::user()->getRoleNames()[0]) {
             case 'Docente':
+            
             $planeadores = auth()->user()->planeadores;
             $asignaturas = auth()->user()->asignaturas;
             
-            if (count($planeadores) >= 1) {
+                if (count($planeadores)>=1) {
                 foreach ($planeadores as $planeador) {
-                    $clases = TemaPlaneador::where("fecha->primera_clase", today()->format("Y-m-d"))
-                    ->orWhere("fecha->segunda_clase", today()->format("Y-m-d"))
-                    ->wherePlaneadorId($planeadores->first()->id)
-                    ->get();
+                    $clases = $planeador->temas()
+                        ->where("fecha->primera_clase", today()->format("Y-m-d"))
+                        ->orWhere("fecha->segunda_clase", today()->format("Y-m-d"))
+                        ->get(); 
+                    }
+                }else{
+                    $clases = [];
                 }
-            } else {
-                $clases = [];
-            }
-            
-            return view('home.docente', compact('clases', 'asignaturas'));
+
+            return view('home.docente', compact('clases', 'asignaturas','horarios'));
             
             break;
             

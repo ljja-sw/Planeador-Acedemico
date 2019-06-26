@@ -11,11 +11,11 @@ class AsignaturaDocente extends Model
         'docente_id',
         'salon_id',
         'horario_id',
-        'dias'
+        'horario_2_id',
+
     ];
 
     protected $casts = [
-        'dias' => 'array',
     ];
 
     protected $table = 'asignaturas_docentes';
@@ -35,9 +35,13 @@ class AsignaturaDocente extends Model
         return $this->belongsTo(SalonSala::class);
     }
 
-    // public function horario(){
-    // 	return $this->belongsTo(Horario::class);
-    // }
+    public function horario(){
+    	return $this->belongsTo(Horario::class);
+    }
+
+    public function horario_2(){
+        return $this->belongsTo(Horario::class,'horario_2_id');
+    }
 
     // public function dia()
     // {

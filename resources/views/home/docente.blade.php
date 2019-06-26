@@ -16,73 +16,74 @@
                         <p class="m-0 text-muted">{{$clase->planeador->asignatura_planeador->nombre}}</p>
                         <h4 class="m-0 h4-responsive font-weight-bold">{{$clase->tema}}</h4>
                         <p class="m-0">{{$clase->metodología_tema->nombre}}</p>
+                        <p class="m-0 text-muted">{{$clase->horarioClase()->hora_inicio}} - {{$clase->horarioClase()->hora_fin}}</p>
                     </div>
-                    <ul class="nav mx-auto">
+                    <ul class="nav mx-auto text-center">
+                        @if($clase->reporte())
                         <li class="nav-item">
-                            <a href="#!/asistencia/{{$clase->slug}}/nuevo" class="btn btn-elegant nav-link">
+                            <a href="{{route('tema.reporte',$clase)}}" class="btn btn-elegant nav-link">
                                 <i class="fa fa-clock"></i>
-                                Registrar Asistencia</a>
+                                Registrar Reporte</a>
+                                <p class="m-0 text-muted">{{ $clase->horarioClase()->tiempo_restante() }} restantes</p>
+                                
                             </li>
-                            <li class="nav-item">
-                                <a href="#!/asistencia/{{$clase->slug}}" class="btn btn-elegant nav-link">
-                                    <i class="fa fa-clock"></i>
-                                    Ver Reporte de Asistencia</a>
+                            @endif
+                        </ul>
+                        <hr>
+                        @empty
+                        <div class="pl-2 py-3">
+                            <h4 class="m-0 h4-responsive font-weight-bold">No hay clases programadas para hoy.</h4>
+                        </div>
+                        @endforelse
+                    </div>
+                    <div class="card card-body">
+                        <small class="text-muted pb-2">Mis Asignaturas</small>
+                        <div class="my-2">
+                            <ul class="list-group list-group-flush font-weight-bold">
+                                @forelse ($asignaturas as $asignatura)
+                                <li class="list-group-item ">
+                                    <a href="#">{{$asignatura->nombre}} - {{$asignatura->grupo}}</a>
+                                    <span class="float-right">
+                                        @if(!is_null($asignatura->planeador))
+                                        <a href="{{ route('docente.planeador.ver',$asignatura)  }}">
+                                            <i class="fa fa-eye"></i>
+                                            Ver Planeador
+                                        </a>
+                                        @else
+                                        <a href="{{ route('docente.generar.planeador',$asignatura) }}">
+                                            <i class="fa fa-plus"></i>
+                                            Crear Planeador
+                                        </a>
+                                        @endif
+                                    </span>
                                 </li>
+                                @empty
+                                <p class="font-weight-bold">
+                                    No tienes asignaturas delegadas
+                                </p>
+                                @endif
                             </ul>
-                            <hr>
-                            @empty
-                            <div class="pl-2 py-3">
-                                <h4 class="m-0 h4-responsive font-weight-bold">No hay clases programadas para hoy.</h4>
-                            </div>
-                            @endforelse
                         </div>
-                        <div class="card card-body">
-                            <small class="text-muted pb-2">Mis Asignaturas</small>
-                            <div class="my-2">
-                                <ul class="list-group list-group-flush font-weight-bold">
-                                    @forelse ($asignaturas as $asignatura)
-                                    <li class="list-group-item ">
-                                        <a href="#">{{$asignatura->nombre}} - {{$asignatura->grupo}}</a>
-                                        <span class="float-right">
-                                            @if(!is_null($asignatura->planeador))
-                                            <a href="{{ route('docente.planeador.ver',$asignatura)  }}">
-                                                <i class="fa fa-eye"></i>
-                                                Ver Planeador
-                                            </a>
-                                            @else
-                                            <a href="{{ route('docente.generar.planeador',$asignatura) }}">
-                                                <i class="fa fa-plus"></i>
-                                                Crear Planeador
-                                            </a>
-                                            @endif
-                                        </span>
-                                    </li>
-                                    @empty
-                                    <p class="font-weight-bold">
-                                        No tienes asignaturas delegadas
-                                    </p>
-                                    @endif
+                    </div>
+                    <div class="card card-body">
+                        <small class="text-muted pb-2">Enlaces Rápidos</small>
+                        
+                        <div class="my-2">
+                            <ul class="nav font-weight-bold flex-center">
+                                {{-- 
+                                    <li class="nav-item">
+                                        <a href="#!" data-target="#modal_planeador_asignatura" data-toggle="modal" class="btn btn-elegant  text-center ">
+                                            <i class="fa fa-list"></i>
+                                            Crear Planeador Académico
+                                        </a>
+                                    </li> 
+                                    --}}
                                 </ul>
-                            </div>
-                        </div>
-                        <div class="card card-body">
-                            <small class="text-muted pb-2">Enlaces Rápidos</small>
-                            
-                            <div class="my-2">
-                                <ul class="nav font-weight-bold flex-center">
-                                    {{-- 
-                                        <li class="nav-item">
-                                            <a href="#!" data-target="#modal_planeador_asignatura" data-toggle="modal" class="btn btn-elegant  text-center ">
-                                                <i class="fa fa-list"></i>
-                                                Crear Planeador Académico
-                                            </a>
-                                        </li> 
-                                        --}}
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endsection
-                
+            </div>
+            @endsection
+            
+            

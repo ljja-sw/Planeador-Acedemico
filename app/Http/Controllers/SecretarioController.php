@@ -8,17 +8,17 @@ use App\SalonSala;
 use App\Docente;
 use App\User;
 use Hash;
-Use Alert;
+use Alert;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
 class SecretarioController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $secretarios = User::role('secretario')->get();
@@ -26,21 +26,21 @@ class SecretarioController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('admin.secretario.create');
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $data = $request->toArray();
@@ -56,93 +56,93 @@ class SecretarioController extends Controller
             'documento_identidad' => $data['documento_identidad'],
             'email' => $data['correo'],
             'password' => Hash::make($password),
-            ]);
+        ]);
 
-            $secretario_academico->assignRole($rol);
+        $secretario_academico->assignRole($rol);
 
-            return redirect()->route('secretarios.index');
-        }
+        return redirect()->route('secretarios.index');
+    }
 
-        /**
-        * Display the specified resource.
-        *
-        * @param  \App\User  $user
-        * @return \Illuminate\Http\Response
-        */
-        public function show(User $user)
-        {
-            return view('admin.secretario.show',compact('user'));
-        }
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        return view('admin.secretario.show', compact('user'));
+    }
 
-        /**
-        * Update the specified resource in storage.
-        *
-        * @param  \Illuminate\Http\Request  $request
-        * @param  \App\User  $user
-        * @return \Illuminate\Http\Response
-        */
-        public function update(Request $request, User $user)
-        {
-            $data = $request->toArray();
-            $user->nombre = $data['nombre'];
-            $user->apellido = $data['apellido'];
-            $user->documento_identidad = $data['documento_identidad'];
-            $user->email = $data['correo'];
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $user)
+    {
+        $data = $request->toArray();
+        $user->nombre = $data['nombre'];
+        $user->apellido = $data['apellido'];
+        $user->documento_identidad = $data['documento_identidad'];
+        $user->email = $data['correo'];
 
-            if ($user->save()) {
-                Alert::success('Secretario modificado', '')->showCloseButton();
-                return redirect()->route('secretarios.show',$data['documento_identidad']);
-            }else{
-                Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();
-                return redirect()->route('secretarios.show',$data['documento_identidad']);
-            }
-        }
-
-        /**
-        * Remove the specified resource from storage.
-        *
-        * @param  \App\User  $user
-        * @return \Illuminate\Http\Response
-        */
-        public function destroy(User $user)
-        {
-            //
-        }
-
-        public function formDesignarAsignatura(Request $request){
-            $docente = Docente::find($request->docente);
-            $asignatura = Asignatura::find($request->asignatura);
-            $salones = SalonSala::all();
-
-            return view('delegar_asignatura',
-                compact('docente','asignatura','salones'));
-        }
-
-        public function DesignarAsignatura(Request $request){
-            $docente = Docente::find($request->docente);
-            $asignatura = Asignatura::find($request->asignatura);
-
-            if (count($request->dias)>1) {
-              if ($request->dias[1] == $request->dias[2]) {
-                return redirect()->back()->withErrors('Una asignatura con dos o mas horarios no puede ser asignada para el mismo dia');
-              } else {
-                AsignaturaDocente::create([
-                    'asignatura_id' => $request->asignatura,
-                    'docente_id'  => $request->docente,
-                    'dias'  => $request->dias,
-                    // 'salon_id'  => $request->salon,
-                    // 'horario_id'  => $request->horario
-                ]);
-              }
-            } else {
-              AsignaturaDocente::create([
-                  'asignatura_id' => $request->asignatura,
-                  'docente_id'  => $request->docente,
-                  'dias'  => $request->dias,
-                  // 'salon_id'  => $request->salon,
-                  // 'horario_id'  => $request->horario
-              ]);
-            }
-            return redirect('/')->with('msj',"Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");
+        if ($user->save()) {
+            Alert::success('Secretario modificado', '')->showCloseButton();
+            return redirect()->route('secretarios.show', $data['documento_identidad']);
+        } else {
+            Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();
+            return redirect()->route('secretarios.show', $data['documento_identidad']);
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        //
+    }
+
+    public function formDesignarAsignatura(Request $request)
+    {
+        $docente = Docente::find($request->docente);
+        $asignatura = Asignatura::find($request->asignatura);
+        $salones = SalonSala::all();
+
+        return view(
+            'delegar_asignatura',
+            compact('docente', 'asignatura', 'salones')
+        );
+    }
+
+    public function DesignarAsignatura(Request $request)
+    {
+        
+        $docente = Docente::find($request->docente);
+        $asignatura = Asignatura::find($request->asignatura);
+       
+        if (count($request->horario)>1) {
+            AsignaturaDocente::create([
+            'asignatura_id' => $request->asignatura,
+            'docente_id'  => $request->docente,
+            'horario_id'  => $request->horario[0],
+            'horario_2_id'  => $request->horario[1]
+
+        ]); 
+        }else{
+             AsignaturaDocente::create([
+            'asignatura_id' => $request->asignatura,
+            'docente_id'  => $request->docente,
+            'horario_id'  => $request->horario
+        ]);
+        }
+
+        return redirect('/')->with('msj', "Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");
+    }
+}

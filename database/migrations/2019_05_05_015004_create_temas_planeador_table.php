@@ -19,8 +19,11 @@ class CreateTemasPlaneadorTable extends Migration
             $table->string('fecha');
             $table->string('tema');
             $table->string('slug');
-            $table->unsignedInteger('metodologia');
-            $table->unsignedInteger('planeador_id');
+            $table->unsignedBigInteger('metodologia');
+            $table->unsignedBigInteger('planeador_id');
+            $table->foreign('planeador_id')->references('id')->on('planeadores');
+            $table->foreign('metodologia')->references('id')->on('metodologias');
+
         });
     }
 

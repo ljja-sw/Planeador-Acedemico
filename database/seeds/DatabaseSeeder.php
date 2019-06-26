@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
     {
       Configuracion::create([
         'inicio_clases' => now(),
-        'inicio_periodo_academico' => 1,
-        'fin_periodo_academico' => 4,
+        'inicio_periodo_academico' => 4,
+        'fin_periodo_academico' => 8,
         'numero_semanas' => 18
       ]);
 

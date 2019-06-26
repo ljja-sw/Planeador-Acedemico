@@ -21,14 +21,22 @@ class PlaneadorController extends Controller
     public function create(Asignatura $asignatura)
     {
 
-        $dias = AsignaturaDocente::whereAsignaturaId($asignatura->id)
-            ->get()->first()->dias;
+        $asignatura_docente = AsignaturaDocente::whereAsignaturaId($asignatura->id)
+        ->get()->first();
 
-        $configuracion = Configuracion::find(1);
+        $dias[] = $asignatura_docente->horario->dia_semana->dia_semana;     
+        if ($asignatura_docente->horario_2) {
+          $dias[] = $asignatura_docente->horario_2->dia_semana->dia_semana;
+      }else{
 
-        $metodologías = Metodologia::all();
-        return view('planeador.create', compact('metodologías', 'asignatura', 'dias', 'configuracion'));
-    }
+      }
+
+      $configuracion = Configuracion::find(1);
+
+      $metodologías = Metodologia::all();
+
+      return view('planeador.create', compact('metodologías', 'asignatura', 'dias', 'configuracion'));
+  }
 
     /**
      * Store a newly created resource in storage.

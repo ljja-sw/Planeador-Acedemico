@@ -46,6 +46,39 @@ class TemaPlaneador extends Model
 	{
 		return $this->belongsTo(Metodologia::class, 'metodologia');
 	}
+
+	public function horarioClase()
+	{
+		$dia_semana = Carbon::now()->dayOfWeek;
+
+		$asignatura_id = $this->planeador->asignatura_planeador->id;
+		$docente_id = $this->planeador->docente;
+		
+		$asignacion = AsignaturaDocente::where('asignatura_id',$asignatura_id)->where('docente_id',$docente_id)->get()->first();
+
+		if ($asignacion->horario->dia == $dia_semana) {
+			return $asignacion->horario;
+		}elseif ($asignacion->horario_2->dia == $dia_semana){
+			return $asignacion->horario_2;
+		}else{
+			return [];
+		}
+
+	}
+
+	public function reporte()
+	{
+		$hora = Carbon::now();
+		
+		$hora_inicio = Carbon::parse($this->horarioClase()['hora_inicio']);
+		$hora_fin = Carbon::parse($this->horarioClase()['hora_fin']);
+
+		if ($hora->gte($hora_inicio) && $hora->lte($hora_fin->addMinutes(15))) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 	
 	// public function getRouteKeyName()
 	// {

@@ -17,15 +17,12 @@ class CreateAsignaturasDocentesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('asignatura_id');
             $table->unsignedBigInteger('docente_id');
-            // $table->unsignedBigInteger('dia_id');
-            $table->json('dias');
-            // $table->unsignedBigInteger('salon_id');
-            // $table->unsignedBigInteger('horario_id');
-            // $table->foreign('dia_id')->references('id')->on('dias');
+            $table->unsignedBigInteger('horario_id');
+            $table->unsignedBigInteger('horario_2_id')->nullable();
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');
             $table->foreign('docente_id')->references('id')->on('docentes');
-            // $table->foreign('salon_id')->references('id')->on('salones_salas');
-            // $table->foreign('horario_id')->references('id')->on('horarios');
+            $table->foreign('horario_id')->references('id')->on('horarios');
+            $table->foreign('horario_2_id')->references('id')->on('horarios');
             $table->timestamps();
         });
     }

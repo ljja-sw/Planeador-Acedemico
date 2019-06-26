@@ -8,18 +8,6 @@
 		<i class="fa fa-users"></i>
 		Secretarios Académicos</a>
 </li>
-<li class="nav-item">
-	{{-- Enlaces Administradores --}}
-	<a class="nav-link" href="{{route('admin.configuraciones')}}">
-		<i class="fa fa-cog"></i>
-		Configuraciones</a>
-</li>
-{{-- <li class="nav-item">
-	<a href="{{ route('salon.index') }}" class="nav-link">
-<i class="far fa-calendar-alt"></i>
-Salones y Horarios
-</a>
-</li> --}}
 @break
 
 @case("Secretario")
@@ -46,10 +34,10 @@ Salones y Horarios
 </li>
 
 <li class="nav-item">
-	{{-- Enlaces Administradores --}}
-	<a class="nav-link" href="{{route('admin.configuraciones')}}">
-		<i class="fa fa-cog"></i>
-		Configuraciones</a>
+	<a href="{{ route('salon.index') }}" class="nav-link">
+<i class="far fa-calendar-alt"></i>
+Salones y Horarios
+</a>
 </li>
 @break
 
