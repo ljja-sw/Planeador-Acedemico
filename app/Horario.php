@@ -8,10 +8,11 @@ use Carbon\Carbon;
 class Horario extends Model
 {
     protected $fillable = [
-    	'hora_inicio',
-    	'hora_fin',
-    	'dia',
-    	'salon_sala_id'
+        'hora_inicio',
+        'hora_fin',
+        'dia',
+        'salon_sala_id',
+        'jornada_id'
     ];
 
     protected $casts = [
@@ -21,12 +22,17 @@ class Horario extends Model
 
     public function dia_semana()
     {
-        return $this->belongsTo(Dia::class,'dia');
+        return $this->belongsTo(Dia::class, 'dia');
     }
 
     public function salon()
     {
-    	return $this->belongsTo(SalonSala::class,'salon_sala_id');
+        return $this->belongsTo(SalonSala::class, 'salon_sala_id');
+    }
+
+    public function jornada()
+    {
+        return $this->belongsTo(Jornada::class, 'jornada_id');
     }
 
     public function tiempo_restante()
@@ -34,13 +40,11 @@ class Horario extends Model
         $hora = Carbon::now();
         $hora_fin = Carbon::parse($this->hora_fin);
 
-        $horas = $hora_fin->diffInHours($hora);
-        $minutos = $hora_fin->subHours($hora_fin->diffInHours($hora))->diffInMinutes($hora);
-
-        $tiempo_restante = (!$horas == 0) 
-            ? $horas. " hora(s) y ".$minutos." minutos(s)"
-            : $minutos." minutos(s)";
-
+        $horas = $hora_fin->diffInHours($hora, true);
+        
+        $tiempo_restante = $hora_fin->addMinutes(30)->diffForHumans([
+            'parts' => 2,
+        ]);
         return $tiempo_restante;
     }
 
@@ -51,6 +55,6 @@ class Horario extends Model
 
     public function ocupado_2()
     {
-        return $this->hasOne(AsignaturaDocente::class,'horario_2_id');
+        return $this->hasOne(AsignaturaDocente::class, 'horario_2_id');
     }
 }

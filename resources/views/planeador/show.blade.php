@@ -99,33 +99,12 @@
                             <tr>
                                 <th class="text-center td-tema">
                                     <h4 class="font-weight-bold">
-                                        Evaluacion <a href="#!editar evaluacion" id="editarEvaluacion">
-                                            <i class="fa fa-pen editarEvaluacion"></i>
+                                        Evaluacion
                                         </a>
                                     </h4>
                                 </th>
                             </tr>
                             <tr>
-                                <td>
-                                    <span id="evaluaciones">{!! $planeador->evaluaciones !!}</span>
-
-                                    <form action="/editar/planeador/{{$planeador->id}}" method="post" id="formEvaluacion" style="display:none">
-                                        @csrf
-                                        <div class="md-form md-outline m-0">
-                                            <textarea class="form-control" name="evaluaciones" id="evaluacionesInput" cols="30" rows="40" style="height: 100px" required>
-                                                {!! $planeador->evaluaciones !!}
-                                            </textarea>
-                                        </div>  
-
-                                        <div class="text-center my-3">
-                                            <button class="btn btn-primary">
-                                            <i class="fa fa-save"></i>
-                                            Guardar
-                                        </button>
-                                        </div>
-                                    </form>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <div class="row">
@@ -157,14 +136,14 @@
                                     <tr class=" red lighten-4">
                                         <th scope="row" class="border-left"><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
                                         <td> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
-                                        <td class="td-tema"> <p class="font-weight-bold m-0">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></p></td>
+                                        <td class="td-tema"> <p class="font-weight-bold m-0">{{ $tema->tema }}</p></td>
                                         <td> <p class="font-weight-bold m-0">{{ $tema->metodología_tema->nombre }}</p></td>
                                     </tr>
                                     @else
                                     <tr>
                                         <th scope="row">{{ $tema->semana }}</th>
                                         <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
+                                        <td  class="td-tema">{{ $tema->tema }} </td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
                                     @endif
@@ -173,14 +152,14 @@
                                     <tr class=" red lighten-4 border">
                                         <th scope="row">{{ $tema->semana }}</th>
                                         <td class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
+                                        <td  class="td-tema">{{ $tema->tema }}</td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
                                     @else
                                     <tr>
                                         <th scope="row">{{ $tema->semana }}</th>
                                         <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
+                                        <td  class="td-tema">{{ $tema->tema }}</td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
                                     @endif
@@ -196,69 +175,3 @@
     </div>
 </div>
 @endsection
-@push('styles')
-<style>
-    .editarTema, .editarEvaluacion{
-        display: none;
-    }
-    .td-tema:hover .editarTema {
-        display: inline;
-    }
-
-    .td-tema:hover .editarEvaluacion{
-        display: inline;
-    }
-</style>
-@endpush
-@push('scripts')
-
-<script>
-    $(document).ready(function(){
-        $('.editarTema').on('click',function(){
-           var tema = $(this).data('tema');
-           cargarTema(tema);
-           $(".modal-body #idTema").val(tema);
-           $('#modalEditarTema').modal({show:true});
-       }); 
-
-           $("#editarEvaluacion").on('click',function(){
-            $("#formEvaluacion").show(1000)
-            $("#evaluaciones").hide(1000)
-        });
-
-            function cargarTema(id){
-                $('#temaPlaneador').text("Cargando...")
-                $('#temaInput').val("Cargando...")
-                $('#metodologia').val(1)
-                $('#semana').text("Cargando...")
-
-                $.ajax({
-                    url : "{{url('api/temas/')}}",
-                    type : 'GET',
-                    data : {
-                        'id' : id
-                    },
-                    dataType:'json',
-                    success : function(data) {              
-                        $('#temaPlaneador').text(data['tema'])
-                        $('#temaInput').val(data['tema'])
-                        $('#metodologia').val(data['metodologia'])
-                        $('#semana').text(data['semana'])
-                    },
-                    error : function(request,error)
-                    {
-
-                    }
-                });
-            }
-
-            ClassicEditor
-            .create( document.querySelector( '#evaluacionesInput' ) )
-           .catch( error => {
-            console.error( error );
-        });
-
-        });
-    </script>
-
-    @endpush

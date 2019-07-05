@@ -6,7 +6,7 @@
         <form action="{{ route('salon.store') }}" method="POST" autocomplete="off">
             @csrf
             <div class="row"> 
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="mx-auto my-5">
                         <div class="text-center">
                             <i class="fa fa-calendar-alt fa-3x m-2"></i>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="mx-auto my-5">
                         <div class="text-center">
                             <i class="fa fa-clock fa-3x m-2"></i>
@@ -57,29 +57,38 @@
                                         <th>
                                             <b>Día</b>
                                         </th>
+                                        <th>
+                                            <b>Jornada</b>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody id="cuerpo_tabla_horarios">
                                     <tr id="1" class="fila_horario">
                                         <td>
                                             <div class="md-form md-outline">
-                                                <input type="time" class="form-control" name="hora_inicio[]" required min="7:00" max="22:00">
+                                                <input type="time" class="form-control" name="hora_inicio[]" required min="7:00" max="22:30">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="md-form md-outline">
-                                                <input type="time" class="form-control" name="hora_fin[]" irequired min="7:00" max="22:00">
+                                                <input type="time" class="form-control" name="hora_fin[]" irequired min="7:00" max="22:30">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="md-form md-outline">
                                                 <select class="custom-select" name="dia[]" style="height:50px" required>
-                                                    <option value="1">Lunes</option>
-                                                    <option value="2">Martes</option>
-                                                    <option value="3">Miercoles</option>
-                                                    <option value="4">Jueves</option>
-                                                    <option value="5">Viernes</option>
-                                                    <option value="6">Sabado</option>
+                                                    @foreach ($dias as $dia)
+                                                            <option value="{{$dia->id}}">{{$dia->dia}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="md-form md-outline">
+                                                <select class="custom-select" name="jornada[]" style="height:50px" required>
+                                                    @foreach ($jornadas as $jornada)
+                                                        <option value="{{$jornada->id}}">{{$jornada->nombre}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </td>

@@ -6,6 +6,7 @@
 @include('admin.salon.modals.edit')
 @include('admin.salon.modals.delete')
 @include('admin.salon.modals.horario_edit')
+@include('admin.salon.modals.horario_delete')
 
 <div class="container">
     <div class="row">
@@ -58,15 +59,15 @@
                                 <td>{{$horario->dia_semana->dia}}</td>
                                 <td>{{$horario->hora_inicio}}</td>
                                 <td>{{$horario->hora_fin}}</td>
-                                <td>NOC/DIU</td>
-                                <td>{{($horario->ocupado) ? "Si" : "No"}}</td>
+                                <td>{{$horario->jornada->nombre}}</td>
+                                <td>{{($horario->ocupado || $horario->ocupado_2) ? "Si" : "No"}}</td>
                                 <td class="d-flex justify-content-center py-2">
                                     <ul class="nav">
                                         <li class="nav-item">
                                             <a href="#modal_editar_horario" data-id="{{$horario->id}}" data-toggle="modal" class="nav-link"><i class="fa fa-pen"></i> Editar</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#!Eliminar" data-toggle="modal" class="nav-link"> <i class="fa fa-trash"></i>
+                                            <a href="#modal_eliminar_horario" data-id="{{$horario->id}}" data-toggle="modal" class="nav-link"> <i class="fa fa-trash"></i>
                                                 Eliminar</a>
                                         </li>
                                     </ul>
@@ -75,6 +76,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="float-right">
+                        <a href="#" class="btn btn-elegant"><i class="fa fa-plus"></i> Agregar Horario</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,9 +90,11 @@
     $('#tabla_horarios').DataTable({
         "paging": false,
         "ordering": true,
-        "info": true,
+        "info": false,
         "searching": false
     });
     $('.dataTables_length').addClass('bs-select');
+
+    
 </script>
 @endpush

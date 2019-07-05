@@ -6,6 +6,8 @@ use App\SalonSala;
 use App\Horario;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use App\Dia;
+use App\Jornada;
 
 class SalonSalaController extends Controller
 {
@@ -27,7 +29,9 @@ class SalonSalaController extends Controller
      */
     public function create()
     {
-        return view('admin.salon.create');
+        $jornadas = Jornada::all();
+        $dias = Dia::all();
+        return view('admin.salon.create',compact( 'jornadas','dias'));
     }
 
     /**
@@ -53,6 +57,7 @@ class SalonSalaController extends Controller
                 'hora_inicio' => $request['hora_inicio'][$h],
                 'hora_fin' => $request['hora_fin'][$h],
                 'dia' => $request['dia'][$h],
+                'jornada_id' => $request['jornada'][$h],
                 'salon_sala_id'  => $salon_sala->id,
             ]);
 
@@ -109,9 +114,17 @@ class SalonSalaController extends Controller
     }
 
     public function destroyHorario(Request $request)
-    {
+    {   
         $horario = Horario::find($request->id);
-        return $horario;
+
+        try {
+            $horario->delete();
+            toast('Horario eliminado satisfactoriamente', 'success', 'top');
+            return redirect()->back();
+        } catch (QueryException  $th) {
+            alert('Hubo un error eliminando el horario', 'Verifica que no esté ocupado', 'error')->showConfirmButton('Entendido');
+            return redirect()->back();
+        }
     }
 
     /**

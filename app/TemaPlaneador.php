@@ -15,25 +15,25 @@ class TemaPlaneador extends Model
 		'planeador_id',
 		'slug'
 	];
-	
+
 	protected $table = "temas_planeador";
-	
+
 	public $timestamps = false;
-	
+
 	protected $casts = [
 		'fecha' => 'array',
 	];
 
 	public function getFechas($fecha = "")
 	{
-		if($fecha == ""){
+		if ($fecha == "") {
 			if (count($this->fecha) > 1) {
-				return Carbon::parse($this->fecha['primera_clase']) ->formatLocalized('%d/%m/%Y')." - ".Carbon::parse($this->fecha['segunda_clase'])->formatLocalized('%d/%m/%Y');
+				return Carbon::parse($this->fecha['primera_clase'])->formatLocalized('%d/%m/%Y') . " - " . Carbon::parse($this->fecha['segunda_clase'])->formatLocalized('%d/%m/%Y');
 			} else {
-				return Carbon::parse($this->fecha['primera_clase']) ->formatLocalized('%d/%m/%Y');
+				return Carbon::parse($this->fecha['primera_clase'])->formatLocalized('%d/%m/%Y');
 			}
-		}else{
-			return Carbon::parse($this->fecha[$fecha]) ->formatLocalized('%d/%m/%Y');
+		} else {
+			return Carbon::parse($this->fecha[$fecha])->formatLocalized('%d/%m/%Y');
 		}
 	}
 
@@ -41,7 +41,7 @@ class TemaPlaneador extends Model
 	{
 		return $this->belongsTo(Planeador::class, 'planeador_id');
 	}
-	
+
 	public function metodología_tema()
 	{
 		return $this->belongsTo(Metodologia::class, 'metodologia');
@@ -53,35 +53,34 @@ class TemaPlaneador extends Model
 
 		$asignatura_id = $this->planeador->asignatura_planeador->id;
 		$docente_id = $this->planeador->docente;
-		
-		$asignacion = AsignaturaDocente::where('asignatura_id',$asignatura_id)->where('docente_id',$docente_id)->get()->first();
+
+		$asignacion = AsignaturaDocente::where('asignatura_id', $asignatura_id)->where('docente_id', $docente_id)->get()->first();
 
 		if ($asignacion->horario->dia == $dia_semana) {
 			return $asignacion->horario;
-		}elseif ($asignacion->horario_2->dia == $dia_semana){
+		} elseif ($asignacion->horario_2 && $asignacion->horario_2->dia == $dia_semana) {
 			return $asignacion->horario_2;
-		}else{
+		} else {
 			return [];
 		}
-
 	}
 
 	public function reporte()
 	{
 		$hora = Carbon::now();
-		
+
 		$hora_inicio = Carbon::parse($this->horarioClase()['hora_inicio']);
 		$hora_fin = Carbon::parse($this->horarioClase()['hora_fin']);
 
-		if ($hora->gte($hora_inicio) && $hora->lte($hora_fin->addMinutes(15))) {
+		if ($hora->gte($hora_inicio) && $hora->lte($hora_fin->addMinutes(30))) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	
-	// public function getRouteKeyName()
-	// {
-	// 	return 'slug';
-	// }
+
+	public function getRouteKeyName()
+	{
+		return 'slug';
+	}
 }

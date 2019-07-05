@@ -36,7 +36,7 @@
                     <span class="d-none d-md-inline">
                         <img src="/images/logo_alt.png" alt="Planeador Académico" title="Planeador Académico">
                     </span>
-                    Planeador <span class="font-weight-bold">Académico</span> <small class=""></small>
+                    <span class="font-weight-bold">Planeador</span> Académico <small class="">BETA</small>
                 </a>
 
                 <div class="collapse navbar-collapse text-center" id="navbarOptions">
