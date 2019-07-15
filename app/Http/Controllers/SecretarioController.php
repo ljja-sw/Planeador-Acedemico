@@ -123,10 +123,9 @@ class SecretarioController extends Controller
 
     public function DesignarAsignatura(Request $request)
     {
-        
         $docente = Docente::find($request->docente);
         $asignatura = Asignatura::find($request->asignatura);
-       
+
         if (count($request->horario)>1) {
             AsignaturaDocente::create([
             'asignatura_id' => $request->asignatura,
@@ -134,12 +133,12 @@ class SecretarioController extends Controller
             'horario_id'  => $request->horario[0],
             'horario_2_id'  => $request->horario[1]
 
-        ]); 
+        ]);
         }else{
              AsignaturaDocente::create([
             'asignatura_id' => $request->asignatura,
             'docente_id'  => $request->docente,
-            'horario_id'  => $request->horario
+            'horario_id'  => $request->horario[0]
         ]);
         }
 

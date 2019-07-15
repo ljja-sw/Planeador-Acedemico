@@ -112,7 +112,7 @@
                                     <label for="horarios">Horarios Disponibles</label>
                                     <div class="input-group px-3">
                                         <select class="form-control custom-select horarios" id="horarios"
-                                            name="horario">
+                                            name="horario[]">
                                         </select>
                                     </div>
                                 </div>
