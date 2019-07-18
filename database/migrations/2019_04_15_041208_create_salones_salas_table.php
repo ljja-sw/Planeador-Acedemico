@@ -16,6 +16,7 @@ class CreateSalonesSalasTable extends Migration
         Schema::create('salones_salas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre')->unique();
+            $table->string('slug');
             $table->unsignedInteger('capacidad');
             $table->timestamps();
         });

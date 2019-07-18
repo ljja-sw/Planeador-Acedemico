@@ -18,9 +18,9 @@ Route::group(['middleware' => 'auth:web,admin'], function () {
 });
 
 Route::get('reporte/{tema}', function (App\TemaPlaneador $tema) {
-    
+
     $planeador = $tema->planeador;
-    
+
     $asignatura_tema = $planeador->asignatura_planeador;
     $docente_tema = $planeador->docente_planeador;
 
@@ -59,6 +59,7 @@ Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::get('/admin/salones-salas/registrar', 'SalonSalaController@create')->name('salon.create');
     Route::get('/admin/salones-salas/{salon}', 'SalonSalaController@show')->name('salon.show');
     Route::post('/admin/salones-salas/registrar', 'SalonSalaController@store')->name('salon.store');
+    Route::post('/admin/salones-salas/{salon}/agregar', 'SalonSalaController@agregarHorario')->name('salon.horario.agregar');
     Route::post('/admin/salones-salas/{salon}/update', 'SalonSalaController@update')->name('salon.update');
     Route::post( '/admin/salones-salas/{salon}/destroy', 'SalonSalaController@destroy')->name( 'salon.destroy');
     Route::post('/admin/horario/update', 'SalonSalaController@updateHorario')->name('salon.horario.update');

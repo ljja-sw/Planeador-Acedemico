@@ -49,6 +49,7 @@ class SalonSalaController extends Controller
 
         $salon_sala = SalonSala::create([
             'nombre' => $request['nombre'],
+            'slug' => str_slug($request['nombre'],'-'),
             'capacidad' => $request['capacidad']
         ]);
 
@@ -76,7 +77,8 @@ class SalonSalaController extends Controller
      */
     public function show(SalonSala $salon)
     {
-        return view('admin.salon.show', compact('salon'));
+        $jornadas = Jornada::all();
+        return view('admin.salon.show', compact('salon','jornadas'));
     }
 
     /**
@@ -95,6 +97,7 @@ class SalonSalaController extends Controller
 
         $salon->nombre = $request->nombre;
         $salon->capacidad = $request->capacidad;
+        $salon->slug = str_slug($request->nombre);
         $salon->save();
 
         toast('Salon/Sala editado satisfactoriamente', 'success', 'top');
@@ -108,13 +111,27 @@ class SalonSalaController extends Controller
         $horario->hora_fin = $request->hora_fin;
         $horario->dia = $request->dia;
         $horario->save();
-        
+
         toast('Horario editado satisfactoriamente', 'success', 'top');
         return redirect()->back();
     }
 
+    public function agregarHorario(Request $request, SalonSala $salon)
+    {
+        Horario::create([
+            'hora_inicio' => $request['hora_inicio'],
+            'hora_fin' => $request['hora_fin'],
+            'dia' => $request['dia'],
+            'jornada_id' => $request['jornada'],
+            'salon_sala_id'  => $salon->id,
+        ]);
+
+        toast('Horario creado satisfactoriamente', 'success', 'top');
+        return redirect()->back();
+    }
+
     public function destroyHorario(Request $request)
-    {   
+    {
         $horario = Horario::find($request->id);
 
         try {

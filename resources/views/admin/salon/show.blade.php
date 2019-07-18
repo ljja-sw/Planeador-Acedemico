@@ -3,10 +3,12 @@
 @section('title',$salon->nombre)
 @section('content')
 @include('libs.datatables')
+
 @include('admin.salon.modals.edit')
 @include('admin.salon.modals.delete')
 @include('admin.salon.modals.horario_edit')
 @include('admin.salon.modals.horario_delete')
+@include('admin.salon.modals.agregar_horario')
 
 <div class="container">
     <div class="row">
@@ -77,7 +79,7 @@
                         </tbody>
                     </table>
                     <div class="float-right">
-                        <a href="#" class="btn btn-elegant"><i class="fa fa-plus"></i> Agregar Horario</a>
+                        <a href="#modal_agregar_horario" data-toggle="modal" class="btn btn-elegant"><i class="fa fa-plus"></i> Agregar Horario</a>
                     </div>
                 </div>
             </div>
@@ -95,6 +97,6 @@
     });
     $('.dataTables_length').addClass('bs-select');
 
-    
+
 </script>
 @endpush

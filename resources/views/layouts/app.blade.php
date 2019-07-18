@@ -170,6 +170,7 @@
     </div>
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     @include('sweetalert::alert')
     @stack('scripts-libs')
     @stack('scripts')

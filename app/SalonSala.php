@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SalonSala extends Model
 {
-    protected $fillable = ['nombre','capacidad'];
+    protected $fillable = ['nombre','slug','capacidad'];
     protected $table = "salones_salas";
 
     public function asignaturas()
@@ -17,5 +17,10 @@ class SalonSala extends Model
     public function horarios()
     {
     	return $this->hasMany(Horario::class,'salon_sala_id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

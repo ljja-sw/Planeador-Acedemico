@@ -31,7 +31,7 @@ class AsignaturaController extends Controller
     	if(Asignatura::create($request->all())){
     		return back()->with('msj','Asignatura registrada exitosamente!');
     	}else{
-    		return back()->with();
+    		return back();
     	}
 
     	//$request->session()->flash('alert-success', 'User was successful added!');
@@ -73,7 +73,7 @@ class AsignaturaController extends Controller
         $asigna->intensidad_horaria = $data['intensidad_horaria'];
         $asigna->habilitable = $data['habilitable'];
         $asigna->validable = $data['validable'];
-            
+
             if ($asigna->save()) {
                 Alert::success('Asignatura modificado', '')->showCloseButton();
                 return redirect()->route('asignatura.detalles',$asigna);

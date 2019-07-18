@@ -12,7 +12,7 @@ class JornadasSeeder extends Seeder
      */
     public function run()
     {
-        Jornada::create(['nombre'=> "NOC"]);
-        Jornada::create(['nombre'=> "DIU"]);
+        Jornada::create(['nombre'=> "Nocturna"]);
+        Jornada::create(['nombre'=> "Diurna"]);
     }
 }

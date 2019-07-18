@@ -54,6 +54,7 @@
 		</div>
 	</div>
 </div>
+@endsection
 @push("scripts")
 <script>
   $('#tabla_asignaturas').DataTable({
@@ -64,4 +65,3 @@
 });
 </script>
 @endpush
-@stop
