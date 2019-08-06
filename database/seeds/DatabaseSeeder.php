@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
       Configuracion::create([
-        'inicio_clases' => "2019-04-22",
-        'inicio_periodo_academico' => 4,
+        'inicio_clases' => "2019-05-20",
+        'inicio_periodo_academico' => 5,
         'fin_periodo_academico' => 9,
         'numero_semanas' => 18
       ]);
@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
       $this->call(PermissionsSeeder::class);
       $this->call(MetodologiasSeeder::class);
       $this->call(JornadasSeeder::class);
+      $this->call(SalonesHorarios::class);
 
     }
 }

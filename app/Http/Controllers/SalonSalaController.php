@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Dia;
 use App\Jornada;
+use Carbon\Carbon;
 
 class SalonSalaController extends Controller
 {
@@ -31,7 +32,7 @@ class SalonSalaController extends Controller
     {
         $jornadas = Jornada::all();
         $dias = Dia::all();
-        return view('admin.salon.create',compact( 'jornadas','dias'));
+        return view('admin.salon.create', compact('jornadas', 'dias'));
     }
 
     /**
@@ -49,7 +50,7 @@ class SalonSalaController extends Controller
 
         $salon_sala = SalonSala::create([
             'nombre' => $request['nombre'],
-            'slug' => str_slug($request['nombre'],'-'),
+            'slug' => str_slug($request['nombre'], '-'),
             'capacidad' => $request['capacidad']
         ]);
 
@@ -78,7 +79,7 @@ class SalonSalaController extends Controller
     public function show(SalonSala $salon)
     {
         $jornadas = Jornada::all();
-        return view('admin.salon.show', compact('salon','jornadas'));
+        return view('admin.salon.show', compact('salon', 'jornadas'));
     }
 
     /**
@@ -104,8 +105,15 @@ class SalonSalaController extends Controller
         return redirect()->back();
     }
 
-    public function updateHorario(Request $request,Horario $horario)
+    public function updateHorario(Request $request, Horario $horario)
     {
+        $hora_inicio = Carbon::createFromTimeString($request['hora_inicio'], 'America/Bogota');
+        $hora_fin = Carbon::createFromTimeString($request['hora_fin'], 'America/Bogota');
+
+        if ($hora_fin->lessThanOrEqualTo($hora_inicio)) {
+            return redirect()->back()->withErrors("Hora Inicio debe ser menor Hora Fin ");
+        };
+
         $horario = Horario::find($request->id);
         $horario->hora_inicio = $request->hora_inicio;
         $horario->hora_fin = $request->hora_fin;
@@ -118,6 +126,13 @@ class SalonSalaController extends Controller
 
     public function agregarHorario(Request $request, SalonSala $salon)
     {
+        $hora_inicio = Carbon::createFromTimeString($request['hora_inicio'], 'America/Bogota');
+        $hora_fin = Carbon::createFromTimeString($request['hora_fin'], 'America/Bogota');
+
+        if ($hora_fin->lessThanOrEqualTo($hora_inicio)) {
+            return redirect()->back()->withErrors("Hora Inicio debe ser menor Hora Fin ");
+        };
+
         Horario::create([
             'hora_inicio' => $request['hora_inicio'],
             'hora_fin' => $request['hora_fin'],
@@ -152,13 +167,13 @@ class SalonSalaController extends Controller
      */
     public function destroy(SalonSala $salon)
     {
-       try {
+        try {
             $salon->delete();
             toast('Salon/Sala eliminado satisfactoriamente', 'success', 'top');
             return redirect()->back();
         } catch (QueryException  $th) {
             toast('Hubo un error eliminando el Salon/Sala, intentalo de nuevo', 'error', 'top');
             return redirect()->back();
-       }
+        }
     }
 }

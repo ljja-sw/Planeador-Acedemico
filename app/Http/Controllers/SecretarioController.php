@@ -127,21 +127,25 @@ class SecretarioController extends Controller
         $asignatura = Asignatura::find($request->asignatura);
 
         if (count($request->horario)>1) {
+            if ($request->horario[1] == $request->horario[0]) {
+                return redirect()->back()->withErrors("No se puede asignar el mismo horario 2 veces");
+            };
+            
             AsignaturaDocente::create([
-            'asignatura_id' => $request->asignatura,
-            'docente_id'  => $request->docente,
-            'horario_id'  => $request->horario[0],
-            'horario_2_id'  => $request->horario[1]
+                'asignatura_id' => $request->asignatura,
+                'docente_id'  => $request->docente,
+                'horario_id'  => $request->horario[0],
+                'horario_2_id'  => $request->horario[1]
 
-        ]);
+            ]);
         }else{
-             AsignaturaDocente::create([
+           AsignaturaDocente::create([
             'asignatura_id' => $request->asignatura,
             'docente_id'  => $request->docente,
             'horario_id'  => $request->horario[0]
         ]);
-        }
+       }
 
-        return redirect('/')->with('msj', "Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");
-    }
+       return redirect('/')->with('msj', "Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");
+   }
 }

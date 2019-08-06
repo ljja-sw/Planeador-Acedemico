@@ -137,9 +137,9 @@
                                     <td>
                                         <div class="md-form md-outline">
                                             @if (count($dias)>1)
-                                            <input readonly class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[0])->format("Y-m-d")}} - {{$configuracion->inicio_clases->add($i,'week')->weekday($dias[1])->format("Y-m-d")}}">
+                                            <input readonly class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[0])->format("Y-m-d")}} - {{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[1])->format("Y-m-d")}}">
                                             @else
-                                            <input readonly class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i,'week')->weekday($dias[0])->format("Y-m-d")}}">
+                                            <input readonly class="form-control text-center fechas" type="text" name="temas[{{ $i }}][fecha]" id="fecha_tema_{{$i}}" value="{{$configuracion->inicio_clases->add($i-1,'week')->weekday($dias[0])->format("Y-m-d")}}">
                                             @endif
                                         </div>
                                     </td>
