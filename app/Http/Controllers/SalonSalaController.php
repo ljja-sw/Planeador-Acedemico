@@ -155,7 +155,7 @@ class SalonSalaController extends Controller
             return redirect()->back();
         } catch (QueryException  $th) {
             alert('Hubo un error eliminando el horario', 'Verifica que no esté ocupado', 'error')->showConfirmButton('Entendido');
-            return redirect()->back();
+            return redirect()->route('salon.index');
         }
     }
 
@@ -169,10 +169,10 @@ class SalonSalaController extends Controller
     {
         try {
             $salon->delete();
-            toast('Salon/Sala eliminado satisfactoriamente', 'success', 'top');
-            return redirect()->back();
+            toast('Salon eliminado satisfactoriamente', 'success', 'top');
+            return redirect()->route('salon.index');
         } catch (QueryException  $th) {
-            toast('Hubo un error eliminando el Salon/Sala, intentalo de nuevo', 'error', 'top');
+            toast('Hubo un error eliminando el Salon, intentalo de nuevo', 'error', 'top');
             return redirect()->back();
         }
     }

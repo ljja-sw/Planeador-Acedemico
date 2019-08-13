@@ -48,6 +48,31 @@ class Horario extends Model
         return $tiempo_restante;
     }
 
+    public function getHoraInicio()
+    {
+        $datetime = today()->format('Y-m-d')."T".$this->hora_inicio.".000000Z"; 
+        return Carbon::parse($datetime);
+    }
+
+    public function getHoraFin()
+    {
+        $datetime = today()->format('Y-m-d')."T".$this->hora_fin.".000000Z"; 
+        return Carbon::parse($datetime);
+    }
+
+    public function cruceHorario(Horario $horario_comparar)
+    {     
+        // "hora_inicio horario a asignar >= Horario a comparar <= hora_fin horario a asignar"
+
+        $dia_horario = $horario_comparar->dia;
+        $hora_inicio = $horario_comparar->getHoraInicio();
+        $hora_fin = $horario_comparar->getHoraFin();
+        
+        return ($dia_horario == $this->dia 
+                  && $this->getHoraInicio()->gte($hora_inicio)
+                  && $this->getHoraFin()->gte($hora_fin));
+    }
+
     public function ocupado()
     {
         return $this->hasOne(AsignaturaDocente::class);

@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\AsignaturaDocente;
-use App\Asignatura;
-use App\SalonSala;
-use App\Docente;
 use App\User;
 use Hash;
 use Alert;
@@ -108,44 +104,4 @@ class SecretarioController extends Controller
     {
         //
     }
-
-    public function formDesignarAsignatura(Request $request)
-    {
-        $docente = Docente::find($request->docente);
-        $asignatura = Asignatura::find($request->asignatura);
-        $salones = SalonSala::all();
-
-        return view(
-            'delegar_asignatura',
-            compact('docente', 'asignatura', 'salones')
-        );
-    }
-
-    public function DesignarAsignatura(Request $request)
-    {
-        $docente = Docente::find($request->docente);
-        $asignatura = Asignatura::find($request->asignatura);
-
-        if (count($request->horario)>1) {
-            if ($request->horario[1] == $request->horario[0]) {
-                return redirect()->back()->withErrors("No se puede asignar el mismo horario 2 veces");
-            };
-            
-            AsignaturaDocente::create([
-                'asignatura_id' => $request->asignatura,
-                'docente_id'  => $request->docente,
-                'horario_id'  => $request->horario[0],
-                'horario_2_id'  => $request->horario[1]
-
-            ]);
-        }else{
-           AsignaturaDocente::create([
-            'asignatura_id' => $request->asignatura,
-            'docente_id'  => $request->docente,
-            'horario_id'  => $request->horario[0]
-        ]);
-       }
-
-       return redirect('/')->with('msj', "Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");
-   }
 }

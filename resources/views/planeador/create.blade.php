@@ -4,7 +4,7 @@
 @section('title','Planeador Academico: '.$asignatura->nombre)
 
 @include('libs.ckeditor')
-@include('libs.daterangepicker')
+{{-- @include('libs.daterangepicker') --}}
 
 @push('styles')
 @endpush
@@ -173,6 +173,7 @@
 </div>
 @endsection
 @push("scripts")
+
 @if (count($dias)>1)
 <script>
         $('.fechas').daterangepicker({
@@ -188,7 +189,7 @@
         })
 </script>
 @endif
-
+ 
 <script>
     ClassicEditor
     .create(document.querySelector('#evaluaciones'))

@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
       $this->call(PermissionsSeeder::class);
       $this->call(MetodologiasSeeder::class);
       $this->call(JornadasSeeder::class);
-      $this->call(SalonesHorarios::class);
+      // $this->call(SalonesHorarios::class);
 
     }
 }
