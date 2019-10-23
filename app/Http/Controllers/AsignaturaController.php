@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Asignatura;
+use App\Docente;
+use App\Horario;
+use App\SalonSala;
+use App\AsignaturaDocente;
 Use Alert;
 
 
@@ -74,13 +78,13 @@ class AsignaturaController extends Controller
         $asigna->habilitable = $data['habilitable'];
         $asigna->validable = $data['validable'];
 
-            if ($asigna->save()) {
-                Alert::success('Asignatura modificado', '')->showCloseButton();
-                return redirect()->route('asignatura.detalles',$asigna);
-            }else{
-                Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();
-                return redirect()->route('asignatura.detalles',$asigna);
-            }
+        if ($asigna->save()) {
+            Alert::success('Asignatura modificado', '')->showCloseButton();
+            return redirect()->route('asignatura.detalles',$asigna);
+        }else{
+            Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();
+            return redirect()->route('asignatura.detalles',$asigna);
+        }
     }
 
     public function destroy(asignatura $asigna)
@@ -94,5 +98,77 @@ class AsignaturaController extends Controller
         }
     }
 
+
+    public function formDesignarAsignatura(Request $request)
+    {
+        $docente = Docente::find($request->docente);
+        $asignatura = Asignatura::find($request->asignatura);
+        $salones = SalonSala::all();
+
+        return view(
+            'delegar_asignatura',
+            compact('docente', 'asignatura', 'salones')
+        );
+    }
+
+    public function DesignarAsignatura(Request $request)
+    {
+        $docente = Docente::find($request->docente);
+        $asignatura = Asignatura::find($request->asignatura);
+
+        $horarios_docente = AsignaturaDocente::where('id',$docente->id)->get();
+        $horario = Horario::find($request->horario[0]);
+
+        foreach ($horarios_docente as $horarios) {
+
+            if ($horarios->horario->cruceHorario($horario)) {
+                $error = "Cruce de horarios con {$horarios->asignatura->nombre} de {$horarios->horario->hora_inicio} a {$horarios->horario->hora_fin} el día {$horarios->horario->dia_semana->dia}";
+                return redirect()->back()->withErrors($error);
+
+            }else if($horarios->horario_2 && $horarios->horario_2->cruceHorario($horario)){
+                $error = "Cruce de horarios con {$horarios->asignatura->nombre} de {$horario->horario_2->hora_inicio} a {$horarios->horario_2->hora_fin} el día {$horarios->horario->dia_semana->dia}";
+                return redirect()->back()->withErrors($error);
+            }
+
+        }
+
+        if (count($request->horario)>1) {
+            $horario_2 = Horario::find($request->horario[1]);
+
+            foreach ($horarios_docente as $horarios) {
+
+                if ($horarios->horario->cruceHorario($horario_2)) {
+                    $error = "Cruce de horarios con {$horarios->asignatura->nombre} de {$horarios->horario->hora_inicio} a {$horarios->horario->hora_fin} el día {$horarios->horario->dia_semana->dia}"; 
+                    return redirect()->back()->withErrors($error);
+
+
+                }else if($horarios->horario_2 && $horarios->horario_2->cruceHorario($horario_2)){
+                    $error = "Cruce de horarios con {$horarios->asignatura->nombre} de {$horarios->horario_2->hora_inicio} a {$horarios->horario_2->hora_fin} el día {$horarios->horario_2->dia_semana->dia}";
+                    return redirect()->back()->withErrors($error);
+
+                }
+
+            }
+            if ($request->horario[1] == $request->horario[0]) {
+                return redirect()->back()->withErrors("No se puede asignar el mismo horario 2 veces");
+            };
+
+            AsignaturaDocente::create([
+                'asignatura_id' => $request->asignatura,
+                'docente_id'  => $request->docente,
+                'horario_id'  => $request->horario[0],
+                'horario_2_id'  => $request->horario[1]
+
+            ]);
+        }else{
+         AsignaturaDocente::create([
+            'asignatura_id' => $request->asignatura,
+            'docente_id'  => $request->docente,
+            'horario_id'  => $request->horario[0]
+        ]);
+        }
+
+     return redirect('/')->with('msj', "Se ha asignado {$asignatura->nombre} al docente {$docente->nombre_completo()}");
+    }
 
 }

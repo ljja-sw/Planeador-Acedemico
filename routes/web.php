@@ -45,8 +45,8 @@ Route::group(['middleware' => ['role:Admin', 'auth:admin']], function () {
 Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::get('/admin/configuraciones', 'AdminController@configuraciones')->name('admin.configuraciones');
     Route::post('/admin/configuraciones/guardar', 'AdminController@guardarConfiguraciones')->name('admin.configuraciones.guardar');
-    Route::get('designar-asignatura-docente', 'SecretarioController@formDesignarAsignatura')->name('form.designar.asignatura');
-    Route::post('designar-asignatura-docente', 'SecretarioController@DesignarAsignatura')->name('designar.asignatura.store');
+    Route::get('designar-asignatura-docente', 'AsignaturaController@formDesignarAsignatura')->name('form.designar.asignatura');
+    Route::post('designar-asignatura-docente', 'AsignaturaController@DesignarAsignatura')->name('designar.asignatura.store');
     Route::get('docentes', 'DocenteController@index')->name('docentes.index');
     Route::get('/docentes/{docente}/detalles', 'DocenteController@show')->name('docentes.show');
     Route::get('docentes/registrar', 'DocenteController@create')->name('docentes.create');

@@ -3,6 +3,7 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 $factory->define(App\SalonSala::class, function (Faker $faker) {
 	return [
@@ -13,8 +14,10 @@ $factory->define(App\SalonSala::class, function (Faker $faker) {
 });
 
 $factory->define(App\Horario::class, function (Faker $faker) {
-	$hora_fin = $faker->time('H:i:s','23:00:00');
-	$hora_inicio =$faker->time('H:i:s','19:00:00');
+	$hora = Carbon::createFromTimeString($faker->time('H:i:s','19:00:00'));
+
+	$hora_inicio = $hora->toDateTimeString();;
+	$hora_fin = $hora->add('hours',4)->toDateTimeString();;
 	return [
 		'hora_inicio' => $hora_inicio,
 		'hora_fin' => $hora_fin,

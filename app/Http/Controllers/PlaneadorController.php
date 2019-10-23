@@ -102,18 +102,6 @@ class PlaneadorController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Planeador  $planeador
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Planeador $planeador)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Planeador  $planeador
@@ -126,7 +114,6 @@ class PlaneadorController extends Controller
 
     public function editarPlaneador(Request $request, Planeador $planeador)
     {
-
         $planeador->evaluaciones = $request->evaluaciones;
         $planeador->save();
 
