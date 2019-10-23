@@ -70,7 +70,7 @@ class Horario extends Model
         
         return ($dia_horario == $this->dia 
                   && $this->getHoraInicio()->gte($hora_inicio)
-                  && $this->getHoraFin()->lte($hora_fin));
+                  && $this->getHoraFin()->gte($hora_fin));
     }
 
     public function ocupado()
