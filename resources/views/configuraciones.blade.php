@@ -17,27 +17,9 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
-                                <h6 class="text-center">Inicio de Clases</h6>
                                 <div class="md-form md-outline">
-                                    <label for="inicio_clases">Fecha</label>
+                                    <label for="inicio_clases">Fecha Inicio de Clases</label>
                                     <input type="text" id="inicio_clases" name="inicio_clases" class="form-control" value="{{$configuraciones->inicio_clases->format('Y-m-d')}}">
-                                </div>
-                                <h6 class="text-center">Peridodo Académico Actual</h6>
-                                <div class="form-row">
-                                    <div class="form-group col-6">
-                                        <select class="form-control custom-select" name="inicio-periodo" id="mes-inicio">
-                                            @foreach ($meses as $mes)
-                                            <option value="{{$mes->id}}" {{($configuraciones->inicio_periodo_academico == $mes->id)? 'selected' : ''}}>{{$mes->mes}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-6">
-                                        <select class="form-control custom-select" name="fin-periodo" id="mes-fin">
-                                            @foreach ($meses as $mes_fin)
-                                            <option value="{{$mes_fin->id}}" {{($configuraciones->fin_periodo_academico == $mes_fin->id)? 'selected' : ''}}>{{$mes_fin->mes}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
                                 </div>
                                 <div class="form-row">
                                   <div class="md-form md-outline col-12">
@@ -45,11 +27,28 @@
                                       <input type="text" id="numero_semanas" name="numero_semanas" class="form-control" value="{{$configuraciones->numero_semanas}}">
                                   </div>
                               </div>
-                          </div>
+                              <h6 class="text-center">Peridodo Académico Actual</h6>
+                              <div class="form-row">
+                                <div class="form-group col-6">
+                                    <select class="form-control custom-select" name="inicio-periodo" id="mes-inicio">
+                                        @foreach ($meses as $mes)
+                                        <option value="{{$mes->id}}" {{($configuraciones->inicio_periodo_academico == $mes->id)? 'selected' : ''}}>{{$mes->mes}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-6">
+                                    <select class="form-control custom-select" name="fin-periodo" id="mes-fin">
+                                        @foreach ($meses as $mes_fin)
+                                        <option value="{{$mes_fin->id}}" {{($configuraciones->fin_periodo_academico == $mes_fin->id)? 'selected' : ''}}>{{$mes_fin->mes}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-                      </div>
+                    </div>
 
-                      <div class="row float-right">
+                    <div class="row float-right">
                         <div class="col-12">
                             <button class="btn btn-primary">
                                 <i class="fa fa-save"></i>
@@ -68,7 +67,16 @@
     $('#inicio_clases').daterangepicker({
         singleDatePicker: true,
         format: 'YYYY-MM-DD'
-    })
+    });
+
+    $('#inicio_clases').change(function(){
+        let semanas = $('#numero_semanas').val()
+        let fechaInicio = moment($(this).val(), "YYYY-MM-DD")
+        let fechaFin = moment(fechaInicio.calendar()).add(semanas, 'weeks')
+ 
+        $('#mes-inicio').val(fechaInicio.month()+1)
+        $('#mes-fin').val(fechaFin.month()+1)
+    });
 </script>
 @endpush
 

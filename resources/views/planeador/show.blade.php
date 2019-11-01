@@ -100,78 +100,82 @@
                                 <th class="text-center td-tema">
                                     <h4 class="font-weight-bold">
                                         Evaluacion
-                                        </a>
-                                    </h4>
-                                </th>
-                            </tr>
-                            <tr>
-                        </tbody>
-                    </table>
-                    <div class="row">
-                        <div class="col-md-12 table-responsive">
-                            <table id="tabla" class="table table-bordered">
-                                <tbody class="text-center">
-                                    <tr>
-                                        <th colspan="4" >
-                                            <h4 class="font-weight-bold">Contenido Temático</h4>
-                                        </th>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <th scope="col" style="width:50px">
-                                            <h6 class="font-weight-bold">Semana</h6>
-                                        </th>
-                                        <th scope="col" style="width:240px">
-                                            <h6 class="font-weight-bold">Fecha(s)</h6>
-                                        </th>
-                                        <th scope="col">
-                                            <h6 class="font-weight-bold">Temas - Actividades</h6>
-                                        </th>
-                                        <th scope="col" style="width:190px">
-                                            <h6 class="font-weight-bold">Metodología*</h6>
-                                        </th>
-                                    </tr>
-                                    @foreach ($planeador->temas as $tema)
-                                    @if (count($tema->fecha)>1)
-                                    @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y") || $tema->getFechas("segunda_clase") == today()->format("d/m/Y"))
-                                    <tr class=" red lighten-4">
-                                        <th scope="row" class="border-left"><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
-                                        <td> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
-                                        <td class="td-tema"> <p class="font-weight-bold m-0">{{ $tema->tema }}</p></td>
-                                        <td> <p class="font-weight-bold m-0">{{ $tema->metodología_tema->nombre }}</p></td>
-                                    </tr>
-                                    @else
-                                    <tr>
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }} </td>
-                                        <td>{{ $tema->metodología_tema->nombre }}</td>
-                                    </tr>
-                                    @endif
-                                    @else
-                                    @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y"))
-                                    <tr class=" red lighten-4 border">
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }}</td>
-                                        <td>{{ $tema->metodología_tema->nombre }}</td>
-                                    </tr>
-                                    @else
-                                    <tr>
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                        <td  class="td-tema">{{ $tema->tema }}</td>
-                                        <td>{{ $tema->metodología_tema->nombre }}</td>
-                                    </tr>
-                                    @endif
-                                    @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </a>
+                                </h4>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! $planeador->evaluaciones !!}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-12 table-responsive">
+                        <table id="tabla" class="table table-bordered">
+                            <tbody class="text-center">
+                                <tr>
+                                    <th colspan="4" >
+                                        <h4 class="font-weight-bold">Contenido Temático</h4>
+                                    </th>
+                                </tr>
+                                <tr class="text-center">
+                                    <th scope="col" style="width:50px">
+                                        <h6 class="font-weight-bold">Semana</h6>
+                                    </th>
+                                    <th scope="col" style="width:240px">
+                                        <h6 class="font-weight-bold">Fecha(s)</h6>
+                                    </th>
+                                    <th scope="col">
+                                        <h6 class="font-weight-bold">Temas - Actividades</h6>
+                                    </th>
+                                    <th scope="col" style="width:190px">
+                                        <h6 class="font-weight-bold">Metodología*</h6>
+                                    </th>
+                                </tr>
+                                @foreach ($planeador->temas as $tema)
+                                @if (count($tema->fecha)>1)
+                                @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y") || $tema->getFechas("segunda_clase") == today()->format("d/m/Y"))
+                                <tr class=" red lighten-4">
+                                    <th scope="row" class="border-left"><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
+                                    <td> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
+                                    <td class="td-tema"> <p class="font-weight-bold m-0">{{ $tema->tema }}</p></td>
+                                    <td> <p class="font-weight-bold m-0">{{ $tema->metodología_tema->nombre }}</p></td>
+                                </tr>
+                                @else
+                                <tr>
+                                    <th scope="row">{{ $tema->semana }}</th>
+                                    <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
+                                    <td  class="td-tema">{{ $tema->tema }} </td>
+                                    <td>{{ $tema->metodología_tema->nombre }}</td>
+                                </tr>
+                                @endif
+                                @else
+                                @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y"))
+                                <tr class=" red lighten-4 border">
+                                    <th scope="row">{{ $tema->semana }}</th>
+                                    <td class="text-uppercase"> {{ $tema->getFechas() }} </td>
+                                    <td  class="td-tema">{{ $tema->tema }}</td>
+                                    <td>{{ $tema->metodología_tema->nombre }}</td>
+                                </tr>
+                                @else
+                                <tr>
+                                    <th scope="row">{{ $tema->semana }}</th>
+                                    <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
+                                    <td  class="td-tema">{{ $tema->tema }}</td>
+                                    <td>{{ $tema->metodología_tema->nombre }}</td>
+                                </tr>
+                                @endif
+                                @endif
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
