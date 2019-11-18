@@ -8,7 +8,7 @@
     @csrf
 
     <div class="text-center mb-4">
-            <img class="mb-1 img-fluid" src="{{ asset('images/logo_color.png') }}" alt="">
+            <img class="mb-1 img-fluid w-75" src="{{ asset('images/logo_color.png') }}" alt="">
             <h1 class="h3 mb-0  text-elegant font-weight-normal">Inicio de Sesión</h1>
             <h5 class="font-weight-bold">Administrador</h5>
     </div>

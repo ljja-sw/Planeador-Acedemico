@@ -4,11 +4,11 @@
 
 
 @section('content')
-<form class="form-signin" action="/login/secretario" method="POST">
+<form class="form-signin mb-4" action="/login/secretario" method="POST">
     @csrf
 
     <div class="text-center mb-4">
-        <img class="mb-1 img-fluid" src="{{ asset('images/logo_color.png') }}" alt="">
+        <img class="mb-1 img-fluid w-75" src="{{ asset('images/logo_color.png') }}" alt="">
         <h1 class="h3 mb-0  text-primary font-weight-normal">Inicio de Sesión</h1>
         <h5 class="font-weight-bold">Secretario Academico</h5>
     </div>
@@ -42,7 +42,7 @@
     </div>
     <button class="btn btn-lg bg-primary text-white btn-block" type="submit"><i class="fa fa-sign-in-alt"></i> Iniciar Sesión</button>
 
-    <div class="text-right">
+    <div class="text-center">
         <a href="">Olvidé mi contraseña</a>
     </div>
 </form>
