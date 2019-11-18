@@ -119,31 +119,6 @@
 
     <div id="app">
         <main class="content my-3">
-            @if(session()->has('msj'))
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <div class="alert alert-success" role="alert" data-dimiss="alert">{{session('msj')}}</div>
-                    </div>
-                </div>
-            </div>
-            @elseif(count($errors) > 0)
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <div class="alert alert-danger" role="alert" data-dimiss="alert">
-                            <h6 class="font-weight-bold">Por favor corrija los siguientes errores:</h6>
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
-
             <div style="min-height:65vh">
                 @yield('content')
             </div>

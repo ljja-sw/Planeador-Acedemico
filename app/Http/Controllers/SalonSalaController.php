@@ -9,6 +9,7 @@ use Illuminate\Database\QueryException;
 use App\Dia;
 use App\Jornada;
 use Carbon\Carbon;
+use Alert;
 
 class SalonSalaController extends Controller
 {
@@ -21,18 +22,6 @@ class SalonSalaController extends Controller
     {
         $salones = SalonSala::with('horarios')->get();
         return view('admin.salon.index', compact('salones'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $jornadas = Jornada::all();
-        $dias = Dia::all();
-        return view('admin.salon.create', compact('jornadas', 'dias'));
     }
 
     /**
@@ -54,20 +43,7 @@ class SalonSalaController extends Controller
             'capacidad' => $request['capacidad']
         ]);
 
-        for ($h = 0; $h < count($request["hora_inicio"]); $h++) {
-            $horario = Horario::make([
-                'hora_inicio' => $request['hora_inicio'][$h],
-                'hora_fin' => $request['hora_fin'][$h],
-                'dia' => $request['dia'][$h],
-                'jornada_id' => $request['jornada'][$h],
-                'salon_sala_id'  => $salon_sala->id,
-            ]);
-
-            $salon_sala->horarios()->save($horario);
-        }
-        $numero_horarios = count($salon_sala->horarios);
-
-        return redirect()->route("salon.index")->with('msj', "Se ha registrado {$request['nombre']} con {$numero_horarios} horarios disponibles");
+        return redirect()->route("salon.show",$salon_sala);
     }
 
     /**
@@ -101,8 +77,8 @@ class SalonSalaController extends Controller
         $salon->slug = str_slug($request->nombre);
         $salon->save();
 
-        toast('Salon/Sala editado satisfactoriamente', 'success', 'top');
-        return redirect()->back();
+        Alert::success('Salon editado satisfactoriamente');
+        return redirect()->route('salon.show',$salon);
     }
 
     public function updateHorario(Request $request, Horario $horario)
@@ -120,7 +96,7 @@ class SalonSalaController extends Controller
         $horario->dia = $request->dia;
         $horario->save();
 
-        toast('Horario editado satisfactoriamente', 'success', 'top');
+        Alert::success('Horario editado satisfactoriamente');
         return redirect()->back();
     }
 
@@ -141,7 +117,7 @@ class SalonSalaController extends Controller
             'salon_sala_id'  => $salon->id,
         ]);
 
-        toast('Horario creado satisfactoriamente', 'success', 'top');
+        Alert::success('Horario creado satisfactoriamente');
         return redirect()->back();
     }
 
@@ -151,7 +127,7 @@ class SalonSalaController extends Controller
 
         try {
             $horario->delete();
-            toast('Horario eliminado satisfactoriamente', 'success', 'top');
+            Alert::success('Horario eliminado satisfactoriamente');
             return redirect()->back();
         } catch (QueryException  $th) {
             alert('Hubo un error eliminando el horario', 'Verifica que no esté ocupado', 'error')->showConfirmButton('Entendido');
@@ -169,10 +145,10 @@ class SalonSalaController extends Controller
     {
         try {
             $salon->delete();
-            toast('Salon eliminado satisfactoriamente', 'success', 'top');
+            Alert::success('Salon eliminado satisfactoriamente');
             return redirect()->route('salon.index');
         } catch (QueryException  $th) {
-            toast('Hubo un error eliminando el Salon, intentalo de nuevo', 'error', 'top');
+            Alert::error('Hubo un error eliminando el Salon, intentalo de nuevo');
             return redirect()->back();
         }
     }
