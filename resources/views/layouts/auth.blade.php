@@ -25,30 +25,27 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>
-
 <body>
-    <main id="content" style="height:100vh">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-body">
-                @yield('content')
-                <hr>
-                <div class="mx-auto text-center">
-                    <h6 class="h6-responsive font-weight-bold">Iniciar Sesion como</h6>
-                    @if (Request::is('*login'))
-                        <a href="{{url('login-secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
-                    @elseif(Request::is('*login-secretario'))
-                        <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
-                    @else
-                        <a href="{{url('login-secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
-                        <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
-                    @endif
+    <main id="content" style="">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-7 PColunna">
+                    <div class="card card-body cardLogin">
+                        @yield('content')
+
+                        <h6 class="h6-responsive font-weight-bold text-center">Iniciar Sesion como</h6>
+                        @if (Request::is('*login'))
+                            <a href="{{url('login-secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
+                        @elseif(Request::is('*login-secretario'))
+                            <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
+                        @else
+                            <a href="{{url('login-secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
+                            <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
+                        @endif
+                    </div>
                 </div>
+            </div>
         </div>
-    </div>
-    </div>
-    </div>
     </main>
 </body>
 </html>
