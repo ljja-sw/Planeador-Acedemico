@@ -45,7 +45,7 @@ class HomeController extends Controller
                     $clases = [];
                 }
 
-            return view('home.docente', compact('clases', 'asignaturas','horarios'));
+            return view('home.docente', compact('clases', 'asignaturas'));
             
             break;
             

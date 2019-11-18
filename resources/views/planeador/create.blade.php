@@ -4,7 +4,7 @@
 @section('title','Planeador Academico: '.$asignatura->nombre)
 
 @include('libs.ckeditor')
-{{-- @include('libs.daterangepicker') --}}
+@include('libs.daterangepicker')
 
 @push('styles')
 @endpush

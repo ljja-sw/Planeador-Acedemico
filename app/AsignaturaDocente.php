@@ -32,7 +32,7 @@ class AsignaturaDocente extends Model
 
     public function salon()
     {
-        return $this->belongsTo(SalonSala::class);
+        return $this->belongsTo(SalonSala::class,"salon_id");
     }
 
     public function horario(){

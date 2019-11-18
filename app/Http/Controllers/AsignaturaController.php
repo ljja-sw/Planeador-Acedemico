@@ -131,7 +131,6 @@ public function DesignarAsignatura(Request $request)
     $horario = Horario::find($request->horario[0]);
 
     foreach ($horarios_docente as $horarios) {
-
         if ($horarios->horario->cruceHorario($horario)) {
             $error = "Cruce de horarios con {$horarios->asignatura->nombre} de {$horarios->horario->hora_inicio} a {$horarios->horario->hora_fin} el día {$horarios->horario->dia_semana->dia}";
             return redirect()->back()->withErrors($error);

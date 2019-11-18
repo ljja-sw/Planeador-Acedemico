@@ -109,31 +109,46 @@ class SalonSalaController extends Controller
             return redirect()->back()->withErrors("Hora Inicio debe ser menor Hora Fin ");
         };
 
-        Horario::create([
-            'hora_inicio' => $request['hora_inicio'],
-            'hora_fin' => $request['hora_fin'],
+
+        $horario = Horario::make([
+            'hora_inicio' => date("H:i", strtotime($request['hora_inicio'])),
+            'hora_fin' => date("H:i", strtotime($request['hora_fin'])),
             'dia' => $request['dia'],
             'jornada_id' => $request['jornada'],
             'salon_sala_id'  => $salon->id,
         ]);
 
-        Alert::success('Horario creado satisfactoriamente');
-        return redirect()->back();
-    }
+        foreach($salon->horarios as $horario_salon){
+         if ($horario_salon->cruceHorario($horario)) {
+            $error = "Conflicto de horarios entre {$horario_salon->dia_semana->dia} de {$horario_salon->hora_inicio} a {$horario_salon->hora_fin} y {$horario->dia_semana->dia} de {$horario->hora_inicio} a {$horario->hora_fin}.";
 
-    public function destroyHorario(Request $request)
-    {
-        $horario = Horario::find($request->id);
-
-        try {
-            $horario->delete();
-            Alert::success('Horario eliminado satisfactoriamente');
-            return redirect()->back();
-        } catch (QueryException  $th) {
-            alert('Hubo un error eliminando el horario', 'Verifica que no esté ocupado', 'error')->showConfirmButton('Entendido');
-            return redirect()->route('salon.index');
+            return redirect()->back()->withErrors($error);
         }
     }
+
+    try {
+        $horario->save();
+        Alert::success('Horario creado satisfactoriamente');
+        return redirect()->back();
+    } catch (QueryException  $th) {
+        alert('Hubo un error registrando el horario', 'Vuelve a intentarlo después', 'error')->showConfirmButton('Entendido');
+        return redirect()->route('salon.index');
+    }
+}
+
+public function destroyHorario(Request $request)
+{
+    $horario = Horario::find($request->id);
+
+    try {
+        $horario->delete();
+        Alert::success('Horario eliminado satisfactoriamente');
+        return redirect()->back();
+    } catch (QueryException  $th) {
+        alert('Hubo un error eliminando el horario', 'Verifica que no esté ocupado', 'error')->showConfirmButton('Entendido');
+        return redirect()->route('salon.index');
+    }
+}
 
     /**
      * Remove the specified resource from storage.

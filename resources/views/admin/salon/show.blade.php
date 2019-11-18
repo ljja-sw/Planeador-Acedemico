@@ -21,12 +21,25 @@
                                 {{$salon->nombre}}
                             </h4>
                             <p class="m-0">Capacidad: <span class="font-weight-bold">{{$salon->capacidad}}</span>
-                                estudiantes</p>
+                            estudiantes</p>
                         </div>
                         <div class="col-md-4 mx-auto">
                             <a href="#modal_editar_salon" data-toggle="modal" class="btn btn-primary"><i class="fa fa-pen"></i> Editar</a>
                             <a href="#modal_delete_salon" data-toggle="modal" class="btn btn-outline-primary"><i class="fa fa-trash"></i> Eliminar</a>
                         </div>
+                    </div>
+                    <div class="m-3 text-center">
+                        @if(session()->has('msj'))
+                    <div class="alert alert-success" role="alert">{{session('msj')}}</div>
+                    @elseif(count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     </div>
                 </div>
                 <hr class="py-2">
@@ -70,7 +83,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a href="#modal_eliminar_horario" data-id="{{$horario->id}}" data-toggle="modal" class="nav-link"> <i class="fa fa-trash"></i>
-                                                Eliminar</a>
+                                            Eliminar</a>
                                         </li>
                                     </ul>
                                 </td>
