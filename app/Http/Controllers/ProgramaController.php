@@ -34,9 +34,16 @@ class ProgramaController extends Controller
             'codigo' => 'required|numeric'
         ]);
 
-        if(Programa::create($request->all())){
+        $data = $request->toArray();
 
-            return redirect()->back()->with('msj',"Programa registro exitosamente");
+        $programa = Programa::make([
+            'nombre' => $data["nombre"],
+            'codigo' => $data["codigo"]
+        ]);
+
+        if( $programa->save() ) {
+            Alert::success("Programa academico registrado")->showCancelButton();
+            return redirect()->route('programa.detalles',$programa);
         }
     }
 
@@ -88,8 +95,8 @@ class ProgramaController extends Controller
      */
     public function destroy(Programa $programa)
     {
-        if ($asigna->delete()){
-            Alert::success('Asignatura eliminada', '')->showCloseButton();
+        if ($programa->delete()){
+            Alert::success('Programa academico eliminado', '')->showCloseButton();
             return redirect()->route('asignaturas.show');
         }else{
             Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();

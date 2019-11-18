@@ -16,9 +16,9 @@ class CreateAsignaturasProgramasTable extends Migration
         Schema::create('asignaturas_programas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('asignatura_id');
-            $table->unsignedBigInteger('progrma_id');
+            $table->unsignedBigInteger('programa_id');
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');
-            $table->foreign('progrma_id')->references('id')->on('programas');
+            $table->foreign('programa_id')->references('id')->on('programas');
             $table->timestamps();
         });
     }

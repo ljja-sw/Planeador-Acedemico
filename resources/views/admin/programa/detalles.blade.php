@@ -1,39 +1,75 @@
 @extends('layouts.app')
 
+@section('title',$programa->nombre)
 @section('content')
 
 @include('admin.programa.modals.editar-programa')
 @include('admin.programa.modals.eliminar-programa')
 <div class="container">
-	<div class="row align-items-center">
-		<div class="col-md-12 col-lg-10 mx-auto">
-			<div class="card card-body align-items-center">
-					<div class="col-md-12 col-lg-8 d-flex card card-body  py-3 flex-column">
-						<small class="text-muted">Programa</small>
-						<h4 class="h4-responsive font-weight-bold">
-							{{$programa->nombre}}
-						</h4>
-						<small class="text-muted">Codigo</small>
-						<h4 class="h4-responsive text-muted">
-							{{$programa->codigo}}
-						</h4>
-						<hr>
-						<ul class="nav mx-auto font-weight-bold text-center justify-content-center">
-							<li class="nav-item">
-								<a href="#" data-toggle="modal" data-target="#modal_editar_programas" class="nav-link btn btn-primary"> 
-									<i class="fa fa-pen"></i> Editar</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" data-toggle="modal" data-target="#modal_eliminar_programas" class="nav-link btn btn-outline-primary">
-									<i class="fa fa-trash"> </i> Eliminar Programa</a>
-							</li>
-						</ul>
+	<div class="row">
+		<div class="col-12">
+			<div class="card card-body">
+				<div class="px-3 pt-3">
+					<div class="row">
+						<div class="col-md-8">
+							<h4 class="font-weight-bold">
+								{{$programa->nombre}} <small class="text-muted">{{$programa->codigo}}</small>
+							</h4>
 						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 ml-auto">
+							<a href="#modal_editar_programas" data-toggle="modal" class="btn btn-primary"><i class="fa fa-pen"></i> Editar</a>
+							<a href="#modal_eliminar_programas" data-toggle="modal" class="btn btn-outline-primary"><i class="fa fa-trash"></i> Eliminar</a>
+						</div>
+					</div>
 				</div>
+				<hr class="py-2">
+				<div class="px-3 table-responsive text-muted">
+					<h4 class="font-weight-bold mb-3">Asignaturas</h4>
+					<table id="tabla_asignaturas" class="table datatable table-striped">
+						<thead class="text-center">
+							<tr>
+								<th>
+									<b>Nombre</b>
+								</th>
+								<th>
+									<b>Código</b>
+								</th>
+								<th>
+									<b>Grupo</b>
+								</th>
+								<th style="width:230px;">
+									<b>Acciones</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
 
+						</tbody>
+					</table>
+					<div class="float-right mt-3">
+						<a href="#modal_agregar_horario" data-toggle="modal" class="btn btn-elegant"><i class="fa fa-plus"></i> Registrar Asignatura en: {{$programa->nombre}} </a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-<
-
 </div>
 @endsection
+@push("scripts")
+<script>
+	$('#tabla_asignaturas').DataTable({
+		"paging": false,
+		"ordering": true,
+		"info": false,
+		"searching": false,
+		"language": {
+			"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		}
+	});
+	$('.dataTables_length').addClass('bs-select');
+
+
+</script>
+@endpush

@@ -6,7 +6,7 @@
 	{{-- Enlaces Administradores --}}
 	<a class="nav-link" href="{{ route('secretarios.index') }}">
 		<i class="fa fa-users"></i>
-		Secretarios Académicos</a>
+	Secretarios Académicos</a>
 </li>
 @break
 
@@ -14,7 +14,7 @@
 <li class="nav-item">
 	{{-- Enlaces Secretarios --}}
 	<a class="nav-link" href="{{route('asignaturas.show')}}">
-		<i class="fa fa-chalkboard-teacher "></i>
+		<i class="fa fa-chalkboard "></i>
 		Asignaturas
 	</a>
 </li>
@@ -22,22 +22,22 @@
 <li class="nav-item">
 	{{-- Enlaces Docentes --}}
 	<a class="nav-link" href="{{ route('docentes.index') }}">
-		<i class="fa fa-users"></i>
-		Docentes</a>
+		<i class="fa fa-chalkboard-teacher"></i>
+	Docentes</a>
 </li>
 
 <li class="nav-item">
 	{{-- Enlaces Docentes --}}
-	<a class="nav-link" href="{{ route('programa.show') }}">
-		<i class="fa fa-tasks"></i>
-		Programas</a>
+	<a class="nav-link" href="{{ route('programa.index') }}">
+		<i class="fa fa-graduation-cap"></i>
+	Programas</a>
 </li>
 
 <li class="nav-item">
 	<a href="{{ route('salon.index') }}" class="nav-link">
-<i class="far fa-calendar-alt"></i>
-Salones y Horarios
-</a>
+		<i class="far fa-bookmark"></i>
+		Salones
+	</a>
 </li>
 @break
 

@@ -24,7 +24,7 @@ class Asignatura extends Model
 
 
     public function programas(){
-        return $this->belongsTo(Programa::class,'programa_academico');
+        return $this->belongsToMany(Programa::class,'programa_academico');
     }
 
     public function salonesSalas(){

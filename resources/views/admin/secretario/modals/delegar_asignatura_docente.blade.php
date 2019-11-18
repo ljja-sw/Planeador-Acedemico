@@ -21,12 +21,20 @@ aria-hidden="true">
             <select name="docente" class="form-control" id="docentes_select" required></select>
           </div>
         </div>
+        <hr>
+        {{-- Esto es temporal --}}
         <div class="row">
+          <div class="form-group col">
+            <label for="programas_select">Selecciona el Programa Académico</label>
+            <select name="asignatura" class="form-control" id="programas_select" required></select>
+          </div>
+        </div>
+        {{-- <div class="row">
           <div class="form-group col">
             <label for="asignaturas_select">Selecciona la Asignatura</label>
             <select name="asignatura" class="form-control" id="asignaturas_select" required></select>
           </div>
-        </div>
+        </div> --}}
         <hr>
         <div class="my-2 text-center">
           <button class="btn btn-elegant">
@@ -44,33 +52,58 @@ aria-hidden="true">
 <script>
   $(document).ready(function () {
     $('#docentes_select').select2({
-        theme: 'bootstrap4',
-        width: '100%',
-        tokenSeparators: [','],
-        ajax: {
-          dataType: 'json',
-          url: '{{ url("api/docentes") }}',
-          delay: 250,
-          data: function(params) {
-            return {
-              term: params.term
-            }
-          },
-          processResults: function (data, page) {
-            return {
-              results: data
-            };
-          },
-        }
+      theme: 'bootstrap4',
+      width: '100%',
+      tokenSeparators: [','],
+      ajax: {
+        dataType: 'json',
+        url: '{{ url("api/docentes") }}',
+        delay: 250,
+        data: function(params) {
+          return {
+            term: params.term
+          }
+        },
+        processResults: function (data, page) {
+          return {
+            results: data
+          };
+        },
+      }
     });
 
+    $('#programas_select').select2({
+      theme: 'bootstrap4',
+      width: '100%',
+      tokenSeparators: [','],
+      ajax: {
+        dataType: 'json',
+        // url: '{{ url("api/programas-academico") }}',
+        url: '{{ url("api/asignaturas-libres") }}',
+
+        data: function(params) {
+          return {
+            term: params.term
+          }
+        },
+        processResults: function (data, page) {
+          return {
+            results: data
+          };
+        },
+      }
+    });
+
+    // api/programas/{id_programa}/asignaturas/
+    $("#programas_select").change(function(){
+      var id_programa = $(this).val()
       $('#asignaturas_select').select2({
         theme: 'bootstrap4',
         width: '100%',
         tokenSeparators: [','],
         ajax: {
           dataType: 'json',
-          url: '{{ url("api/asignaturas-libres") }}',
+          url: '{{ url("api/programas")}}'+"/"+id_programa+"/asignaturas",
           data: function(params) {
             return {
               term: params.term
@@ -82,7 +115,8 @@ aria-hidden="true">
             };
           },
         }
-    });
+      });
+    })
   });
 </script>
 @endpush

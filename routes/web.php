@@ -47,16 +47,16 @@ Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::post('/admin/configuraciones/guardar', 'AdminController@guardarConfiguraciones')->name('admin.configuraciones.guardar');
     Route::get('designar-asignatura-docente', 'AsignaturaController@formDesignarAsignatura')->name('form.designar.asignatura');
     Route::post('designar-asignatura-docente', 'AsignaturaController@DesignarAsignatura')->name('designar.asignatura.store');
+
     Route::get('docentes', 'DocenteController@index')->name('docentes.index');
     Route::get('/docentes/{docente}/detalles', 'DocenteController@show')->name('docentes.show');
     Route::get('docentes/registrar', 'DocenteController@create')->name('docentes.create');
     Route::get('docentes/exportar', 'DocenteController@exportar')->name('docentes.exportar');
     Route::post('docentes/importar', 'DocenteController@importar')->name('docentes.importar');
-    Route::post('/admin/docentes/update', 'DocenteController@store')->name('docentes.store');
-    Route::post('/admin/docentes/{docente}/update', 'DocenteController@update')->name('docentes.update');
+    Route::post('/docentes/store', 'DocenteController@store')->name('docentes.store');
+    Route::post('/docentes/{docente}/update', 'DocenteController@update')->name('docentes.update');
 
     Route::get('/admin/salones-salas', 'SalonSalaController@index')->name('salon.index');
-    Route::get('/admin/salones-salas/registrar', 'SalonSalaController@create')->name('salon.create');
     Route::get('/admin/salones-salas/{salon}', 'SalonSalaController@show')->name('salon.show');
     Route::post('/admin/salones-salas/registrar', 'SalonSalaController@store')->name('salon.store');
     Route::post('/admin/salones-salas/{salon}/agregar', 'SalonSalaController@agregarHorario')->name('salon.horario.agregar');
@@ -65,19 +65,17 @@ Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::post('/admin/horario/update', 'SalonSalaController@updateHorario')->name('salon.horario.update');
     Route::post( '/admin/horario/destroy', 'SalonSalaController@destroyHorario')->name( 'salon.horario.destroy');
 
-    Route::get('/registro-asignaturas', 'AsignaturaController@index')->name('asignatura.crear');
+    Route::get('/asignaturas', 'AsignaturaController@show')->name('asignaturas.show');
+    Route::get('/asignaturas/registrar', 'AsignaturaController@index')->name('asignatura.crear');
+    Route::get('/asignaturas/{asigna}', 'AsignaturaController@detalle')->name('asignatura.detalles');
+    Route::post('/asignaturas/store', 'AsignaturaController@ingreso')->name('asignatura.store');
+    Route::post('/asignaturas/{asigna}/update', 'AsignaturaController@update')->name('asignaturas.update');
+    Route::get('/asignaturas/{asigna}/destroy', 'AsignaturaController@destroy')->name('asignaturas.destroy');
 
-    Route::post('/asignaturas', 'AsignaturaController@ingreso');
-    Route::get('/vista-asignaturas', 'AsignaturaController@show')->name('asignaturas.show');
-    Route::get('/vista-asignaturas/{asigna}', 'AsignaturaController@detalle')
-        ->name('asignatura.detalles');
-    Route::post('/vista-asignaturas/{asigna}/update', 'AsignaturaController@update')->name('asignaturas.update');
-    Route::get('/vista-asignaturas/{asigna}/destroy', 'AsignaturaController@destroy')->name('asignaturas.destroy');
-
-    Route::get('/vista-programas', 'ProgramaController@show')->name('programa.show');
-    Route::post('/programas', 'ProgramaController@create')->name('programa.crear');
-    Route::get('/detalles-programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
-    Route::post('/editar-programas/{programa}', 'ProgramaController@update')->name('programa.update');
+    Route::get('/programas', 'ProgramaController@show')->name('programa.index');
+    Route::post('/programas/registrar', 'ProgramaController@create')->name('programa.crear');
+    Route::get('/programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
+    Route::post('/programas/{programa}/editar', 'ProgramaController@update')->name('programa.update');
 });
 
 Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {

@@ -1,5 +1,5 @@
 <div class="modal fade" id="modal_eliminar_programas" tabindex="-1" role="dialog" aria-hidden="true">
-  <form role="document" action="#}" class="modal-dialog" method="POST" autocomplete="off">
+  <form role="document" action="#" class="modal-dialog" method="POST" autocomplete="off">
     @csrf
       <div class="modal-content">
         <div class="modal-headery text-center">

@@ -12,4 +12,9 @@ class Programa extends Model
     {
     	$this->hasMany(Asignatura::class);
     }
+
+    public function getRouteKeyName()
+    {
+    	return "codigo";
+    }
 }
