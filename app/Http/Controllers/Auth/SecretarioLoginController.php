@@ -61,4 +61,8 @@ class SecretarioLoginController extends Controller
     {
         return Auth::guard("admin");
     }
+    public function showLoginRCuenta()
+    {
+        return view('auth.recover-account');
+    }
 }

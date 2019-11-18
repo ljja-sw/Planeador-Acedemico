@@ -41,7 +41,7 @@
     <button class="btn btn-lg bg-primary text-white btn-block" type="submit"><i class="fa fa-sign-in-alt"></i> Iniciar Sesión</button>
 
     <div class="text-center">
-        <a href="">Olvidé mi contraseña</a>
+        <a href="{{route('recuperar.cuenta')}}">Olvidé mi contraseña</a>
     </div>
 
 </form>

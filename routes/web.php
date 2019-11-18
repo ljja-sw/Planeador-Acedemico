@@ -100,3 +100,5 @@ Route::post('/login/secretario', 'Auth\SecretarioLoginController@login');
 
 Route::get('/login-admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
 Route::post('/login/admin', 'Auth\AdminLoginController@login');
+
+Route::get('/recuperar-cuenta', 'Auth\SecretarioLoginController@showLoginRCuenta')->name('recuperar.cuenta');
