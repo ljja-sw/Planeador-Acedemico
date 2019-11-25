@@ -50,17 +50,17 @@
                                 <ul class="list-group list-group-flush font-weight-bold">
                                     @forelse ($asignaturas as $asignatura)
                                     <li class="list-group-item">
-                                        <a>{{$asignatura->nombre}} - {{$asignatura->grupo}}
-                                            <small class="tex-muted">{{$asignatura->asignada->horario->dia_semana->dia}} de {{$asignatura->asignada->horario->getHoraInicio()->format("H:i")}} a {{$asignatura->asignada->horario->getHoraFin()->format("H:i")}} en <b>{{$asignatura->asignada->horario->salon->nombre}}</b></small>
+                                        <a>{{$asignatura->asignatura->nombre}} - {{$asignatura->grupo->numero}}
+                                            <small class="tex-muted"></b></small>
                                         </a>
                                         <span class="float-right">
-                                            @if(!is_null($asignatura->planeador))
-                                            <a href="{{ route('docente.planeador.ver',$asignatura)  }}">
+                                            @if(!is_null($asignatura->asignatura->planeador))
+                                            <a href="{{ route('docente.planeador.ver',[$asignatura->asignatura,$asignatura->grupo])  }}">
                                                 <i class="fa fa-eye"></i>
                                                 Ver Planeador
                                             </a>
                                             @else
-                                            <a href="{{ route('docente.generar.planeador',$asignatura) }}">
+                                            <a href="{{ route('docente.generar.planeador',[$asignatura->asignatura,$asignatura->grupo]) }}">
                                                 <i class="fa fa-plus"></i>
                                                 Crear Planeador
                                             </a>

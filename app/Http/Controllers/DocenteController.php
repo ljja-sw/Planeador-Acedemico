@@ -91,7 +91,9 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
+
         $planeadores = $docente->planeadores;
+        
         if (count($planeadores) >= 1) {
             foreach ($planeadores as $planeador) {
                 $clases = TemaPlaneador::where("fecha->primera_clase", today()->format("Y-m-d"))

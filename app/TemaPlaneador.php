@@ -49,12 +49,16 @@ class TemaPlaneador extends Model
 
 	public function horarioClase()
 	{
+
 		$dia_semana = Carbon::now()->dayOfWeek;
 
-		$asignatura_id = $this->planeador->asignatura_planeador->id;
-		$docente_id = $this->planeador->docente;
+		$asignatura_grupo = $this->planeador->asignatura_planeador;
+		$docente = $this->planeador->docente_planeador;
 
-		$asignacion = AsignaturaDocente::where('asignatura_id', $asignatura_id)->where('docente_id', $docente_id)->get()->first();
+        $asignacion = AsignaturaDocente::
+                              where('asignatura_grupo_id', $asignatura_grupo->id)
+                            ->where('docente_id', $docente->id)
+                            ->first();
 
 		if ($asignacion->horario->dia == $dia_semana) {
 			return $asignacion->horario;

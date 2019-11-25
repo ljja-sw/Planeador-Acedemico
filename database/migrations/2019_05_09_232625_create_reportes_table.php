@@ -21,7 +21,6 @@ class CreateReportesTable extends Migration
             $table->date('fecha_tema');            
             $table->text('descripcion');
             $table->text('justificacion')->nullable();
-            $table->unsignedInteger('docente_id');
             $table->unsignedInteger('asignatura_id');            
             $table->unsignedInteger('tema_planeador_id');
             $table->timestamps();

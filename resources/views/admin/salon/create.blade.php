@@ -23,11 +23,11 @@
             <input type="number" class="form-control" name="capacidad" id="capacidad" min="10" max="30" required>
           </div>
 
-<button class="btn btn-elegant" type="submit">
+          <button class="btn btn-elegant" type="submit">
             <i class="fa fa-save"></i> Registrar
           </button>
 
-          <a class="btn btn-outline-elegant" type="submit" data-dismiss="modal">
+          <a class="btn btn-outline-elegant" data-dismiss="modal">
             <i class="fa fa-times"></i> Cancelar
           </a>
           

@@ -15,13 +15,15 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}"> --}}
+    <script src="https://kit.fontawesome.com/205f32a46c.js" crossorigin="anonymous" defer></script>
 
     <!-- Icon -->
     <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" >
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" > --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>

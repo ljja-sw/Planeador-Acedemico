@@ -28,12 +28,12 @@
                     <tbody>
                         <tr>
                             <td colspan="3">
-                                <h6 class="h6-responsive text-muted">Programa Académico</h6>
-                                <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
+                                <h6 class="h6-responsive text-muted"  colspan="3">Programa Académico</h6>
+                            <h4 class="h4-responsive font-weight-bold">{{$programa->nombre}}</h4>
                             </td>
                             <td colspan="3">
                                 <h6 class="h6-responsive text-muted">Código del Programa</h6>
-                                <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
+                                <h4 class="h4-responsive font-weight-bold">{{$programa->codigo}}</h4>
                             </td>
                         </tr>
                         <tr>
@@ -88,7 +88,7 @@
                 @csrf
                 <table class="table table-bordered ">
                     <input type="text" name="docente" value="{{ auth()->user()->id }}" hidden>
-                    <input type="text" name="asignatura" value="{{ $asignatura->id }}" hidden>
+                    <input type="text" name="asignatura_grupo" value="{{ $asignatura_grupo->id }}" hidden>
                     <tbody>
                         <tr>
                             <th class="text-center">
@@ -189,7 +189,7 @@
         })
 </script>
 @endif
- 
+
 <script>
     ClassicEditor
     .create(document.querySelector('#evaluaciones'))

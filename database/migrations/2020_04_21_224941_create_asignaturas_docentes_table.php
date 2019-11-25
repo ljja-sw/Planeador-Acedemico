@@ -15,11 +15,11 @@ class CreateAsignaturasDocentesTable extends Migration
     {
         Schema::create('asignaturas_docentes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('asignatura_id');
+            $table->unsignedBigInteger('asignatura_grupo_id');
             $table->unsignedBigInteger('docente_id');
             $table->unsignedBigInteger('horario_id');
             $table->unsignedBigInteger('horario_2_id')->nullable();
-            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
+            $table->foreign('asignatura_grupo_id')->references('id')->on('asignaturas_grupos');
             $table->foreign('docente_id')->references('id')->on('docentes');
             $table->foreign('horario_id')->references('id')->on('horarios');
             $table->foreign('horario_2_id')->references('id')->on('horarios');

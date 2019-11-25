@@ -22,11 +22,10 @@
 						<tr>
 							<th style="min-width:200px">Nombre</th>
 							<th>Codigo</th>
-							<th>Grupo</th>
-							<th>Credito</th>
+							<th>Creditos</th>
+							<th>Intensidad Horaria</th>
 							<th>Habilitable</th>
 							<th>Validable</th>
-							<th>Intensidad Horaria</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -35,11 +34,10 @@
 						<tr>
 							<td>{{ $asignatura->nombre }}</td>
 							<td>{{ $asignatura->codigo }}</td>
-							<td>{{ $asignatura->grupo }}</td>
 							<td>{{ $asignatura->creditos }}</td>
+							<td>{{ $asignatura->intensidad_horaria }}</td>
 							<td>{{ ($asignatura->habilitable) ? 'Si' : 'No' }}</td>
 							<td>{{ ($asignatura->validable) ? 'Si' : 'No' }}</td>
-							<td>{{ $asignatura->intensidad_horaria }}</td>
 							<td>
 								<a title="Detalles" href="{{ route('asignatura.detalles', $asignatura) }}" class="nav-item btn-table--edit">
 									<i class="fa fa-plus"></i>

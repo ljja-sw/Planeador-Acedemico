@@ -1,5 +1,5 @@
 <div class="modal fade" id="modal_editar_secretario" tabindex="-1" role="dialog" aria-hidden="true">
-  <form class="modal-dialog" role="document" action="{{route('secretarios.update',$user)}}" autocomplete="off" method="POST">
+  <form class="modal-dialog modal-dialog-centered" role="document" action="{{route('secretarios.update',$user)}}" autocomplete="off" method="POST">
     @csrf
     <div class="modal-content">
       <div class="modal-header text-center">

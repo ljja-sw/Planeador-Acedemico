@@ -15,26 +15,24 @@ aria-hidden="true">
     <div class="modal-body">
       <form action="{{route('form.designar.asignatura')}}" method="get" autocomplete="off">
         @csrf
-        <div class="row">
           <div class="form-group col">
-            <label for="docentes_select">Selecciona el Docente</label>
+            <label for="docentes_select">Docente</label>
             <select name="docente" class="form-control" id="docentes_select" required></select>
           </div>
-        </div>
         <hr>
-        {{-- Esto es temporal --}}
-        <div class="row">
           <div class="form-group col">
-            <label for="programas_select">Selecciona el Programa Académico</label>
-            <select name="asignatura" class="form-control" id="programas_select" required></select>
+            <label for="programas_select">Programa Académico</label>
+            <select name="programa" class="form-control" id="programas_select" required></select>
+          </div>
+        <div>
+          <div class="form-group col">
+            <label for="asignaturas_select">Asignatura</label>
+            <select class="form-control" id="asignaturas_select" required></select>
+          </div>
+          <div class="form-group col">
+            <select name="asignatura_grupo" class="form-control" id="asignaturas_grupo_select" required></select>
           </div>
         </div>
-        {{-- <div class="row">
-          <div class="form-group col">
-            <label for="asignaturas_select">Selecciona la Asignatura</label>
-            <select name="asignatura" class="form-control" id="asignaturas_select" required></select>
-          </div>
-        </div> --}}
         <hr>
         <div class="my-2 text-center">
           <button class="btn btn-elegant">
@@ -78,8 +76,7 @@ aria-hidden="true">
       tokenSeparators: [','],
       ajax: {
         dataType: 'json',
-        // url: '{{ url("api/programas-academico") }}',
-        url: '{{ url("api/asignaturas-libres") }}',
+        url: '{{ url("api/programas") }}',
 
         data: function(params) {
           return {
@@ -93,8 +90,11 @@ aria-hidden="true">
         },
       }
     });
+    $('#asignaturas_select,#asignaturas_grupo_select').select2({
+      theme: 'bootstrap4',
+      width: '100%',
+    });
 
-    // api/programas/{id_programa}/asignaturas/
     $("#programas_select").change(function(){
       var id_programa = $(this).val()
       $('#asignaturas_select').select2({
@@ -104,6 +104,29 @@ aria-hidden="true">
         ajax: {
           dataType: 'json',
           url: '{{ url("api/programas")}}'+"/"+id_programa+"/asignaturas",
+          data: function(params) {
+            return {
+              term: params.term
+            }
+          },
+          processResults: function (data, page) {
+            return {
+              results: data
+            };
+          },
+        }
+      });
+    })
+
+        $("#asignaturas_select").change(function(){
+          var id_asignatura = $(this).val()
+      $('#asignaturas_grupo_select').select2({
+        theme: 'bootstrap4',
+        width: '100%',
+        tokenSeparators: [','],
+        ajax: {
+          dataType: 'json',
+          url: '{{ url("api/asignaturas/")}}'+"/"+id_asignatura+"/grupo",
           data: function(params) {
             return {
               term: params.term

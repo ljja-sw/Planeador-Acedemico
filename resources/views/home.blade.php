@@ -2,7 +2,6 @@
 
 @section('content')
 @include('admin.secretario.modals.delegar_asignatura_docente')
-@include('modals.seleccionar_asignatura_planeador')
 @include('libs.select2')
 
 <div class="container">

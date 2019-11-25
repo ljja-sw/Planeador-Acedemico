@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="{{asset('css/bootstrap.table.css')}}">
-    
-    <title>{{$planeador->asignatura_planeador->nombre}}</title>
+
+    <title>{{$planeador->asignatura_planeador->asignatura->nombre}}</title>
 </head>
 
 <body>
-    
+
     <div class="planeador_wrapper">
         <table class="table table-sm table-borderless">
             <tr>
@@ -25,31 +25,31 @@
                 </h6>
             </td>
             </tr>
-        </table> 
+        </table>
         <table class="table table-bordered table-sm">
             <tbody>
                 <tr>
-                    <td style="text-align:center" colspan="2">
+                    <td style="text-align:center"  colspan="3">
                         <h6 class="m-0 text-muted">Programa Académico</h6>
                         <h6 class="h6-responsive font-weight-bold">
-                            (pendiente)
+                            {{$programa->nombre}}
                         </h6>
                     </td>
-                    <td style="text-align:center" colspan="2">
+                    <td style="text-align:center">
                         <h6 class="m-0 text-muted">Código del Programa</h6>
                         <h6 class="h6-responsive font-weight-bold">
-                            (pendiente)
+                            {{$programa->codigo}}
                         </h6>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align:center">
                         <h6 class="m-0 text-muted">Nombre de la Asignatura</h6>
-                        <h6 class="h6-responsive font-weight-bold">{{$planeador->asignatura_planeador->nombre}}</h6>
+                        <h6 class="h6-responsive font-weight-bold">{{$planeador->asignatura_planeador->asignatura->nombre}}</h6>
                     </td>
                     <td style="text-align:center" colspan="2">
                         <h6 class="m-0 text-muted">Código de la Asignatura</h6>
-                        <h6 class="h6-responsive font-weight-bold">{{$planeador->asignatura_planeador->codigo}}</h6>
+                        <h6 class="h6-responsive font-weight-bold">{{$planeador->asignatura_planeador->asignatura->codigo}}-{{$planeador->asignatura_planeador->grupo->numero}}</h6>
                     </td>
                     <td style="text-align:center">
                         <h6 class="m-0 text-muted">Periodo Académico</h6>
@@ -60,24 +60,24 @@
                     <tr>
                         <td style="text-align:center">
                             <h6 class="m-0 text-muted">Créditos</h6>
-                            <h6 class="h6-responsive font-weight-bold">{{$planeador->asignatura_planeador->creditos}}
+                            <h6 class="h6-responsive font-weight-bold">{{$planeador->asignatura_planeador->asignatura->creditos}}
                             </h6>
                         </td>
                         <td style="text-align:center">
                             <h6 class="m-0 text-muted">Intensidad Horaria</h6>
                             <h6 class="h6-responsive font-weight-bold">
-                                {{$planeador->asignatura_planeador->intensidad_horaria}}</h6>
+                                {{$planeador->asignatura_planeador->asignatura->intensidad_horaria}}</h6>
                             </td>
                             <td style="text-align:center">
                                 <h6 class="m-0 text-muted">Validable</h6>
                                 <h6 class="h6-responsive font-weight-bold">
-                                    {{($planeador->asignatura_planeador->validable) ? "Si" : "No"}}
+                                    {{($planeador->asignatura_planeador->asignatura->validable) ? "Si" : "No"}}
                                 </h6>
                             </td>
                             <td style="text-align:center">
                                 <h6 class="m-0 text-muted">Habilitable</h6>
                                 <h6 class="h6-responsive font-weight-bold">
-                                    {{($planeador->asignatura_planeador->habilitable) ? "Si" : "No"}}
+                                    {{($planeador->asignatura_planeador->asignatura->habilitable) ? "Si" : "No"}}
                                 </h6>
                             </td>
                         </tr>
@@ -86,7 +86,7 @@
                                 <h6 class="m-0 text-muted">Nombre del Docente</h6>
                                 <h6 class="h6-responsive font-weight-bold">{{auth()->user()->nombre_completo()}}</h6>
                             </td>
-                            
+
                             <td style="text-align:center" colspan="2">
                                 <h6 class="m-0 text-muted">Correo del Docente</h6>
                                 <h6 class="h6-responsive font-weight-bold">{{auth()->user()->email}}</h6>
@@ -155,5 +155,5 @@
                 </div>
             </div>
         </body>
-        
+
         </html>

@@ -51,16 +51,16 @@ class Docente extends Authenticatable
 
     public function asignaturas()
     {
-        return $this->belongsToMany(Asignatura::class,'asignaturas_docentes');
+        return $this->belongsToMany(AsignaturaGrupo::class,'asignaturas_docentes');
     }
-    
+
     public function nombre_completo()
     {
         return "{$this->nombre} {$this->apellido}";
     }
 
     public function planeadores(){
-        return $this->hasMany(Planeador::class,'docente');
+        return $this->hasMany(Planeador::class);
     }
 
     public function clases_hoy()

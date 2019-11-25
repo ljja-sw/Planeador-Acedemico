@@ -17,6 +17,14 @@ Route::group(['middleware' => 'auth:web,admin'], function () {
     Route::get('/', 'HomeController@index')->name('home');
 });
 
+Route::get('test',function(){
+  $busqueda = App\Programa::where('nombre', 'like',  '%' ."sistemas" . '%')
+  ->orWhere('codigo', 'like', '%'.  "sistemas" . '%')
+  ->get();
+
+  return $busqueda;
+});
+
 Route::get('reporte/{tema}', function (App\TemaPlaneador $tema) {
 
     $planeador = $tema->planeador;
@@ -76,12 +84,13 @@ Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::post('/programas/registrar', 'ProgramaController@create')->name('programa.crear');
     Route::get('/programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
     Route::post('/programas/{programa}/editar', 'ProgramaController@update')->name('programa.update');
+    Route::post('/programas/{programa}/destroy', 'ProgramaController@destroy')->name('programa.destroy');
 });
 
 Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
-    Route::get('/{asignatura}/planeador/crear', 'PlaneadorController@create')->name('docente.generar.planeador');
-    Route::get('{asignatura}/planeador/ver', 'PlaneadorController@show')->name('docente.planeador.ver');
-    Route::get('{planeador}/planeador/pdf', 'HomeController@planeador_pdf')->name('docente.planeador.pdf');
+    Route::get('/{asignatura}/{grupo}/planeador/crear', 'PlaneadorController@create')->name('docente.generar.planeador');
+    Route::get('{asignatura}/{grupo}/planeador/ver', 'PlaneadorController@show')->name('docente.planeador.ver');
+    Route::get('{planeador}/{grupo}/planeador/pdf', 'PlaneadorController@planeador_pdf')->name('docente.planeador.pdf');
 
     Route::post('/guardar-planeador', 'PlaneadorController@store');
     Route::post('/generar-planeador', 'PlaneadorController@generarPlaneadorForm');

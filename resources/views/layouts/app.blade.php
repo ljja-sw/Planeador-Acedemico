@@ -12,13 +12,14 @@
     <title>@yield('title','Planeador Académico')</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}">
+    <script src="https://kit.fontawesome.com/205f32a46c.js" crossorigin="anonymous" defer></script>
+    {{-- <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}"> --}}
 
     <!-- Icon -->
     <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Styles -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     @stack('styles')
