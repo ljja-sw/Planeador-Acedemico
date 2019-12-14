@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Docente;
 use App\Dependencia;
-use Hash;
 use App\TemaPlaneador;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Imports\DocentesImport;
 use App\Exports\DocentesExport;
 use Illuminate\Support\Facades\Storage;
+use Hash;
 use Excel;
+Use Alert;
+
 
 class DocenteController extends Controller
 {
@@ -74,7 +76,8 @@ class DocenteController extends Controller
 
         $docente->assignRole($role_docente);
 
-        return redirect()->route('docentes.index')->with('msj', "Docente: {$data['nombre']} Registrado");
+        Alert::success("Docente: {$data['nombre']} Registrado", '')->showCloseButton();
+        return redirect()->route('docentes.show',$docente);
     }
 
     /**
@@ -85,13 +88,15 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
+
         $planeadores = $docente->planeadores;
+        
         if (count($planeadores) >= 1) {
             foreach ($planeadores as $planeador) {
                 $clases = TemaPlaneador::where("fecha->primera_clase", today()->format("Y-m-d"))
-                    ->orWhere("fecha->segunda_clase", today()->format("Y-m-d"))
-                    ->wherePlaneadorId($planeadores->first()->id)
-                    ->get();
+                ->orWhere("fecha->segunda_clase", today()->format("Y-m-d"))
+                ->wherePlaneadorId($planeadores->first()->id)
+                ->get();
             }
         } else {
             $clases = [];

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Horario;
+use App\Grupo;
 use Illuminate\Http\Request;
 
-class HorarioController extends Controller
+class GrupoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class HorarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Horario  $horario
+     * @param  \App\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function show(Horario $horario)
+    public function show(Grupo $grupo)
     {
         //
     }
@@ -52,10 +52,10 @@ class HorarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Horario  $horario
+     * @param  \App\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Horario $horario)
+    public function edit(Grupo $grupo)
     {
         //
     }
@@ -64,10 +64,10 @@ class HorarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Horario  $horario
+     * @param  \App\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Horario $horario)
+    public function update(Request $request, Grupo $grupo)
     {
         //
     }
@@ -75,10 +75,10 @@ class HorarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Horario  $horario
+     * @param  \App\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Horario $horario)
+    public function destroy(Grupo $grupo)
     {
         //
     }

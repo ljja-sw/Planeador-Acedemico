@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal_cambiar_avatar" role="dialog" aria-labelledby="myModalLabel"
 aria-hidden="true">
-<form class="modal-dialog" enctype="multipart/form-data" role="document" action="{{ url('/cambiar-avatar') }}" autocomplete="off" method="POST">
+<form class="modal-dialog modal-dialog-centered" enctype="multipart/form-data" role="document" action="{{ url('/cambiar-avatar') }}" autocomplete="off" method="POST">
   @csrf
   <div class="modal-content">
     <div class="modal-header text-center">

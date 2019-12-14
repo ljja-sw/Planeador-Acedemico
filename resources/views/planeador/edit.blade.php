@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',$planeador->asignatura_planeador->nombre)
+@section('title',$planeador->asignatura_planeador->asignatura->nombre)
 
 @section('content')
 @include('libs.ckeditor')
@@ -33,23 +33,23 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="text-align:center" colspan="2">
+                                <td style="text-align:center" colspan="3">
                                     <h6 class="h6-responsive text-muted">Programa Académico</h6>
-                                    <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
+                                    <h4 class="h4-responsive font-weight-bold">{{$programa->nombre}}</h4>
                                 </td>
                                 <td style="text-align:center" colspan="2">
                                     <h6 class="h6-responsive text-muted">Código del Programa</h6>
-                                    <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
+                                    <h4 class="h4-responsive font-weight-bold">{{$programa->codigo}}</h4>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Nombre de la Asignatura</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->nombre}}</h4>
+                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->asignatura->nombre}}</h4>
                                 </td>
                                 <td style="text-align:center" colspan="2">
                                     <h6 class="h6-responsive text-muted">Código de la Asignatura</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->codigo}}</h4>
+                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->asignatura->codigo}}</h4>
                                 </td>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Periodo Académico</h6>
@@ -59,19 +59,19 @@
                             <tr>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Créditos</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->creditos}}</h4>
+                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->asignatura->creditos}}</h4>
                                 </td>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Intesidad Horaria</h6>
-                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->intensidad_horaria}}</h4>
+                                    <h4 class="h4-responsive font-weight-bold">{{$planeador->asignatura_planeador->asignatura->intensidad_horaria}}</h4>
                                 </td>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Validable</h6>
-                                    <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($planeador->asignatura_planeador->validable) ? "check" : "times"}}"></i></h4>
+                                    <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($planeador->asignatura_planeador->asignatura->validable) ? "check" : "times"}}"></i></h4>
                                 </td>
                                 <td style="text-align:center">
                                     <h6 class="h6-responsive text-muted">Habilitable</h6>
-                                    <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($planeador->asignatura_planeador->habilitable) ? "check" : "times"}}"></i></i></h4>
+                                    <h4 class="h4-responsive font-weight-bold"><i class="fa fa-{{($planeador->asignatura_planeador->asignatura->habilitable) ? "check" : "times"}}"></i></i></h4>
                                 </td>
                             </tr>
                             <tr>
@@ -79,7 +79,7 @@
                                     <h6 class="h6-responsive text-muted">Nombre del Docente</h6>
                                     <h4 class="h4-responsive font-weight-bold">{{auth()->user()->nombre_completo()}}</h4>
                                 </td>
-                                
+
                                 <td style="text-align:center" colspan="2">
                                     <h6 class="h6-responsive text-muted">Correo del Docente</h6>
                                     <h4 class="h4-responsive font-weight-bold"><a href="mailto:{{auth()->user()->email}}">{{auth()->user()->email}}</a></h4>
@@ -88,7 +88,7 @@
                         </tbody>
                     </table>
                     <div class="text-center" >
-                        <a href="{{route('docente.planeador.pdf',$planeador)}}" class="btn btn-primary">
+                        <a href="{{route('docente.planeador.pdf',[$planeador,$grupo])}}" class="btn btn-primary">
                             <i class="fa fa-file-pdf"></i>
                             Guardar como PDF
                         </a>
@@ -115,7 +115,7 @@
                                             <textarea class="form-control" name="evaluaciones" id="evaluacionesInput" cols="30" rows="40" style="height: 100px" required>
                                                 {!! $planeador->evaluaciones !!}
                                             </textarea>
-                                        </div>  
+                                        </div>
 
                                         <div class="text-center my-3">
                                             <button class="btn btn-primary">
@@ -131,7 +131,7 @@
                     <div class="row">
                         <div class="col-md-12 table-responsive">
                             <table id="tabla" class="table table-bordered">
-                                <tbody class="text-center">
+                                <tbody >
                                     <tr>
                                         <th colspan="4" >
                                             <h4 class="font-weight-bold">Contenido Temático</h4>
@@ -155,15 +155,15 @@
                                     @if (count($tema->fecha)>1)
                                     @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y") || $tema->getFechas("segunda_clase") == today()->format("d/m/Y"))
                                     <tr class=" red lighten-4">
-                                        <th scope="row" class="border-left"><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
-                                        <td> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
+                                        <th scope="row" class="text-center border-left "><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
+                                        <td class="text-center"> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
                                         <td class="td-tema"> <p class="font-weight-bold m-0">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></p></td>
                                         <td> <p class="font-weight-bold m-0">{{ $tema->metodología_tema->nombre }}</p></td>
                                     </tr>
                                     @else
                                     <tr>
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
+                                        <th scope="row" class="text-center">{{ $tema->semana }}</th>
+                                        <td  class="text-uppercase text-center"> {{ $tema->getFechas() }} </td>
                                         <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
@@ -171,15 +171,15 @@
                                     @else
                                     @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y"))
                                     <tr class=" red lighten-4 border">
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td class="text-uppercase"> {{ $tema->getFechas() }} </td>
+                                        <th scope="row"  class="text-center">{{ $tema->semana }}</th>
+                                        <td class="text-uppercase text-center"> {{ $tema->getFechas() }} </td>
                                         <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
                                     @else
                                     <tr>
-                                        <th scope="row">{{ $tema->semana }}</th>
-                                        <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
+                                        <th scope="row"  class="text-center">{{ $tema->semana }}</th>
+                                        <td  class="text-uppercase text-center"> {{ $tema->getFechas() }} </td>
                                         <td  class="td-tema">{{ $tema->tema }} <a href="#!{{$tema->id}}" data-tema="{{$tema->id}}" class="editarTema"><i class="fa fa-pen"></i></a></td>
                                         <td>{{ $tema->metodología_tema->nombre }}</td>
                                     </tr>
@@ -219,7 +219,7 @@
            cargarTema(tema);
            $(".modal-body #idTema").val(tema);
            $('#modalEditarTema').modal({show:true});
-       }); 
+       });
 
            $("#editarEvaluacion").on('click',function(){
             $("#formEvaluacion").show(1000)
@@ -239,7 +239,7 @@
                         'id' : id
                     },
                     dataType:'json',
-                    success : function(data) {              
+                    success : function(data) {
                         $('#temaPlaneador').text(data['tema'])
                         $('#temaInput').val(data['tema'])
                         $('#metodologia').val(data['metodologia'])

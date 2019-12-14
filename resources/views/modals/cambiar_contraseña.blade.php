@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal_cambiar_contraseña" role="dialog" aria-labelledby="myModalLabel"
 aria-hidden="true">
-<form class="modal-dialog" role="document" action="{{ url('/cambiar-contraseña') }}" autocomplete="off" method="POST">
+<form class="modal-dialog modal-dialog-centered" role="document" action="{{ url('/cambiar-contraseña') }}" autocomplete="off" method="POST">
   @csrf
   <div class="modal-content">
     <div class="modal-header text-center">

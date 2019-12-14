@@ -5,11 +5,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Programa extends Model
 {
-    protected $fillable = ['nombre','codigo'];
+	protected $fillable = ['nombre','codigo'];
 
-
-    public function asignaturas()
-    {
-    	$this->hasMany(Asignatura::class);
+	public function asignaturas(){
+        return $this->belongsToMany(AsignaturaGrupo::class,'asignatura_programa','programa_id');
     }
+
+	public function getRouteKeyName()
+	{
+		return "id";
+	}
 }

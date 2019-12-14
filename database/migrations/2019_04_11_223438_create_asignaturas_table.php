@@ -16,8 +16,7 @@ class CreateAsignaturasTable extends Migration
         Schema::create('asignaturas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->string('codigo');
-            $table->unsignedInteger('grupo');
+            $table->string('codigo')->unique();
             $table->unsignedInteger('creditos');
             $table->unsignedInteger('intensidad_horaria');
             $table->unsignedInteger('habilitable');

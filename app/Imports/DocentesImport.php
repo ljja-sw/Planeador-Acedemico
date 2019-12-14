@@ -16,11 +16,7 @@ class DocentesImport implements ToModel, WithHeadingRow
      * @return \Illuminate\rowbase\Eloquent\Model|null
      */
     public function model(array $row)
-    {
-      if(empty($row['cedula'])) {
-          dd($row);
-      };
-      
+    {     
       $split_nombre = str_split($row['nombre']);
       $split_apellido = str_split($row['apellido']);
       $password = $split_nombre[0] . $row['cedula'] . $split_apellido[0];

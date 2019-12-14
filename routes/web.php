@@ -17,6 +17,14 @@ Route::group(['middleware' => 'auth:web,admin'], function () {
     Route::get('/', 'HomeController@index')->name('home');
 });
 
+Route::get('test',function(){
+  $busqueda = App\Programa::where('nombre', 'like',  '%' ."sistemas" . '%')
+  ->orWhere('codigo', 'like', '%'.  "sistemas" . '%')
+  ->get();
+
+  return $busqueda;
+});
+
 Route::get('reporte/{tema}', function (App\TemaPlaneador $tema) {
 
     $planeador = $tema->planeador;
@@ -45,18 +53,18 @@ Route::group(['middleware' => ['role:Admin', 'auth:admin']], function () {
 Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::get('/admin/configuraciones', 'AdminController@configuraciones')->name('admin.configuraciones');
     Route::post('/admin/configuraciones/guardar', 'AdminController@guardarConfiguraciones')->name('admin.configuraciones.guardar');
-    Route::get('designar-asignatura-docente', 'SecretarioController@formDesignarAsignatura')->name('form.designar.asignatura');
-    Route::post('designar-asignatura-docente', 'SecretarioController@DesignarAsignatura')->name('designar.asignatura.store');
+    Route::get('designar-asignatura-docente', 'AsignaturaController@formDesignarAsignatura')->name('form.designar.asignatura');
+    Route::post('designar-asignatura-docente', 'AsignaturaController@DesignarAsignatura')->name('designar.asignatura.store');
+
     Route::get('docentes', 'DocenteController@index')->name('docentes.index');
     Route::get('/docentes/{docente}/detalles', 'DocenteController@show')->name('docentes.show');
     Route::get('docentes/registrar', 'DocenteController@create')->name('docentes.create');
     Route::get('docentes/exportar', 'DocenteController@exportar')->name('docentes.exportar');
     Route::post('docentes/importar', 'DocenteController@importar')->name('docentes.importar');
-    Route::post('/admin/docentes/update', 'DocenteController@store')->name('docentes.store');
-    Route::post('/admin/docentes/{docente}/update', 'DocenteController@update')->name('docentes.update');
+    Route::post('/docentes/store', 'DocenteController@store')->name('docentes.store');
+    Route::post('/docentes/{docente}/update', 'DocenteController@update')->name('docentes.update');
 
     Route::get('/admin/salones-salas', 'SalonSalaController@index')->name('salon.index');
-    Route::get('/admin/salones-salas/registrar', 'SalonSalaController@create')->name('salon.create');
     Route::get('/admin/salones-salas/{salon}', 'SalonSalaController@show')->name('salon.show');
     Route::post('/admin/salones-salas/registrar', 'SalonSalaController@store')->name('salon.store');
     Route::post('/admin/salones-salas/{salon}/agregar', 'SalonSalaController@agregarHorario')->name('salon.horario.agregar');
@@ -81,12 +89,24 @@ Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
 
     Route::get('/reportes/listado', 'ReporteController@listareporteSecretario')->name('reporteclase.show'); 
     Route::get('/reportes/{reporte}/detalles', 'ReporteController@detalle')->name('reporteclase.detalle');     
+    Route::get('/asignaturas', 'AsignaturaController@show')->name('asignaturas.show');
+    Route::get('/asignaturas/registrar', 'AsignaturaController@index')->name('asignatura.crear');
+    Route::get('/asignaturas/{asigna}', 'AsignaturaController@detalle')->name('asignatura.detalles');
+    Route::post('/asignaturas/store', 'AsignaturaController@ingreso')->name('asignatura.store');
+    Route::post('/asignaturas/{asigna}/update', 'AsignaturaController@update')->name('asignaturas.update');
+    Route::get('/asignaturas/{asigna}/destroy', 'AsignaturaController@destroy')->name('asignaturas.destroy');
+
+    Route::get('/programas', 'ProgramaController@show')->name('programa.index');
+    Route::post('/programas/registrar', 'ProgramaController@create')->name('programa.crear');
+    Route::get('/programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
+    Route::post('/programas/{programa}/editar', 'ProgramaController@update')->name('programa.update');
+    Route::post('/programas/{programa}/destroy', 'ProgramaController@destroy')->name('programa.destroy');
 });
 
 Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
-    Route::get('/{asignatura}/planeador/crear', 'PlaneadorController@create')->name('docente.generar.planeador');
-    Route::get('{asignatura}/planeador/ver', 'PlaneadorController@show')->name('docente.planeador.ver');
-    Route::get('{planeador}/planeador/pdf', 'HomeController@planeador_pdf')->name('docente.planeador.pdf');
+    Route::get('/{asignatura}/{grupo}/planeador/crear', 'PlaneadorController@create')->name('docente.generar.planeador');
+    Route::get('{asignatura}/{grupo}/planeador/ver', 'PlaneadorController@show')->name('docente.planeador.ver');
+    Route::get('{planeador}/{grupo}/planeador/pdf', 'PlaneadorController@planeador_pdf')->name('docente.planeador.pdf');
 
     Route::post('/guardar-planeador', 'PlaneadorController@store');
     Route::post('/generar-planeador', 'PlaneadorController@generarPlaneadorForm');
@@ -116,3 +136,5 @@ Route::post('/login/secretario', 'Auth\SecretarioLoginController@login');
 
 Route::get('/login-admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
 Route::post('/login/admin', 'Auth\AdminLoginController@login');
+
+Route::get('/recuperar-cuenta', 'Auth\SecretarioLoginController@showLoginRCuenta')->name('recuperar.cuenta');
