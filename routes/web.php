@@ -78,6 +78,9 @@ Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::post('/programas', 'ProgramaController@create')->name('programa.crear');
     Route::get('/detalles-programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
     Route::post('/editar-programas/{programa}', 'ProgramaController@update')->name('programa.update');
+
+    Route::get('/reportes/listado', 'ReporteController@listareporteSecretario')->name('reporteclase.show'); 
+    Route::get('/reportes/{reporte}/detalles', 'ReporteController@detalle')->name('reporteclase.detalle');     
 });
 
 Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
@@ -90,8 +93,21 @@ Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
     Route::post('/editar/tema', 'PlaneadorController@editarTema');
     Route::post('/editar/planeador/{planeador}', 'PlaneadorController@editarPlaneador');
 
-    Route::get('/reportes', 'DocenteController@reportes')->name('reportes');
-    Route::get('/crear-reporte', 'ReporteController@crear')->name('reporte.creacion');
+    Route::get('/reportes','DocenteController@reportes')->name('reportes');
+
+    Route::get('/crear-reporte/{asignatura}/','ReporteController@crear')->name('reporte.creacion');
+
+    Route::get('/vista-reporte/{asignatura}/{usuario}/','ReporteController@show')->name('reporte.show');
+    Route::get('/detalles-reporte/{reporte}/','ReporteController@detalle')->name('reporte.detalles');
+
+    Route::post('/reportesUpdate/{report}/', 'ReporteController@update')->name('reporte.update');
+
+    Route::get('/reportes/editar/{report}/{asignatura}', 'ReporteController@editar')->name('reporte.editar');
+
+    Route::post('/reportes/{report}/destroy', 'ReporteController@destroy')->name('reporte.destroy');
+
+
+    Route::post('/guardar-repote','ReporteController@store');
 });
 
 

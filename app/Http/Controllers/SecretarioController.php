@@ -6,6 +6,7 @@ use App\AsignaturaDocente;
 use App\Asignatura;
 use App\SalonSala;
 use App\Docente;
+use App\Reporte;
 use App\User;
 use Hash;
 use Alert;
@@ -73,6 +74,8 @@ class SecretarioController extends Controller
     {
         return view('admin.secretario.show', compact('user'));
     }
+
+
 
     /**
      * Update the specified resource in storage.

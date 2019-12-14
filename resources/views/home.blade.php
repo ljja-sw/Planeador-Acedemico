@@ -41,6 +41,14 @@
 							Delegar Asignatura a Docente
 						</a>
 					</li>
+					<li class="nav-item">
+						<a href="{{route('reporteclase.show')}}" class="btn btn-elegant text-center">
+							<i class="fa fa-chalkboard-teacher"></i>
+							<i class="fa fa-arrow-right"></i>
+							<i class="fa fa-user"></i>
+							Lista de Reportes Docentes
+						</a>
+					</li>
 					@break
 					@case('Docente')
 					<li class="nav-item">

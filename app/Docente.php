@@ -77,4 +77,8 @@ class Docente extends Authenticatable
     {
         return ($this->avatar) ? Storage::disk('avatar')->url("avatars/{$this->avatar}") : '/images/default_user.png';
     }
+
+    public function reportesDocentes(){
+        return $this->hasMany(Reporte::class,'reportes_docente');
+    }
 }

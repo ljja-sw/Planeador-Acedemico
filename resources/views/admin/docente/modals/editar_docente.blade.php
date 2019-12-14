@@ -1,4 +1,4 @@
-a<div class="modal fade" id="modal_editar_secretario" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal_editar_secretario" tabindex="-1" role="dialog" aria-hidden="true">
   <form class="modal-dialog" role="document" action="{{route('docentes.update',$docente)}}" autocomplete="off" method="POST">
     @csrf
     <div class="modal-content">

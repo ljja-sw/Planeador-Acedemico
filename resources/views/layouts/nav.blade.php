@@ -43,6 +43,12 @@ Salones y Horarios
 
 @case("Docente")
 
+<li class="nav-item">
+	{{-- Enlaces Docentes --}}
+	<a class="nav-link" href="{{ route('reportes') }}">
+		<i class="fa fa-tasks"></i>
+		Reportes</a>
+</li>
 @break
 @default
 @endswitch

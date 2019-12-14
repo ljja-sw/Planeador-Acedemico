@@ -14,17 +14,18 @@ class CreateReportesTable extends Migration
     public function up()
     {
         Schema::create('reportes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('programa');            
-            $table->integer('semana_reporte');
-            $table->integer('semana_remplazo')->nullable();
-            $table->date('fecha_tema');            
+            $table->bigIncrements('id');           
+            $table->integer('semana_tema');
+            $table->string('tema_planeador');            
             $table->text('descripcion');
+            $table->text('tipo_clase');         
             $table->text('justificacion')->nullable();
-            $table->unsignedInteger('docente_id');
-            $table->unsignedInteger('asignatura_id');            
-            $table->unsignedInteger('tema_planeador_id');
+            $table->unsignedBigInteger('reportes_docente');
+            $table->unsignedBigInteger('reporte_asignatura');            
+            $table->unsignedInteger('programas_id');
             $table->timestamps();
+            $table->foreign('reportes_docente')->references('id')->on('docentes');
+            $table->foreign('reporte_asignatura')->references('id')->on('asignaturas');            
         });
     }
 

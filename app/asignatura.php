@@ -45,5 +45,9 @@ class Asignatura extends Model
         return "slug";
     }
 
+    public function reportesAsignatura(){
+        return $this->hasMany(Reporte::class,'reporte_asignatura');
+    }
+
 
 }

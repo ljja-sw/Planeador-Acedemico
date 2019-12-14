@@ -14,13 +14,13 @@
                 <div class="mx-auto">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href="{{ route('reporte.creacion')}}" class="btn btn-elegant">
+                            <a href="{{ route('reporte.creacion',$asignatura)}}" class="btn btn-elegant">
                                 <i class="fa fa-align-justify"></i>
                                 Crear
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="btn btn-elegant">
+                            <a href="{{route('reporte.show',array($asignatura,$usiario=auth()->user()) )}}" class="btn btn-elegant">
                                 <i class="fa fa-folder-open"></i>
                                 Visualizar
                             </a>
