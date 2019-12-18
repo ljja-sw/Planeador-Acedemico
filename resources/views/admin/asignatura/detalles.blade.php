@@ -3,17 +3,18 @@
 @section('content')
 @include('admin.asignatura.modals.editar-asignaturas')
 @include('admin.asignatura.modals.eliminar-asignaturas')
+
 <div class="container">
 	<div class="row align-items-center">
 		<div class="col-md-12 col-lg-10 mx-auto">
 			<div class="card card-body">
 				<div class="row">
-					<div class="col-md-6 col-lg-8">	
+					<div class="col-md-6 col-lg-8">
 						<h1 class="h1-responsive text-muted">
 							{{$asigna->nombre}}
-						</h1>					
+						</h1>
 						<small class="text-muted">Codigo</small>
-						<p class="font-weight-bold">{{$asigna->codigo}}</p>					
+						<p class="font-weight-bold">{{$asigna->codigo}}</p>
 					</div>
 
 					<div class="col-md-6 col-lg-4 d-flex flex-column my-auto">
@@ -71,7 +72,7 @@
                     <td>
                       <p class="font-weight-bold text-align-right">{{$asigna->intensidad_horaria}}</p>
                     </td>
-                  </tr>                  
+                  </tr>
                 </table>
               </div>
 			</div>
