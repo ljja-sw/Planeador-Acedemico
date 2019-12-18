@@ -16,18 +16,16 @@ class DatabaseSeeder extends Seeder
         'inicio_clases' => now(),
         'inicio_periodo_academico' => 1,
         'fin_periodo_academico' =>1,
-        'numero_semanas' => 18
+        'numero_semanas' => 16
       ]);
 
-      // factory('App\Programa',20)->create();
-      // factory('App\Asignatura',30)->create();
-
       $this->call(RolesSeeder::class);
+      $this->call(AdminSeeder::class);
       $this->call(DiasSemanasSeeder::class);
       $this->call(PermissionsSeeder::class);
       $this->call(MetodologiasSeeder::class);
       $this->call(JornadasSeeder::class);
-      // $this->call(SalonesHorarios::class);
+      $this->call(DeveloperSeeder::class);
 
     }
 }
