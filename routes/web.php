@@ -87,8 +87,8 @@ Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::get('/detalles-programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
     Route::post('/editar-programas/{programa}', 'ProgramaController@update')->name('programa.update');
 
-    Route::get('/reportes/listado', 'ReporteController@listareporteSecretario')->name('reporteclase.show'); 
-    Route::get('/reportes/{reporte}/detalles', 'ReporteController@detalle')->name('reporteclase.detalle');     
+    Route::get('/reportes/listado', 'ReporteController@listareporteSecretario')->name('reporteclase.show');
+    Route::get('/reportes/{reporte}/detalles', 'ReporteController@detalle')->name('reporteclase.detalle');
     Route::get('/asignaturas', 'AsignaturaController@show')->name('asignaturas.show');
     Route::get('/asignaturas/registrar', 'AsignaturaController@index')->name('asignatura.crear');
     Route::get('/asignaturas/{asigna}', 'AsignaturaController@detalle')->name('asignatura.detalles');
@@ -131,10 +131,10 @@ Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
 });
 
 
-Route::get('/login-secretario', 'Auth\SecretarioLoginController@showLoginForm')->name('login.secretario');
+Route::get('/login/secretario', 'Auth\SecretarioLoginController@showLoginForm')->name('login.secretario');
 Route::post('/login/secretario', 'Auth\SecretarioLoginController@login');
 
-Route::get('/login-admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
+Route::get('/login/admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
 Route::post('/login/admin', 'Auth\AdminLoginController@login');
 
 Route::get('/recuperar-cuenta', 'Auth\SecretarioLoginController@showLoginRCuenta')->name('recuperar.cuenta');

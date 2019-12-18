@@ -37,11 +37,11 @@
 
                         <h6 class="h6-responsive font-weight-bold text-center">Iniciar Sesion como</h6>
                         @if (Request::is('*login'))
-                            <a href="{{url('login-secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
+                            <a href="{{url('login/secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
                         @elseif(Request::is('*login-secretario'))
                             <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
                         @else
-                            <a href="{{url('login-secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
+                            <a href="{{url('login/secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
                             <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
                         @endif
                     </div>

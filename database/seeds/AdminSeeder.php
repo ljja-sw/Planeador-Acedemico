@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
         'apellido' => "Planeador Virtual",
         'documento_identidad' => "0000000000",
         'email' => "admin.planeador@univalle.edu.co",
-        'password' => Hash::make("planeadoru"),
+        'password' => Hash::make("adminplaneadoru"),
       ]);
       $user->assignRole($admin);
     }

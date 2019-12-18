@@ -9,7 +9,7 @@ $factory->define(App\Docente::class, function (Faker $faker) {
 		'documento_identidad' => $faker->isbn10,
 		'email' => "{$faker->username}@correounivalle.edu.co",
 		'email_verified_at' => now(),
-        'password' => '$2y$10$rSTI5TaJuDMi80omIsDbeuzoN/SR5bb8LyT3jlqWTiTQAfKg84d8S', // docente
+        'password' => '$2y$10$jUZo0J5oc28Otv2VXlIMI.cRa8mmtImT1N6FePGltpIH.gORYEE3W', // planeadoru
         'remember_token' => Str::random(10),
     ];
 });
