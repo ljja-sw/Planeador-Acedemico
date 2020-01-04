@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Docente;
-use App\Dependencia;
-use App\TemaPlaneador;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use App\Imports\DocentesImport;
 use App\Exports\DocentesExport;
-use Illuminate\Support\Facades\Storage;
-use Hash;
+use App\Imports\DocentesImport;
+use App\TemaPlaneador;
 use Excel;
-Use Alert;
+use Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
 
 class DocenteController extends Controller

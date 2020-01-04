@@ -25,7 +25,9 @@ class DatabaseSeeder extends Seeder
       $this->call(PermissionsSeeder::class);
       $this->call(MetodologiasSeeder::class);
       $this->call(JornadasSeeder::class);
-      $this->call(DeveloperSeeder::class);
 
+      if(env('APP_ENV') != "production"){
+      $this->call(DeveloperSeeder::class);
+      }
     }
 }

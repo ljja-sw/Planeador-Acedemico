@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
+use Alert;
 use App\Asignatura;
-use App\Programa;
-use App\Docente;
-use App\Horario;
-use App\SalonSala;
 use App\AsignaturaDocente;
-use App\Grupo;
-Use Alert;
 use App\AsignaturaGrupo;
+use App\Docente;
+use App\Grupo;
+use App\Horario;
+use App\Programa;
+use App\SalonSala;
 use DB;
+use Illuminate\Http\Request;
 
 class AsignaturaController extends Controller
 {

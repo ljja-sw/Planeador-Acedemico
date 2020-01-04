@@ -50,7 +50,7 @@ Route::group(['middleware' => ['role:Admin', 'auth:admin']], function () {
     Route::post('/admin/secretarios/{user}/update', 'SecretarioController@update')->name('secretarios.update');
 });
 
-Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
+Route::group(['middleware' => ['role:Secretario|Admin', 'auth:admin']], function () {
     Route::get('/admin/configuraciones', 'AdminController@configuraciones')->name('admin.configuraciones');
     Route::post('/admin/configuraciones/guardar', 'AdminController@guardarConfiguraciones')->name('admin.configuraciones.guardar');
     Route::get('designar-asignatura-docente', 'AsignaturaController@formDesignarAsignatura')->name('form.designar.asignatura');
@@ -130,11 +130,7 @@ Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
     Route::post('/guardar-repote','ReporteController@store');
 });
 
-
-Route::get('/login/secretario', 'Auth\SecretarioLoginController@showLoginForm')->name('login.secretario');
-Route::post('/login/secretario', 'Auth\SecretarioLoginController@login');
-
 Route::get('/login/admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
-Route::post('/login/admin', 'Auth\AdminLoginController@login');
+Route::post('/login/admin', 'Auth\AdminLoginCOntroller@login');
 
 Route::get('/recuperar-cuenta', 'Auth\SecretarioLoginController@showLoginRCuenta')->name('recuperar.cuenta');

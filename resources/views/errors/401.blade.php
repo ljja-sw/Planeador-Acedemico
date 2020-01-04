@@ -1,5 +1,5 @@
-@extends('errors::minimal')
+@extends('errors::illustrated-layout')
 
-@section('title', __('Unauthorized'))
+@section('title', __('No Autorizado'))
 @section('code', '401')
-@section('message', __('Unauthorized'))
+@section('message', __('No tienes permiso para acceder este recurso'))

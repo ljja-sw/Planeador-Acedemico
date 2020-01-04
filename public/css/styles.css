@@ -1,8 +1,6 @@
 body{
     background-color:#ededed;
 }
-.main-content{}
-
 .md-form.md-outline input[type=date]:focus:not([readonly]),
 .md-form.md-outline input[type=datetime-local]:focus:not([readonly]),
 .md-form.md-outline input[type=email]:focus:not([readonly]),
@@ -114,25 +112,6 @@ table.table a{
 }
 .img-perfil{
     height:228px;
-}
-.hero{
-    height:300px;
-    background:url(/images/hero_500.jpg) no-repeat;
-    background-position:50%;
-    background-size:cover;
-}
-.funciones .col-md-4 .card{
-    height:300px;margin-top:10px;
-}
-
-@media (min-width:768px){
-    .hero{
-        height:500px;
-        background-image:url(/images/hero_1600.jpg);
-    }
-    .funciones .col-md-4 .card{
-        height:300px;
-    }
 }
 .img-avatar-full{
     max-height: 256px;
