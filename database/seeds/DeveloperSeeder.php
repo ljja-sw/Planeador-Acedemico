@@ -15,7 +15,7 @@ class DeveloperSeeder extends Seeder
     */
     public function run()
     {
-        factory("App\Programa")->create();
+        factory("App\Programa",10)->create();
 
         $role_docente = Role::findByName("Docente");
         $role_secretario = Role::findByName("Secretario",'admin');

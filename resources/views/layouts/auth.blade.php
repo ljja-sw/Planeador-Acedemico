@@ -15,39 +15,36 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    {{-- <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}"> --}}
-    <script src="https://kit.fontawesome.com/205f32a46c.js" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
     <!-- Icon -->
     <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Styles -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" > --}}
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login.min.css') }}" rel="stylesheet">
 </head>
 <body>
-    <main id="content" style="">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-7 PColunna">
-                    <div class="card card-body cardLogin">
+    <div class="container" >
+        <div class="row flex-center">
+                <div class="card card-login p-3">
+                    <div class="card-body flex-center mt-1">
                         @yield('content')
-
-                        <h6 class="h6-responsive font-weight-bold text-center">Iniciar Sesion como</h6>
-                        @if (Request::is('*login'))
-                            <a href="{{url('login/secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
-                        @elseif(Request::is('*login-secretario'))
-                            <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
-                        @else
-                            <a href="{{url('login/secretario')}}" class="btn btn-outline-elegant"><b><i class="fa fa-users"></i> Secretario Academico</b></a>
-                            <a href="{{url('login')}}" class="btn btn-outline-elegant"><b><i class="fa fa-chalkboard-teacher"></i> Docente</b></a>
-                        @endif
+                    </div>
+                    <div class="mx-auto text-center">
+                        <img class="img-fluid logo-login" src="{{ asset('images/logo_color.png') }}" alt="">
                     </div>
                 </div>
-            </div>
         </div>
-    </main>
+    </div>
 </body>
+<script>
+    // We listen to the resize event
+window.addEventListener('resize', () => {
+  // We execute the same script as before
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+</script>
 </html>

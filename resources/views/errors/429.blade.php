@@ -1,5 +1,5 @@
-@extends('errors::minimal')
+@extends('errors::illustrated-layout')
 
-@section('title', __('Too Many Requests'))
+@section('title', __('Muchas solicitudes'))
 @section('code', '429')
-@section('message', __('Too Many Requests'))
+@section('message', __('Has realizado muchas solicitudes al servidor'))

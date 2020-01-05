@@ -4,18 +4,26 @@
 @section('title','Iniciar Sesión | Administrador')
 
 @section('content')
-<form class="form-signin" action="/login/admin" method="POST">
+<form class="form-iniciar-session" action="/login/admin" method="POST">
     @csrf
 
-    <div class="text-center mb-4">
-            <img class="mb-1 img-fluid w-75" src="{{ asset('images/logo_color.png') }}" alt="">
-            <h1 class="h3 mb-0  text-elegant font-weight-normal">Inicio de Sesión</h1>
-            <h5 class="font-weight-bold">Administrador</h5>
+    <div class="text-center">
+        <span class="text-primary p-2">
+            <i class="fa fa-user fa-4x "></i>
+          </span>
+        <h5 class="h3 text-primary">Iniciar Sesión</h5>
+        <p class="p-0 font-weight-bold">Administrador</p>
     </div>
+    <hr class="hr-padding">
 
     <div class=" md-outline md-form">
         <input class="form-control" name="email" type="email" id="input_email" value="{{ old('email') }}" required autofocus>
         <label for="input_email">Correo Electrónico</label>
+    </div>
+
+    <div class="md-outline md-form">
+        <input class="form-control" name="password" type="password" id="input_password" required>
+        <label for="input_password"> Contraseña</label>
     </div>
 
     @if ($errors->has('email'))
@@ -29,10 +37,9 @@
     </p>
     @endif
 
-    <div class="md-outline md-form">
-        <input class="form-control" name="password" type="password" id="input_password" required>
-        <label for="input_password"> Contraseña</label>
+    <div class="mx-auto text-center">
+        <button class="btn btn-elegant text-white" type="submit"><i class="fa fa-sign-in-alt"></i> Iniciar Sesión</button>
+
     </div>
-    <button class="btn btn-lg btn-elegant text-white btn-block" type="submit"><i class="fa fa-sign-in-alt"></i> Iniciar Sesión</button>
 </form>
 @endsection

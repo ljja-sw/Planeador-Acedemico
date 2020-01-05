@@ -22,7 +22,8 @@
 					{{auth()->user()->apellido}}
 				</h5>
 				<hr>
-				<ul class="nav mx-auto font-weight-bold justify-content-center">
+                @hasanyrole('Docente|Secretario')
+                <ul class="nav mx-auto font-weight-bold justify-content-center">
 					<li class="nav-item">
 						<a href="#" data-toggle="modal" class="nav-link" data-toggle="modal" data-target="#modal_cambiar_avatar">
 							<i class="fa fa-user-circle"></i> Cambiar Imagen</a>
@@ -31,6 +32,7 @@
 							<a href="#" data-toggle="modal" data-target="#modal_cambiar_contraseña" class="nav-link"> <i class="fa fa-key"></i> Cambiar Contraseña</a>
 						</li>
 					</ul>
+                @endhasanyrole
 				</div>
 			</div>
 		</div>

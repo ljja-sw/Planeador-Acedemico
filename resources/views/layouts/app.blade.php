@@ -12,7 +12,7 @@
     <title>@yield('title','Planeador Académico')</title>
 
     <!-- Fonts -->
-    <script src="https://kit.fontawesome.com/205f32a46c.js" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
     <!-- Icon -->
     <link rel="icon" href="{{ asset('favicon.png') }}">
@@ -61,8 +61,9 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{ auth()->user()->getAvatar() }}" class="rounded-circle z-depth-0 mx-1"
                         alt="{{Auth::user()->nombre}}" height="35" width="35">
+
                     </a>
-                    <div class="dropdown-menu " aria-labelledby="perfilDropdown" style="width: 270px">
+                    <div class="dropdown-menu " aria-labelledby="perfilDropdown" style="min-width: 270px">
                         @hasrole('Secretario')
                         <a class="dropdown-item" href="{{route('admin.configuraciones')}}">
                             <i class="fa fa-cog"></i>
@@ -70,15 +71,12 @@
                             <div class="dropdown-divider"></div>
                             @endhasrole
                             <a class="dropdown-item" href="{{ route('perfil') }}"><i class="fa fa-user"></i>
-                                {{ Auth::user()->nombre_completo() }}</a>
+                                {{ Auth::user()->nombre_completo() }}                             <small>{{Auth::user()->getRoleNames()->first()}}</small>
+                            </a>
                                 <a href="#" class="dropdown-item" href="#" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                 <i class="fa fa-sign-out-alt"></i>
                                 Cerrar Sesión
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                            </form>
                         </a>
                     </li>
                 </div>
@@ -89,9 +87,10 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{ auth()->user()->getAvatar() }}" class="rounded-circle z-depth-0 mx-1"
                         alt="{{Auth::user()->nombre}}" height="35" width="35">
-                        <span class="d-none d-md-inline">{{ Auth::user()->nombre_completo() }}</span>
+                            <span class="d-none d-md-inline">{{ Auth::user()->nombre_completo() }}
+                            </span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfilDropdown" style="width: 270px">
+                    <div class="dropdown-menu mx-auto dropdown-menu-right" aria-labelledby="perfilDropdown" style="min-width: 280px">
                         @hasrole('Secretario')
                         <a class="dropdown-item" href="{{route('admin.configuraciones')}}">
                             <i class="fa fa-cog"></i>

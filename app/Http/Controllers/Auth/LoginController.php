@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Carbon\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -22,7 +22,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    protected $logged_guard;
     /**
      * Where to redirect users after login.
      *
@@ -45,8 +45,30 @@ class LoginController extends Controller
         return 'email';
     }
 
+    public function guard()
+    {
+        return Auth::guard($this->logged_guard);
+    }
+
+    public function attemptLogin(Request $request)
+    {
+
+        if ($this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember'))) {
+            return $this->guard()->attempt(
+                $this->credentials($request), $request->filled('remember'));
+        } else {
+            $this->logged_guard = "admin";
+            return $this->guard()->attempt(
+                $this->credentials($request), $request->filled('remember'));
+        }
+    }
+
     protected function authenticated(Request $request, $user)
     {
+        if ($user->hasRole("Admin")) {
+            return $this->sendFailedLoginResponse($request);
+        }
         $user->update([
             'last_login' => Carbon::now()->toDateTimeString(),
         ]);
