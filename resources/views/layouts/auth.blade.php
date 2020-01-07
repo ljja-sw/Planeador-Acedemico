@@ -16,6 +16,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="{{ asset('favicon.png') }}">
@@ -28,23 +29,15 @@
 <body>
     <div class="container" >
         <div class="row flex-center">
-                <div class="card card-login p-3">
+                <div class="card card-login p-3 hoverable">
                     <div class="card-body flex-center mt-1">
                         @yield('content')
                     </div>
                     <div class="mx-auto text-center">
-                        <img class="img-fluid logo-login" src="{{ asset('images/logo_color.png') }}" alt="">
+                        <a href="/"><img class="img-fluid logo-login" src="{{ asset('images/logo_color.png') }}" alt=""></a>
                     </div>
                 </div>
         </div>
     </div>
 </body>
-<script>
-    // We listen to the resize event
-window.addEventListener('resize', () => {
-  // We execute the same script as before
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-});
-</script>
 </html>

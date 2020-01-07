@@ -133,4 +133,4 @@ Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
 Route::get('/login/admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
 Route::post('/login/admin', 'Auth\AdminLoginCOntroller@login');
 
-Route::get('/recuperar-cuenta', 'Auth\SecretarioLoginController@showLoginRCuenta')->name('recuperar.cuenta');
+Route::get('/recuperar-cuenta', 'Auth\ResetPasswordController@showResetForm')->name('recuperar.cuenta');

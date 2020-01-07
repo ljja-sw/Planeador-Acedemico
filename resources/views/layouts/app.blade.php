@@ -12,7 +12,9 @@
     <title>@yield('title','Planeador Académico')</title>
 
     <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap" rel="stylesheet">
 
     <!-- Icon -->
     <link rel="icon" href="{{ asset('favicon.png') }}">
@@ -20,7 +22,7 @@
     <!-- Styles -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     @stack('styles')
 
@@ -135,8 +137,8 @@
                 <div class="col-12">
                     <p class="text-center">
                         <a href="http://pacifico.univalle.edu.co" target="_blank">
-                            <strong> Universidad del Valle Sede Pacifico,</strong>
-                        </a> 2019
+                            Universidad del Valle Sede Pacifico,
+                        </a> <strong>2020</strong>
                     </p>
                 </div>
             </div>
