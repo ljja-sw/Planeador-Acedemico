@@ -79,6 +79,6 @@ class Docente extends Authenticatable
     }
 
     public function reportesDocentes(){
-        return $this->hasMany(Reporte::class,'reportes_docente');
+        return $this->hasMany(Reporte::class,'docente_id');
     }
 }

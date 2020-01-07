@@ -2,7 +2,9 @@
 
 @section('content')
 @include('libs.datatables')
-@include('reporte.modals.eliminar-reporte')
+@include('reporte.modals.eliminar-reporte')			                		                
+
+
 
 <div class="container">
 	<div class="row">		
@@ -25,16 +27,13 @@
 		                <tbody>
 		              @forelse($report as $reporte)
 		              <tr>
-		              <td>{{ $reporte->tema_planeador }}</td>
+		              <td>{{ $reporte->tema->tema }}</td>
 		              <td>{{ $reporte->tipo_clase }}</td>
 		              <td>{{ $reporte->semana_tema }}</td>
 		              <td>{{ Request::is($reporte->justificacion == null) ? 'Si' : 'No hay' }}</td>
 		              <td>  
-		                <a title="Editar" href="{{route('reporte.editar',[$reporte,$asignatura])}}" class="nav-item btn-table--edit">
-		                	<i class="fa fa-pen">Editar</i>			
-		                </a>		              	
-		                <a title="Eliminar" href="#" data-toggle="modal" class="eliminarReporte" data-target="#modal-eliminar-reporte" data-id={{$reporte->id}} class="nav-item btn-table--edit" onclick="deletereporte('reporta')">
-		                	<i class="fa fa-trash">Eliminar</i>			
+		                <a title="Editar" href="{{route('reporte.detalles',[$reporte,$asignatura])}}" class="nav-item btn-table--edit" style="margin: 10px">
+		                	<i class="fa fa-folder">Ver mas</i>			
 		                </a>		                               
 		              </td>
 		              </tr>
@@ -57,14 +56,6 @@
 @push("scripts")
 <script>
   $('#tabla_asignaturas').DataTable();
-
-
-  $(document).ready(function(){
-  	$('.eliminarReporte').on('onclick',function(){
-  	var reporta = reporta;
-  	$('#modal-eliminar-reporte').modal(show:true)});
-  });
-
 
 </script>
 @endpush 

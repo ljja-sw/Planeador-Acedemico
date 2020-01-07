@@ -13,7 +13,7 @@
         </h4>
     </div>    
   </div>
-  <form action="{{url('/reportesUpdate',$report)}}" method="POST">
+  <form action="{{url('/reportesUpdate',$reporte)}}" method="POST">
     @csrf
  	<div class="row">
  	   <div class="col-md-8 mx-auto">
@@ -28,16 +28,16 @@
               <div class="form-group card-body">
                   <div class="mb-3">
                     <label>Descripcion del reporte</label>
-                    <textarea rows="10" name="descripcion" id="1editar" class="form-control" placeholder="Ingrese el contenido completo del reporte">{!!$report->descripcion!!}</textarea>
+                    <textarea rows="10" name="descripcion" id="repedit" class="form-control" placeholder="Ingrese el contenido completo del reporte">{!!$reporte->descripcion!!}</textarea>
                   </div>
               </div>
 
               <div class="form-group">
                 <label>Tipo de Clase</label>
                 <select class=" form-control" name="tipo_clase">
-                    <option value="{{$report->tipo_clase}}">{{$report->tipo_clase}}</option>
+                    <option value="{{$reporte->tipo_clase}}">{{$reporte->tipo_clase}}</option>
 	                @foreach($metodologia as $metodologiasP)
-	                    <option value="{{ $report->tipo_clase = $metodologiasP->nombre}}">{{$metodologiasP->nombre}}</option>
+	                    <option value="{{ $reporte->tipo_clase = $metodologiasP->nombre}}">{{$metodologiasP->nombre}}</option>
 	                @endforeach  
                 </select>            
               </div>
@@ -47,7 +47,7 @@
 	          <div class="form-group card-body" id='acta' style=" display:none";>
 	            <div class="mb-3">
 	              <label>Motivo</label>
-	              <textarea rows="5"  name="justificacion" id="#" class="form-control medium-textarea" placeholder="Ingrese el contenido completo del reporte"></textarea>
+	              <textarea rows="5"  name="justificacion" id="justrepor" class="form-control medium-textarea" placeholder="Ingrese el contenido completo del reporte">{{$reporte->id}}</textarea>
 	            </div>
 	          </div>
 	        </div>
@@ -61,9 +61,9 @@
         <div class="card card-danger">
           <div class="card-header with-border"></div>
           <div class="card-body">
-              <input type="text" name="reportes_docente" value="{{ $report->reportes_docente = auth()->user()->id }}" hidden>
-              <input type="text" name="reporte_asignatura" value="{{ $report->reporte_asignatura = $asignatura->id }}" hidden>
-              <input type="text" name="programas_id" value="{{ $report->programas_id = $asignatura->id }}" hidden>            
+              <input type="text" name="reportes_docente" value="{{ $reporte->reportes_docente = auth()->user()->id }}" hidden>
+              <input type="text" name="reporte_asignatura" value="{{ $reporte->reporte_asignatura = $asignatura->id }}" hidden>
+              <input type="text" name="programas_id" value="{{ $reporte->programas_id = $asignatura->id }}" hidden>            
             <div class="form-group">
                 <label>Asignatura</label>
                 <h3 class="form-control">{{$asignatura->nombre}}</h3>
@@ -71,9 +71,9 @@
             <div class="form-group">
               <label>Temas</label>
               <select name="tema_planeador" class=" form-control" id="temas_planeador_select"  required>
-                <option value="{{$report->tema_planeador}}">{{$report->tema_planeador}}</option>
+                <option value="{{$reporte->tema->tema}}">{{$reporte->tema->tema}}</option>
                 @foreach($tema_planeador as $temasP)
-                    <option value="{{ $report->tema_planeador = $temasP->tema }}">{{ $temasP->tema }}</option>
+                    <option value="{{ $reporte->tema_planeador = $temasP->tema }}">{{ $temasP->tema }}</option>
                 @endforeach     
               </select>  
             </div>
@@ -81,9 +81,9 @@
               <div class="form-group">
                   <label>Semana</label>
                   <select name="semana_tema" class=" form-control" id="semana_select">
-                    <option value="{{$report->semana_tema}}">{{$report->semana_tema}}</option>
+                    <option value="{{$reporte->semana_tema}}">{{$reporte->semana_tema}}</option>
                   @foreach($tema_planeador as $semanasP)
-                      <option value="{{ $report->semana_tema = $semanasP->semana }}">{{ $semanasP->semana }}</option>
+                      <option value="{{ $reporte->semana_tema = $semanasP->semana }}">{{ $semanasP->semana }}</option>
                   @endforeach  
                   </select>
               </div>
@@ -106,15 +106,24 @@
  	</div>
   </form> 
 </div>
+@push("scripts")
+
 <script type="text/javascript">
-  $(function () {
     ClassicEditor
-      .create(document.querySelector('#1editar'))
-      .then(function (editor) {
-      })
-      .catch(function (error) {
+    .create(document.querySelector('#repedit'))
+    .then(function (editor) {
+    })
+    .catch(function (error) {
         console.error(error)
-      })
+    })
+
+    ClassicEditor
+    .create(document.querySelector('#justrepor'))
+    .then(function (editor) {
+    })
+    .catch(function (error) {
+        console.error(error)
+    })
 
     //DatemPicker    
     $("#datepicker").datepicker({
@@ -125,7 +134,7 @@
     $('#semana_select').select2({
     });
 
-  })
+  
 
 
 $('#temas_planeador_select').select2({
@@ -133,4 +142,5 @@ $('#temas_planeador_select').select2({
 
 
 </script>
+@endpush
 @endsection

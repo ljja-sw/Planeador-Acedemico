@@ -24,13 +24,13 @@
           <div class="card-body">
             <div class="form-group">
                 <label>Programa</label>
-                <h3 class="form-control">En proceso</h3>
+                <h3 class="form-control">{{$programa->nombre}}</h3>
               </div>
 
               <div class="form-group card-body">
                   <div class="mb-3">
                     <label>Descripcion del reporte</label>
-                    <textarea rows="10" name="descripcion" id="editor" class="form-control" placeholder="Ingrese el contenido completo del reporte"></textarea>
+                    <textarea rows="10" name="descripcion" id="editor" class="form-control editor" placeholder="Ingrese el contenido completo del reporte"></textarea>
                   </div>
               </div>
 
@@ -49,7 +49,7 @@
           <div class="form-group card-body" id='acta' style=" display:none";>
             <div class="mb-3">
               <label>Motivo</label>
-              <textarea rows="5"  name="justificacion" id="#" class="form-control medium-textarea" placeholder="Ingrese el contenido completo del reporte"></textarea>
+              <textarea rows="5"  name="justificacion" id="justrepor" class="form-control medium-textarea editor" placeholder="Ingrese el contenido completo del reporte"></textarea>
             </div>
           </div>
         </div>
@@ -61,19 +61,19 @@
         <div class="card card-danger">
           <div class="card-header with-border"></div>
           <div class="card-body">
-                <input type="text" name="reportes_docente" value="{{ auth()->user()->id }}" hidden>
-                <input type="text" name="reporte_asignatura" value="{{ $asignatura->id }}" hidden>
-                <input type="text" name="programas_id" value="{{ $asignatura->id }}" hidden>
+                <input type="text" name="docente_id" value="{{ auth()->user()->id }}" hidden>
+                <input type="text" name="asignatura_id" value="{{ $asignatura->id }}" hidden>
+                <input type="text" name="programas_id" value="{{ $programa->id }}" hidden>
             <div class="form-group">
                 <label>Asignatura</label>
                 <h3 class="form-control">{{$asignatura->nombre}}</h3>
             </div>
             <div class="form-group">
               <label>Temas</label>
-              <select name="tema_planeador" class=" form-control" id="temas_planeador_select"  required>
+              <select name="tema_planeador_id" class=" form-control" id="temas_planeador_select"  required>
                 <option value="">Seleciones una opcion</option>
                 @foreach($tema_planeador as $temasP)
-                    <option value="{{ $temasP->tema }}">{{ $temasP->tema }}</option>
+                    <option value="{{ $temasP->id }}">{{ $temasP->tema }}</option>
                 @endforeach     
               </select>  
             </div>
@@ -115,12 +115,20 @@
 <script type="text/javascript">
   $(function () {
     ClassicEditor
-      .create(document.querySelector('#editor'))
+      .create(document.querySelector('.editor'))
       .then(function (editor) {
       })
       .catch(function (error) {
         console.error(error)
       })
+
+    ClassicEditor
+    .create(document.querySelector('#justrepor'))
+    .then(function (editor) {
+    })
+    .catch(function (error) {
+        console.error(error)
+    })
 
     //DatemPicker    
     $("#datepicker").datepicker({

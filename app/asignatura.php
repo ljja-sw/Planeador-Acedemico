@@ -50,7 +50,7 @@ class Asignatura extends Model
     }
 
     public function reportesAsignatura(){
-        return $this->hasMany(Reporte::class,'reporte_asignatura');
+        return $this->hasMany(Reporte::class,'asignatura_id');
     }
 
 

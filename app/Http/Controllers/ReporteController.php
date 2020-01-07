@@ -3,60 +3,80 @@
 namespace App\Http\Controllers;
 
 use App\AsignaturaDocente;
+use App\AsignaturaGrupo;
 use App\TemaPlaneador;
 use App\Metodologia;
 use App\Asignatura;
 use App\Docente;
 use App\Reporte;
 use App\Planeador;
+use App\Programa;
 use Illuminate\Http\Request;
-
+use Alert;
+use DB;
 
 
 class ReporteController extends Controller
 {
     public function crear(Asignatura $asignatura){
 
-        $planeador = $asignatura->planeador;
-
-        $tema_planeador = $planeador->temas;
-
         $metodologia = Metodologia::all();
 
-    return view('reporte.creacion', compact('asignatura','tema_planeador','metodologia'));
+
+        $planeador = $asignatura->planeador;
+        
+
+        $tema_planeador = TemaPlaneador::DoesntHave('ReporteTema')->get();    
+
+        //$asignatura_grupo = $planeador->asignatura_grupo_id;
+
+
+        $asignatura_grupo = AsignaturaGrupo::where('id_asignatura',$asignatura->id)->first();
+
+        $programa = $asignatura_grupo->programa->first();
+
+
+
+    return view('reporte.creacion', compact('asignatura','tema_planeador','metodologia','planeador','programa'));
 
     }
     public function store(Request $request){
 
     	$this->validate($request, [
     		'semana_tema' => 'required',
-    		'tema_planeador' => 'required',
+    		'tema_planeador_id' => 'required',
     		'descripcion' => 'required',
             'tipo_clase' => 'required',
-    		'reportes_docente' => 'required',
-    		'reporte_asignatura' => 'required',
+    		'docente_id' => 'required',
+    		'asignatura_id' => 'required',
+            'programas_id' => 'required'
     	]);
 
         $information = $request->toArray();
 
 
+        $tema = TemaPlaneador::where('id',$information['tema_planeador_id'])->first();
+
     	$reportar = Reporte::create([
             'semana_tema' => $information['semana_tema'],
-            'tema_planeador' => $information['tema_planeador'],
             'descripcion' => $information['descripcion'],
             'tipo_clase' => $information['tipo_clase'],     
             'justificacion' => $information['justificacion'],
-            'reportes_docente' => $information['reportes_docente'],
-            'reporte_asignatura' => $information['reporte_asignatura'],
-            'programas_id' => $information['programas_id']
+            'programas_id' => $information['programas_id'],            
+            'docente_id' => $information['docente_id'],
+            'asignatura_id' => $information['asignatura_id'],
+            'tema_planeador_id' => $information['tema_planeador_id']
+
         ]);
 
 
     	if($reportar->save()){
+            Alert::success('Reporte del tema: '.$tema->tema.' guardado con exito','')->showCloseButton();
        		return redirect()->route('reportes')->with('msj',"Reporte registrado");
     	}else{
-    		return back()->with();
-    	}
+            Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();
+            return redirect()->back();
+        }
 
     	//$request->session()->flash('alert-success', 'User was successful added!');
     }
@@ -103,7 +123,14 @@ class ReporteController extends Controller
     }
 
 
-    public function editar(Reporte $report, Asignatura $asignatura)
+    public function detalleDocente(Reporte $reporte, Asignatura $asignatura)
+    {
+
+        return view('reporte.detalles', compact('reporte','asignatura'));
+    }
+
+
+    public function editar(Reporte $reporte, Asignatura $asignatura)
     {
         $planeador = $asignatura->planeador;
 
@@ -111,47 +138,48 @@ class ReporteController extends Controller
 
         $metodologia = Metodologia::all();
 
-       return view('reporte.editar', compact('report','metodologia','tema_planeador','asignatura'));
+       return view('reporte.editar', compact('reporte','metodologia','tema_planeador','asignatura'));
 
     }
 
 
-    public function update(Request $request, Reporte $report)
+    public function update(Request $request, Reporte $reporte)
     {
             $this->validate($request, [
             'semana_tema' => 'required',
             'tema_planeador' => 'required',
             'descripcion' => 'required',
             'tipo_clase' => 'required',
-            'reportes_docente' => 'required',
-            'reporte_asignatura' => 'required'
-
+            'docente_id' => 'required',
+            'asignatura_id' => 'required',
+            'programa_id' => 'required'
         ]);
 
 
         $data = $request->toArray();
 
-        $report->semana_tema = $data['semana_tema'];
-        $report->tema_planeador = $data['tema_planeador'];
-        $report->descripcion = $data['descripcion'];
-        $report->tipo_clase = $data['tipo_clase'];
-        $report->justificacion = $data['justificacion'];
-        $report->reportes_docente = $data['reportes_docente'];
-        $report->reporte_asignatura = $data['reporte_asignatura'];
-        $report->programas_id = $data['programas_id'];  
+        $reporte->semana_tema = $data['semana_tema'];
+        $reporte->tema_planeador = $data['tema_planeador'];
+        $reporte->descripcion = $data['descripcion'];
+        $reporte->tipo_clase = $data['tipo_clase'];
+        $reporte->justificacion = $data['justificacion'];
+        $reporte->reportes_docente = $data['docente-id'];
+        $reporte->reporte_asignatura = $data['asignatura_id'];
+        $reporte->programas_id = $data['programas_id'];  
 
 
-        if ($report->save()) {
+        if ($reporte->save()) {
             return redirect()->back()->with('msj',"Reporte Modificado");
         }
     }
 
-        public function destroy(Reporte $report)
+        public function destroy(Reporte $reporte)
     {
-        return $report;
-       // $report = Reporte::find(id);
+        //return $report;
+       //$report = Reporte::find($reporte->id);
+       // $report = Reporte::where('reporte')->find('id');
 
-        if ($report->delete()){
+        if ($reporte->delete()){
             Alert::success('Reporte eliminada', '')->showCloseButton();
             return redirect()->back();
         }else{
