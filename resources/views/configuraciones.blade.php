@@ -72,8 +72,8 @@
     $('#inicio_clases').change(function(){
         let semanas = $('#numero_semanas').val()
         let fechaInicio = moment($(this).val(), "YYYY-MM-DD")
-        let fechaFin = moment(fechaInicio.calendar()).add(semanas, 'weeks')
- 
+        let fechaFin = moment(fechaInicio).add(semanas, 'weeks')
+        
         $('#mes-inicio').val(fechaInicio.month()+1)
         $('#mes-fin').val(fechaFin.month()+1)
     });

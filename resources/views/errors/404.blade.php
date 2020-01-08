@@ -2,4 +2,4 @@
 
 @section('title', __('Recurso no encontrado'))
 @section('code', '404')
-@section('message', __('El recurso que buscabas no fué encontrado'))
+@section('message', __('El recurso que buscabas no fue encontrado'))

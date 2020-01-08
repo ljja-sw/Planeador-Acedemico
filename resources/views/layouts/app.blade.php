@@ -121,29 +121,63 @@
 
 <div id="app">
     <main class="content my-3">
-        <div style="min-height:65vh">
+        <div style="min-height:70vh">
             @yield('content')
         </div>
     </main>
     <!-- Footer -->
-    <footer class="page-footer font-small bg-dark pt-4">
-        <div class="container py-4">
-            <div class="row">
-                <div class="col-md-10 mx-auto text-center">
-                    <img class="img-footer img-fluid " src="/images/logo_blanco.png" alt="">
-                </div>
-            </div>
-            <div class="row d-flex align-items-center">
-                <div class="col-12">
-                    <p class="text-center">
-                        <a href="http://pacifico.univalle.edu.co" target="_blank">
-                            Universidad del Valle Sede Pacifico,
-                        </a> <strong>2020</strong>
-                    </p>
-                </div>
-            </div>
+
+    <!-- Footer -->
+<footer class="page-footer font-small bg-primary pt-4">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+  
+      <!-- Grid row -->
+      <div class="row">
+  
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+  
+          <!-- Content -->
+          <img class="img-footer img-fluid " src="{{asset("images/logo_blanco.png")}}" alt="Planeador Academico">
+          <p class="ml-3">Planeador Académico Univalle 2020</p>
+  
         </div>
-    </footer>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none pb-3">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+  
+          <!-- Links -->
+          <small>Desarrollado por</small>
+          <h5><img style="height: 35px" src="{{asset("images/ebanodigital.svg")}}"  alt=""><span class="pl-2">ébano digital</span></h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!"><i class="fa fa-globe"></i> <b>ebanodigital.co</b></a>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="https://pacifico.univalle.edu.co"> Universidad del Valle Sede Pacífico,</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
 </div>
 {{-- Scripts --}}
 <script src="{{ asset('js/app.js') }}"></script>

@@ -8,19 +8,6 @@
 		<i class="fa fa-users"></i>
 	Secretarios Académicos</a>
 </li>
-<li class="nav-item {{request()->is('programas*') ? "active" : ''}}">
-	{{-- Enlaces Docentes --}}
-	<a class="nav-link" href="{{ route('programa.index') }}">
-		<i class="fa fa-graduation-cap"></i>
-	Programas</a>
-</li>
-
-<li class="nav-item {{request()->is('salones-salas*') ? "active" : ''}}">
-	<a href="{{ route('salon.index') }}" class="nav-link">
-		<i class="far fa-bookmark"></i>
-		Salones
-	</a>
-</li>
 @break
 
 @case("Secretario")
@@ -37,6 +24,19 @@
 	<a class="nav-link" href="{{ route('docentes.index') }}">
 		<i class="fa fa-chalkboard-teacher"></i>
 	Docentes</a>
+</li>
+<li class="nav-item {{request()->is('programas*') ? "active" : ''}}">
+	{{-- Enlaces Docentes --}}
+	<a class="nav-link" href="{{ route('programa.index') }}">
+		<i class="fa fa-graduation-cap"></i>
+	Programas</a>
+</li>
+
+<li class="nav-item {{request()->is('salones-salas*') ? "active" : ''}}">
+	<a href="{{ route('salon.index') }}" class="nav-link">
+		<i class="far fa-bookmark"></i>
+		Salones
+	</a>
 </li>
 @break
 
