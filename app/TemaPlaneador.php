@@ -83,8 +83,16 @@ class TemaPlaneador extends Model
 		}
 	}
 
+	public function ReporteTema(){
+
+		return $this->hasMany(Reporte::class);
+
+    }
+
 	public function getRouteKeyName()
 	{
 		return 'slug';
 	}
+
+
 }
