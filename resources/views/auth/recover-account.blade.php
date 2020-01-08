@@ -4,19 +4,24 @@
 
 
 @section('content')
-<form class="form-signin mb-4 formRecuperarCuenta" action="/login" method="POST">
+<form class="form-iniciar-session" action="/login" method="POST">
     @csrf
-    <div class="text-center mb-4">
-        <img class="mb-1 img-fluid w-75" src="{{ asset('images/logo_color.png') }}" alt="">
-        <h1 class="h3 mb-0  text-primary font-weight-normal">Olvide mi contraseña</h1>
-        {{-- <h5 class="font-weight-bold">Docentes</h5> --}}
+    <div class="text-center">
+        <span class="text-primary p-2">
+            <i class="fa fa-user fa-4x "></i>
+          </span>
+        <h5 class="h3 text-primary">Recuperar Contraseña</h5>
+        <p class="p-0 font-weight-bold">Docentes y Secretarios Académicos</p>
     </div>
+    <hr class="hr-padding">
     <div class=" md-outline md-form">
         <input class="form-control" name="email" type="email" id="input_username" value="{{ old('email') }}"  required autofocus>
-        <label for="input_codigo">Correo Electrónico</label>
+        <label for="input_username">Correo Electrónico</label>
     </div>
 
-    <button class="btn btn-lg bg-primary text-white btn-block" type="submit">Recuperar</button>
+    <div class="text-center">
+        <button class="btn bg-primary text-white" type="submit"><i class="fa fa-paper-plane"></i> Recuperar</button>
+        </div> 
 
 </form>
 @endsection

@@ -50,7 +50,7 @@ Route::group(['middleware' => ['role:Admin', 'auth:admin']], function () {
     Route::post('/admin/secretarios/{user}/update', 'SecretarioController@update')->name('secretarios.update');
 });
 
-Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
+Route::group(['middleware' => ['role:Secretario|Admin', 'auth:admin']], function () {
     Route::get('/admin/configuraciones', 'AdminController@configuraciones')->name('admin.configuraciones');
     Route::post('/admin/configuraciones/guardar', 'AdminController@guardarConfiguraciones')->name('admin.configuraciones.guardar');
     Route::get('designar-asignatura-docente', 'AsignaturaController@formDesignarAsignatura')->name('form.designar.asignatura');
@@ -87,8 +87,8 @@ Route::group(['middleware' => ['role:Secretario', 'auth:admin']], function () {
     Route::get('/detalles-programas/{programa}', 'ProgramaController@edit')->name('programa.detalles');
     Route::post('/editar-programas/{programa}', 'ProgramaController@update')->name('programa.update');
 
-    Route::get('/reportes/listado', 'ReporteController@listareporteSecretario')->name('reporteclase.show'); 
-    Route::get('/reportes/{reporte}/detalles', 'ReporteController@detalle')->name('reporteclase.detalle');     
+    Route::get('/reportes/listado', 'ReporteController@listareporteSecretario')->name('reporteclase.show');
+    Route::get('/reportes/{reporte}/detalles', 'ReporteController@detalle')->name('reporteclase.detalle');
     Route::get('/asignaturas', 'AsignaturaController@show')->name('asignaturas.show');
     Route::get('/asignaturas/registrar', 'AsignaturaController@index')->name('asignatura.crear');
     Route::get('/asignaturas/{asigna}', 'AsignaturaController@detalle')->name('asignatura.detalles');
@@ -130,11 +130,7 @@ Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
     Route::post('/guardar-repote','ReporteController@store');
 });
 
+Route::get('/login/admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
+Route::post('/login/admin', 'Auth\AdminLoginCOntroller@login');
 
-Route::get('/login-secretario', 'Auth\SecretarioLoginController@showLoginForm')->name('login.secretario');
-Route::post('/login/secretario', 'Auth\SecretarioLoginController@login');
-
-Route::get('/login-admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
-Route::post('/login/admin', 'Auth\AdminLoginController@login');
-
-Route::get('/recuperar-cuenta', 'Auth\SecretarioLoginController@showLoginRCuenta')->name('recuperar.cuenta');
+Route::get('/recuperar-cuenta', 'Auth\ResetPasswordController@showResetForm')->name('recuperar.cuenta');

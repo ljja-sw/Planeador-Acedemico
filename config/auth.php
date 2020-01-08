@@ -46,6 +46,11 @@ return [
             'provider' => 'admins',
         ],
 
+        'secretarios' => [
+            'driver' => 'session',
+            'provider' => 'secretarios',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -74,6 +79,10 @@ return [
         'docentes' => [
             'driver' => 'eloquent',
             'model' => App\Docente::class,
+        ],
+        'secretarios' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
         ],
         'admins' => [
             'driver' => 'eloquent',

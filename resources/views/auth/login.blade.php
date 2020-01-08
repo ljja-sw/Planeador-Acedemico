@@ -1,19 +1,22 @@
 @extends('layouts.auth')
 
-@section('title','Iniciar Sesión | Docentes')
+@section('title','Iniciar Sesión')
 
 
 @section('content')
-<form class="form-signin mb-4" action="/login" method="POST">
+<form class="form-iniciar-session" action="/login" method="POST">
     @csrf
-    <div class="text-center mb-4">
-        <img class="mb-1 img-fluid w-75" src="{{ asset('images/logo_color.png') }}" alt="">
-        <h1 class="h3 mb-0  text-primary font-weight-normal">Inicio de Sesión</h1>
-        <h5 class="font-weight-bold">Docentes</h5>
+    <div class="text-center">
+        <span class="text-primary p-2">
+            <i class="fa fa-user fa-4x "></i>
+          </span>
+        <h5 class="h3 text-primary">Iniciar Sesión</h5>
+        <p class="p-0 font-weight-bold">Docentes y Secretarios Académicos</p>
     </div>
+    <hr class="hr-padding">
     <div class=" md-outline md-form">
         <input class="form-control" name="email" type="email" id="input_username" value="{{ old('email') }}"  required autofocus>
-        <label for="input_codigo">Correo Electrónico</label>
+        <label for="input_username">Correo Electrónico</label>
     </div>
     <div class="md-outline md-form">
         <input class="form-control" name="password" type="password" id="input_password" required>
@@ -31,18 +34,19 @@
     </p>
     @endif
 
-    <div class=" my-2">
+    <div class="text-center d-flex flex-column">
+
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input"  {{ old('remember') ? 'checked' : '' }} name="remember" id="defaultLoginFormRemember">
           <label class="custom-control-label" for="defaultLoginFormRemember">Recordar mis Credenciales</label>
         </div>
-    </div>
+        <div>
+            <button class="btn btn bg-primary text-white" type="submit"><i class="fa fa-sign-in-alt"></i> Iniciar Sesión</button>
 
-    <button class="btn btn-lg bg-primary text-white btn-block" type="submit"><i class="fa fa-sign-in-alt"></i> Iniciar Sesión</button>
-
-    <div class="text-center">
+        </div>
         <a href="{{route('recuperar.cuenta')}}">Olvidé mi contraseña</a>
     </div>
+
 
 </form>
 @endsection
