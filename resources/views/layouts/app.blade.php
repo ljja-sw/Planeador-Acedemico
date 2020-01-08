@@ -134,7 +134,7 @@
     <div class="container text-center text-md-left">
   
       <!-- Grid row -->
-      <div class="row">
+      <div class="row align-items-center">
   
         <!-- Grid column -->
         <div class="col-md-6 mt-md-0 mt-3">
@@ -153,11 +153,10 @@
   
           <!-- Links -->
           <small>Desarrollado por</small>
-          <h5><img style="height: 35px" src="{{asset("images/ebanodigital.svg")}}"  alt=""><span class="pl-2">ébano digital</span></h5>
+          <h5><a href="#!ebanodigital.co"><img style="height: 35px" src="{{asset("images/ebanodigital.svg")}}"  alt=""><span class="pl-2">ébano digital</span></a></h5>
   
           <ul class="list-unstyled">
             <li>
-              <a href="#!"><i class="fa fa-globe"></i> <b>ebanodigital.co</b></a>
             </li>
           </ul>
   
