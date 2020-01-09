@@ -64,14 +64,14 @@ Route::group(['middleware' => ['role:Secretario|Admin', 'auth:admin']], function
     Route::post('/docentes/store', 'DocenteController@store')->name('docentes.store');
     Route::post('/docentes/{docente}/update', 'DocenteController@update')->name('docentes.update');
 
-    Route::get('/admin/salones-salas', 'SalonSalaController@index')->name('salon.index');
-    Route::get('/admin/salones-salas/{salon}', 'SalonSalaController@show')->name('salon.show');
-    Route::post('/admin/salones-salas/registrar', 'SalonSalaController@store')->name('salon.store');
-    Route::post('/admin/salones-salas/{salon}/agregar', 'SalonSalaController@agregarHorario')->name('salon.horario.agregar');
-    Route::post('/admin/salones-salas/{salon}/update', 'SalonSalaController@update')->name('salon.update');
-    Route::post( '/admin/salones-salas/{salon}/destroy', 'SalonSalaController@destroy')->name( 'salon.destroy');
-    Route::post('/admin/horario/update', 'SalonSalaController@updateHorario')->name('salon.horario.update');
-    Route::post( '/admin/horario/destroy', 'SalonSalaController@destroyHorario')->name( 'salon.horario.destroy');
+    Route::get('salones-salas', 'SalonSalaController@index')->name('salon.index');
+    Route::get('salones-salas/{salon}', 'SalonSalaController@show')->name('salon.show');
+    Route::post('salones-salas/registrar', 'SalonSalaController@store')->name('salon.store');
+    Route::post('salones-salas/{salon}/agregar', 'SalonSalaController@agregarHorario')->name('salon.horario.agregar');
+    Route::post('salones-salas/{salon}/update', 'SalonSalaController@update')->name('salon.update');
+    Route::post( 'salones-salas/{salon}/destroy', 'SalonSalaController@destroy')->name( 'salon.destroy');
+    Route::post('horario/update', 'SalonSalaController@updateHorario')->name('salon.horario.update');
+    Route::post( 'horario/destroy', 'SalonSalaController@destroyHorario')->name( 'salon.horario.destroy');
 
     Route::get('/registro-asignaturas', 'AsignaturaController@index')->name('asignatura.crear');
 
