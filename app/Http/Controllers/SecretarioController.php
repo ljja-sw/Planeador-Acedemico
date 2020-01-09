@@ -60,8 +60,8 @@ class SecretarioController extends Controller
         ]);
 
         $secretario_academico->assignRole($rol);
-
-        return redirect()->route('secretarios.index');
+        alert("Secretario academico registrado","","success");
+        return redirect()->route('secretarios.show',$secretario_academico);
     }
 
     /**

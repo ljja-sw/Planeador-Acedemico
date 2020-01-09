@@ -3,11 +3,13 @@
 {{-- Poner los enlaces de cada rol en su case correspondiente --}}
 @case('Admin')
 <li class="nav-item {{request()->is('admin/secretarios*') ? "active" : ''}}">
-	{{-- Enlaces Administradores --}}
 	<a class="nav-link" href="{{ route('secretarios.index') }}">
-		<i class="fa fa-users"></i>
-	Secretarios Académicos</a>
+<i class="fa fa-users"></i>Secretarios Académicos</a>
 </li>
+<li class="nav-item {{request()->is('admin/configuracion*') ? "active" : ''}}">
+	<a href="{{route('admin.configuraciones')}}" class="nav-link">
+	<i class="fa fa-cog"></i>Configuraciones
+</a></li>
 @break
 
 @case("Secretario")

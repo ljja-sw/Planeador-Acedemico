@@ -63,15 +63,8 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{ auth()->user()->getAvatar() }}" class="rounded-circle z-depth-0 mx-1"
                         alt="{{Auth::user()->nombre}}" height="35" width="35">
-
                     </a>
-                    <div class="dropdown-menu " aria-labelledby="perfilDropdown" style="min-width: 270px">
-                        @hasrole('Secretario')
-                        <a class="dropdown-item" href="{{route('admin.configuraciones')}}">
-                            <i class="fa fa-cog"></i>
-                            Configuraciones</a>
-                            <div class="dropdown-divider"></div>
-                            @endhasrole
+                    <div class="dropdown-menu " aria-labelledby="perfilDropdown" 
                             <a class="dropdown-item" href="{{ route('perfil') }}"><i class="fa fa-user"></i>
                                 {{ Auth::user()->nombre_completo() }}                             <small>{{Auth::user()->getRoleNames()->first()}}</small>
                             </a>
@@ -93,12 +86,6 @@
                             </span>
                     </a>
                     <div class="dropdown-menu mx-auto dropdown-menu-right" aria-labelledby="perfilDropdown" style="min-width: 280px">
-                        @hasrole('Secretario')
-                        <a class="dropdown-item" href="{{route('admin.configuraciones')}}">
-                            <i class="fa fa-cog"></i>
-                            Configuraciones</a>
-                            <div class="dropdown-divider"></div>
-                            @endhasrole
                             <a class="dropdown-item" href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi
                                 Perfil</a>
                                 <a href="#" class="dropdown-item" href="#" onclick="event.preventDefault();
