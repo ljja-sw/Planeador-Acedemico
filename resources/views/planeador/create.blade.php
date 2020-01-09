@@ -18,9 +18,6 @@
                               <td>
                                   <h1 class="h1-responsive font-weight-bold ml-1 ml-lg-5 mt-2">Planeador</h1>
                               </td>
-                              <td style="padding-left:500px;text-align: center">
-                                  <img class="img-fluid" src="{{ asset('images/logo_color.png') }}" alt="Planeador Academico">
-                              </td>
                           </tr>
                       </tbody>
                   </table>
@@ -28,12 +25,12 @@
                     <tbody>
                         <tr>
                             <td colspan="3">
-                                <h6 class="h6-responsive text-muted">Programa Académico</h6>
-                                <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
+                                <h6 class="h6-responsive text-muted"  colspan="3">Programa Académico</h6>
+                            <h4 class="h4-responsive font-weight-bold">{{$programa->nombre}}</h4>
                             </td>
                             <td colspan="3">
                                 <h6 class="h6-responsive text-muted">Código del Programa</h6>
-                                <h4 class="h4-responsive font-weight-bold">(pendiente)</h4>
+                                <h4 class="h4-responsive font-weight-bold">{{$programa->codigo}}</h4>
                             </td>
                         </tr>
                         <tr>
@@ -88,7 +85,7 @@
                 @csrf
                 <table class="table table-bordered ">
                     <input type="text" name="docente" value="{{ auth()->user()->id }}" hidden>
-                    <input type="text" name="asignatura" value="{{ $asignatura->id }}" hidden>
+                    <input type="text" name="asignatura_grupo" value="{{ $asignatura_grupo->id }}" hidden>
                     <tbody>
                         <tr>
                             <th class="text-center">
@@ -150,7 +147,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                      <select class="form-control text-center mt-4" name="temas[{{ $i }}][metodologia]" id="metodologia" style="height:50px">
+                                      <select class="form-control custom-select text-center mt-4" name="temas[{{ $i }}][metodologia]" id="metodologia">
                                         @foreach($metodologías as $metodologia)
                                         <option value="{{$metodologia->id}}">{{$metodologia->nombre}}</option>
                                         @endforeach
@@ -189,7 +186,7 @@
         })
 </script>
 @endif
- 
+
 <script>
     ClassicEditor
     .create(document.querySelector('#evaluaciones'))

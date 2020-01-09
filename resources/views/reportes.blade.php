@@ -7,20 +7,20 @@
             <div class="card card-body">
                 <div class="text-center">
                     <small class="text-muted">Asignatura</small>
-                    <h2 class="font-weight-bold card-title">{{$asignatura->nombre}}</h2>
+                    <h2 class="font-weight-bold card-title">{{$asignatura->asignatura->nombre}}</h2>
                     <small class="text-muted">Codigo</small>
-                    <h3 class="font-weight-bold card-title">{{$asignatura->codigo}}</h3>
+                    <h3 class="font-weight-bold card-title">{{$asignatura->asignatura->codigo}}</h3>
                 </div>
                 <div class="mx-auto">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href="{{ route('reporte.creacion')}}" class="btn btn-elegant">
+                            <a href="{{ route('reporte.creacion',$asignatura->asignatura)}}" class="btn btn-elegant">
                                 <i class="fa fa-align-justify"></i>
                                 Crear
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="btn btn-elegant">
+                            <a href="{{route('reporte.show',array($asignatura->asignatura,$usiario=auth()->user()) )}}" class="btn btn-elegant">
                                 <i class="fa fa-folder-open"></i>
                                 Visualizar
                             </a>

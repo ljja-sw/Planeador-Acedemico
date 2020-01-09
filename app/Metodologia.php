@@ -9,4 +9,5 @@ class Metodologia extends Model
      protected $fillable = [
     	'nombre',
     ];
+
 }

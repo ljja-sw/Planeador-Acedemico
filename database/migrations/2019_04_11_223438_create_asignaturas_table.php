@@ -17,7 +17,6 @@ class CreateAsignaturasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('codigo')->unique();
-            $table->unsignedInteger('grupo');
             $table->unsignedInteger('creditos');
             $table->unsignedInteger('intensidad_horaria');
             $table->unsignedInteger('habilitable');

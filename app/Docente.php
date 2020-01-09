@@ -51,16 +51,16 @@ class Docente extends Authenticatable
 
     public function asignaturas()
     {
-        return $this->belongsToMany(Asignatura::class,'asignaturas_docentes');
+        return $this->belongsToMany(AsignaturaGrupo::class,'asignaturas_docentes');
     }
-    
+
     public function nombre_completo()
     {
         return "{$this->nombre} {$this->apellido}";
     }
 
     public function planeadores(){
-        return $this->hasMany(Planeador::class,'docente');
+        return $this->hasMany(Planeador::class);
     }
 
     public function clases_hoy()
@@ -76,5 +76,9 @@ class Docente extends Authenticatable
     public function getAvatar()
     {
         return ($this->avatar) ? Storage::disk('avatar')->url("avatars/{$this->avatar}") : '/images/default_user.png';
+    }
+
+    public function reportesDocentes(){
+        return $this->hasMany(Reporte::class,'docente_id');
     }
 }

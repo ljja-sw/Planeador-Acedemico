@@ -1,114 +1,42 @@
-body,html{
+body,
+html {
     margin: 0;
     padding: 0;
-    font-family:Lato,sans-serif;
-    background:url(/images/login_bg.png);
-    background-size:cover
-}
-
-nav.navbar{
-    min-height:80px
-}
-.row div.cardLogin{
-    width: 100%;
+    font-family: 'Fira Sans', sans-serif;
+    background-color: #FFF;
     height: 100%;
 }
-.row div.cardCambioLogin{
-    height: 140px;
+
+.card-login {
+    overflow-y: hidden;
+    width: 100%;
+    height: 100vh;
 }
-.form-signin .btn{
-    margin: 20px 0px;
-}
-.row div.ColcardCambioLogin{
-    display: flex;
-    align-items: center !important;
-}
-.PColunna{
-    margin-bottom: 20px;
-    padding: 10px 20px 0px 20px;
-}
-@media screen and (max-width: 991px){
-    .PColunna, .ColcardCambioLogin{
-        margin-bottom: 20px;
+
+@media (min-width:576px) {
+    body,
+    html {
+        background: url(/images/login_bg.png);
+        background-size: cover;
+    }
+    .container {
+        height: 100vh;
+    }
+    .card-login {
+        width: 490px;
+        min-height: 550px;
+        height: auto;
     }
 }
-@media screen and (max-width: 767px){
-    .PColunna{
-        padding: 0px 30px;
-    }
+
+.icon-background {
+    border: 6px solid red;
 }
 
-
-.md-form.md-outline input[type=date]:focus:not([readonly]),
-.md-form.md-outline input[type=datetime-local]:focus:not([readonly]),
-.md-form.md-outline input[type=email]:focus:not([readonly]),
-.md-form.md-outline input[type=number]:focus:not([readonly]),
-.md-form.md-outline input[type=password]:focus:not([readonly]),
-.md-form.md-outline input[type=search-md]:focus:not([readonly]),
-.md-form.md-outline input[type=search]:focus:not([readonly]),
-.md-form.md-outline input[type=tel]:focus:not([readonly]),
-.md-form.md-outline input[type=text]:focus:not([readonly]),
-.md-form.md-outline input[type=time]:focus:not([readonly]),
-.md-form.md-outline input[type=url]:focus:not([readonly]),
-.md-form.md-outline textarea:focus:not([readonly]){
-    border-color:#cd1f32;
-    box-shadow:inset 0 0 0 1px #c92d40
+.logo-login {
+    width: 200px;
 }
 
-.md-form.md-outline input[type=date]:focus:not([readonly])+label,
-.md-form.md-outline input[type=datetime-local]:focus:not([readonly])+label,
-.md-form.md-outline input[type=email]:focus:not([readonly])+label,
-.md-form.md-outline input[type=number]:focus:not([readonly])+label,
-.md-form.md-outline input[type=password]:focus:not([readonly])+label,
-.md-form.md-outline input[type=search-md]:focus:not([readonly])+label,
-.md-form.md-outline input[type=search]:focus:not([readonly])+label,
-.md-form.md-outline input[type=tel]:focus:not([readonly])+label,
-.md-form.md-outline input[type=text]:focus:not([readonly])+label,
-.md-form.md-outline input[type=time]:focus:not([readonly])+label,
-.md-form.md-outline input[type=url]:focus:not([readonly])+label,
-.md-form.md-outline textarea:focus:not([readonly])+label{
-    color:#cd1f32
-}
-
-.md-form.md-outline input[type=date],
-.md-form.md-outline input[type=datetime-local],
-.md-form.md-outline input[type=email],
-.md-form.md-outline input[type=number],
-.md-form.md-outline input[type=password],
-.md-form.md-outline input[type=search-md],
-.md-form.md-outline input[type=search],
-.md-form.md-outline input[type=tel],
-.md-form.md-outline input[type=text],
-.md-form.md-outline input[type=time],
-.md-form.md-outline input[type=url],
-.md-form.md-outline textarea{
-    height:50px
-}
-
-.md-form.md-outline label{
-    top:.85rem
-}
-#content{
-    display:flex;
-    -ms-flex-align:center;
-    -ms-flex-pack:center;
-    align-items:center;
-    justify-content:center;
-    padding-top: 20px;
-}
-#content img.logo-login{
-    text-align:center;
-    max-height:100px;
-    height:70px;
-    margin-left:-25px
-}
-#content .form-signin{
-    width:100%;
-    max-width:520px;
-    margin:0 auto;
-    background-color:hsla(0,0%,100%,.8);
-}
-
-.formRecuperarCuenta{
-    
+.form-iniciar-session {
+    width: 100%;
 }

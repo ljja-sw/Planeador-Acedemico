@@ -16,11 +16,11 @@
 								{{$programa->nombre}} <small class="text-muted">{{$programa->codigo}}</small>
 							</h4>
 						</div>
-						<div class="row">
-							<div class="col-md-4 ml-auto">
-								<a href="#modal_editar_programas" data-toggle="modal" class="btn btn-primary"><i class="fa fa-pen"></i> Editar</a>
-								<a href="#modal_eliminar_programas" data-toggle="modal" class="btn btn-outline-primary"><i class="fa fa-trash"></i> Eliminar</a>
-							</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 ml-auto">
+							<a href="#modal_editar_programas" data-toggle="modal" class="btn btn-primary"><i class="fa fa-pen"></i> Editar</a>
+							<a href="#modal_eliminar_programas" data-toggle="modal" class="btn btn-outline-primary"><i class="fa fa-trash"></i> Eliminar</a>
 						</div>
 					</div>
 					<hr class="py-2">
@@ -44,7 +44,15 @@
 								</tr>
 							</thead>
 							<tbody class="text-center">
+									@foreach ($programa->asignaturas as $asignatura_grupo)
+                                    <tr>
 
+											<td>{{$asignatura_grupo->asignatura->nombre}}</td>
+											<td>{{$asignatura_grupo->asignatura->codigo}}</td>
+											<td>{{$asignatura_grupo->grupo->numero}}</td>
+											<td><a href="#!">Detalles</a></td>
+										</tr>
+									@endforeach
 							</tbody>
 						</table>
 						<div class="float-right mt-3">

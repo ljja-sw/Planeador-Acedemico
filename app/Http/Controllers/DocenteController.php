@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Docente;
-use App\Dependencia;
-use App\TemaPlaneador;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use App\Imports\DocentesImport;
 use App\Exports\DocentesExport;
-use Illuminate\Support\Facades\Storage;
-use Hash;
+use App\Imports\DocentesImport;
+use App\TemaPlaneador;
 use Excel;
-Use Alert;
+use Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
 
 class DocenteController extends Controller
@@ -40,9 +39,6 @@ class DocenteController extends Controller
 
     public function reportes()
     {
-
-        //$DocenteReportes = AsignaturaDocente::find($id);
-
         return view("reportes");
     }
 
@@ -91,7 +87,9 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
+
         $planeadores = $docente->planeadores;
+        
         if (count($planeadores) >= 1) {
             foreach ($planeadores as $planeador) {
                 $clases = TemaPlaneador::where("fecha->primera_clase", today()->format("Y-m-d"))

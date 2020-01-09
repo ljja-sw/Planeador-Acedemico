@@ -8,7 +8,7 @@
         <div class="col-md-10 mx-auto">
             <div class="card card-body">
                 <h4 class="h4-responsive card-title font-weight-bold">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-chalkboard-teacher"></i>
                     Delegar de Asignatura <small>a Docente</small></h4>
             </div>
         </div>
@@ -21,7 +21,7 @@
                 <div class="asignatura card card-body">
                     <div class="card-title">
                         <h5 class="h5-responsive font-weight-bold">
-                            <i class="fa fa-list-ul fa-2x"></i>
+                            <i class="fa fa-chalkboard fa-2x"></i>
                             Materia
                         </h5>
                     </div>
@@ -32,10 +32,11 @@
                         <h5 class="h5-responsive font-weight-bold">
                             {{ $asignatura->nombre }}
                         </h5>
-                        <p class="m-0 ml-1">{{ $asignatura->codigo }} - {{ $asignatura->grupo }}</p>
+                        <p class="m-0 ml-1">{{ $asignatura->codigo }}</p>
                         <small class="text-muted">
                             Programa academico
                         </small>
+                        <p class="m-0 ml-1">{{ $programa->nombre}} {{$programa->codigo}}</p>
 
                     </div>
                 </div>
@@ -49,6 +50,7 @@
                     </div>
 
                     <input type="text" name="docente" value="{{ $docente->id }}" hidden>
+                    <input type="text" name="asignatura_grupo" value="{{$asignatura_grupo->id}}" hidden>
 
                     <div class="docente--datos mx-2">
                         <div class="row align-items-center">

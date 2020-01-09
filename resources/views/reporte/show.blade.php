@@ -2,9 +2,12 @@
 
 @section('content')
 @include('libs.datatables')
+@include('reporte.modals.eliminar-reporte')			                		                
+
+
 
 <div class="container">
-	<div class="row">
+	<div class="row">		
 		<div class="col-md-12 mx-auto card-deck">
 			<div class="card card-body table-responsive">
 				<h3 class="font-weight-bold card-title m-4">
@@ -14,33 +17,36 @@
 					<table id="tabla_asignaturas" class="table datatable table-striped table-bordered" cellspacing="0" width="100%">
 						<thead>
 		                <tr>
-		                  <th>Tema</th>
-		                  <th>semana</th>
-		                  <th>semana de remplazo</th>
-		                  <th>fecha de temas </th>
-		                  <th>Habilitable</th>
-		                  <th>Validable</th>
-		                  <th>Intensidad Horaria</th>
-		                  <th></th>            
+		                  <th>Tema Visto</th>		                	
+		                  <th>Tipo Clase</th>
+		                  <th>Semana de Clase</th>
+		                  <th>Fecha acordada</th>
+		                  <th></th>           
 		                </tr>
 		                </thead>
 		                <tbody>
-		              @foreach($asignaturas as $asignatura)
+		              @forelse($report as $reporte)
 		              <tr>
-		              <td>{{ $asignatura->nombre }}</td>
-		              <td>{{ $asignatura->codigo }}</td>
-		              <td>{{ $asignatura->grupo }}</td>
-		              <td>{{ $asignatura->creditos }}</td>
-		              <td>{{ Request::is($asignatura->habilitable == 1) ? 'Si' : 'No' }}</td>
-		              <td>{{ Request::is($asignatura->validable == 1) ? 'Si' : 'No' }}</td>
-		              <td>{{ $asignatura->intensidad_horaria }}</td>
-		              <td>
-		                <a title="Detalles" href="{{ route('asignatura.detalles', $asignatura) }}" class="nav-item btn-table--edit">
-		                	<i class="fa fa-plus">Detalles</i>			
-		                </a>               
+		              <td>{{ $reporte->tema->tema }}</td>
+		              <td>{{ $reporte->tipo_clase }}</td>
+		              <td>{{ $reporte->semana_tema }}</td>
+		              <td>{{ Request::is($reporte->justificacion == null) ? 'Si' : 'No hay' }}</td>
+		              <td>  
+		                <a title="Editar" href="{{route('reporte.detalles',[$reporte,$asignatura])}}" class="nav-item btn-table--edit" style="margin: 10px">
+		                	<i class="fa fa-folder">Ver mas</i>			
+		                </a>		                               
 		              </td>
 		              </tr>
-		              @endforeach
+		              @empty
+		              <tr>
+			              <td COLSPAN=6>
+				            <div class="text-center">
+				                <h4 class="h4-responsive font-weight-bold"><i class="fa fa-times fa-2x"></i><br>
+				                  !Lo sentimos por el momento no hay Reportes realizados¡</h4>
+				            </div>
+				           </td> 
+			           </tr>			            
+		              @endforelse
 		                </tbody>
 					</table>
 			</div>
@@ -50,6 +56,7 @@
 @push("scripts")
 <script>
   $('#tabla_asignaturas').DataTable();
+
 </script>
 @endpush 
 @stop

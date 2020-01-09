@@ -2,7 +2,6 @@
 
 @section('content')
 @include('admin.secretario.modals.delegar_asignatura_docente')
-@include('modals.seleccionar_asignatura_planeador')
 @include('libs.select2')
 
 <div class="container">
@@ -39,6 +38,14 @@
 							<i class="fa fa-arrow-right"></i>
 							<i class="fa fa-user"></i>
 							Delegar Asignatura a Docente
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{route('reporteclase.show')}}" class="btn btn-elegant text-center">
+							<i class="fa fa-chalkboard-teacher"></i>
+							<i class="fa fa-arrow-right"></i>
+							<i class="fa fa-user"></i>
+							Lista de Reportes Docentes
 						</a>
 					</li>
 					@break

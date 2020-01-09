@@ -8,8 +8,8 @@ class Planeador extends Model
 {
     protected $fillable = [
     	'programa_academico',
-    	'asignatura',
-    	'docente',
+    	'asignatura_grupo_id',
+    	'docente_id',
     	'evaluaciones',
     ];
 
@@ -26,11 +26,11 @@ class Planeador extends Model
 
     public function asignatura_planeador()
     {
-        return $this->belongsTo(Asignatura::class,'asignatura');
+        return $this->belongsTo(AsignaturaGrupo::class,'asignatura_grupo_id');
     }
 
     public function docente_planeador()
     {
-        return $this->belongsTo(Docente::class,'docente');
+        return $this->belongsTo(Docente::class,'docente_id');
     }
 }

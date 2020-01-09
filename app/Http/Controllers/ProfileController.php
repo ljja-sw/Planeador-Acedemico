@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Image;
-Use Alert;
-use File;
-use Hash;
-use Auth;
+use Intervention\Image\Facades\Image;
+Use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -67,7 +66,7 @@ class ProfileController extends Controller
 
                 }
             }else{
-                Alert::error('La contraseña actual no cincide', '')->showCloseButton();
+                Alert::error('La contraseña actual no coincide', '')->showCloseButton();
             }
             return redirect()->route('perfil');
         }

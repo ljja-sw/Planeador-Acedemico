@@ -23,8 +23,13 @@ class Asignatura extends Model
         'slug'];
 
 
-    public function programas(){
-        return $this->belongsToMany(Programa::class,'programa_academico');
+    public function programa(){
+        return $this->belongsToMany(Programa::class);
+    }
+
+    public function grupo()
+    {
+        return $this->belongsToMany(Grupo::class,'asignaturas_grupos','id_asignatura','id_grupo');
     }
 
     public function salonesSalas(){
@@ -33,16 +38,19 @@ class Asignatura extends Model
 
     public function asignada()
     {
-        return $this->hasOne(AsignaturaDocente::class);
     }
 
     public function planeador(){
-        return $this->hasOne(Planeador::class,'asignatura');
+        return $this->hasOne(Planeador::class,'asignatura_grupo_id');
     }
 
     public function getRouteKeyName()
     {
         return "slug";
+    }
+
+    public function reportesAsignatura(){
+        return $this->hasMany(Reporte::class,'asignatura_id');
     }
 
 

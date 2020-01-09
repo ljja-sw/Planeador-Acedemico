@@ -1,5 +1,5 @@
 <div class="modal fade" id="modal-eliminar-asignaturas" tabindex="-1" role="dialog" aria-hidden="true">
-  <form role="document" action="{{route('asignaturas.destroy', $asigna)}}" class="modal-dialog" method="POST" autocomplete="off">
+  <form role="document" action="{{route('asignaturas.destroy', $asigna)}}" class="modal-dialog modal-dialog-centered" method="POST" autocomplete="off">
     @csrf
       <div class="modal-content">
         <div class="modal-headery text-center">

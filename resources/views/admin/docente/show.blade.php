@@ -30,7 +30,7 @@
 						</p>
 						<ul class="nav mx-auto font-weight-bold text-center justify-content-center">
 							<li class="nav-item">
-								<a href="#" data-toggle="modal" data-target="#modal_editar_secretario" class="nav-link btn btn-primary
+								<a href="#" data-toggle="modal" data-target="#modal_editar_docente" class="nav-link btn btn-primary
 								"> <i class="fa fa-pen"></i> Editar</a>
 							</li>
 							<li class="nav-item">
@@ -84,7 +84,7 @@
 							@forelse($docente->asignaturas as $asignatura)
 							<li class="list-group-item">
 								<a href="#">
-									{{$asignatura->nombre}} - {{$asignatura->grupo}}
+									{{$asignatura->asignatura->nombre}} {{$asignatura->asignatura->codigo}}-{{$asignatura->grupo->numero}}
 								</a>	
 							</li>
 							@empty
