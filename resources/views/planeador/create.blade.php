@@ -18,9 +18,6 @@
                               <td>
                                   <h1 class="h1-responsive font-weight-bold ml-1 ml-lg-5 mt-2">Planeador</h1>
                               </td>
-                              <td style="padding-left:500px;text-align: center">
-                                  <img class="img-fluid" src="{{ asset('images/logo_color.png') }}" alt="Planeador Academico">
-                              </td>
                           </tr>
                       </tbody>
                   </table>
@@ -150,7 +147,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                      <select class="form-control text-center mt-4" name="temas[{{ $i }}][metodologia]" id="metodologia" style="height:50px">
+                                      <select class="form-control custom-select text-center mt-4" name="temas[{{ $i }}][metodologia]" id="metodologia">
                                         @foreach($metodologías as $metodologia)
                                         <option value="{{$metodologia->id}}">{{$metodologia->nombre}}</option>
                                         @endforeach

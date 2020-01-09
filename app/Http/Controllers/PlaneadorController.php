@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Grupo;
 use App\Planeador;
 use App\Asignatura;
@@ -11,7 +12,6 @@ use App\AsignaturaGrupo;
 use App\AsignaturaDocente;
 use App\Metodologia;
 use Illuminate\Http\Request;
-use PDF;
 
 class PlaneadorController extends Controller
 {
@@ -175,7 +175,8 @@ class PlaneadorController extends Controller
 
                 $configuracion = Configuracion::find(1);
 
-                $pdf = PDF::loadView('pdf.planeador', compact('planeador', 'configuracion','programa'));
+
+                $pdf = PDF::loadView('pdf.planeador', compact('planeador', 'configuracion','programa'));                
                 return $pdf->download($planeador->asignatura_planeador->asignatura->nombre.".pdf");
 
             }

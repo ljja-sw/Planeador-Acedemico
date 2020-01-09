@@ -16,7 +16,6 @@
                                     <h1 class="h1-responsive font-weight-bold ml-1 ml-lg-5 mt-2">Planeador</h1>
                                 </td>
                                 <td style="padding-left:500px;text-align: center">
-                                    <img class="img-fluid" src="{{ asset('images/logo_color.png') }}" alt="Planeador Academico">
                                 </td>
                             </tr>
                         </tbody>
@@ -86,13 +85,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-center" >
-                        <a href="{{route('docente.planeador.pdf',[$planeador,$grupo])}}" class="btn btn-primary">
-                            <i class="fa fa-file-pdf"></i>
-                            Guardar como PDF
-                        </a>
-                        <hr>
-                    </div>
                     <table class="table table-bordered ">
                         <tbody>
                             <tr>
@@ -170,6 +162,13 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="text-center" >
+                            <a href="{{route('docente.planeador.pdf',[$planeador,$grupo])}}" class="btn btn-primary">
+                                <i class="fa fa-file-pdf"></i>
+                                Guardar como PDF
+                            </a>
+                            <hr>
+                        </div>
                     </div>
                 </div>
             </div>

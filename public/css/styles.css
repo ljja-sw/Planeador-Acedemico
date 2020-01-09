@@ -1,4 +1,4 @@
-body {
+    body {
     background-color: #ededed;
 }
 
@@ -71,7 +71,7 @@ table.table a {
     border-radius: .3rem;
     background-color: #fff;
     background-clip: padding-box;
-    box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, .1);
+    box-shadow: 0 -20px 50px rgba(205, 31, 50, .1), 0 10px 25px rgba(205, 31, 50, .15), 0 5px 15px rgba(0, 0, 0, .1);
 }
 
 .img-perfil {
@@ -82,3 +82,9 @@ table.table a {
     max-height: 256px;
     margin: 20px;
 }
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+    background-color: #cd1f32!important;
+    border-color: #971726!important;
+    color: #fff;

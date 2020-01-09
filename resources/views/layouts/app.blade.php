@@ -171,7 +171,7 @@
   
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="https://pacifico.univalle.edu.co"> Universidad del Valle Sede Pacífico,</a>
+      <a href="https://pacifico.univalle.edu.co"> Universidad del Valle Sede Pacífico</a>
     </div>
     <!-- Copyright -->
   

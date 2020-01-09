@@ -9,14 +9,17 @@
 
     <title>{{$planeador->asignatura_planeador->asignatura->nombre}}</title>
 </head>
-
 <body>
 
     <div class="planeador_wrapper">
         <table class="table table-sm table-borderless">
             <tr>
-                <td rowspan="2"  style="width:500px;">LOGO</td>
-                <td class="text-center font-weight-bold">Planeador Académico</td>
+                <td rowspan="2" style="width:100%">
+                    <div class="d-flex flex-row univalle">
+                        <img style="height: 75px" src="{{ asset('images/univalle.jpg') }}" alt="Planeador Academico">
+                    </div>
+                </td>
+                <td class="text-right font-weight-bold">Planeador</td>
             </tr>
             <tr>
                 <td style="text-align:center">
