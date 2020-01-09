@@ -36,7 +36,7 @@
                   <tr>
                     <th style="width: 15px">#</th>
                     <th>Apartedos</th>
-                    <th>Descripción</th>
+                    <th>Descripción </th>
                   </tr>
                   <tr>
                     <td>1.</td>
