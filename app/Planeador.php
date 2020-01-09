@@ -33,4 +33,6 @@ class Planeador extends Model
     {
         return $this->belongsTo(Docente::class,'docente_id');
     }
+
+
 }

@@ -125,7 +125,7 @@ Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
     Route::get('/vista-reporte/{asignatura}/{usuario}/','ReporteController@show')->name('reporte.show');
     Route::get('/detalles/reporte/{reporte}/{asignatura}/','ReporteController@detalleDocente')->name('reporte.detalles');
 
-    Route::post('/reportesUpdate/{report}/', 'ReporteController@update')->name('reporte.update');
+    Route::post('/reportesUpdate/{reporte}/', 'ReporteController@update')->name('reporte.update');
 
     Route::get('/reportes/editar/{reporte}/{asignatura}', 'ReporteController@editar')->name('reporte.editar');
 

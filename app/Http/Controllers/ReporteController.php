@@ -138,7 +138,11 @@ class ReporteController extends Controller
 
         $metodologia = Metodologia::all();
 
-       return view('reporte.editar', compact('reporte','metodologia','tema_planeador','asignatura'));
+        $asignatura_grupo = AsignaturaGrupo::where('id_asignatura',$asignatura->id)->first();
+
+        $programa = $asignatura_grupo->programa->first();        
+
+       return view('reporte.editar', compact('reporte','metodologia','tema_planeador','asignatura','programa'));
 
     }
 
@@ -147,29 +151,34 @@ class ReporteController extends Controller
     {
             $this->validate($request, [
             'semana_tema' => 'required',
-            'tema_planeador' => 'required',
             'descripcion' => 'required',
             'tipo_clase' => 'required',
             'docente_id' => 'required',
+            'programa_id' => 'required',            
             'asignatura_id' => 'required',
-            'programa_id' => 'required'
+            'tema_planeador_id' => 'required'
         ]);
 
 
         $data = $request->toArray();
 
         $reporte->semana_tema = $data['semana_tema'];
-        $reporte->tema_planeador = $data['tema_planeador'];
         $reporte->descripcion = $data['descripcion'];
         $reporte->tipo_clase = $data['tipo_clase'];
         $reporte->justificacion = $data['justificacion'];
-        $reporte->reportes_docente = $data['docente-id'];
-        $reporte->reporte_asignatura = $data['asignatura_id'];
-        $reporte->programas_id = $data['programas_id'];  
+        $reporte->docente_id = $data['docente_id'];
+        $reporte->programas_id = $data['programas_id']; 
+        $reporte->asignatura_id = $data['asignatura_id'];        
+        $reporte->tema_planeador_id = $data['tema_planeador_id'];
 
 
-        if ($reporte->save()) {
-            return redirect()->back()->with('msj',"Reporte Modificado");
+
+        if($reporte->save()){
+          Alert::success('Reporte del tema: '.$tema->tema.' Actualizado con exito','')->showCloseButton();
+            return redirect()->route('reportes')->with('msj',"Reporte registrado");
+        }else{
+            Alert::error('Hubo un error intentalo mas tarde', '')->showCloseButton();
+            return redirect()->back();
         }
     }
 

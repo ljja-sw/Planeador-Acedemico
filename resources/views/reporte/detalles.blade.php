@@ -39,7 +39,7 @@
               </div>
 
               <div class="col-md-12 mx-auto">
-               <h4>Tema de clase: {{$reporte->tema_planeador}}</h4><br/>              
+               <h4>Tema de clase: {{$reporte->tema->tema}}</h4><br/>              
               </div> 
 
               <div class="col-md-12 mx-auto">

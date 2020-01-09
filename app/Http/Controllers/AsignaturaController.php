@@ -70,7 +70,12 @@ class AsignaturaController extends Controller
 
                 public function detalle(asignatura $asigna)
                 {
-                    return view('admin.asignatura.detalles', compact('asigna'));
+                    $gru = $asigna->grupo;
+
+                    $bus = Grupo::where('id',$gru)->get();
+
+
+                    return view('admin.asignatura.detalles', compact('asigna','bus'));
                 }
 
 
