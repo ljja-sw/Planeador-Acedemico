@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-body responsive" id="planeador-div">
-                <div class="table-responsive" id="contenido">
+                <div id="contenido">
                     <table class=" mb-5">
                         <tbody>
                             <tr>
@@ -103,11 +103,11 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="col-md-12 table-responsive">
+                    <div class="col-md-12">
                         <table id="tabla" class="table table-bordered">
-                            <tbody class="text-center">
+                            <tbody >
                                 <tr>
-                                    <th colspan="4" >
+                                    <th colspan="4" class="text-center" >
                                         <h4 class="font-weight-bold">Contenido Temático</h4>
                                     </th>
                                 </tr>
@@ -129,31 +129,31 @@
                                 @if (count($tema->fecha)>1)
                                 @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y") || $tema->getFechas("segunda_clase") == today()->format("d/m/Y"))
                                 <tr class=" red lighten-4">
-                                    <th scope="row" class="border-left"><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
-                                    <td> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
+                                    <th scope="row" class="text-center border-left "><p class="font-weight-bold m-0">{{ $tema->semana }}</p></th>
+                                    <td class="text-center"> <p class="font-weight-bold m-0">{{ $tema->getFechas() }}</p></td>
                                     <td class="td-tema"> <p class="font-weight-bold m-0">{{ $tema->tema }}</p></td>
                                     <td> <p class="font-weight-bold m-0">{{ $tema->metodología_tema->nombre }}</p></td>
                                 </tr>
                                 @else
                                 <tr>
-                                    <th scope="row">{{ $tema->semana }}</th>
-                                    <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
-                                    <td  class="td-tema">{{ $tema->tema }} </td>
+                                    <th scope="row" class="text-center">{{ $tema->semana }}</th>
+                                    <td  class="text-uppercase text-center"> {{ $tema->getFechas() }} </td>
+                                    <td  class="td-tema">{{ $tema->tema }}</td>
                                     <td>{{ $tema->metodología_tema->nombre }}</td>
                                 </tr>
                                 @endif
                                 @else
                                 @if ($tema->getFechas("primera_clase") == today()->format("d/m/Y"))
                                 <tr class=" red lighten-4 border">
-                                    <th scope="row">{{ $tema->semana }}</th>
-                                    <td class="text-uppercase"> {{ $tema->getFechas() }} </td>
+                                    <th scope="row"  class="text-center">{{ $tema->semana }}</th>
+                                    <td class="text-uppercase text-center"> {{ $tema->getFechas() }} </td>
                                     <td  class="td-tema">{{ $tema->tema }}</td>
                                     <td>{{ $tema->metodología_tema->nombre }}</td>
                                 </tr>
                                 @else
                                 <tr>
-                                    <th scope="row">{{ $tema->semana }}</th>
-                                    <td  class="text-uppercase"> {{ $tema->getFechas() }} </td>
+                                    <th scope="row"  class="text-center">{{ $tema->semana }}</th>
+                                    <td  class="text-uppercase text-center"> {{ $tema->getFechas() }} </td>
                                     <td  class="td-tema">{{ $tema->tema }}</td>
                                     <td>{{ $tema->metodología_tema->nombre }}</td>
                                 </tr>
@@ -166,6 +166,10 @@
                             <a href="{{route('docente.planeador.pdf',[$planeador,$grupo])}}" class="btn btn-primary">
                                 <i class="fa fa-file-pdf"></i>
                                 Guardar como PDF
+                            </a>
+                            <a href="{{route('docente.planeador.editable',[$planeador->asignatura_planeador->asignatura->slug,$grupo])}}" class="btn btn-primary">
+                                <i class="fa fa-pen"></i>
+                                Pasar a modo editable
                             </a>
                             <hr>
                         </div>

@@ -196,10 +196,10 @@
 @push('styles')
 <style>
     .editarTema, .editarEvaluacion{
-        display: none;
+        /* display: none; */
     }
     .td-tema:hover .editarTema {
-        display: inline;
+        /* display: inline; */
     }
 
     .td-tema:hover .editarEvaluacion{
