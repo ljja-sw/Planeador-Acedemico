@@ -104,9 +104,14 @@ Route::group(['middleware' => ['role:Secretario|Admin', 'auth:admin']], function
 });
 
 Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
-    Route::get('/{asignatura}/{grupo}/planeador/crear', 'PlaneadorController@create')->name('docente.generar.planeador');
-    Route::get('{asignatura}/{grupo}/planeador/ver', 'PlaneadorController@show')->name('docente.planeador.ver');
+    Route::get('{asignatura}/{grupo}/planeador', 'PlaneadorController@show')->name('docente.planeador.ver');    
+
+    Route::get('/{asignatura}/{grupo}/planeador/nuevo', 'PlaneadorController@create')->name('docente.generar.planeador');
     Route::get('{planeador}/{grupo}/planeador/pdf', 'PlaneadorController@planeador_pdf')->name('docente.planeador.pdf');
+
+    Route::group(['middleware' => ['planeador_editable']], function () {
+        Route::get('{asignatura}/{grupo}/planeador/editable', 'PlaneadorController@edit')->name('docente.planeador.editable');  
+    });
 
     Route::post('/guardar-planeador', 'PlaneadorController@store');
     Route::post('/generar-planeador', 'PlaneadorController@generarPlaneadorForm');

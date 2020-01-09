@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Grupo;
 use App\Planeador;
 use App\Asignatura;
@@ -10,8 +11,8 @@ use App\TemaPlaneador;
 use App\AsignaturaGrupo;
 use App\AsignaturaDocente;
 use App\Metodologia;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use PDF;
 
 class PlaneadorController extends Controller
 {
@@ -101,7 +102,7 @@ class PlaneadorController extends Controller
                 $configuracion = Configuracion::find(1);
                 $planeador = $asignatura->planeador;
 
-                return view('planeador.edit', compact('planeador','grupo','programa', 'configuracion', 'metodologías'));
+                return view('planeador.show', compact('planeador','grupo','programa', 'configuracion', 'metodologías'));
             }
 
             /**
@@ -110,13 +111,23 @@ class PlaneadorController extends Controller
             * @param  \App\Planeador  $planeador
             * @return \Illuminate\Http\Response
             */
-            public function edit(Asignatura $asignatura)
+            public function edit(Asignatura $asignatura,Grupo $grupo)
             {
+                $asignatura_grupo = AsignaturaGrupo::
+                where('id_asignatura',$asignatura->id)
+                ->where('id_grupo',$grupo->id)->first();
+
+                $asignatura_docente = AsignaturaDocente::
+                where('asignatura_grupo_id',$asignatura_grupo->id)->first();
+
+                $programa = $asignatura_grupo->programa->first();
+
+                $metodologías = Metodologia::all();
 
                 $configuracion = Configuracion::find(1);
                 $planeador = $asignatura->planeador;
 
-                return view('planeador.edit', compact('planeador', 'configuracion'));
+                return view('planeador.edit', compact('planeador','grupo','programa', 'configuracion', 'metodologías'));
             }
 
             /**
@@ -175,7 +186,8 @@ class PlaneadorController extends Controller
 
                 $configuracion = Configuracion::find(1);
 
-                $pdf = PDF::loadView('pdf.planeador', compact('planeador', 'configuracion','programa'));
+
+                $pdf = PDF::loadView('pdf.planeador', compact('planeador', 'configuracion','programa'));                
                 return $pdf->download($planeador->asignatura_planeador->asignatura->nombre.".pdf");
 
             }
