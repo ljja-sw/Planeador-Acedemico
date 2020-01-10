@@ -183,7 +183,10 @@
                                     <i class="fa fa-file-pdf"></i>
                                     Guardar como PDF
                                 </a>
-                                <hr>
+                                <a href="{{route('docente.planeador.actualizar_fechas',[$planeador->asignatura_planeador,$grupo])}}" class="btn btn-primary">
+                                    <i class="fa fa-sync"></i>
+                                    Actualizar fechas
+                                </a>
                             </div>
                         </div>
                     </div>

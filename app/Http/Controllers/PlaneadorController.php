@@ -60,25 +60,25 @@ class PlaneadorController extends Controller
             'asignatura_grupo_id' =>  $request->asignatura_grupo,
             'docente_id' =>  $request->docente,
             'evaluaciones' =>  $request->evaluaciones,
+        ]);
+
+        foreach ($request->temas as $tema) {
+
+            $fechas_explode = explode(' - ', $tema['fecha']);
+            $fechas_json = (count($fechas_explode) > 1) ? ["primera_clase" => $fechas_explode[0], "segunda_clase" => $fechas_explode[1]] : ["primera_clase" => $fechas_explode[0]];
+
+            TemaPlaneador::create([
+                'semana' =>  $tema['semana'],
+                'fecha' =>  $fechas_json,
+                'tema'  => $tema['tema'],
+                'metodologia'  =>  $tema['metodologia'],
+                'planeador_id' => $planeador->id,
+                'slug' => str_slug($tema['tema'], "-")
             ]);
+        }
 
-            foreach ($request->temas as $tema) {
-
-                $fechas_explode = explode(' - ', $tema['fecha']);
-                $fechas_json = (count($fechas_explode) > 1) ? ["primera_clase" => $fechas_explode[0], "segunda_clase" => $fechas_explode[1]] : ["primera_clase" => $fechas_explode[0]];
-
-                TemaPlaneador::create([
-                    'semana' =>  $tema['semana'],
-                    'fecha' =>  $fechas_json,
-                    'tema'  => $tema['tema'],
-                    'metodologia'  =>  $tema['metodologia'],
-                    'planeador_id' => $planeador->id,
-                    'slug' => str_slug($tema['tema'], "-")
-                    ]);
-                }
-
-                return redirect()->route('docente.planeador.ver', [$planeador->asignatura_planeador->asignatura,$grupo]);
-            }
+        return redirect()->route('docente.planeador.ver', [$planeador->asignatura_planeador->asignatura,$grupo]);
+    }
 
             /**
             * Display the specified resource.
@@ -163,6 +163,39 @@ class PlaneadorController extends Controller
                 $planeador->save();
 
                 toast('Tema editado satisfactoriamente', 'success', 'top');
+                return redirect()->back();
+            }
+
+            public function actualizarFechas(Planeador $planeador,Grupo $grupo)
+            {
+                $asignatura_grupo = AsignaturaGrupo::find($planeador->asignatura_grupo_id);
+
+                $asignatura_docente = AsignaturaDocente::
+                where('asignatura_grupo_id',$asignatura_grupo->id)->first();
+
+                $programa = $asignatura_grupo->programa->first();
+
+                $dias[] = $asignatura_docente->horario->dia_semana->dia_semana;
+                if ($asignatura_docente->horario_2) {
+                    $dias[] = $asignatura_docente->horario_2->dia_semana->dia_semana;
+                }else{
+
+                }
+                $configuracion = Configuracion::find(1);
+
+                foreach ($planeador->temas as $tema) {
+                    if(count($dias)>1){
+                        $fechas = [$configuracion->inicio_clases->add($tema->semana-1,'week')->weekday($dias[0])->format("Y-m-d"),
+                    $configuracion->inicio_clases->add($tema->semana-1,'week')->weekday($dias[1])->format("Y-m-d")];
+                         $fechas_json = ["primera_clase" => $fechas[0], "segunda_clase" => $fechas[1]];
+                    }else{
+                        $fechas = $configuracion->inicio_clases->add($tema->semana-1,'week')->weekday($dias[0])->format("Y-m-d");
+                        $fechas_json = ["primera_clase" => $fechas];
+                    }
+                    $tema->fecha = $fechas_json;
+                    $tema->save();
+                }
+                toast('Fechas actualizadas', 'success', 'top');
                 return redirect()->back();
             }
 

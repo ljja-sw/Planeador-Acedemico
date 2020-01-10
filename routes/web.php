@@ -104,9 +104,9 @@ Route::group(['middleware' => ['role:Secretario|Admin', 'auth:admin']], function
 });
 
 Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
-    Route::get('{asignatura}/{grupo}/planeador', 'PlaneadorController@show')->name('docente.planeador.ver');    
-
+    Route::get('{asignatura}/{grupo}/planeador', 'PlaneadorController@show')->name('docente.planeador.ver');
     Route::get('/{asignatura}/{grupo}/planeador/nuevo', 'PlaneadorController@create')->name('docente.generar.planeador');
+    Route::get('{planeador}/{grupo}/planeador/actualizar-fechas', 'PlaneadorController@actualizarFechas')->name('docente.planeador.actualizar_fechas'); 
     Route::get('{planeador}/{grupo}/planeador/pdf', 'PlaneadorController@planeador_pdf')->name('docente.planeador.pdf');
 
     Route::group(['middleware' => ['planeador_editable']], function () {
@@ -136,6 +136,6 @@ Route::group(['middleware' => ['role:Docente', 'auth:web']], function () {
 });
 
 Route::get('/login/admin', 'Auth\AdminLoginController@showLoginForm')->name('login.admin');
-Route::post('/login/admin', 'Auth\AdminLoginCOntroller@login');
+Route::post('/login/admin', 'Auth\AdminLoginController@login');
 
 Route::get('/recuperar-cuenta', 'Auth\ResetPasswordController@showResetForm')->name('recuperar.cuenta');
