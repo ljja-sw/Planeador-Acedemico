@@ -56,7 +56,9 @@
                     <td>3.</td>
                     <td>Grupo asignado</td>
                     <td>
-                      <p class="font-weight-bold">{{$asigna->grupo}}</p>
+                      @foreach($asigna->grupo as $asig)
+                      <p class="font-weight-bold">{{$asig->numero}}</p>                      
+                      @endforeach
                     </td>
                   </tr>
                   <tr>
