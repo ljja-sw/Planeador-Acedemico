@@ -98,6 +98,14 @@
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-12">
+                                            <label for="horarios">Horarios Disponibles</label>
+                                            <div class="input-group px-3">
+                                                <select class="form-control custom-select horarios" name=" horario[]">
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
