@@ -64,7 +64,7 @@
                         <img src="{{ auth()->user()->getAvatar() }}" class="rounded-circle z-depth-0 mx-1"
                         alt="{{Auth::user()->nombre}}" height="35" width="35">
                     </a>
-                    <div class="dropdown-menu " aria-labelledby="perfilDropdown" 
+                    <div class="dropdown-menu " aria-labelledby="perfilDropdown">
                             <a class="dropdown-item" href="{{ route('perfil') }}"><i class="fa fa-user"></i>
                                 {{ Auth::user()->nombre_completo() }}                             <small>{{Auth::user()->getRoleNames()->first()}}</small>
                             </a>
