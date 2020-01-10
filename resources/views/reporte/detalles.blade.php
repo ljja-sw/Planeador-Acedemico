@@ -64,7 +64,7 @@
               <div class="col-md-12 ">
                 <h4 class="font-weight-bold">Descripion de clase</h4><br/>
                 <p>
-                  lkmlkfmvñlemklvmtekgmteg{{$reporte->descripcion}}
+                  {!!$reporte->descripcion!!}
                 </p>
               </div>
             </div>

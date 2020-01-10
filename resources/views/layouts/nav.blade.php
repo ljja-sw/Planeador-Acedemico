@@ -46,12 +46,12 @@
 
 <li class="nav-item {{request()->is('reportes*') ? "active" : ''}}">
 	{{-- Enlaces Docentes --}}
-	@if(!is_null(auth()->user()->planeadores))
+	@if(count(auth()->user()->planeadores) == null)
+
+	@else
 	<a class="nav-link" href="{{ route('reportes') }}">
 		<i class="fa fa-tasks"></i>
 		Reportes</a>
-	@else
-
 	@endif
 </li>
 @break
