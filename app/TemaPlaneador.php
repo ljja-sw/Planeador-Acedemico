@@ -59,7 +59,6 @@ class TemaPlaneador extends Model
                               where('asignatura_grupo_id', $asignatura_grupo->id)
                             ->where('docente_id', $docente->id)
                             ->first();
-
 		if ($asignacion->horario->dia == $dia_semana) {
 			return $asignacion->horario;
 		} elseif ($asignacion->horario_2 && $asignacion->horario_2->dia == $dia_semana) {
@@ -73,8 +72,8 @@ class TemaPlaneador extends Model
 	{
 		$hora = Carbon::now();
 
-		$hora_inicio = Carbon::parse($this->horarioClase()['hora_inicio']);
-		$hora_fin = Carbon::parse($this->horarioClase()['hora_fin']);
+		$hora_inicio = Carbon::parse($this->horarioClase()->hora_inicio);
+		$hora_fin = Carbon::parse($this->horarioClase()->hora_fin);
 
 		if ($hora->gte($hora_inicio) && $hora->lte($hora_fin->addMinutes(30))) {
 			return true;

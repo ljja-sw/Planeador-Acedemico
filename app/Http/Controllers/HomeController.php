@@ -27,8 +27,7 @@ class HomeController extends Controller
             case 'Docente':
 
             $planeadores = auth()->user()->planeadores;
-
-
+            
             $asignaturas = auth()->user()->asignaturas;
 
                 if (count($planeadores)>=1) {

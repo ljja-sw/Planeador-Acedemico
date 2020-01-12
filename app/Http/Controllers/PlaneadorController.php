@@ -126,7 +126,7 @@ class PlaneadorController extends Controller
 
                 $configuracion = Configuracion::find(1);
                 $planeador = $asignatura->planeador;
-
+                
                 return view('planeador.edit', compact('planeador','grupo','programa', 'configuracion', 'metodologías'));
             }
 
